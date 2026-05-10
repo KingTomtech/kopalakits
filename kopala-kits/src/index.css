@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  /* Ethereal Ivory Dreams Palette */
+  --ethereal-ivory: #F8F5F0;
+  --soft-cream: #FDFBF7;
+  --warm-beige: #E8E4DC;
+  --muted-gold: #C9B896;
+  --dusty-sage: #A8B5A0;
+  --charcoal-accent: #3D3D3D;
+}
+
+body {
+  background-color: var(--ethereal-ivory);
+  color: var(--charcoal-accent);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
