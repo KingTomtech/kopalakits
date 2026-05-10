@@ -672,7 +672,7 @@ const products = [
         "image": "https://assets.adidas.com/images/w_600,f_auto,q_auto/japan-26-home-jersey-JZ9688_HM1.jpg",
         "source": "Adidas Official Store"
     }
-];
+]
 export default function KopalaKits() {
   const [filter, setFilter] = useState('All');
   const [cart, setCart] = useState([]);
