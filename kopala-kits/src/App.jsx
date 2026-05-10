@@ -363,7 +363,7 @@ export default function KopalaKits() {
               <input
                 type="range"
                 min="300"
-                max="500"
+                max="1500"
                 value={priceRange[0]}
                 onChange={(e) => setPriceRange([Number(e.target.value), priceRange[1]])}
                 className="w-full accent-[var(--dusty-olive)]"
@@ -371,7 +371,7 @@ export default function KopalaKits() {
               <input
                 type="range"
                 min="300"
-                max="500"
+                max="1500"
                 value={priceRange[1]}
                 onChange={(e) => setPriceRange([priceRange[0], Number(e.target.value)])}
                 className="w-full accent-[var(--dusty-olive)]"
