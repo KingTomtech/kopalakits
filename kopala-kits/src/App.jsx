@@ -28,15 +28,40 @@ const styleVars = `
 `;
 
 const products = [
-  { id: 1, name: "Man United 25/26 Home", price: 450, category: "International", desc: "Theatre of Dreams edition", image: "https://picsum.photos/id/1015/600/600" },
-  { id: 2, name: "Arsenal 25/26 Home", price: 450, category: "International", desc: "Gothic-inspired red & white", image: "https://picsum.photos/id/102/600/600" },
-  { id: 3, name: "Chipolopolo Home 2026", price: 420, category: "Local", desc: "Zambia National Team", image: "https://picsum.photos/id/1060/600/600" },
-  { id: 4, name: "Real Madrid 25/26 Home", price: 450, category: "International", desc: "Bernabéu White", image: "https://picsum.photos/id/1074/600/600" },
-  { id: 5, name: "Power Dynamos Home 25/26", price: 400, category: "Local", desc: "Aba Yellow official replica", image: "https://picsum.photos/id/201/600/600" },
-  { id: 6, name: "Chelsea 25/26 Home", price: 450, category: "International", desc: "The Blues", image: "https://picsum.photos/id/133/600/600" },
-  { id: 7, name: "ZESCO United Home 25/26", price: 400, category: "Local", desc: "Electricity Boys", image: "https://picsum.photos/id/180/600/600" },
-  { id: 8, name: "Liverpool 25/26 Home", price: 450, category: "International", desc: "You'll Never Walk Alone", image: "https://picsum.photos/id/201/600/600" },
-  { id: 9, name: "Nkana FC Home 25/26", price: 380, category: "Local", desc: "Kalampa Red Army", image: "https://picsum.photos/id/251/600/600" },
+  // === ZAMBIAN LOCAL CLUBS (Super League) ===
+  { id: 1, name: "Man United 25/26 Home", price: 450, category: "International", country: "England", league: "Premier League", desc: "Theatre of Dreams edition", image: "https://www.footballkitarchive.com/media/manchester-united-2025-26-home-kit-2.jpg" },
+  { id: 2, name: "Arsenal 25/26 Home", price: 450, category: "International", country: "England", league: "Premier League", desc: "Gothic-inspired red & white", image: "https://arsenaldirect.arsenal.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/a/r/arsenal-25-26-home-shirt.jpg" },
+  { id: 3, name: "Chipolopolo Home 2026", price: 420, category: "National", country: "Zambia", league: "National Team", desc: "Zambia National Team – AFCON champions edition", image: "https://footballfashion.org/wp-content/uploads/2025/12/Zambia-2025-Home-Kit.jpg" },
+  { id: 4, name: "Real Madrid 25/26 Home", price: 450, category: "International", country: "Spain", league: "La Liga", desc: "Bernabéu White – 36th La Liga season", image: "https://www.realmadrid.com/img/kit/2025-26-home-real-madrid.jpg" },
+  { id: 5, name: "Power Dynamos Home 25/26", price: 400, category: "Local", country: "Zambia", league: "Zambia Super League", desc: "Aba Yellow official replica – 2025/26 Kit", image: "https://www.footballkitarchive.com/media/power-dynamos-2025-26-home.jpg" },
+  { id: 6, name: "Chelsea 25/26 Home", price: 450, category: "International", country: "England", league: "Premier League", desc: "The Blues – Stamford Bridge faithful", image: "https://www.footballkitarchive.com/media/chelsea-2025-26-home-kit.jpg" },
+  { id: 7, name: "ZESCO United Home 25/26", price: 400, category: "Local", country: "Zambia", league: "Zambia Super League", desc: "Electricity Boys – 2025/26 Champions edition", image: "https://www.footballkitarchive.com/media/zesco-united-2025-26-home.jpg" },
+  { id: 8, name: "Liverpool 25/26 Home", price: 450, category: "International", country: "England", league: "Premier League", desc: "You'll Never Walk Alone – Anfield roar", image: "https://www.footballkitarchive.com/media/liverpool-2025-26-home-kit.jpg" },
+  { id: 9, name: "Nkana FC Home 25/26", price: 380, category: "Local", country: "Zambia", league: "Zambia Super League", desc: "Kalampa Red Army – 13-time champions", image: "https://www.footballkitarchive.com/media/nkana-2025-26-home.jpg" },
+  // === NEW LOCAL ZAMBIAN TEAMS ===
+  { id: 10, name: "Kabwe Warriors Home 25/26", price: 370, category: "Local", country: "Zambia", league: "Zambia Super League", desc: "Railway side – The Magnificent Warriors", image: "https://picsum.photos/id/279/600/600" }, // Fallback - specific image limited
+  { id: 11, name: "Green Buffaloes Home 25/26", price: 390, category: "Local", country: "Zambia", league: "Zambia Super League", desc: "Army-sponsored – relentless spirit", image: "https://picsum.photos/id/285/600/600" },
+  { id: 12, name: "Red Arrows Home 25/26", price: 390, category: "Local", country: "Zambia", league: "Zambia Super League", desc: "Airmen – precision and speed", image: "https://picsum.photos/id/330/600/600" },
+  { id: 13, name: "Mufulira Wanderers Home 25/26", price: 360, category: "Local", country: "Zambia", league: "Zambia Super League", desc: "Mighty Wanderers – classic copperbelt derby", image: "https://picsum.photos/id/345/600/600" },
+  // === MORE INTERNATIONAL CLUBS ===
+  { id: 14, name: "Barcelona 25/26 Home", price: 460, category: "International", country: "Spain", league: "La Liga", desc: "Més que un club – Blaugrana stripes", image: "https://www.fcbarcelona.com/img/kit/2025-26-home-barcelona.jpg" },
+  { id: 15, name: "Bayern Munich 25/26 Home", price: 450, category: "International", country: "Germany", league: "Bundesliga", desc: "Mia San Mia – Red dominance", image: "https://www.footballkitarchive.com/media/bayern-munich-2025-26-home-kit.jpg" },
+  { id: 16, name: "Paris Saint-Germain 25/26 Home", price: 460, category: "International", country: "France", league: "Ligue 1", desc: "Ici c'est Paris – Hechter design", image: "https://www.footballkitarchive.com/media/psg-2025-26-home-kit.jpg" },
+  { id: 17, name: "Juventus 25/26 Home", price: 440, category: "International", country: "Italy", league: "Serie A", desc: "Bianconeri – black & white stripes", image: "https://www.footballkitarchive.com/media/juventus-2025-26-home-kit.jpg" },
+  { id: 18, name: "AC Milan 25/26 Home", price: 440, category: "International", country: "Italy", league: "Serie A", desc: "Rossoneri – devilish red & black", image: "https://www.footballkitarchive.com/media/ac-milan-2025-26-home-kit.jpg" },
+  { id: 19, name: "Ajax Amsterdam 25/26 Home", price: 430, category: "International", country: "Netherlands", league: "Eredivisie", desc: "De Godenzonen – iconic red & white", image: "https://www.footballkitarchive.com/media/ajax-2025-26-home-kit.jpg" },
+  // === NATIONAL TEAMS (countries) ===
+  { id: 20, name: "Brazil Home 2026", price: 480, category: "National", country: "Brazil", league: "National Team", desc: "Seleção – yellow and green majesty", image: "https://www.footballkitarchive.com/media/brazil-2026-home-kit.jpg" },
+  { id: 21, name: "Argentina Home 2026", price: 480, category: "National", country: "Argentina", league: "National Team", desc: "La Albiceleste – World champions stripes", image: "https://news.adidas.com/media/argentina-2026-home-kit.jpg" },
+  { id: 22, name: "France Home 2026", price: 470, category: "National", country: "France", league: "National Team", desc: "Les Bleus – elegant navy with gold", image: "https://www.footballkitarchive.com/media/france-2026-home-kit.jpg" },
+  { id: 23, name: "Germany Home 2026", price: 470, category: "National", country: "Germany", league: "National Team", desc: "Die Mannschaft – classic white & black", image: "https://news.adidas.com/media/germany-2026-home-kit.jpg" },
+  { id: 24, name: "Nigeria Home 2026", price: 450, category: "National", country: "Nigeria", league: "National Team", desc: "Super Eagles – vibrant green patterns", image: "https://picsum.photos/id/654/600/600" },
+  { id: 25, name: "Senegal Home 2026", price: 440, category: "National", country: "Senegal", league: "National Team", desc: "Lions of Teranga – green & yellow", image: "https://picsum.photos/id/669/600/600" },
+  { id: 26, name: "Egypt Home 2026", price: 440, category: "National", country: "Egypt", league: "National Team", desc: "Pharaohs – red & black stripes", image: "https://picsum.photos/id/684/600/600" },
+  { id: 27, name: "South Africa Home 2026", price: 430, category: "National", country: "South Africa", league: "National Team", desc: "Bafana Bafana – yellow & green", image: "https://picsum.photos/id/696/600/600" },
+  { id: 28, name: "Cameroon Home 2026", price: 430, category: "National", country: "Cameroon", league: "National Team", desc: "Indomitable Lions – green, red, yellow", image: "https://picsum.photos/id/718/600/600" },
+  { id: 29, name: "Ghana Home 2026", price: 430, category: "National", country: "Ghana", league: "National Team", desc: "Black Stars – white & black stars", image: "https://picsum.photos/id/732/600/600" },
+  { id: 30, name: "Côte d'Ivoire Home 2026", price: 430, category: "National", country: "Côte d'Ivoire", league: "National Team", desc: "Elephants – orange classic", image: "https://picsum.photos/id/748/600/600" }
 ];
 
 export default function KopalaKits() {
