@@ -218,7 +218,7 @@ export default function KopalaKits() {
         {/* HERO */}
         <header className="text-white px-5 py-12 md:py-16 text-center" style={{ backgroundColor: 'var(--dusty-olive)' }}>
           <h2 className="text-4xl md:text-6xl font-bold tracking-tight">25/26 SEASON KITS</h2>
-          <p className="mt-3 text-lg md:text-xl font-medium">Supa Quality • Reza Guys 🔥</p>
+          <p className="mt-3 text-lg md:text-xl font-medium">Supa Quality • Reza Guys </p>
 
           {/* Search Bar */}
           <div className="mt-8 max-w-lg mx-auto px-4">
