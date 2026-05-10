@@ -59,20 +59,20 @@ export default function KopalaKits() {
   };
 
   return (
-    <div className="min-h-screen font-sans" style={{ backgroundColor: 'var(--ethereal-ivory)', color: 'var(--charcoal-accent)' }}>
+    <div className="min-h-screen font-sans" style={{ backgroundColor: 'var(--champagne-900)', color: 'var(--olive-100)' }}>
       {/* NAVIGATION */}
-      <nav className="sticky top-0 z-50 border-b px-4 py-3 flex justify-between items-center shadow-sm" style={{ backgroundColor: 'var(--soft-cream)', borderColor: 'var(--warm-beige)' }}>
-        <h1 className="text-xl font-black tracking-tighter" style={{ color: 'var(--dusty-sage)' }}>KOPALA KITS</h1>
+      <nav className="sticky top-0 z-50 border-b px-4 py-3 flex justify-between items-center shadow-sm" style={{ backgroundColor: 'var(--champagne-800)', borderColor: 'var(--khaki-700)' }}>
+        <h1 className="text-xl font-black tracking-tighter" style={{ color: 'var(--olive-400)' }}>KOPALA KITS</h1>
         <div className="flex gap-4 items-center">
-          <a href="#about" className="text-sm font-medium" style={{ color: 'var(--charcoal-accent)' }}>About</a>
-          <div className="px-2 py-1 rounded-md text-xs font-bold flex items-center gap-1" style={{ backgroundColor: 'var(--warm-beige)', color: 'var(--dusty-sage)' }}>
+          <a href="#about" className="text-sm font-medium" style={{ color: 'var(--olive-200)' }}>About</a>
+          <div className="px-2 py-1 rounded-md text-xs font-bold flex items-center gap-1" style={{ backgroundColor: 'var(--khaki-600)', color: 'var(--olive-300)' }}>
             <MapPin size={12} /> CBU K-BLOCK
           </div>
         </div>
       </nav>
 
       {/* HERO SECTION */}
-      <header className="text-white px-6 py-12 text-center" style={{ backgroundColor: 'var(--dusty-sage)' }}>
+      <header className="px-6 py-12 text-center" style={{ backgroundColor: 'var(--olive-500)', color: 'var(--champagne-900)' }}>
         <h2 className="text-3xl font-bold mb-2">Copperbelt&apos;s Finest Kits</h2>
         <p className="opacity-90 mb-6">Local & International jerseys delivered to your doorstep.</p>
         <div className="flex justify-center gap-2">
@@ -82,8 +82,8 @@ export default function KopalaKits() {
               onClick={() => setFilter(cat)}
               className="px-4 py-2 rounded-full text-sm font-semibold transition"
               style={{ 
-                backgroundColor: filter === cat ? 'var(--soft-cream)' : 'rgba(255,255,255,0.2)',
-                color: filter === cat ? 'var(--dusty-sage)' : 'white'
+                backgroundColor: filter === cat ? 'var(--champagne-800)' : 'rgba(255,255,255,0.2)',
+                color: filter === cat ? 'var(--olive-400)' : 'var(--champagne-900)'
               }}
             >
               {cat}
@@ -98,7 +98,7 @@ export default function KopalaKits() {
           <div 
             key={product.id} 
             className="rounded-xl shadow-sm border overflow-hidden flex flex-col"
-            style={{ backgroundColor: 'var(--soft-cream)', borderColor: 'var(--warm-beige)' }}
+            style={{ backgroundColor: 'var(--champagne-800)', borderColor: 'var(--khaki-700)' }}
           >
             <img 
               src={product.img} 
@@ -107,14 +107,14 @@ export default function KopalaKits() {
               onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=600&h=600&fit=crop'; }}
             />
             <div className="p-3 flex-grow">
-              <span className="text-[10px] font-bold uppercase" style={{ color: 'var(--muted-gold)' }}>{product.category}</span>
-              <h3 className="font-bold text-sm leading-tight">{product.name}</h3>
-              <p className="font-black mt-1" style={{ color: 'var(--dusty-sage)' }}>K{product.price}</p>
+              <span className="text-[10px] font-bold uppercase" style={{ color: 'var(--champagne-300)' }}>{product.category}</span>
+              <h3 className="font-bold text-sm leading-tight" style={{ color: 'var(--olive-200)' }}>{product.name}</h3>
+              <p className="font-black mt-1" style={{ color: 'var(--olive-500)' }}>K{product.price}</p>
             </div>
             <button 
               onClick={() => sendWhatsApp(product.name)}
-              className="m-3 text-white py-2 rounded-lg flex items-center justify-center gap-2 text-xs font-bold transition hover:opacity-90"
-              style={{ backgroundColor: 'var(--dusty-sage)' }}
+              className="py-2 rounded-lg flex items-center justify-center gap-2 text-xs font-bold transition hover:opacity-90 mx-3 mb-3"
+              style={{ backgroundColor: 'var(--olive-500)', color: 'var(--champagne-900)' }}
             >
               <MessageCircle size={14} /> ORDER NOW
             </button>
@@ -126,22 +126,22 @@ export default function KopalaKits() {
       <section 
         id="about" 
         className="m-4 p-6 rounded-2xl border"
-        style={{ backgroundColor: 'var(--soft-cream)', borderColor: 'var(--warm-beige)' }}
+        style={{ backgroundColor: 'var(--champagne-800)', borderColor: 'var(--khaki-700)' }}
       >
-        <h3 className="text-lg font-bold mb-3 flex items-center gap-2">
-          <Info style={{ color: 'var(--dusty-sage)' }} /> Our Story
+        <h3 className="text-lg font-bold mb-3 flex items-center gap-2" style={{ color: 'var(--olive-300)' }}>
+          <Info style={{ color: 'var(--olive-500)' }} /> Our Story
         </h3>
-        <p className="text-sm leading-relaxed" style={{ color: 'var(--charcoal-accent)' }}>
+        <p className="text-sm leading-relaxed" style={{ color: 'var(--olive-200)' }}>
           Kopala Kits originated in <strong>Luanshya</strong> and has now established its headquarters at 
           <strong> CBU, K Block</strong>. We specialize in high-quality soccer jerseys for both local 
           Zambian teams and international giants. 
           <br /><br />
-          <span className="font-bold italic">Coming Soon: Professional Soccer Boots & Balls!</span>
+          <span className="font-bold italic" style={{ color: 'var(--champagne-300)' }}>Coming Soon: Professional Soccer Boots & Balls!</span>
         </p>
       </section>
 
       {/* FOOTER */}
-      <footer className="p-8 text-center text-xs" style={{ color: 'var(--muted-gold)' }}>
+      <footer className="p-8 text-center text-xs" style={{ color: 'var(--khaki-400)' }}>
         <p>&copy; 2026 Kopala Kits. Built for the Copperbelt.</p>
       </footer>
     </div>

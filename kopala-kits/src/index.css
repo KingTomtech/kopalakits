@@ -3,17 +3,42 @@
 @tailwind utilities;
 
 :root {
-  /* Ethereal Ivory Dreams Palette */
-  --ethereal-ivory: #F8F5F0;
-  --soft-cream: #FDFBF7;
-  --warm-beige: #E8E4DC;
-  --muted-gold: #C9B896;
-  --dusty-sage: #A8B5A0;
-  --charcoal-accent: #3D3D3D;
+  /* Champagne Mist */
+  --champagne-100: #473211;
+  --champagne-200: #8d6422;
+  --champagne-300: #cf9538;
+  --champagne-400: #e0bb7f;
+  --champagne-500: #f1e0c5;
+  --champagne-600: #f4e7d1;
+  --champagne-700: #f7eddd;
+  --champagne-800: #f9f3e8;
+  --champagne-900: #fcf9f4;
+
+  /* Khaki Beige */
+  --khaki-100: #2e2619;
+  --khaki-200: #5c4c33;
+  --khaki-300: #8a714c;
+  --khaki-400: #af956e;
+  --khaki-500: #c9b79c;
+  --khaki-600: #d4c5b0;
+  --khaki-700: #ded4c4;
+  --khaki-800: #e9e2d8;
+  --khaki-900: #f4f1eb;
+
+  /* Dusty Olive */
+  --olive-100: #171a16;
+  --olive-200: #2e342c;
+  --olive-300: #444e42;
+  --olive-400: #5b6858;
+  --olive-500: #71816d;
+  --olive-600: #8e9c8a;
+  --olive-700: #aab4a7;
+  --olive-800: #c6cdc5;
+  --olive-900: #e3e6e2;
 }
 
 body {
-  background-color: var(--ethereal-ivory);
-  color: var(--charcoal-accent);
+  background-color: var(--champagne-900);
+  color: var(--olive-100);
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
