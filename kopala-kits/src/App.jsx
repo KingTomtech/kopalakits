@@ -33,17 +33,17 @@ const products = [
     {
         "id": 1,
         "name": "Mufulira Wanderers 2025/26 Home Jersey",
-        "price": 520,
+        "price": 320,
         "category": "Local",
         "country": "Zambia",
         "league": "Zambia Super League",
         "desc": "Green and white stripes home kit of Mighty Mufulira Wanderers.",
-        "image": "https://www.footballkitarchive.com/static/uploads/mufulira-wanderers-2025-26-home-kit.jpg"  // Often works on their site
+        "image": "https://www.footballkitarchive.com/static/uploads/mufulira-wanderers-2025-26-home-kit.jpg"
     },
     {
         "id": 2,
         "name": "Kabwe Warriors 2024/25 Home Jersey",
-        "price": 480,
+        "price": 280,
         "category": "Local",
         "country": "Zambia",
         "league": "Zambia Super League",
@@ -53,29 +53,29 @@ const products = [
     {
         "id": 3,
         "name": "Nkana FC 2024/25 Home Jersey",
-        "price": 500,
+        "price": 310,
         "category": "Local",
         "country": "Zambia",
         "league": "Zambia Super League",
         "desc": "Classic orange/red and white home jersey - Kitwe giants.",
-        "image": "https://umbro.co.za/cdn/shop/files/Nkana-Home-24-25.jpg"  // Or search Umbro site
+        "image": "https://umbro.co.za/cdn/shop/files/Nkana-Home-24-25.jpg"
     },
     {
         "id": 4,
         "name": "Power Dynamos 2025/26 Home Jersey",
-        "price": 490,
+        "price": 290,
         "category": "Local",
         "country": "Zambia",
         "league": "Zambia Super League",
         "desc": "Iconic yellow Aba Yellow home kit.",
-        "image": "https://powerdynamosfc.com/wp-content/uploads/2025-home.jpg"  // Check official site for latest
+        "image": "https://via.placeholder.com/600x600/FFCC00/000000?text=Power+Dynamos+Home"  // Replace with real photo when available
     },
 
     // ====================== INTERNATIONAL CLUBS ======================
     {
         "id": 5,
         "name": "Manchester United 2025/26 Home Jersey",
-        "price": 650,
+        "price": 450,
         "category": "International",
         "country": "England",
         "league": "Premier League",
@@ -85,7 +85,7 @@ const products = [
     {
         "id": 6,
         "name": "Liverpool FC 2025/26 Home Jersey",
-        "price": 750,
+        "price": 480,
         "category": "International",
         "country": "England",
         "league": "Premier League",
@@ -95,7 +95,7 @@ const products = [
     {
         "id": 7,
         "name": "Arsenal 2025/26 Home Jersey",
-        "price": 700,
+        "price": 460,
         "category": "International",
         "country": "England",
         "league": "Premier League",
@@ -105,7 +105,7 @@ const products = [
     {
         "id": 8,
         "name": "Real Madrid 2025/26 Home Jersey",
-        "price": 800,
+        "price": 490,
         "category": "International",
         "country": "Spain",
         "league": "La Liga",
@@ -115,7 +115,7 @@ const products = [
     {
         "id": 9,
         "name": "Barcelona 2025/26 Home Jersey",
-        "price": 780,
+        "price": 480,
         "category": "International",
         "country": "Spain",
         "league": "La Liga",
@@ -125,7 +125,7 @@ const products = [
     {
         "id": 10,
         "name": "Bayern Munich 2025/26 Home Jersey",
-        "price": 820,
+        "price": 470,
         "category": "International",
         "country": "Germany",
         "league": "Bundesliga",
@@ -135,7 +135,7 @@ const products = [
     {
         "id": 11,
         "name": "AC Milan 2025/26 Home Jersey",
-        "price": 750,
+        "price": 460,
         "category": "International",
         "country": "Italy",
         "league": "Serie A",
@@ -145,7 +145,7 @@ const products = [
     {
         "id": 12,
         "name": "Paris Saint-Germain 2025/26 Home Jersey",
-        "price": 850,
+        "price": 500,
         "category": "International",
         "country": "France",
         "league": "Ligue 1",
@@ -157,17 +157,17 @@ const products = [
     {
         "id": 13,
         "name": "Zambia National Team 2025/26 Home Jersey",
-        "price": 600,
+        "price": 350,
         "category": "National",
         "country": "Zambia",
         "league": "International",
         "desc": "Chipolopolo green home jersey.",
-        "image": "https://footballfashion.org/wp-content/uploads/2025/12/Zambia-AFCON-2025-Home-Kit.jpg"  // KoPa kit
+        "image": "https://footballfashion.org/wp-content/uploads/2025/12/Zambia-AFCON-2025-Home-Kit.jpg"
     },
     {
         "id": 14,
         "name": "England National Team 2025/26 Home Jersey",
-        "price": 700,
+        "price": 420,
         "category": "National",
         "country": "England",
         "league": "International",
@@ -177,7 +177,7 @@ const products = [
     {
         "id": 15,
         "name": "Argentina National Team 2025/26 Home Jersey",
-        "price": 760,
+        "price": 480,
         "category": "National",
         "country": "Argentina",
         "league": "International",
@@ -187,7 +187,7 @@ const products = [
     {
         "id": 16,
         "name": "Brazil National Team 2025/26 Home Jersey",
-        "price": 800,
+        "price": 490,
         "category": "National",
         "country": "Brazil",
         "league": "International",
@@ -197,7 +197,7 @@ const products = [
     {
         "id": 17,
         "name": "France National Team 2025/26 Home Jersey",
-        "price": 780,
+        "price": 460,
         "category": "National",
         "country": "France",
         "league": "International",
