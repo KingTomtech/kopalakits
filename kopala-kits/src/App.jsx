@@ -673,6 +673,7 @@ const products = [
         "source": "Adidas Official Store"
     }
 ]
+  ];
 export default function KopalaKits() {
   const [filter, setFilter] = useState('All');
   const [cart, setCart] = useState([]);
