@@ -37,28 +37,28 @@ const products = [
         "category": "Local",
         "country": "Zambia",
         "league": "Zambia Super League",
-        "desc": "Classic white and black home kit of Mighty Mufulira Wanderers.",
-        "image": "https://www.footballkitarchive.com/static/uploads/mufulira-wanderers-2025-26-home-kit.jpg"
+        "desc": "Green and white stripes home kit of Mighty Mufulira Wanderers.",
+        "image": "https://www.footballkitarchive.com/static/uploads/mufulira-wanderers-2025-26-home-kit.jpg"  // Often works on their site
     },
     {
         "id": 2,
-        "name": "Kabwe Warriors 2025/26 Home Jersey",
+        "name": "Kabwe Warriors 2024/25 Home Jersey",
         "price": 480,
         "category": "Local",
         "country": "Zambia",
         "league": "Zambia Super League",
-        "desc": "Green and white stripes home jersey.",
-        "image": "https://www.footballkitarchive.com/static/uploads/kabwe-warriors-2025-26-home-kit.jpg"
+        "desc": "Sky blue and white home jersey.",
+        "image": "https://www.footballkitarchive.com/static/uploads/kabwe-warriors-2024-25-home-kit.jpg"
     },
     {
         "id": 3,
-        "name": "Nkana FC 2025/26 Home Jersey",
+        "name": "Nkana FC 2024/25 Home Jersey",
         "price": 500,
         "category": "Local",
         "country": "Zambia",
         "league": "Zambia Super League",
-        "desc": "Classic red and white home jersey - Kitwe giants.",
-        "image": "https://www.footballkitarchive.com/static/uploads/nkana-2025-26-home-kit.jpg"
+        "desc": "Classic orange/red and white home jersey - Kitwe giants.",
+        "image": "https://umbro.co.za/cdn/shop/files/Nkana-Home-24-25.jpg"  // Or search Umbro site
     },
     {
         "id": 4,
@@ -67,11 +67,11 @@ const products = [
         "category": "Local",
         "country": "Zambia",
         "league": "Zambia Super League",
-        "desc": "Aba Yellow official home kit - Kitwe.",
-        "image": "https://www.footballkitarchive.com/static/uploads/power-dynamos-fc-2025-26-home-kit.jpg"
+        "desc": "Iconic yellow Aba Yellow home kit.",
+        "image": "https://powerdynamosfc.com/wp-content/uploads/2025-home.jpg"  // Check official site for latest
     },
 
-    // ====================== INTERNATIONAL CLUBS (Prominent ones) ======================
+    // ====================== INTERNATIONAL CLUBS ======================
     {
         "id": 5,
         "name": "Manchester United 2025/26 Home Jersey",
@@ -153,7 +153,7 @@ const products = [
         "image": "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/paris-saint-germain-2025-26-stadium-home-mens-dri-fit-soccer-replica-jersey-SXnr0w.png"
     },
 
-    // ====================== NATIONAL TEAMS (Popular ones) ======================
+    // ====================== NATIONAL TEAMS ======================
     {
         "id": 13,
         "name": "Zambia National Team 2025/26 Home Jersey",
@@ -162,7 +162,7 @@ const products = [
         "country": "Zambia",
         "league": "International",
         "desc": "Chipolopolo green home jersey.",
-        "image": "https://www.footballkitarchive.com/static/uploads/zambia-2025-26-home-kit.jpg"
+        "image": "https://footballfashion.org/wp-content/uploads/2025/12/Zambia-AFCON-2025-Home-Kit.jpg"  // KoPa kit
     },
     {
         "id": 14,
@@ -205,6 +205,7 @@ const products = [
         "image": "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/fff-2026-stadium-home-mens-dri-fit-soccer-replica-jersey-T0lfLEZh.png"
     }
 ];
+
 export default function KopalaKits() {
   const [filter, setFilter] = useState('All');
   const [cart, setCart] = useState([]);
