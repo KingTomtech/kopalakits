@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Ethereal Ivory Dreams Palette */
+:root {
+  --ethereal-ivory: #F8F5F0;
+  --soft-cream: #FDFBF7;
+  --warm-beige: #E8E4DC;
+  --muted-gold: #C9B896;
+  --dusty-sage: #A8B5A0;
+  --charcoal-accent: #3D3D3D;
+}
+
+body {
+  background-color: var(--ethereal-ivory);
+  color: var(--charcoal-accent);
+}
