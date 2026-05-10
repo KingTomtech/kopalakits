@@ -27,128 +27,651 @@ const styleVars = `
   }
 `;
 
+
 const products = [
-  // === ZAMBIAN LOCAL CLUBS (Super League) ===
-  { id: 1, name: "Power Dynamos Home 25/26", price: 400, category: "Local", country: "Zambia", league: "Zambia Super League", desc: "Aba Yellow official replica – Umbro kit with Copperbelt Energy sponsor", image: "https://www.footballkitarchive.com/power-dynamos-2025-26-home-kit.jpg" },
   
-  { id: 2, name: "ZESCO United Home 25/26", price: 400, category: "Local", country: "Zambia", league: "Zambia Super League", desc: "Electricity Boys – Orange & Green with Access Bank sponsor", image: "https://www.footballkitarchive.com/zesco-united-2025-26-home-kit.jpg" },
-  
-  { id: 3, name: "Nkana FC Home 25/26", price: 380, category: "Local", country: "Zambia", league: "Zambia Super League", desc: "Kalampa Red Army – 13-time champions, traditional red", image: "https://www.footballkitarchive.com/nkana-2025-26-home-kit.jpg" },
-  
-  { id: 4, name: "Red Arrows Home 25/26", price: 390, category: "Local", country: "Zambia", league: "Zambia Super League", desc: "Airmen – Red & White Scimitar kit, precision and speed", image: "https://www.footballkitarchive.com/red-arrows-fc-2025-26-home-kit.jpg" },
-  
-  { id: 5, name: "Green Buffaloes Home 25/26", price: 390, category: "Local", country: "Zambia", league: "Zambia Super League", desc: "Army-sponsored – Kappa green & white Celtic-style design", image: "https://www.footballkitarchive.com/green-buffaloes-2025-26-home-kit.jpg" },
-  
-  { id: 6, name: "Mufulira Wanderers Home 25/26", price: 360, category: "Local", country: "Zambia", league: "Zambia Super League", desc: "Mighty Wanderers – Greenstripes green & white stripes", image: "https://www.footballkitarchive.com/mufulira-wanderers-2025-26-home-kit.jpg" },
-  
-  { id: 7, name: "Kabwe Warriors Home 25/26", price: 370, category: "Local", country: "Zambia", league: "Zambia Super League", desc: "Railway side – The Magnificent Warriors", image: "https://www.footballkitarchive.com/kabwe-warriors-2025-26-home-kit.jpg" },
-  
-  { id: 8, name: "Nchanga Rangers Home 25/26", price: 370, category: "Local", country: "Zambia", league: "Zambia Super League", desc: "Chingola-based – Bravo brand yellow & blue", image: "https://www.footballkitarchive.com/nchanga-rangers-fc-2025-26-home-kit.jpg" },
-  
-  { id: 9, name: "Zanaco FC Home 25/26", price: 380, category: "Local", country: "Zambia", league: "Zambia Super League", desc: "Bankers – Umbro red & black stripes", image: "https://www.footballkitarchive.com/zanaco-fc-2025-26-home-kit.jpg" },
-  
-  { id: 10, name: "Forest Rangers Home 25/26", price: 360, category: "Local", country: "Zambia", league: "Zambia Super League", desc: "Ndola's green machine – Rangers official kit", image: "https://www.footballkitarchive.com/forest-rangers-2025-26-home-kit.jpg" },
-  
-  { id: 11, name: "Kafue Celtic Home 25/26", price: 350, category: "Local", country: "Zambia", league: "Zambia Super League", desc: "Rising Phoenix – new super league team", image: "https://www.footballkitarchive.com/kafue-celtic-2025-26-home-kit.jpg" },
-  
-  { id: 12, name: "FC Leopards Home 25/26", price: 360, category: "Local", country: "Zambia", league: "Zambia Super League", desc: "Prison Leopards – Admiral white & green graphic design", image: "https://www.footballkitarchive.com/fc-leopards-2025-26-home-kit.jpg" },
-  
-  { id: 13, name: "Atletico Lusaka Home 25/26", price: 340, category: "Local", country: "Zambia", league: "Zambia National League", desc: "Eye Sport white & orange – rising club", image: "https://www.footballkitarchive.com/atletico-lusaka-2025-26-home-kit.jpg" },
-  
-  { id: 14, name: "Indeni FC Home 25/26", price: 350, category: "Local", country: "Zambia", league: "Zambia Super League", desc: "Oil Men – Indeni Petroleum sponsored", image: "https://www.footballkitarchive.com/indeni-fc-2025-26-home-kit.jpg" },
-  
-  { id: 15, name: "NAPSA Stars Home 25/26", price: 350, category: "Local", country: "Zambia", league: "Zambia Super League", desc: "Jet Stars – National Pension Scheme Authority backed", image: "https://www.footballkitarchive.com/napsa-stars-2025-26-home-kit.jpg" },
+  [
+    // ZAMBIAN SUPER LEAGUE (18 PRODUCTS)
+    {
+        "id": 1,
+        "name": "Zanaco FC 2025/26 Home Jersey",
+        "price": 550,
+        "category": "Local",
+        "country": "Zambia",
+        "league": "Zambia Super League",
+        "brand": "Umbro",
+        "description": "Red and black striped home jersey for the 2025/26 season.",
+        "image": "https://sspark.genspark.ai/cfimages?u1=97FvYVtjkGbePHh77Eo7QYXCKn88RUTKSEMCUx%2Blbl0JpcJ%2Buwqv4BT8WYt%2FwMMiXzVW%2B6lWI1L5ztFrwIzyQjVTN541qcDwNGfrV4t%2FJ8ZdsPWn4KQbnh4khGvmLvAeMZO1c9Hl1oqhGhFz8AyBO9lQ8cBVTTu9R6vr9%2F65EXhOieSDSZ3b2kw5hLLz&u2=Fb4yst6LEuCoUekt&width=2560",
+        "source": "Football Kit Archive"
+    },
+    {
+        "id": 2,
+        "name": "Nkana FC 2025/26 Home Jersey",
+        "price": 500,
+        "category": "Local",
+        "country": "Zambia",
+        "league": "Zambia Super League",
+        "brand": "Umbro",
+        "description": "Classic red and white home jersey, a timeless design for the 2025/26 season.",
+        "image": "https://sspark.genspark.ai/cfimages?u1=IpoXI%2BXXe%2BUnjUoYCkriSv2i4XLVKQ1YqBaFguNTxfHS8XzOQin4SupHb8qR92Zkc8QHtYdrHRPnLsN2u8quxndFd%2BkvNlVXOOhyYd4dyVwIYqpkk4PEsxTbzK%2B5rn87blRPFQdM6LCXH8vD2tlBtdfXSBS4d4HYYxDLhy%2FH8Cw3yq8%3D&u2=plCnrxQw6CjoAlbn&width=2560",
+        "source": "Umbro UK"
+    },
+    {
+        "id": 3,
+        "name": "Power Dynamos 2025/26 Home Jersey",
+        "price": 480,
+        "category": "Local",
+        "country": "Zambia",
+        "league": "Zambia Super League",
+        "brand": "Umbro",
+        "description": "Aba Yellow official replica – Umbro kit with Copperbelt Energy sponsor.",
+        "image": "https://sspark.genspark.ai/cfimages?u1=pUxQWOFWbEqJxOPkENrPeR6hZU0bL9z6dgIwrOkCBOwcqBipaiY%2BNy5KHvelRTbu24%2Bbl%2FbREQKE%2BEhjik3hl%2Fq2%2FW2xfXcyoF41K5VVSQ%3D%3D&u2=0%2BhN%2Bhijm0beMXdR&width=2560",
+        "source": "Power Dynamos FC Official"
+    },
+    {
+        "id": 4,
+        "name": "Red Arrows FC 2025/26 Home Jersey",
+        "price": 520,
+        "category": "Local",
+        "country": "Zambia",
+        "league": "Zambia Super League",
+        "brand": "Kappa",
+        "description": "Home jersey reflecting the colors and core values of the Zambia Air Force.",
+        "image": "https://scontent.fluw1-1.fna.fbcdn.net/v/t39.30808-6/506876423_122207193320279032_5048048058577748548_n.jpg",
+        "source": "Red Arrows FC"
+    },
+    {
+        "id": 5,
+        "name": "Green Buffaloes FC 2025/26 Home Jersey",
+        "price": 490,
+        "category": "Local",
+        "country": "Zambia",
+        "league": "Zambia Super League",
+        "brand": "Puma",
+        "description": "Army-green home jersey representing the Zambian military side.",
+        "image": "https://sspark.genspark.ai/cfimages?u1=%2B5n7e%2B4761GoOwx0srR%2BbrSpBwkdnMov%2BQIiI6rkI5zYfzei%2BF4tLmDGJF07dmWwzObfgyiP%2B9AVqowihBLyX%2BOUIheS36D70XoElSLde%2BWNvSDAZ8gYXS1tDAjyyAO01O2oKS6178HMJLjhl3MhnkRiw6iw7NGy0bJuZQ%3D%3D&u2=XYExuCdA9tRY187p&width=2560",
+        "source": "Football Kit Archive"
+    },
+    {
+        "id": 6,
+        "name": "ZESCO United 2025/26 Home Jersey",
+        "price": 580,
+        "category": "Local",
+        "country": "Zambia",
+        "league": "Zambia Super League",
+        "brand": "Nike",
+        "description": "Iconic blue home kit of the Zambian champions.",
+        "image": "https://sspark.genspark.ai/cfimages?u1=SH6Hlc7WEhTtZ5qxY2JbDOk7yqzZUz6V239KNDeABVBsJdsiAJeGsEq3aT82C2Lm0l7f2UfdOIfM2NHykPfYVsR%2BVRjYH3mPMJzjE%2BODUnd%2BLGGTvmiiFeIAEaLVt3J4VlJpGRMcVkcWYyFEADab4q52wWVjVySxB%2FG5pg%3D%3D&u2=7Vv%2BLRvoWbV2Qfkj&width=2560",
+        "source": "Football Kit Archive"
+    },
+    {
+        "id": 7,
+        "name": "Kabwe Warriors 2025/26 Home Jersey",
+        "price": 450,
+        "category": "Local",
+        "country": "Zambia",
+        "league": "Zambia Super League",
+        "brand": "Legea",
+        "description": "Green and white stripes, the traditional colors of Kabwe Warriors.",
+        "image": "https://www.footballkitarchive.com/static/uploads/kabwe-warriors-2024-25-home-kit.jpg",
+        "source": "Football Kit Archive"
+    },
+    {
+        "id": 8,
+        "name": "NAPSA Stars 2025/26 Home Jersey",
+        "price": 470,
+        "category": "Local",
+        "country": "Zambia",
+        "league": "Zambia Super League",
+        "brand": "Scimitar",
+        "description": "Blue and white jersey of the Lusaka-based club.",
+        "image": "https://www.footballkitarchive.com/static/uploads/napsa-stars-2025-26-home-kit.jpg",
+        "source": "NAPSA Stars FC"
+    },
+    {
+        "id": 9,
+        "name": "Lumwana Radiants 2025/26 Home Jersey",
+        "price": 460,
+        "category": "Local",
+        "country": "Zambia",
+        "league": "Zambia Super League",
+        "brand": "Adidas",
+        "description": "Radiant blue home kit inspired by the mining industry.",
+        "image": "https://www.footballkitarchive.com/static/uploads/lumwana-radiants-2025-26-home-kit.jpg",
+        "source": "Lumwana Radiants"
+    },
+    {
+        "id": 10,
+        "name": "Forest Rangers 2025/26 Home Jersey",
+        "price": 440,
+        "category": "Local",
+        "country": "Zambia",
+        "league": "Zambia Super League",
+        "brand": "Macron",
+        "description": "Green home jersey representing the Ndola-based club.",
+        "image": "https://www.footballkitarchive.com/static/uploads/forest-rangers-fc-2025-home-kit.jpg",
+        "source": "Football Kit Archive"
+    },
+    {
+        "id": 11,
+        "name": "Mufulira Wanderers 2025/26 Home Jersey",
+        "price": 520,
+        "category": "Local",
+        "country": "Zambia",
+        "league": "Zambia Super League",
+        "brand": "Greenstripes",
+        "description": "Classic white and black home kit of 'Mighty' Mufulira Wanderers.",
+        "image": "https://www.footballkitarchive.com/static/uploads/mufulira-wanderers-2025-26-home-kit.jpg",
+        "source": "Football Kit Archive"
+    },
+    {
+        "id": 12,
+        "name": "Kansanshi Dynamos 2025/26 Home Jersey",
+        "price": 510,
+        "category": "Local",
+        "country": "Zambia",
+        "league": "Zambia Super League",
+        "brand": "Nike",
+        "description": "Orange and black striped jersey from the Solwezi-based club.",
+        "image": "https://www.footballkitarchive.com/static/uploads/kansanshi-dynamos-2025-26-home-kit.jpg",
+        "source": "Kansanshi Dynamos"
+    },
+    {
+        "id": 13,
+        "name": "Konkola Blades 2025/26 Home Jersey",
+        "price": 450,
+        "category": "Local",
+        "country": "Zambia",
+        "league": "Zambia Super League",
+        "brand": "Umbro",
+        "description": "Green and white blades design, official home kit of Konkola Blades.",
+        "image": "https://www.footballkitarchive.com/static/uploads/konkola-blades-fc-home-kit.jpg",
+        "source": "Football Kit Archive"
+    },
+    {
+        "id": 14,
+        "name": "Prison Leopards 2025/26 Home Jersey",
+        "price": 430,
+        "category": "Local",
+        "country": "Zambia",
+        "league": "Zambia Super League",
+        "brand": "Admiral",
+        "description": "Yellow and black leopard-print accents home jersey.",
+        "image": "https://www.footballkitarchive.com/static/uploads/prison-leopards-2025-26-home-kit.jpg",
+        "source": "Football Kit Archive"
+    },
+    {
+        "id": 15,
+        "name": "Young Green Eagles 2025/26 Home Jersey",
+        "price": 420,
+        "category": "Local",
+        "country": "Zambia",
+        "league": "Zambia Super League",
+        "brand": "Macron",
+        "description": "Light green home jersey for Young Green Eagles.",
+        "image": "https://www.footballkitarchive.com/static/uploads/young-green-eagles-2025-26-home-kit.jpg",
+        "source": "Young Green Eagles"
+    },
+    {
+        "id": 16,
+        "name": "Nkwazi FC 2025/26 Home Jersey",
+        "price": 460,
+        "category": "Local",
+        "country": "Zambia",
+        "league": "Zambia Super League",
+        "brand": "Puma",
+        "description": "Blue and white eagle-themed home jersey of Nkwazi.",
+        "image": "https://www.footballkitarchive.com/static/uploads/nkwazi-fc-home-kit.jpg",
+        "source": "Nkwazi FC"
+    },
+    {
+        "id": 17,
+        "name": "Mutondo Stars 2025/26 Home Jersey",
+        "price": 440,
+        "category": "Local",
+        "country": "Zambia",
+        "league": "Zambia Super League",
+        "brand": "Local Brand",
+        "description": "Yellow and blue home kit of the promoted side.",
+        "image": "https://www.footballkitarchive.com/static/uploads/mutondo-stars-2025-26-home-kit.jpg",
+        "source": "Mutondo Stars"
+    },
+    {
+        "id": 18,
+        "name": "Atletico Lusaka 2025/26 Home Jersey",
+        "price": 450,
+        "category": "Local",
+        "country": "Zambia",
+        "league": "Zambia Super League",
+        "brand": "Adidas",
+        "description": "Newly promoted club's red and white home jersey.",
+        "image": "https://www.footballkitarchive.com/static/uploads/atletico-lusaka-2025-26-home-kit.jpg",
+        "source": "Atletico Lusaka"
+    },
 
-  // === INTERNATIONAL CLUBS - PREMIER LEAGUE ===
-  { id: 16, name: "Man United Home 25/26", price: 450, category: "International", country: "England", league: "Premier League", desc: "Theatre of Dreams – Adidas red with white logos & black accents", image: "https://www.footballkitarchive.com/manchester-united-2025-26-home-kit.jpg" },
-  
-  { id: 17, name: "Arsenal Home 25/26", price: 450, category: "International", country: "England", league: "Premier League", desc: "Gothic-inspired red & white – Adidas with Gothic A print", image: "https://www.footballkitarchive.com/arsenal-2025-26-home-kit.jpg" },
-  
-  { id: 18, name: "Liverpool Home 25/26", price: 450, category: "International", country: "England", league: "Premier League", desc: "You'll Never Walk Alone – Adidas red traditional", image: "https://www.footballkitarchive.com/liverpool-2025-26-home-kit.jpg" },
-  
-  { id: 19, name: "Chelsea Home 25/26", price: 450, category: "International", country: "England", league: "Premier League", desc: "The Blues – Nike blue with white & red detailing", image: "https://www.footballkitarchive.com/chelsea-fc-2025-26-home-kit.jpg" },
-  
-  { id: 20, name: "Man City Home 25/26", price: 450, category: "International", country: "England", league: "Premier League", desc: "Citizens – Puma sky blue with iconic sash design", image: "https://www.footballkitarchive.com/manchester-city-2025-26-home-kit.jpg" },
-  
-  { id: 21, name: "Tottenham Home 25/26", price: 440, category: "International", country: "England", league: "Premier League", desc: "Spurs – Nike white with navy abstract sleeves", image: "https://www.footballkitarchive.com/tottenham-hotspur-2025-26-home-kit.jpg" },
-  
-  { id: 22, name: "Newcastle Home 25/26", price: 430, category: "International", country: "England", league: "Premier League", desc: "Magpies – St James' Park black & white stripes", image: "https://www.footballkitarchive.com/newcastle-united-2025-26-home-kit.jpg" },
+    // INTERNATIONAL CLUBS (20 PRODUCTS)
+    {
+        "id": 19,
+        "name": "Manchester United 2025/26 Home Jersey",
+        "price": 650,
+        "category": "International",
+        "country": "England",
+        "league": "Premier League",
+        "brand": "Adidas",
+        "description": "Classic red home jersey with modern pattern.",
+        "image": "https://assets.adidas.com/images/w_600,f_auto,q_auto/9d9b3a98e4234739be71b29400b85ddf_9366/Manchester_United_25-26_Home_Jersey_Red_JI7428_HM1.jpg",
+        "source": "Adidas Official Store"
+    },
+    {
+        "id": 20,
+        "name": "Liverpool FC 2025/26 Home Jersey",
+        "price": 750,
+        "category": "International",
+        "country": "England",
+        "league": "Premier League",
+        "brand": "Adidas",
+        "description": "Liverpool FC home kit in iconic red.",
+        "image": "https://images.footballfanatics.com/liverpool/mens-adidas-red-liverpool-2025-26-home-replica-jersey_ss5_p-202728247+pv-1+u-llajwhmkilpkuypqjpnk+v-zmt2pyrlrtt37kgesucj.jpg",
+        "source": "Liverpool FC Official Store"
+    },
+    {
+        "id": 21,
+        "name": "Arsenal 2025/26 Home Jersey",
+        "price": 700,
+        "category": "International",
+        "country": "England",
+        "league": "Premier League",
+        "brand": "Adidas",
+        "description": "Arsenal home jersey with traditional red and white sleeves.",
+        "image": "https://assets.adidas.com/images/w_600,f_auto,q_auto/2d8c5db94c8d4c4e9b8aaf56010f3b67_9366/Arsenal_25-26_Home_Jersey_Red_JI9517_HM1.jpg",
+        "source": "Adidas Official Store"
+    },
+    {
+        "id": 22,
+        "name": "Chelsea 2025/26 Home Jersey",
+        "price": 680,
+        "category": "International",
+        "country": "England",
+        "league": "Premier League",
+        "brand": "Nike",
+        "description": "Chelsea blue home kit with advanced moisture-wicking technology.",
+        "image": "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/chelsea-fc-2025-26-stadium-home-mens-dri-fit-soccer-replica-jersey-ZcCB1C.png",
+        "source": "Nike Official Store"
+    },
+    {
+        "id": 23,
+        "name": "Manchester City 2025/26 Home Jersey",
+        "price": 740,
+        "category": "International",
+        "country": "England",
+        "league": "Premier League",
+        "brand": "Puma",
+        "description": "Sky blue home jersey of Manchester City.",
+        "image": "https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_600,h_600/global/780338/01/sv01/fnd/PNA/fmt/png/Manchester-City-25-26-Home-Replica-Men's-Soccer-Jersey",
+        "source": "PUMA Official Store"
+    },
+    {
+        "id": 24,
+        "name": "Tottenham Hotspur 2025/26 Home Jersey",
+        "price": 690,
+        "category": "International",
+        "country": "England",
+        "league": "Premier League",
+        "brand": "Nike",
+        "description": "Spurs' white home jersey with navy trim.",
+        "image": "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/tottenham-hotspur-2025-26-stadium-home-mens-dri-fit-soccer-replica-jersey-Bz6lBN.png",
+        "source": "Nike Official Store"
+    },
+    {
+        "id": 25,
+        "name": "Aston Villa 2025/26 Home Jersey",
+        "price": 600,
+        "category": "International",
+        "country": "England",
+        "league": "Premier League",
+        "brand": "Adidas",
+        "description": "Claret and blue home jersey of Aston Villa.",
+        "image": "https://assets.adidas.com/images/w_600,f_auto,q_auto/aston-villa-25-26-home-jersey-jn8061.jpg",
+        "source": "Aston Villa Official Store"
+    },
+    {
+        "id": 26,
+        "name": "West Ham United 2025/26 Home Jersey",
+        "price": 620,
+        "category": "International",
+        "country": "England",
+        "league": "Premier League",
+        "brand": "Umbro",
+        "description": "West Ham's home kit in claret and blue.",
+        "image": "https://www.umbro.co.uk/shop/img/whu25-26-home-jersey.jpg",
+        "source": "West Ham United Official Store"
+    },
+    {
+        "id": 27,
+        "name": "Real Madrid 2025/26 Home Jersey",
+        "price": 800,
+        "category": "International",
+        "country": "Spain",
+        "league": "La Liga",
+        "brand": "Adidas",
+        "description": "All-white Real Madrid home jersey.",
+        "image": "https://assets.adidas.com/images/w_600,f_auto,q_auto/real-madrid-25-26-home-jersey-JJ1931_HM1.jpg",
+        "source": "Adidas Official Store"
+    },
+    {
+        "id": 28,
+        "name": "Barcelona 2025/26 Home Jersey",
+        "price": 780,
+        "category": "International",
+        "country": "Spain",
+        "league": "La Liga",
+        "brand": "Nike",
+        "description": "Barcelona home kit in their traditional blaugrana stripes.",
+        "image": "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/fc-barcelona-2025-26-stadium-home-mens-dri-fit-soccer-replica-jersey.png",
+        "source": "Nike Official Store"
+    },
+    {
+        "id": 29,
+        "name": "Atlético Madrid 2025/26 Home Jersey",
+        "price": 720,
+        "category": "International",
+        "country": "Spain",
+        "league": "La Liga",
+        "brand": "Nike",
+        "description": "Atlético's red and white striped home kit.",
+        "image": "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/atletico-madrid-2025-26-stadium-home-mens-dri-fit-soccer-replica-jersey-plRSCg.png",
+        "source": "Nike Official Store"
+    },
+    {
+        "id": 30,
+        "name": "AC Milan 2025/26 Home Jersey",
+        "price": 750,
+        "category": "International",
+        "country": "Italy",
+        "league": "Serie A",
+        "brand": "Puma",
+        "description": "Rossoneri home kit with devil-inspired design.",
+        "image": "https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_600,h_600/global/779962/01/mod01/fnd/PNA/fmt/png/AC-Milan-25-26-Home-Replica-Men's-Soccer-Jersey",
+        "source": "PUMA Official Store"
+    },
+    {
+        "id": 31,
+        "name": "Inter Milan 2025/26 Home Jersey",
+        "price": 780,
+        "category": "International",
+        "country": "Italy",
+        "league": "Serie A",
+        "brand": "Nike",
+        "description": "Inter's home jersey in classic blue and black stripes.",
+        "image": "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/inter-milan-2025-26-stadium-home-mens-dri-fit-soccer-replica-jersey-BjXsWb.png",
+        "source": "Nike Official Store"
+    },
+    {
+        "id": 32,
+        "name": "Juventus 2025/26 Home Jersey",
+        "price": 760,
+        "category": "International",
+        "country": "Italy",
+        "league": "Serie A",
+        "brand": "Adidas",
+        "description": "Bianconeri home kit with iconic black and white stripes.",
+        "image": "https://assets.adidas.com/images/w_600,f_auto,q_auto/juventus-25-26-home-jersey-JJ4320_HM1.jpg",
+        "source": "Adidas Official Store"
+    },
+    {
+        "id": 33,
+        "name": "AS Roma 2025/26 Home Jersey",
+        "price": 700,
+        "category": "International",
+        "country": "Italy",
+        "league": "Serie A",
+        "brand": "Adidas",
+        "description": "Giallorossi home jersey in classic red and yellow.",
+        "image": "https://assets.adidas.com/images/w_600,f_auto,q_auto/as-roma-25-26-home-jersey-JP4184_HM1.jpg",
+        "source": "Adidas Official Store"
+    },
+    {
+        "id": 34,
+        "name": "Bayern Munich 2025/26 Home Jersey",
+        "price": 820,
+        "category": "International",
+        "country": "Germany",
+        "league": "Bundesliga",
+        "brand": "Adidas",
+        "description": "FC Bayern's iconic red home jersey.",
+        "image": "https://assets.adidas.com/images/w_600,f_auto,q_auto/fc-bayern-25-26-home-jersey-JJ2137_HM1.jpg",
+        "source": "Adidas Official Store"
+    },
+    {
+        "id": 35,
+        "name": "Borussia Dortmund 2025/26 Home Jersey",
+        "price": 780,
+        "category": "International",
+        "country": "Germany",
+        "league": "Bundesliga",
+        "brand": "Puma",
+        "description": "BVB's yellow and black home kit.",
+        "image": "https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_600,h_600/global/780088/01/mod01/fnd/PNA/fmt/png/Borussia-Dortmund-Replica-Home-25-26-Men's-Soccer-Jersey",
+        "source": "PUMA Official Store"
+    },
+    {
+        "id": 36,
+        "name": "Bayer Leverkusen 2025/26 Home Jersey",
+        "price": 750,
+        "category": "International",
+        "country": "Germany",
+        "league": "Bundesliga",
+        "brand": "New Balance",
+        "description": "Werkself home jersey in red and black.",
+        "image": "https://nb.scene7.com/is/image/NB/mt230541hme_nb_02_i?$pdpflexf2$&wid=440&hei=440",
+        "source": "New Balance Official Store"
+    },
+    {
+        "id": 37,
+        "name": "Paris Saint-Germain 2025/26 Home Jersey",
+        "price": 850,
+        "category": "International",
+        "country": "France",
+        "league": "Ligue 1",
+        "brand": "Nike",
+        "description": "PSG home kit with classic blue, red, and white.",
+        "image": "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/paris-saint-germain-2025-26-stadium-home-mens-dri-fit-soccer-replica-jersey-SXnr0w.png",
+        "source": "Nike Official Store"
+    },
+    {
+        "id": 38,
+        "name": "Olympique Lyonnais 2025/26 Home Jersey",
+        "price": 720,
+        "category": "International",
+        "country": "France",
+        "league": "Ligue 1",
+        "brand": "Adidas",
+        "description": "Lyon home kit in traditional white and blue.",
+        "image": "https://assets.adidas.com/images/w_600,f_auto,q_auto/olympique-lyonnais-25-26-home-jersey-JD1396_HM1.jpg",
+        "source": "Adidas Official Store"
+    },
 
-  // === LA LIGA ===
-  { id: 23, name: "Real Madrid Home 25/26", price: 450, category: "International", country: "Spain", league: "La Liga", desc: "Bernabéu White – Adidas with yellow accents & grayscale texture", image: "https://www.footballkitarchive.com/real-madrid-2025-26-home-kit.jpg" },
-  
-  { id: 24, name: "Barcelona Home 25/26", price: 460, category: "International", country: "Spain", league: "La Liga", desc: "Més que un club – Nike Blaugrana stripes", image: "https://www.footballkitarchive.com/barcelona-2025-26-home-kit.jpg" },
-  
-  { id: 25, name: "Atletico Madrid Home 25/26", price: 430, category: "International", country: "Spain", league: "La Liga", desc: "Los Rojiblancos – Nike red & white stripes traditional", image: "https://www.footballkitarchive.com/atletico-madrid-2025-26-home-kit.jpg" },
-
-  // === BUNDESLIGA ===
-  { id: 26, name: "Bayern Munich Home 25/26", price: 450, category: "International", country: "Germany", league: "Bundesliga", desc: "Mia San Mia – Adidas red with white accents", image: "https://www.footballkitarchive.com/bayern-munich-2025-26-home-kit.jpg" },
-  
-  { id: 27, name: "Borussia Dortmund Home 25/26", price: 430, category: "International", country: "Germany", league: "Bundesliga", desc: "Die Schwarzgelben – Puma yellow wall, inspired by 1993-94", image: "https://www.footballkitarchive.com/borussia-dortmund-2025-26-home-kit.jpg" },
-  
-  { id: 28, name: "RB Leipzig Home 25/26", price: 420, category: "International", country: "Germany", league: "Bundesliga", desc: "Die Roten Bullen – Puma red & white modern", image: "https://www.footballkitarchive.com/rb-leipzig-2025-26-home-kit.jpg" },
-
-  // === SERIE A ===
-  { id: 29, name: "Inter Milan Home 25/26", price: 440, category: "International", country: "Italy", league: "Serie A", desc: "Nerazzurri – Nike black & blue wave effect stripes", image: "https://www.footballkitarchive.com/inter-milan-2025-26-home-kit.jpg" },
-  
-  { id: 30, name: "AC Milan Home 25/26", price: 440, category: "International", country: "Italy", league: "Serie A", desc: "Rossoneri – Puma devilish red & black stripes", image: "https://www.footballkitarchive.com/ac-milan-2025-26-home-kit.jpg" },
-  
-  { id: 31, name: "Juventus Home 25/26", price: 440, category: "International", country: "Italy", league: "Serie A", desc: "Bianconeri – Adidas black & white stripes", image: "https://www.footballkitarchive.com/juventus-2025-26-home-kit.jpg" },
-  
-  { id: 32, name: "Napoli Home 25/26", price: 430, category: "International", country: "Italy", league: "Serie A", desc: "Partenopei – EA7 sky blue with embossed N stripes", image: "https://www.footballkitarchive.com/ssc-napoli-2025-26-home-kit.jpg" },
-
-  // === LIGUE 1 ===
-  { id: 33, name: "PSG Home 25/26", price: 460, category: "International", country: "France", league: "Ligue 1", desc: "Ici c'est Paris – Nike midnight navy Hechter design", image: "https://www.footballkitarchive.com/paris-saint-germain-2025-26-home-kit.jpg" },
-  
-  { id: 34, name: "Marseille Home 25/26", price: 420, category: "International", country: "France", league: "Ligue 1", desc: "Les Phocéens – Puma white & sky blue", image: "https://www.footballkitarchive.com/olympique-marseille-2025-26-home-kit.jpg" },
-  
-  { id: 35, name: "Lyon Home 25/26", price: 420, category: "International", country: "France", league: "Ligue 1", desc: "Les Gones – Adidas white inspired by Lugdunum heritage", image: "https://www.footballkitarchive.com/olympique-lyonnais-2025-26-home-kit.jpg" },
-
-  // === EREDIVISIE ===
-  { id: 36, name: "Ajax Home 25/26", price: 430, category: "International", country: "Netherlands", league: "Eredivisie", desc: "De Godenzonen – Adidas iconic red & white", image: "https://www.footballkitarchive.com/ajax-2025-26-home-kit.jpg" },
-
-  // === NATIONAL TEAMS - WORLD CUP 2026 ===
-  { id: 37, name: "Zambia Home 2026", price: 420, category: "National", country: "Zambia", league: "National Team", desc: "Chipolopolo – AFCON champions edition orange", image: "https://www.footballkitarchive.com/zambia-2026-home-kit.jpg" },
-  
-  { id: 38, name: "Brazil Home 2026", price: 480, category: "National", country: "Brazil", league: "National Team", desc: "Seleção – Nike yellow canary with blue & green", image: "https://www.footballkitarchive.com/brazil-2026-home-kit.jpg" },
-  
-  { id: 39, name: "Argentina Home 2026", price: 480, category: "National", country: "Argentina", league: "National Team", desc: "La Albiceleste – Adidas white & sky blue gradient stripes", image: "https://www.footballkitarchive.com/argentina-2026-home-kit.jpg" },
-  
-  { id: 40, name: "France Home 2026", price: 470, category: "National", country: "France", league: "National Team", desc: "Les Bleus – Nike navy blue elegant with gold", image: "https://www.footballkitarchive.com/france-2026-home-kit.jpg" },
-  
-  { id: 41, name: "England Home 2026", price: 470, category: "National", country: "England", league: "National Team", desc: "Three Lions – Nike white with navy piping & gold star", image: "https://www.footballkitarchive.com/england-2026-home-kit.jpg" },
-  
-  { id: 42, name: "Spain Home 2026", price: 470, category: "National", country: "Spain", league: "National Team", desc: "La Roja – Adidas red with navy sleeves & yellow stripes", image: "https://www.footballkitarchive.com/spain-2026-home-kit.jpg" },
-  
-  { id: 43, name: "Germany Home 2026", price: 470, category: "National", country: "Germany", league: "National Team", desc: "Die Mannschaft – Adidas white tribute to 1990 & 2014", image: "https://www.footballkitarchive.com/germany-2026-home-kit.jpg" },
-  
-  { id: 44, name: "Netherlands Home 2026", price: 460, category: "National", country: "Netherlands", league: "National Team", desc: "Oranje – Nike vibrant orange with modern textures", image: "https://www.footballkitarchive.com/netherlands-2026-home-kit.jpg" },
-  
-  { id: 45, name: "Portugal Home 2026", price: 450, category: "National", country: "Portugal", league: "National Team", desc: "Selecção – Nike red CR7 era continues", image: "https://www.footballkitarchive.com/portugal-2026-home-kit.jpg" },
-  
-  { id: 46, name: "Italy Home 2026", price: 460, category: "National", country: "Italy", league: "National Team", desc: "Azzurri – Adidas blue & gold tribute to 2006", image: "https://www.footballkitarchive.com/italy-2026-home-kit.jpg" },
-  
-  { id: 47, name: "Morocco Home 2026", price: 440, category: "National", country: "Morocco", league: "National Team", desc: "Atlas Lions – Puma red with green accents", image: "https://www.footballkitarchive.com/morocco-2026-home-kit.jpg" },
-  
-  { id: 48, name: "Senegal Home 2026", price: 440, category: "National", country: "Senegal", league: "National Team", desc: "Lions of Teranga – Puma deep green with yellow", image: "https://www.footballkitarchive.com/senegal-2026-home-kit.jpg" },
-  
-  { id: 49, name: "Egypt Home 2026", price: 440, category: "National", country: "Egypt", league: "National Team", desc: "Pharaohs – Puma red with black geometric pattern", image: "https://www.footballkitarchive.com/egypt-2026-home-kit.jpg" },
-  
-  { id: 50, name: "Nigeria Home 2026", price: 450, category: "National", country: "Nigeria", league: "National Team", desc: "Super Eagles – Nike vibrant green patterns", image: "https://www.footballkitarchive.com/nigeria-2026-home-kit.jpg" },
-  
-  { id: 51, name: "Belgium Home 2026", price: 450, category: "National", country: "Belgium", league: "National Team", desc: "Red Devils – Adidas red with black & yellow", image: "https://www.footballkitarchive.com/belgium-2026-home-kit.jpg" },
-  
-  { id: 52, name: "Algeria Home 2026", price: 430, category: "National", country: "Algeria", league: "National Team", desc: "Fennecs – green & white World Cup qualifiers", image: "https://www.footballkitarchive.com/algeria-2026-home-kit.jpg" },
-  
-  { id: 53, name: "Tunisia Home 2026", price: 430, category: "National", country: "Tunisia", league: "National Team", desc: "Eagles of Carthage – red & white", image: "https://www.footballkitarchive.com/tunisia-2026-home-kit.jpg" },
-  
-  { id: 54, name: "South Africa Home 2026", price: 430, category: "National", country: "South Africa", league: "National Team", desc: "Bafana Bafana – yellow & green", image: "https://www.footballkitarchive.com/south-africa-2026-home-kit.jpg" },
-  
-  { id: 55, name: "Cameroon Home 2026", price: 430, category: "National", country: "Cameroon", league: "National Team", desc: "Indomitable Lions – green, red, yellow", image: "https://www.footballkitarchive.com/cameroon-2026-home-kit.jpg" },
-  
-  { id: 56, name: "Ghana Home 2026", price: 430, category: "National", country: "Ghana", league: "National Team", desc: "Black Stars – white with black star", image: "https://www.footballkitarchive.com/ghana-2026-home-kit.jpg" },
-  
-  { id: 57, name: "Côte d'Ivoire Home 2026", price: 430, category: "National", country: "Côte d'Ivoire", league: "National Team", desc: "Elephants – orange classic", image: "https://www.footballkitarchive.com/cote-d-ivoire-2026-home-kit.jpg" }
+    // NATIONAL TEAMS (15 PRODUCTS)
+    {
+        "id": 39,
+        "name": "Zambia National Team 2025/26 Home Jersey",
+        "price": 600,
+        "category": "National",
+        "country": "Zambia",
+        "league": "International",
+        "brand": "Kopa",
+        "description": "Zambia's AFCON 2025 home jersey in traditional green with a broken vertical stripe.",
+        "image": "https://sspark.genspark.ai/cfimages?u1=1vS%2BGD3cg3TM%2FDd3E%2FRY74VMjsg39kChX69ZBVrelBH59Pf9AfYqdqVYiEo5UnzfVkBldfju1aPRqgACckIzJlMYklwa6P9R8G9S3HaahAa%2Fcx5EhjUx3L6bdYGkv08L4n2%2F8qW3v9taDac9Vr9WxQ%3D%3D&u2=Gx4kLbBR5VIe%2FrAc&width=2560",
+        "source": "Football Association of Zambia"
+    },
+    {
+        "id": 40,
+        "name": "England National Team 2025/26 Home Jersey",
+        "price": 700,
+        "category": "National",
+        "country": "England",
+        "league": "International",
+        "brand": "Nike",
+        "description": "Three Lions home shirt in classic white.",
+        "image": "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/england-2026-stadium-home-mens-dri-fit-soccer-replica-jersey.png",
+        "source": "Nike Official Store"
+    },
+    {
+        "id": 41,
+        "name": "France National Team 2025/26 Home Jersey",
+        "price": 780,
+        "category": "National",
+        "country": "France",
+        "league": "International",
+        "brand": "Nike",
+        "description": "Les Bleus home kit in iconic blue.",
+        "image": "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/fff-2026-stadium-home-mens-dri-fit-soccer-replica-jersey-T0lfLEZh.png",
+        "source": "Nike Official Store"
+    },
+    {
+        "id": 42,
+        "name": "Germany National Team 2025/26 Home Jersey",
+        "price": 750,
+        "category": "National",
+        "country": "Germany",
+        "league": "International",
+        "brand": "Adidas",
+        "description": "Die Mannschaft home jersey in classic white.",
+        "image": "https://assets.adidas.com/images/w_600,f_auto,q_auto/germany-26-home-jersey-KD8363_HM1.jpg",
+        "source": "Adidas Official Store"
+    },
+    {
+        "id": 43,
+        "name": "Spain National Team 2025/26 Home Jersey",
+        "price": 740,
+        "category": "National",
+        "country": "Spain",
+        "league": "International",
+        "brand": "Adidas",
+        "description": "La Roja home kit in classic red.",
+        "image": "https://assets.adidas.com/images/w_600,f_auto,q_auto/spain-26-home-jersey-JN4390_HM1.jpg",
+        "source": "Adidas Official Store"
+    },
+    {
+        "id": 44,
+        "name": "Italy National Team 2025/26 Home Jersey",
+        "price": 720,
+        "category": "National",
+        "country": "Italy",
+        "league": "International",
+        "brand": "Adidas",
+        "description": "Azzurri home shirt in classic blue.",
+        "image": "https://assets.adidas.com/images/w_600,f_auto,q_auto/italy-26-home-jersey-JL6937_HM1.jpg",
+        "source": "Adidas Official Store"
+    },
+    {
+        "id": 45,
+        "name": "Netherlands National Team 2025/26 Home Jersey",
+        "price": 690,
+        "category": "National",
+        "country": "Netherlands",
+        "league": "International",
+        "brand": "Nike",
+        "description": "Oranje home kit in iconic orange.",
+        "image": "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/netherlands-2026-stadium-home-mens-dri-fit-soccer-replica-jersey.png",
+        "source": "Nike Official Store"
+    },
+    {
+        "id": 46,
+        "name": "Portugal National Team 2025/26 Home Jersey",
+        "price": 710,
+        "category": "National",
+        "country": "Portugal",
+        "league": "International",
+        "brand": "Puma",
+        "description": "Seleção home kit in classic red and green.",
+        "image": "https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_600,h_600/global/779190/01/mod01/fnd/PNA/fmt/png/Portugal-2025-Men's-Home-Jersey",
+        "source": "PUMA Official Store"
+    },
+    {
+        "id": 47,
+        "name": "Belgium National Team 2025/26 Home Jersey",
+        "price": 680,
+        "category": "National",
+        "country": "Belgium",
+        "league": "International",
+        "brand": "Adidas",
+        "description": "Red Devils home kit in classic red.",
+        "image": "https://assets.adidas.com/images/w_600,f_auto,q_auto/belgium-26-home-jersey-JM8381_HM1.jpg",
+        "source": "Adidas Official Store"
+    },
+    {
+        "id": 48,
+        "name": "Argentina National Team 2025/26 Home Jersey",
+        "price": 760,
+        "category": "National",
+        "country": "Argentina",
+        "league": "International",
+        "brand": "Adidas",
+        "description": "La Albiceleste home kit in blue and white stripes.",
+        "image": "https://assets.adidas.com/images/w_600,f_auto,q_auto/argentina-26-home-jersey-KA8125_HM1.jpg",
+        "source": "Adidas Official Store"
+    },
+    {
+        "id": 49,
+        "name": "Brazil National Team 2025/26 Home Jersey",
+        "price": 800,
+        "category": "National",
+        "country": "Brazil",
+        "league": "International",
+        "brand": "Nike",
+        "description": "Seleção home kit in iconic yellow with green trim.",
+        "image": "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/brazil-2026-stadium-home-mens-dri-fit-soccer-replica-jersey.png",
+        "source": "Nike Official Store"
+    },
+    {
+        "id": 50,
+        "name": "Uruguay National Team 2025/26 Home Jersey",
+        "price": 670,
+        "category": "National",
+        "country": "Uruguay",
+        "league": "International",
+        "brand": "Puma",
+        "description": "La Celeste home kit in classic sky blue.",
+        "image": "https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_600,h_600/global/uruguay-2026-home-jersey.png",
+        "source": "PUMA Official Store"
+    },
+    {
+        "id": 51,
+        "name": "Mexico National Team 2025/26 Home Jersey",
+        "price": 710,
+        "category": "National",
+        "country": "Mexico",
+        "league": "International",
+        "brand": "Adidas",
+        "description": "El Tri home kit in classic green.",
+        "image": "https://assets.adidas.com/images/w_600,f_auto,q_auto/mexico-26-home-jersey-JL8537_HM1.jpg",
+        "source": "Adidas Official Store"
+    },
+    {
+        "id": 52,
+        "name": "USA National Team 2025/26 Home Jersey",
+        "price": 700,
+        "category": "National",
+        "country": "USA",
+        "league": "International",
+        "brand": "Nike",
+        "description": "Stars and Stripes home kit in white with blue and red.",
+        "image": "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/usa-2026-stadium-home-mens-dri-fit-soccer-replica-jersey.png",
+        "source": "U.S. Soccer Official Store"
+    },
+    {
+        "id": 53,
+        "name": "Japan National Team 2025/26 Home Jersey",
+        "price": 680,
+        "category": "National",
+        "country": "Japan",
+        "league": "International",
+        "brand": "Adidas",
+        "description": "Samurai Blue home kit in classic blue.",
+        "image": "https://assets.adidas.com/images/w_600,f_auto,q_auto/japan-26-home-jersey-JZ9688_HM1.jpg",
+        "source": "Adidas Official Store"
+    }
 ];
 export default function KopalaKits() {
   const [filter, setFilter] = useState('All');
