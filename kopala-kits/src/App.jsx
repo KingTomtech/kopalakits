@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Link, useLocation } from 'react-router-dom';
 import { 
   Menu, X, ShoppingCart, MapPin, MessageCircle, Info, 
-  Instagram, Facebook, Twitter, Trophy, Users, Newspaper,
+  Instagram, Trophy, Users, Newspaper,
   ChevronRight, Minus, Plus, Trash2, ExternalLink
 } from 'lucide-react';
 
@@ -263,10 +263,14 @@ function MenuDrawer({ isOpen, onClose }) {
               <Instagram size={18} style={{ color: 'var(--olive-300)' }} />
             </a>
             <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg" style={{ backgroundColor: 'var(--khaki-700)' }}>
-              <Facebook size={18} style={{ color: 'var(--olive-300)' }} />
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--olive-300)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+              </svg>
             </a>
             <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg" style={{ backgroundColor: 'var(--khaki-700)' }}>
-              <Twitter size={18} style={{ color: 'var(--olive-300)' }} />
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--olive-300)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/>
+              </svg>
             </a>
           </div>
           <div className="mt-4 px-2 py-1 rounded-md text-xs font-bold flex items-center gap-1" style={{ backgroundColor: 'var(--khaki-600)', color: 'var(--olive-300)' }}>
@@ -648,10 +652,14 @@ function AboutPage() {
             <Instagram size={24} style={{ color: 'var(--olive-500)' }} />
           </a>
           <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="p-3 rounded-lg" style={{ backgroundColor: 'var(--champagne-800)' }}>
-            <Facebook size={24} style={{ color: 'var(--olive-500)' }} />
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--olive-500)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+            </svg>
           </a>
           <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="p-3 rounded-lg" style={{ backgroundColor: 'var(--champagne-800)' }}>
-            <Twitter size={24} style={{ color: 'var(--olive-500)' }} />
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--olive-500)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/>
+            </svg>
           </a>
         </div>
       </section>
@@ -668,10 +676,14 @@ function Footer() {
           <Instagram size={18} style={{ color: 'var(--olive-400)' }} />
         </a>
         <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg" style={{ backgroundColor: 'var(--khaki-700)' }}>
-          <Facebook size={18} style={{ color: 'var(--olive-400)' }} />
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--olive-400)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+          </svg>
         </a>
         <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg" style={{ backgroundColor: 'var(--khaki-700)' }}>
-          <Twitter size={18} style={{ color: 'var(--olive-400)' }} />
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--olive-400)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/>
+          </svg>
         </a>
       </div>
       <p className="text-xs" style={{ color: 'var(--khaki-400)' }}>&copy; 2026 Kopala Kits. Built for the Copperbelt.</p>
