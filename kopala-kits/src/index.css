@@ -1,3 +1,48 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  /* Kopala Kits Palette - Champagne, Khaki & Olive */
+  --champagne-mist: #f1e0c5;
+  --champagne-light: #f9f3e8;
+  --champagne-dark: #e0bb7f;
+  --khaki-beige: #c9b79c;
+  --khaki-light: #e9e2d8;
+  --khaki-dark: #8a714c;
+  --dusty-olive: #71816d;
+  --dusty-olive-light: #8e9c8a;
+  --dusty-olive-dark: #444e42;
+  --charcoal-accent: #2e2619;
+  
+  /* Semantic mappings */
+  --ethereal-ivory: var(--champagne-light);
+  --soft-cream: #fdfaf5;
+  --warm-beige: var(--khaki-light);
+  --muted-gold: var(--khaki-dark);
+  --dusty-sage: var(--dusty-olive);
+}
+
+body {
+  background-color: var(--champagne-light);
+  color: var(--charcoal-accent);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Enhanced scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--champagne-light);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--khaki-beige);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--khaki-dark);
+}
