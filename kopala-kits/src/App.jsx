@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useMemo, useEffect } from 'react';
-import { ShoppingCart, Moon, Sun, X, Heart, Plus } from 'lucide-react';
+import { ShoppingCart, Moon, Sun, X, Heart, Plus, Menu, Search, User } from 'lucide-react';
 
 const styleVars = `
   :root {
@@ -46,18 +46,18 @@ const products = [
 
 export default function KopalaKits() {
   const [filter, setFilter] = useState('All');
+  const [searchQuery, setSearchQuery] = useState('');
   const [cart, setCart] = useState([]);
   const [wishlist, setWishlist] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
-  
-  const [priceRange, setPriceRange] = useState([300, 1500]);
-  const [usePriceFilter, setUsePriceFilter] = useState(false);
   
   const [quickAddProduct, setQuickAddProduct] = useState(null);
   const [selectedSize, setSelectedSize] = useState('M');
   const [selectedQty, setSelectedQty] = useState(1);
 
+  // Load saved data
   useEffect(() => {
     const savedWishlist = localStorage.getItem('wishlist');
     if (savedWishlist) setWishlist(JSON.parse(savedWishlist));
@@ -91,11 +91,15 @@ export default function KopalaKits() {
       ? products 
       : products.filter(p => p.category === filter);
 
-    if (usePriceFilter) {
-      result = result.filter(p => p.price >= priceRange[0] && p.price <= priceRange[1]);
+    if (searchQuery) {
+      const q = searchQuery.toLowerCase();
+      result = result.filter(p => 
+        p.name.toLowerCase().includes(q) || 
+        p.desc.toLowerCase().includes(q)
+      );
     }
     return result;
-  }, [filter, usePriceFilter, priceRange]);
+  }, [filter, searchQuery]);
 
   const openQuickAdd = (product) => {
     setQuickAddProduct(product);
@@ -128,8 +132,10 @@ export default function KopalaKits() {
     setQuickAddProduct(null);
   };
 
-  const removeFromCart = (cartId) => setCart(prev => prev.filter(item => item.cartId !== cartId));
-  
+  const removeFromCart = (cartId) => {
+    setCart(prev => prev.filter(item => item.cartId !== cartId));
+  };
+
   const updateCartQuantity = (cartId, newQty) => {
     if (newQty < 1) return;
     setCart(prev => prev.map(item =>
@@ -159,12 +165,21 @@ export default function KopalaKits() {
       <style>{styleVars}</style>
       <div className="min-h-screen font-sans transition-colors" style={{ backgroundColor: 'var(--champagne-light)', color: 'var(--charcoal-accent)' }}>
         
-        {/* NAV */}
-        <nav className="sticky top-0 z-50 border-b px-4 py-4 flex justify-between items-center shadow-sm" style={{ backgroundColor: 'var(--soft-cream)' }}>
-          <h1 className="text-3xl font-black tracking-tighter" style={{ color: 'var(--dusty-olive-dark)' }}>KOPALA KITS</h1>
+        {/* NAVIGATION */}
+        <nav className="sticky top-0 z-50 border-b px-4 py-4 flex items-center justify-between shadow-sm" style={{ backgroundColor: 'var(--soft-cream)' }}>
           <div className="flex items-center gap-4">
-            <button onClick={toggleDarkMode} className="p-3 rounded-2xl hover:bg-black/10 dark:hover:bg-white/10 transition">
-              {darkMode ? <Sun size={22} /> : <Moon size={22} />}
+            <button onClick={() => setIsMenuOpen(true)} className="p-3 rounded-2xl hover:bg-black/10 dark:hover:bg-white/10">
+              <Menu size={26} />
+            </button>
+            <h1 className="text-3xl font-black tracking-tighter" style={{ color: 'var(--dusty-olive-dark)' }}>KOPALA KITS</h1>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <button className="p-3 rounded-2xl hover:bg-black/10 dark:hover:bg-white/10">
+              <Search size={24} />
+            </button>
+            <button className="p-3 rounded-2xl hover:bg-black/10 dark:hover:bg-white/10">
+              <User size={24} />
             </button>
             <button onClick={() => setIsCartOpen(true)} className="relative p-3">
               <ShoppingCart size={24} />
@@ -177,10 +192,47 @@ export default function KopalaKits() {
           </div>
         </nav>
 
-        {/* HERO + FILTERS */}
+        {/* SLIDING MENU */}
+        {isMenuOpen && (
+          <div className="fixed inset-0 z-[300] flex">
+            <div className="absolute inset-0 bg-black/60" onClick={() => setIsMenuOpen(false)} />
+            <div className="relative w-80 h-full bg-white dark:bg-zinc-900 shadow-2xl p-8">
+              <div className="flex justify-between items-center mb-10">
+                <h2 className="text-2xl font-bold">Menu</h2>
+                <button onClick={() => setIsMenuOpen(false)}><X size={28} /></button>
+              </div>
+              <div className="space-y-6 text-lg">
+                <a href="#" className="block py-3 hover:text-[var(--dusty-olive)] font-medium">Home</a>
+                <a href="#" className="block py-3 hover:text-[var(--dusty-olive)] font-medium">Shop All Kits</a>
+                <a href="#" className="block py-3 hover:text-[var(--dusty-olive)] font-medium">Local Teams</a>
+                <a href="#" className="block py-3 hover:text-[var(--dusty-olive)] font-medium">International Clubs</a>
+                <a href="#" className="block py-3 hover:text-[var(--dusty-olive)] font-medium">National Teams</a>
+                <a href="#" className="block py-3 hover:text-[var(--dusty-olive)] font-medium">Wishlist</a>
+                <a href="#" className="block py-3 hover:text-[var(--dusty-olive)] font-medium">About Us</a>
+                <a href="#" className="block py-3 hover:text-[var(--dusty-olive)] font-medium">Contact</a>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* HERO + CATEGORY FILTERS + SEARCH */}
         <header className="text-white px-6 py-16 text-center" style={{ backgroundColor: 'var(--dusty-olive)' }}>
           <h2 className="text-5xl md:text-6xl font-bold tracking-tight">25/26 Season Kits</h2>
           <p className="mt-4 text-lg opacity-90">Premium Quality • Copperbelt Delivery</p>
+
+          {/* Search Bar */}
+          <div className="mt-10 max-w-lg mx-auto px-4">
+            <div className="relative">
+              <input
+                type="text"
+                placeholder="Search jerseys..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full bg-white/20 backdrop-blur-md border border-white/30 rounded-3xl py-4 pl-12 pr-6 text-white placeholder:text-white/70 focus:outline-none focus:border-white"
+              />
+              <Search className="absolute left-5 top-4 text-white/70" size={24} />
+            </div>
+          </div>
 
           <div className="flex flex-wrap justify-center gap-3 mt-10">
             {['All', 'Local', 'International', 'National'].map(cat => (
@@ -194,40 +246,6 @@ export default function KopalaKits() {
                 {cat}
               </button>
             ))}
-          </div>
-
-          {/* Improved Price Filter */}
-          <div className="mt-10 max-w-md mx-auto px-4">
-            <label className="flex items-center justify-center gap-3 cursor-pointer group">
-              <div className={`w-11 h-6 rounded-full transition-all relative ${usePriceFilter ? 'bg-[var(--dusty-olive)]' : 'bg-gray-300 dark:bg-zinc-700'}`}>
-                <div className={`absolute top-0.5 left-0.5 w-5 h-5 rounded-full bg-white transition-all ${usePriceFilter ? 'translate-x-5' : ''}`} />
-              </div>
-              <span className="font-medium">Price Filter</span>
-            </label>
-
-            {usePriceFilter && (
-              <div className="mt-6 bg-white/10 backdrop-blur-md rounded-3xl p-6">
-                <p className="text-center font-medium mb-4">K{priceRange[0]} — K{priceRange[1]}</p>
-                <div className="space-y-6">
-                  <input
-                    type="range"
-                    min="300"
-                    max="1500"
-                    value={priceRange[0]}
-                    onChange={(e) => setPriceRange([Number(e.target.value), priceRange[1]])}
-                    className="w-full accent-[var(--dusty-olive)]"
-                  />
-                  <input
-                    type="range"
-                    min="300"
-                    max="1500"
-                    value={priceRange[1]}
-                    onChange={(e) => setPriceRange([priceRange[0], Number(e.target.value)])}
-                    className="w-full accent-[var(--dusty-olive)]"
-                  />
-                </div>
-              </div>
-            )}
           </div>
         </header>
 
@@ -274,10 +292,10 @@ export default function KopalaKits() {
         {quickAddProduct && (
           <div className="fixed inset-0 z-[200] flex items-center justify-center bg-black/70 px-4">
             <div className="bg-white dark:bg-zinc-900 rounded-3xl max-w-md w-full p-8 shadow-2xl">
-              <h3 className="font-bold text-2xl mb-6 pr-8">{quickAddProduct.name}</h3>
+              <h3 className="font-bold text-2xl mb-6">{quickAddProduct.name}</h3>
               
               <div className="mb-8">
-                <p className="text-sm mb-3 font-medium text-gray-600">Select Size</p>
+                <p className="text-sm mb-3 font-medium">Select Size</p>
                 <div className="grid grid-cols-5 gap-3">
                   {['S', 'M', 'L', 'XL', 'XXL'].map(s => (
                     <button
@@ -294,7 +312,7 @@ export default function KopalaKits() {
               </div>
 
               <div className="mb-8">
-                <p className="text-sm mb-3 font-medium text-gray-600">Quantity</p>
+                <p className="text-sm mb-3 font-medium">Quantity</p>
                 <div className="flex items-center justify-center gap-8">
                   <button onClick={() => setSelectedQty(Math.max(1, selectedQty - 1))} className="w-14 h-14 text-4xl hover:bg-gray-100 rounded-2xl transition">-</button>
                   <span className="text-5xl font-bold w-20 text-center">{selectedQty}</span>
@@ -303,30 +321,75 @@ export default function KopalaKits() {
               </div>
 
               <div className="grid grid-cols-2 gap-4">
-                <button onClick={() => setQuickAddProduct(null)} className="py-4 rounded-2xl border font-semibold hover:bg-gray-100 transition">Cancel</button>
-                <button onClick={addToCart} className="py-4 rounded-2xl bg-[var(--dusty-olive)] text-white font-bold hover:brightness-110 transition">Add to Cart</button>
+                <button onClick={() => setQuickAddProduct(null)} className="py-4 rounded-2xl border font-semibold hover:bg-gray-100">Cancel</button>
+                <button onClick={addToCart} className="py-4 rounded-2xl bg-[var(--dusty-olive)] text-white font-bold hover:brightness-110">Add to Cart</button>
               </div>
             </div>
           </div>
         )}
 
-        {/* CART DRAWER - unchanged but cleaner */}
+        {/* CART DRAWER - Fully Fixed */}
         {isCartOpen && (
           <div className="fixed inset-0 z-[100] flex justify-end">
             <div className="absolute inset-0 bg-black/60" onClick={() => setIsCartOpen(false)} />
+            
             <div className="relative w-full max-w-md h-full bg-white dark:bg-zinc-900 shadow-2xl flex flex-col">
-              {/* ... (Cart content same as before - I can expand if needed) */}
               <div className="p-6 border-b flex justify-between items-center">
                 <h2 className="text-2xl font-bold">Your Cart ({totalItems})</h2>
                 <button onClick={() => setIsCartOpen(false)}><X size={28} /></button>
               </div>
 
-              {/* Cart items + total + buttons remain the same */}
-              {/* I'll keep it short here for brevity */}
+              <div className="flex-1 overflow-auto p-6 space-y-6">
+                {cart.length === 0 ? (
+                  <p className="text-center text-gray-500 mt-20">Your cart is empty</p>
+                ) : (
+                  cart.map(item => (
+                    <div key={item.cartId} className="flex gap-4 border-b pb-6 last:border-b-0">
+                      <img src={item.image} alt={item.name} className="w-20 h-20 object-contain" />
+                      <div className="flex-1 min-w-0">
+                        <h4 className="font-semibold text-sm leading-tight">{item.name}</h4>
+                        <p className="text-sm text-gray-500">Size: {item.size}</p>
+                        <p className="font-bold">K{item.price}</p>
+                        <div className="flex items-center gap-3 mt-2">
+                          <button onClick={() => updateCartQuantity(item.cartId, item.quantity - 1)} className="w-8 h-8 border rounded-lg flex items-center justify-center hover:bg-gray-100">-</button>
+                          <span className="font-semibold w-6 text-center">{item.quantity}</span>
+                          <button onClick={() => updateCartQuantity(item.cartId, item.quantity + 1)} className="w-8 h-8 border rounded-lg flex items-center justify-center hover:bg-gray-100">+</button>
+                        </div>
+                      </div>
+                      <button onClick={() => removeFromCart(item.cartId)} className="text-red-500 text-sm self-start mt-1">Remove</button>
+                    </div>
+                  ))
+                )}
+              </div>
+
+              {cart.length > 0 && (
+                <div className="p-6 border-t space-y-4">
+                  <div className="flex justify-between text-xl font-bold">
+                    <span>Total</span>
+                    <span>K{totalPrice}</span>
+                  </div>
+
+                  <button
+                    onClick={() => { sendCartToWhatsApp(); setIsCartOpen(false); }}
+                    className="w-full py-4 rounded-2xl text-white font-bold text-lg flex items-center justify-center gap-3 hover:brightness-110 transition"
+                    style={{ backgroundColor: 'var(--primary-btn)' }}
+                  >
+                    💬 ORDER VIA WHATSAPP
+                  </button>
+
+                  <button
+                    onClick={() => { alert("Mobile Money Checkout - Coming Soon!"); setIsCartOpen(false); }}
+                    className="w-full py-4 rounded-2xl border-2 border-[var(--dusty-olive)] font-bold hover:bg-[var(--dusty-olive)] hover:text-white transition"
+                  >
+                    PROCEED TO CHECKOUT
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         )}
 
+        {/* FOOTER */}
         <footer className="p-10 text-center text-sm border-t" style={{ backgroundColor: 'var(--champagne-light)' }}>
           © 2026 Kopala Kits • Built for the Copperbelt
         </footer>
