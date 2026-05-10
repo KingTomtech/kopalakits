@@ -27,22 +27,7 @@ const styleVars = `
   }
 `;
 
-interface Product {
-  id: number;
-  name: string;
-  price: number;
-  category: string;
-  desc: string;
-  image: string;
-}
-
-interface CartItem extends Product {
-  size: string;
-  quantity: number;
-  cartId: number;
-}
-
-const products: Product[] = [
+const products = [
   { id: 1, name: "Man United 25/26 Home", price: 450, category: "International", desc: "Theatre of Dreams edition", image: "https://picsum.photos/id/1015/600/600" },
   { id: 2, name: "Arsenal 25/26 Home", price: 450, category: "International", desc: "Gothic-inspired red & white", image: "https://picsum.photos/id/102/600/600" },
   { id: 3, name: "Chipolopolo Home 2026", price: 420, category: "Local", desc: "Zambia National Team", image: "https://picsum.photos/id/1060/600/600" },
@@ -55,15 +40,15 @@ const products: Product[] = [
 ];
 
 export default function KopalaKits() {
-  const [filter, setFilter] = useState<'All' | 'International' | 'Local'>('All');
-  const [cart, setCart] = useState<CartItem[]>([]);
-  const [wishlist, setWishlist] = useState<number[]>([]);
+  const [filter, setFilter] = useState('All');
+  const [cart, setCart] = useState([]);
+  const [wishlist, setWishlist] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
   const [priceRange, setPriceRange] = useState([300, 500]);
 
-  const [selectedSizes, setSelectedSizes] = useState<Record<number, string>>({});
-  const [quantities, setQuantities] = useState<Record<number, number>>({});
+  const [selectedSizes, setSelectedSizes] = useState({});
+  const [quantities, setQuantities] = useState({});
 
   // Load saved data
   useEffect(() => {
@@ -76,7 +61,7 @@ export default function KopalaKits() {
 
   // Close cart with Escape key
   useEffect(() => {
-    const handleEscape = (e: KeyboardEvent) => {
+    const handleEscape = (e) => {
       if (e.key === 'Escape') setIsCartOpen(false);
     };
     window.addEventListener('keydown', handleEscape);
@@ -91,7 +76,7 @@ export default function KopalaKits() {
     else document.documentElement.classList.remove('dark');
   };
 
-  const toggleWishlist = (id: number) => {
+  const toggleWishlist = (id) => {
     const newList = wishlist.includes(id)
       ? wishlist.filter(i => i !== id)
       : [...wishlist, id];
@@ -104,7 +89,7 @@ export default function KopalaKits() {
     return result.filter(p => p.price >= priceRange[0] && p.price <= priceRange[1]);
   }, [filter, priceRange]);
 
-  const addToCart = useCallback((product: Product) => {
+  const addToCart = useCallback((product) => {
     const size = selectedSizes[product.id] || 'M';
     const qty = quantities[product.id] || 1;
 
@@ -126,18 +111,18 @@ export default function KopalaKits() {
     setQuantities(prev => ({ ...prev, [product.id]: 1 }));
   }, [selectedSizes, quantities]);
 
-  const removeFromCart = (cartId: number) => {
+  const removeFromCart = (cartId) => {
     setCart(prev => prev.filter(item => item.cartId !== cartId));
   };
 
-  const updateCartQuantity = (cartId: number, newQty: number) => {
+  const updateCartQuantity = (cartId, newQty) => {
     if (newQty < 1) return;
     setCart(prev => prev.map(item =>
       item.cartId === cartId ? { ...item, quantity: newQty } : item
     ));
   };
 
-  const sendSingleItemToWhatsApp = (product: Product) => {
+  const sendSingleItemToWhatsApp = (product) => {
     const size = selectedSizes[product.id] || 'M';
     const qty = quantities[product.id] || 1;
     const phone = "260776885851";
@@ -197,7 +182,7 @@ export default function KopalaKits() {
             {['All', 'International', 'Local'].map(cat => (
               <button
                 key={cat}
-                onClick={() => setFilter(cat as 'All' | 'International' | 'Local')}
+                onClick={() => setFilter(cat)}
                 className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all ${filter === cat ? 'bg-white text-black shadow' : 'bg-white/20 hover:bg-white/30'}`}
               >
                 {cat}
@@ -333,9 +318,9 @@ export default function KopalaKits() {
                         <p className="font-bold">K{item.price}</p>
 
                         <div className="flex items-center gap-3 mt-2">
-                          <button onClick={() => updateCartQuantity(item.cartId, item.quantity - 1)} aria-label="Decrease quantity">-</button>
+                          <button onClick={() => updateCartQuantity(item.cartId, item.quantity - 1)}>-</button>
                           <span className="font-semibold w-6 text-center">{item.quantity}</span>
-                          <button onClick={() => updateCartQuantity(item.cartId, item.quantity + 1)} aria-label="Increase quantity">+</button>
+                          <button onClick={() => updateCartQuantity(item.cartId, item.quantity + 1)}>+</button>
                         </div>
                       </div>
                       <button onClick={() => removeFromCart(item.cartId)} className="text-red-500 text-sm">Remove</button>
