@@ -103,5 +103,13 @@
       }
     }
     </script>
+    <script>
+  (function() {
+    const saved = localStorage.getItem('darkMode');
+    if (saved === 'true' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+    }
+  })();
+</script>
   </body>
 </html>
