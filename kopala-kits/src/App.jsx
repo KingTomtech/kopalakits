@@ -1,49 +1,142 @@
 import React, { useState } from 'react';
 import { MapPin, MessageCircle, Info } from 'lucide-react';
 
-// Product Database with K400 pricing and working Unsplash images
+// Product Database with K400 pricing - all jerseys uniform price
 const products = [
   {
     id: 1,
     name: "Man United 25/26 Home",
     price: 400,
     category: "International",
-    img: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=600&h=600&fit=crop",
-    desc: "Premium quality Red Devils home kit."
+    desc: "Premium quality Red Devils home kit.",
+    color: "#DA291C",
+    accent: "#FBE122",
+    pattern: "solid"
   },
   {
     id: 2,
     name: "Arsenal 25/26 Home",
     price: 400,
     category: "International",
-    img: "https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=600&h=600&fit=crop",
-    desc: "The Gunners classic red and white."
+    desc: "The Gunners classic red and white.",
+    color: "#EF0107",
+    accent: "#FFFFFF",
+    pattern: "sleeves"
   },
   {
     id: 3,
     name: "Chipolopolo Home 2026",
     price: 400,
     category: "Local",
-    img: "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=600&h=600&fit=crop",
-    desc: "Official Zambia National Team Jersey."
+    desc: "Official Zambia National Team Jersey.",
+    color: "#00A651",
+    accent: "#EF3340",
+    pattern: "diagonal"
   },
   {
     id: 4,
     name: "Real Madrid 25/26 Home",
     price: 400,
     category: "International",
-    img: "https://images.unsplash.com/photo-1489944440615-453fc2b6a9a9?w=600&h=600&fit=crop",
-    desc: "Hala Madrid! The iconic white kit."
+    desc: "Hala Madrid! The iconic white kit.",
+    color: "#FFFFFF",
+    accent: "#00529F",
+    pattern: "solid"
   },
   {
     id: 5,
     name: "Power Dynamos Home",
     price: 400,
     category: "Local",
-    img: "https://images.unsplash.com/photo-1551958219-acbc608c6377?w=600&h=600&fit=crop",
-    desc: "Aba Yellow official replica."
+    desc: "Aba Yellow official replica.",
+    color: "#FFD700",
+    accent: "#000000",
+    pattern: "stripes"
+  },
+  {
+    id: 6,
+    name: "Chelsea 25/26 Home",
+    price: 400,
+    category: "International",
+    desc: "The Blues classic home jersey.",
+    color: "#034694",
+    accent: "#FFFFFF",
+    pattern: "solid"
+  },
+  {
+    id: 7,
+    name: "ZESCO United Home",
+    price: 400,
+    category: "Local",
+    desc: "ZESCO United official replica.",
+    color: "#1E90FF",
+    accent: "#FFFFFF",
+    pattern: "gradient"
+  },
+  {
+    id: 8,
+    name: "Liverpool 25/26 Home",
+    price: 400,
+    category: "International",
+    desc: "You'll Never Walk Alone!",
+    color: "#C8102E",
+    accent: "#00A398",
+    pattern: "solid"
   }
 ];
+
+// Jersey SVG component for visual representation
+function JerseySVG({ color, accent, pattern }) {
+  const getPattern = () => {
+    switch(pattern) {
+      case 'stripes':
+        return (
+          <>
+            <rect x="30" y="35" width="8" height="45" fill={accent} />
+            <rect x="46" y="35" width="8" height="45" fill={accent} />
+            <rect x="62" y="35" width="8" height="45" fill={accent} />
+          </>
+        );
+      case 'sleeves':
+        return (
+          <>
+            <path d="M10 25 L25 30 L25 55 L10 50 Z" fill={accent} />
+            <path d="M90 25 L75 30 L75 55 L90 50 Z" fill={accent} />
+          </>
+        );
+      case 'diagonal':
+        return <path d="M25 80 L75 30 L80 35 L30 85 Z" fill={accent} opacity="0.6" />;
+      case 'gradient':
+        return (
+          <defs>
+            <linearGradient id={`grad-${color}`} x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor={color} />
+              <stop offset="100%" stopColor={accent} />
+            </linearGradient>
+          </defs>
+        );
+      default:
+        return null;
+    }
+  };
+
+  return (
+    <svg viewBox="0 0 100 100" className="w-full h-full">
+      {pattern === 'gradient' && getPattern()}
+      {/* Jersey body */}
+      <path 
+        d="M50 15 L25 25 L10 25 L10 50 L25 55 L25 85 L75 85 L75 55 L90 50 L90 25 L75 25 L50 15" 
+        fill={pattern === 'gradient' ? `url(#grad-${color})` : color}
+        stroke={accent}
+        strokeWidth="2"
+      />
+      {/* Collar */}
+      <path d="M45 15 L50 20 L55 15" fill="none" stroke={accent} strokeWidth="2" />
+      {/* Pattern overlays */}
+      {pattern !== 'gradient' && getPattern()}
+    </svg>
+  );
+}
 
 export default function KopalaKits() {
   const [filter, setFilter] = useState('All');
@@ -97,24 +190,33 @@ export default function KopalaKits() {
         {filteredProducts.map(product => (
           <div 
             key={product.id} 
-            className="rounded-xl shadow-sm border overflow-hidden flex flex-col"
+            className="rounded-xl shadow-sm border overflow-hidden flex flex-col group hover:shadow-md transition-shadow"
             style={{ backgroundColor: 'var(--soft-cream)', borderColor: 'var(--warm-beige)' }}
           >
-            <img 
-              src={product.img} 
-              alt={product.name} 
-              className="h-48 w-full object-cover"
-              onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=600&h=600&fit=crop'; }}
-            />
+            {/* Jersey Visual */}
+            <div 
+              className="h-48 w-full flex items-center justify-center p-4 relative overflow-hidden"
+              style={{ backgroundColor: `${product.color}15` }}
+            >
+              <div className="w-32 h-32 group-hover:scale-110 transition-transform duration-300">
+                <JerseySVG color={product.color} accent={product.accent} pattern={product.pattern} />
+              </div>
+              {/* Team color accent bar */}
+              <div 
+                className="absolute bottom-0 left-0 right-0 h-1"
+                style={{ backgroundColor: product.color }}
+              />
+            </div>
             <div className="p-3 flex-grow">
               <span className="text-[10px] font-bold uppercase" style={{ color: 'var(--muted-gold)' }}>{product.category}</span>
               <h3 className="font-bold text-sm leading-tight">{product.name}</h3>
-              <p className="font-black mt-1" style={{ color: 'var(--dusty-sage)' }}>K{product.price}</p>
+              <p className="text-xs mt-1 opacity-70">{product.desc}</p>
+              <p className="font-black mt-2 text-lg" style={{ color: 'var(--dusty-sage)' }}>K{product.price}</p>
             </div>
             <button 
               onClick={() => sendWhatsApp(product.name)}
-              className="m-3 text-white py-2 rounded-lg flex items-center justify-center gap-2 text-xs font-bold transition hover:opacity-90"
-              style={{ backgroundColor: 'var(--dusty-sage)' }}
+              className="m-3 text-white py-2.5 rounded-lg flex items-center justify-center gap-2 text-xs font-bold transition hover:opacity-90"
+              style={{ backgroundColor: product.color === '#FFFFFF' ? 'var(--dusty-sage)' : product.color }}
             >
               <MessageCircle size={14} /> ORDER NOW
             </button>
