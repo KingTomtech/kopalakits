@@ -46,6 +46,16 @@ function generateSitemap() {
     xml += `  </url>\n`;
   }
 
+  // Top-level pages
+  for (const route of ['', 'shop', 'about', 'contact', 'predictions']) {
+    xml += `  <url>\n`;
+    xml += `    <loc>${DOMAIN}/${route}</loc>\n`;
+    xml += `    <lastmod>${now}</lastmod>\n`;
+    xml += `    <priority>${route === '' ? '1.0' : '0.7'}</priority>\n`;
+    xml += `    <changefreq>daily</changefreq>\n`;
+    xml += `  </url>\n`;
+  }
+
   for (const product of products) {
     const slug = product.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
     const imgUrl = product.image?.startsWith("http") ? product.image : `${DOMAIN}${product.image || product.img}`;

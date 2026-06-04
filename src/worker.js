@@ -17,6 +17,27 @@ const KV_KEY_PRODUCTS   = 'products';
 const KV_KEY_BANNER     = 'banner';
 const KV_KEY_AUTH       = 'auth_hash';
 const KV_KEY_REVOKED    = 'revoked_jti';
+const KV_KEY_PREDICTIONS = 'predictions';
+const KV_KEY_FIXTURES   = 'fixtures_cache';
+const SPORTSDB_BASE     = 'https://www.thesportsdb.com/api/v1/json/3';
+const FIXTURES_TTL_SEC  = 6 * 60 * 60; // 6 hours
+const PREDICTION_RATE_LIMIT = 30;      // per device per hour
+// Team IDs we track for the predictions feature. Curated: only the teams
+// whose jerseys we actually sell, so users care about the fixtures.
+const PREDICTIONS_TEAM_IDS = [
+  '133604', // Arsenal
+  '133610', // Chelsea
+  '133612', // Manchester United
+  '133613', // Liverpool
+  '143001', // Argentina
+  '144338', // Portugal
+  '148356', // England
+  '146636', // France
+  '146610', // Germany
+  '145803', // Spain
+  '143002', // Brazil
+  '144322', // Zambia
+];
 const JWT_SECRET_ENV    = 'JWT_SECRET';
 const ADMIN_PW_ENV      = 'ADMIN_PASSWORD';
 const PHONE_ENV         = 'PHONE_NUMBER';
@@ -430,6 +451,225 @@ async function handleConfig(request, ctx) {
   }, ctx);
 }
 
+// ─── Predictions ────────────────────────────────────────────────────────
+
+async function fetchSportsDb(path) {
+  const res = await fetch(`${SPORTSDB_BASE}${path}`);
+  if (!res.ok) throw new HttpError(`Upstream error ${res.status}`, 502);
+  return res.json();
+}
+
+async function refreshFixtures(env) {
+  // Pull next 5 events for each tracked team. Merge and dedupe by idEvent.
+  // Cache the merged result in KV with FIXTURES_TTL_SEC so we don't hit the
+  // upstream API on every page load.
+  const all = [];
+  const seen = new Set();
+  for (const id of PREDICTIONS_TEAM_IDS) {
+    try {
+      const data = await fetchSportsDb(`/eventsnext.php?id=${id}`);
+      for (const ev of (data.events || [])) {
+        if (!ev || !ev.idEvent || seen.has(ev.idEvent)) continue;
+        seen.add(ev.idEvent);
+        // Normalize shape
+        all.push({
+          id: ev.idEvent,
+          league: ev.strLeague || 'Friendly',
+          leagueBadge: ev.strLeagueBadge || '',
+          kickoff: ev.strTimestamp || `${ev.dateEvent || ''}T${ev.strTime || '00:00:00'}Z`,
+          venue: ev.strVenue || '',
+          home: {
+            id: ev.idHomeTeam,
+            name: ev.strHomeTeam,
+            badge: ev.strHomeTeamBadge || '',
+          },
+          away: {
+            id: ev.idAwayTeam,
+            name: ev.strAwayTeam,
+            badge: ev.strAwayTeamBadge || '',
+          },
+        });
+      }
+    } catch {
+      // Skip a team if its request fails; the others still come through.
+    }
+  }
+  // Sort by kickoff time, only future events, take first 12.
+  const now = Date.now();
+  all.sort((a, b) => new Date(a.kickoff) - new Date(b.kickoff));
+  const upcoming = all.filter((f) => new Date(f.kickoff).getTime() > now).slice(0, 12);
+  await env.KOPALA_KV.put(KV_KEY_FIXTURES, JSON.stringify(upcoming), {
+    expirationTtl: FIXTURES_TTL_SEC,
+  });
+  return upcoming;
+}
+
+async function getPredictionsStore(env) {
+  const raw = await env.KOPALA_KV.get(KV_KEY_PREDICTIONS);
+  if (!raw) return {};
+  try { return JSON.parse(raw); } catch { return {}; }
+}
+
+async function savePredictionsStore(env, store) {
+  await env.KOPALA_KV.put(KV_KEY_PREDICTIONS, JSON.stringify(store));
+}
+
+function tallyFor(fixture) {
+  const votes = fixture.votes || {};
+  const tallies = { home: 0, away: 0, draw: 0 };
+  for (const pick of Object.values(votes)) {
+    if (pick in tallies) tallies[pick]++;
+  }
+  const total = tallies.home + tallies.away + tallies.draw;
+  return { ...tallies, total };
+}
+
+function getDeviceId(request) {
+  // X-Device-Id is the source of truth. Falls back to a client IP + UA hash
+  // for the rare browser that doesn't have the device-id yet (e.g. on first
+  // visit). The client always sends the header after init.
+  return (
+    request.headers.get('X-Device-Id') ||
+    request.headers.get('x-device-id') ||
+    ''
+  );
+}
+
+async function rateLimitPrediction(env, deviceId) {
+  if (!deviceId) throw new HttpError('Missing X-Device-Id header', 400);
+  const key = `predict_tries:${deviceId}`;
+  const cur = await env.KOPALA_KV.get(key, { type: 'json' });
+  const count = (cur?.count || 0) + 1;
+  if (count > PREDICTION_RATE_LIMIT) {
+    throw new HttpError('Too many predictions. Slow down.', 429);
+  }
+  await env.KOPALA_KV.put(key, JSON.stringify({ count }), {
+    expirationTtl: 60 * 60,
+  });
+}
+
+async function handlePredictions(request, ctx) {
+  const { env } = ctx;
+
+  if (request.method !== 'GET') {
+    return errorResponse('Method not allowed', 405, ctx);
+  }
+
+  // List active fixtures + tallies. The client renders them.
+  let fixtures = [];
+  const cached = await env.KOPALA_KV.get(KV_KEY_FIXTURES);
+  if (cached) {
+    try { fixtures = JSON.parse(cached); } catch { fixtures = []; }
+  }
+  // If the cache is empty, try to fetch.
+  if (!fixtures.length) {
+    try { fixtures = await refreshFixtures(env); }
+    catch (e) {
+      if (e instanceof HttpError) throw e;
+      fixtures = [];
+    }
+  }
+
+  const store = await getPredictionsStore(env);
+  const deviceId = getDeviceId(request);
+  const now = Date.now();
+
+  // Merge fixtures with their tallies + my pick.
+  const out = fixtures
+    .filter((f) => new Date(f.kickoff).getTime() > now - 6 * 60 * 60 * 1000) // hide fixtures 6h past kickoff
+    .map((f) => {
+      const fixtureData = store[f.id] || { votes: {}, result: null };
+      return {
+        ...f,
+        tallies: tallyFor(fixtureData),
+        myPick: deviceId ? (fixtureData.votes?.[deviceId] || null) : null,
+        locked: new Date(f.kickoff).getTime() <= now,
+        result: fixtureData.result || null,
+      };
+    });
+
+  return jsonResponse({ fixtures: out, now }, ctx);
+}
+
+async function handlePredictionSubmit(request, ctx) {
+  if (request.method !== 'POST') return errorResponse('Method not allowed', 405, ctx);
+
+  const { env } = ctx;
+  const deviceId = getDeviceId(request);
+  if (!deviceId) return errorResponse('Missing X-Device-Id header', 400, ctx, true);
+
+  await rateLimitPrediction(env, deviceId);
+
+  const body = await readJsonBody(request, MAX_BODY_BYTES);
+  const { fixtureId, pick } = body || {};
+  if (typeof fixtureId !== 'string' || typeof pick !== 'string') {
+    return errorResponse('fixtureId and pick are required', 400, ctx, true);
+  }
+  if (!['home', 'away', 'draw'].includes(pick)) {
+    return errorResponse('pick must be home, away, or draw', 400, ctx, true);
+  }
+
+  // Load fixtures, verify the fixture exists and isn't locked.
+  const cached = await env.KOPALA_KV.get(KV_KEY_FIXTURES);
+  if (!cached) return errorResponse('Fixtures not loaded yet. Try again shortly.', 503, ctx, true);
+  let fixtures;
+  try { fixtures = JSON.parse(cached); } catch { return errorResponse('Fixture cache corrupt', 500, ctx, true); }
+  const fixture = fixtures.find((f) => f.id === fixtureId);
+  if (!fixture) return errorResponse('Unknown fixture', 404, ctx, true);
+
+  const kickoff = new Date(fixture.kickoff).getTime();
+  if (kickoff <= Date.now()) {
+    return errorResponse('Fixture is locked — kickoff has passed', 409, ctx, true);
+  }
+  // Draws only make sense for league matches. TheSportsDB sets strLeague for
+  // league matches; friendlies & cups are no-draw.
+  if (pick === 'draw' && !fixture.league) {
+    return errorResponse('Draw not available for this fixture', 400, ctx, true);
+  }
+
+  const store = await getPredictionsStore(env);
+  const existing = store[fixtureId] || { votes: {}, result: null };
+  // One vote per device per fixture; replace if it already exists.
+  existing.votes = existing.votes || {};
+  existing.votes[deviceId] = pick;
+  store[fixtureId] = existing;
+  await savePredictionsStore(env, store);
+
+  return jsonResponse({
+    success: true,
+    fixtureId,
+    pick,
+    tallies: tallyFor(existing),
+  }, ctx);
+}
+
+async function handlePredictionDelete(request, ctx) {
+  if (request.method !== 'DELETE') return errorResponse('Method not allowed', 405, ctx);
+  const { env } = ctx;
+  const deviceId = getDeviceId(request);
+  if (!deviceId) return errorResponse('Missing X-Device-Id header', 400, ctx, true);
+
+  const url = new URL(request.url);
+  const fixtureId = url.pathname.split('/').pop();
+  if (!fixtureId) return errorResponse('Missing fixtureId in path', 400, ctx, true);
+
+  const store = await getPredictionsStore(env);
+  const existing = store[fixtureId];
+  if (existing && existing.votes) {
+    delete existing.votes[deviceId];
+    store[fixtureId] = existing;
+    await savePredictionsStore(env, store);
+  }
+  return jsonResponse({ success: true, fixtureId }, ctx);
+}
+
+async function handlePredictionsRefresh(request, ctx) {
+  if (request.method !== 'POST') return errorResponse('Method not allowed', 405, ctx);
+  const { env } = ctx;
+  const fixtures = await refreshFixtures(env);
+  return jsonResponse({ success: true, count: fixtures.length, fixtures }, ctx);
+}
+
 // ─── Auth Middleware ──────────────────────────────────────────────────────
 
 async function requireAuth(request, env) {
@@ -468,6 +708,11 @@ export default {
       if (url.pathname === '/api/login')     return await handleLogin(request, ctx);
       if (url.pathname === '/api/logout')    return await handleLogout(request, ctx);
       if (url.pathname === '/api/config')    return await handleConfig(request, ctx);
+
+      if (url.pathname === '/api/predictions')           return await handlePredictions(request, ctx);
+      if (url.pathname === '/api/predictions/refresh')   return await handlePredictionsRefresh(request, ctx);
+      if (url.pathname === '/api/predictions/submit')    return await handlePredictionSubmit(request, ctx);
+      if (url.pathname.startsWith('/api/predictions/'))  return await handlePredictionDelete(request, ctx);
 
       if (url.pathname === '/api/health') {
         return jsonResponse({ ok: true, kv: !!env.KOPALA_KV }, ctx);

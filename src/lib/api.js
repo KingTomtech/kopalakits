@@ -33,6 +33,12 @@ export async function getTeamLastEvents(teamId) {
   return data?.results ?? [];
 }
 
+export async function getTeamNextEvents(teamId) {
+  if (!teamId) return null;
+  const data = await cachedFetch(`/eventsnext.php?id=${teamId}`);
+  return data?.events ?? [];
+}
+
 export async function getTeamInfo(teamId) {
   if (!teamId) return null;
   const data = await cachedFetch(`/lookupteam.php?id=${teamId}`);

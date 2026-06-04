@@ -7,6 +7,7 @@ import ShopPage from './pages/ShopPage.jsx';
 import ProductPage from './pages/ProductPage.jsx';
 import AboutPage from './pages/AboutPage.jsx';
 import ContactPage from './pages/ContactPage.jsx';
+import PredictionsPage from './pages/PredictionsPage.jsx';
 import NotFoundPage from './pages/NotFoundPage.jsx';
 import CartDrawer from './components/CartDrawer.jsx';
 import QuickAddModal from './components/QuickAddModal.jsx';
@@ -92,6 +93,10 @@ export default function App({ onAdminAccess }) {
           <nav className="hidden md:flex items-center gap-1">
             <a href="/" className="px-3 py-2 rounded-xl text-sm font-bold hover:bg-black/5" style={{ color: 'var(--text)' }}>Home</a>
             <a href="/shop" className="px-3 py-2 rounded-xl text-sm font-bold hover:bg-black/5" style={{ color: 'var(--text)' }}>Shop</a>
+            <a href="/predictions" className="px-3 py-2 rounded-xl text-sm font-bold hover:bg-black/5 inline-flex items-center gap-1.5" style={{ color: 'var(--text)' }}>
+              <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: 'var(--warning)' }} />
+              Predictions
+            </a>
             <a href="/about" className="px-3 py-2 rounded-xl text-sm font-bold hover:bg-black/5" style={{ color: 'var(--text)' }}>About</a>
             <a href="/contact" className="px-3 py-2 rounded-xl text-sm font-bold hover:bg-black/5" style={{ color: 'var(--text)' }}>Contact</a>
           </nav>
@@ -154,6 +159,9 @@ export default function App({ onAdminAccess }) {
           } />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage phone={PHONE_FALLBACK} />} />
+          <Route path="/predictions" element={
+            <PredictionsPage showToast={showToast} />
+          } />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>
