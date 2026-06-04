@@ -300,7 +300,7 @@ export default function AdminDashboard({ onExit }) {
             <div className="flex items-center gap-2">
               {bannerActive && !bannerEditing && (
                 <button
-                  onClick={() => { setBannerActive(false); saveBannerToAPI(bannerText, false); }}
+                  onClick={async () => { setBannerActive(false); saveBannerToAPI(bannerText, false); }}
                   className="px-3 py-1.5 rounded-xl text-xs font-bold bg-red-100 text-red-600 hover:bg-red-200 transition"
                 >
                   Hide
@@ -326,14 +326,14 @@ export default function AdminDashboard({ onExit }) {
               />
               <div className="flex gap-3 items-center">
                 <button
-                  onClick={() => { setBannerActive(true); saveBannerToAPI(bannerText, true); }}
+                  onClick={async () => { setBannerActive(true); saveBannerToAPI(bannerText, true); }}
                   disabled={!bannerText.trim()}
                   className="px-5 py-2.5 bg-[#5E6B3C] text-white rounded-2xl text-sm font-bold hover:brightness-110 disabled:opacity-40 transition"
                 >
                   Publish Banner
                 </button>
                 <button
-                  onClick={() => { setBannerActive(false); saveBannerToAPI(bannerText, false); }}
+                  onClick={async () => { setBannerActive(false); saveBannerToAPI(bannerText, false); }}
                   className="px-5 py-2.5 border-2 rounded-2xl text-sm font-semibold hover:bg-gray-50 transition"
                 >
                   Save but Hide
@@ -351,7 +351,7 @@ export default function AdminDashboard({ onExit }) {
         </div>
 
         <button
-          onClick={() => { setIsAdding(true); setAddForm({ ...defaultProduct, id: Date.now() }); }}
+          onClick={async () => { setIsAdding(true); setAddForm({ ...defaultProduct, id: Date.now() }); }}
           className="mb-6 flex items-center gap-2 px-6 py-3 bg-[#5E6B3C] text-white rounded-2xl font-bold hover:brightness-110 transition"
         >
           <Plus size={20} /> Add New Product
@@ -409,7 +409,7 @@ export default function AdminDashboard({ onExit }) {
                   </div>
                   <div className="flex gap-2 flex-shrink-0 items-center">
                     <button
-                      onClick={() => {
+                      onClick={async () => {
                         const updated = products.map(p => p.id === product.id ? { ...p, soldOut: !p.soldOut } : p);
                         await persistProducts(updated);
                         window.dispatchEvent(new Event('kopala_products_updated'));
