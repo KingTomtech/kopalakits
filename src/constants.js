@@ -18,3 +18,7 @@ export const PHONE_FALLBACK = '260770713619';
 export const DEFAULT_CURRENCY = 'ZMW';
 
 export const CART_KEY = 'kopala_cart';
+
+// Self-hosted SVG fallback shown when a product image fails to load.
+// Decoded inline so we never need a network round-trip to render it.
+export const IMAGE_FALLBACK = '/jerseys/placeholder.svg';

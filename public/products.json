@@ -1,8 +1,8 @@
 [
-  { "id": 1, "name": "Mufulira Wanderers 2025/26 Home Jersey", "price": 520, "category": "Local", "desc": "Green and white stripes home kit of Mighty Mufulira Wanderers.", "image": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800" },
-  { "id": 2, "name": "Kabwe Warriors 2024/25 Home Jersey", "price": 480, "category": "Local", "desc": "Sky blue and white home jersey.", "image": "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=800" },
-  { "id": 3, "name": "Nkana FC 2024/25 Home Jersey", "price": 500, "category": "Local", "desc": "Classic orange/red and white home jersey.", "image": "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=800" },
-  { "id": 4, "name": "Power Dynamos 2025/26 Home Jersey", "price": 490, "category": "Local", "desc": "Iconic yellow Aba Yellow home kit.", "image": "https://images.unsplash.com/photo-1559563458-527698bf5295?w=800" },
+  { "id": 1, "name": "Mufulira Wanderers 2025/26 Home Jersey", "price": 520, "category": "Local", "desc": "Green and white stripes home kit of Mighty Mufulira Wanderers.", "image": "/jerseys/mufulira-wanderers.svg" },
+  { "id": 2, "name": "Kabwe Warriors 2024/25 Home Jersey", "price": 480, "category": "Local", "desc": "Sky blue and white home jersey.", "image": "/jerseys/kabwe-warriors.svg" },
+  { "id": 3, "name": "Nkana FC 2024/25 Home Jersey", "price": 500, "category": "Local", "desc": "Classic orange/red and white home jersey.", "image": "/jerseys/nkana-fc.svg" },
+  { "id": 4, "name": "Power Dynamos 2025/26 Home Jersey", "price": 490, "category": "Local", "desc": "Iconic yellow Aba Yellow home kit.", "image": "/jerseys/power-dynamos.svg" },
 
   { "id": 5, "name": "Arsenal O2 Home Jersey", "price": 700, "category": "International", "desc": "Arsenal Nike home jersey with O2 sponsor — red and white classic.", "image": "/jerseys/arsenal-o2-home.jpeg" },
   { "id": 16, "name": "Chelsea UCL Final Moscow 2008 Jersey", "price": 780, "category": "International", "desc": "Special edition Chelsea Adidas blue jersey from the iconic 2008 Champions League Final in Moscow.", "image": "/jerseys/chelsea-ucl-moscow.jpeg" },
@@ -25,5 +25,5 @@
   { "id": 21, "name": "France Home Blue Jersey", "price": 720, "category": "National", "desc": "France Nike home jersey in deep blue with geometric pattern — Les Bleus.", "image": "/jerseys/france-home-blue.jpeg" },
   { "id": 24, "name": "Germany Home Jersey", "price": 730, "category": "National", "desc": "Germany Adidas home jersey in white with iconic black, red and gold V-design on the chest.", "image": "/jerseys/germany-home-white.jpeg" },
   { "id": 25, "name": "Spain Home Jersey", "price": 730, "category": "National", "desc": "Spain Adidas home kit in La Roja red with blue sleeves and gold pinstripes.", "image": "/jerseys/spain-home-red.jpeg" },
-  { "id": 14, "name": "Zambia National Team 2025/26 Home Jersey", "price": 600, "category": "National", "desc": "Chipolopolo green home jersey.", "image": "https://images.unsplash.com/photo-1560272564-c83b66b1ad12?w=800" }
+  { "id": 14, "name": "Zambia National Team 2025/26 Home Jersey", "price": 600, "category": "National", "desc": "Chipolopolo green home jersey.", "image": "/jerseys/zambia-national.svg" }
 ]

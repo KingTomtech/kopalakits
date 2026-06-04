@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 520" role="img" aria-label="PD jersey">
+  <defs>
+    <clipPath id="shirtClip">
+      <path d="M120 60 L160 40 Q200 30 240 40 L280 60 L340 90 L320 170 L290 160 L290 470 Q290 490 270 490 L130 490 Q110 490 110 470 L110 160 L80 170 L60 90 Z" />
+    </clipPath>
+    <linearGradient id="shade" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="rgba(0,0,0,0)" />
+      <stop offset="1" stop-color="rgba(0,0,0,0.18)" />
+    </linearGradient>
+  </defs>
+  <rect width="400" height="520" fill="#F9F3E8" />
+  
+    <rect x="0" y="0" width="400" height="520" fill="#ffd700" />
+  <path d="M120 60 L160 40 Q200 30 240 40 L280 60 L340 90 L320 170 L290 160 L290 470 Q290 490 270 490 L130 490 Q110 490 110 470 L110 160 L80 170 L60 90 Z"
+        fill="url(#shade)" />
+  <!-- collar -->
+  <path d="M170 40 Q200 60 230 40 L230 60 Q200 80 170 60 Z" fill="rgba(0,0,0,0.18)" stroke="#222222" stroke-width="3" />
+  <!-- sponsor patch -->
+  <rect x="160" y="170" width="80" height="50" rx="6" fill="#222222" opacity="0.95" />
+  <text x="200" y="202" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif"
+        font-weight="800" font-size="22" fill="#ffd700">PD</text>
+  <!-- trim on sleeves -->
+  <path d="M60 90 L110 110 L110 160 L80 170 Z" fill="#222222" opacity="0.6" />
+  <path d="M340 90 L290 110 L290 160 L320 170 Z" fill="#222222" opacity="0.6" />
+</svg>

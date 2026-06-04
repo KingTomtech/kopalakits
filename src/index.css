@@ -46,3 +46,29 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--khaki-dark);
 }
+
+/* ─── Focus indicators ──────────────────────────────────────────────────
+   Use :focus-visible so the ring only shows for keyboard / screen-reader
+   navigation, not when the user clicks with a mouse. The ring uses the
+   brand olive and is high-contrast against both light and dark surfaces. */
+*:focus { outline: none; }
+*:focus-visible {
+  outline: 2px solid var(--dusty-olive-dark);
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+/* Selection */
+::selection {
+  background-color: var(--khaki-beige);
+  color: var(--charcoal-accent);
+}
+
+/* Honor user preference for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

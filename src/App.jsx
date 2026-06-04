@@ -1,6 +1,6 @@
 import { useState, useMemo, useEffect, useCallback } from 'react';
-import { ShoppingCart, Moon, Sun, X, Heart, Plus, Menu, Search, MessageCircle } from 'lucide-react';
-import { STORAGE_KEY, BANNER_KEY, CATEGORIES, SIZES, WISHLIST_KEY, DARK_MODE_KEY, PHONE_FALLBACK, CART_KEY } from './constants.js';
+import { ShoppingCart, Moon, Sun, X, Heart, Plus, Minus, Menu, Search, MessageCircle, MapPin, Phone } from 'lucide-react';
+import { STORAGE_KEY, BANNER_KEY, CATEGORIES, SIZES, WISHLIST_KEY, DARK_MODE_KEY, PHONE_FALLBACK, CART_KEY, IMAGE_FALLBACK } from './constants.js';
 
 const styleVars = `
   :root {
@@ -54,6 +54,8 @@ export default function KopalaKits({ onAdminAccess }) {
   const [phone, setPhone] = useState(PHONE_FALLBACK);
   const [loading, setLoading] = useState(true);
   const [loadError, setLoadError] = useState('');
+  const [toast, setToast] = useState('');
+  const [logoPulse, setLogoPulse] = useState(0);
 
   const loadProducts = useCallback(async () => {
     setLoading(true);
@@ -148,7 +150,9 @@ export default function KopalaKits({ onAdminAccess }) {
   const handleLogoClick = () => {
     const next = logoClickCount + 1;
     setLogoClickCount(next);
-    if (next >= 5) { setLogoClickCount(0); onAdminAccess(); }
+    if (next >= 5) { setLogoClickCount(0); setLogoPulse(0); onAdminAccess(); return; }
+    if (next >= 3) setLogoPulse(p => p + 1); // visible cue near the threshold
+    setTimeout(() => setLogoClickCount(c => (c === next ? 0 : c)), 1500); // reset if paused
   };
 
   const toggleDarkMode = () => {
@@ -171,9 +175,11 @@ export default function KopalaKits({ onAdminAccess }) {
   }, [filter, searchQuery]);
 
   const toggleWishlist = (id) => {
-    const newList = wishlist.includes(id) ? wishlist.filter(i => i !== id) : [...wishlist, id];
+    const wasInList = wishlist.includes(id);
+    const newList = wasInList ? wishlist.filter(i => i !== id) : [...wishlist, id];
     setWishlist(newList);
     localStorage.setItem(WISHLIST_KEY, JSON.stringify(newList));
+    showToast(wasInList ? 'Removed from wishlist' : 'Added to wishlist \u2665');
   };
 
   const filteredProducts = useMemo(() => {
@@ -211,6 +217,20 @@ export default function KopalaKits({ onAdminAccess }) {
 
   const removeFromCart = (cartId) => setCart(prev => prev.filter(item => item.cartId !== cartId));
 
+  const updateCartQty = (cartId, delta) => setCart(prev =>
+    prev.flatMap(item => {
+      if (item.cartId !== cartId) return [item];
+      const next = item.quantity + delta;
+      if (next <= 0) return []; // removing the last one drops the line
+      return [{ ...item, quantity: next }];
+    })
+  );
+
+  const showToast = (msg) => {
+    setToast(msg);
+    setTimeout(() => setToast(''), 1800);
+  };
+
   const totalPrice = useMemo(() => cart.reduce((sum, item) => sum + item.price * item.quantity, 0), [cart]);
 
   const sendCartToWhatsApp = () => {
@@ -229,6 +249,16 @@ export default function KopalaKits({ onAdminAccess }) {
     <>
       <style>{styleVars}</style>
       <div className="min-h-screen transition-colors duration-300" style={{ backgroundColor: 'var(--champagne-light)' }}>
+        {toast && (
+          <div
+            className="fixed top-4 left-1/2 -translate-x-1/2 z-[60] px-4 py-2.5 rounded-2xl shadow-xl text-sm font-bold text-white pointer-events-none animate-in fade-in slide-in-from-top-2 duration-200"
+            style={{ backgroundColor: 'var(--charcoal-accent)' }}
+            role="status"
+            aria-live="polite"
+          >
+            {toast}
+          </div>
+        )}
         {banner && banner.active && !bannerDismissed && (
           <div className="relative z-50 text-center text-sm font-semibold py-2.5 px-4" style={{ backgroundColor: 'var(--dusty-olive)', color: '#fff' }}>
             {banner.text}
@@ -239,7 +269,7 @@ export default function KopalaKits({ onAdminAccess }) {
         )}
         <nav className="sticky top-0 z-40 border-b backdrop-blur-md" style={{ backgroundColor: 'var(--champagne-mist)' }} role="navigation">
           <div className="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
-            <button onClick={handleLogoClick} className="flex items-center gap-2 group" aria-label="Kopala Kits home">
+            <button onClick={handleLogoClick} className={`flex items-center gap-2 group ${logoPulse > 0 ? 'animate-pulse' : ''}`} aria-label="Kopala Kits home">
               <div className="w-9 h-9 rounded-xl flex items-center justify-center text-white font-black text-sm shadow-sm" style={{ backgroundColor: 'var(--dusty-olive)' }}>K</div>
               <span className="font-black text-lg tracking-tighter" style={{ color: 'var(--dusty-olive-dark)' }}>KOPALA KITS</span>
             </button>
@@ -248,7 +278,7 @@ export default function KopalaKits({ onAdminAccess }) {
                 <ShoppingCart size={20} style={{ color: 'var(--charcoal-accent)' }} />
                 {cart.length > 0 && <span className="absolute -top-0.5 -right-0.5 w-5 h-5 rounded-full text-white text-[10px] font-bold flex items-center justify-center" style={{ backgroundColor: 'var(--dusty-olive)' }}>{cart.length}</span>}
               </button>
-              <button onClick={toggleDarkMode} className="p-2.5 rounded-2xl hover:bg-black/5 transition" aria-label="Toggle dark mode">
+              <button onClick={toggleDarkMode} className="p-2.5 rounded-2xl hover:bg-black/5 transition hidden sm:inline-flex" aria-label="Toggle dark mode">
                 {darkMode ? <Sun size={20} /> : <Moon size={20} />}
               </button>
               <button onClick={() => setIsMenuOpen(true)} className="p-2.5 rounded-2xl hover:bg-black/5 transition md:hidden" aria-label="Open menu">
@@ -265,7 +295,7 @@ export default function KopalaKits({ onAdminAccess }) {
               placeholder="Search jerseys..."
               value={searchQuery}
               onChange={e => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-3 rounded-2xl border-2 text-sm font-medium focus:outline-none transition"
+              className="w-full pl-10 pr-4 py-3 rounded-2xl border-2 text-sm font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--dusty-olive)] focus-visible:ring-offset-1 transition"
               style={{ borderColor: 'var(--khaki-beige)', backgroundColor: 'var(--soft-cream)' }}
             />
           </div>
@@ -333,7 +363,7 @@ export default function KopalaKits({ onAdminAccess }) {
                         alt={product.name}
                         loading="lazy"
                         className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
-                        onError={e => { e.target.src = 'https://via.placeholder.com/400?text=Jersey+Coming+Soon'; }}
+                        onError={e => { e.currentTarget.onerror = null; e.currentTarget.src = IMAGE_FALLBACK; }}
                       />
                       {product.soldOut && <span className="absolute top-2 left-2 bg-red-500 text-white text-[10px] font-bold px-2 py-1 rounded-lg">SOLD OUT</span>}
                       {product.newArrival && <span className="absolute top-2 right-2 bg-amber-400 text-black text-[10px] font-bold px-2 py-1 rounded-lg">NEW</span>}
@@ -372,7 +402,7 @@ export default function KopalaKits({ onAdminAccess }) {
           <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-end sm:items-center justify-center p-4">
             <div className="bg-white dark:bg-zinc-900 rounded-3xl w-full max-w-sm overflow-hidden shadow-2xl animate-in slide-in-from-bottom duration-300">
               <div className="relative">
-                <img src={quickAddProduct.image || quickAddProduct.img} alt={quickAddProduct.name} className="w-full h-56 object-cover" />
+                <img src={quickAddProduct.image || quickAddProduct.img} alt={quickAddProduct.name} onError={e => { e.currentTarget.onerror = null; e.currentTarget.src = IMAGE_FALLBACK; }} className="w-full h-56 object-cover" />
                 <button onClick={() => setQuickAddProduct(null)} className="absolute top-3 right-3 w-8 h-8 bg-black/40 hover:bg-black/60 text-white rounded-full flex items-center justify-center backdrop-blur-sm"><X size={16} /></button>
               </div>
               <div className="p-5 space-y-4">
@@ -421,16 +451,40 @@ export default function KopalaKits({ onAdminAccess }) {
                 ) : (
                   cart.map(item => (
                     <div key={item.cartId} className="flex gap-3 p-3 rounded-2xl border bg-gray-50 dark:bg-zinc-800" style={{ borderColor: 'var(--khaki-beige)' }}>
-                      <img src={item.image || item.img} alt={item.name} className="w-16 h-16 rounded-xl object-cover flex-shrink-0" />
+                      <img src={item.image || item.img} alt={item.name} onError={e => { e.currentTarget.onerror = null; e.currentTarget.src = IMAGE_FALLBACK; }} className="w-16 h-16 rounded-xl object-cover flex-shrink-0" />
                       <div className="flex-1 min-w-0">
                         <p className="font-bold text-sm truncate">{item.name}</p>
                         <p className="text-xs text-gray-500">Size: {item.size}</p>
                         <div className="flex items-center gap-2 mt-1.5">
                           <span className="text-xs font-bold" style={{ color: 'var(--dusty-olive)' }}>K{item.price * item.quantity}</span>
-                          <span className="text-xs text-gray-400">x{item.quantity}</span>
+                        </div>
+                        <div className="flex items-center gap-1.5 mt-2">
+                          <button
+                            type="button"
+                            onClick={() => updateCartQty(item.cartId, -1)}
+                            aria-label={item.quantity === 1 ? 'Remove from cart' : 'Decrease quantity'}
+                            className="w-7 h-7 rounded-lg border-2 flex items-center justify-center hover:bg-gray-100 dark:hover:bg-zinc-700 focus-visible:ring-2 focus-visible:ring-[var(--dusty-olive)] focus-visible:ring-offset-1 transition"
+                            style={{ borderColor: 'var(--khaki-beige)' }}
+                          >
+                            {item.quantity === 1 ? <X size={12} /> : <Minus size={12} />}
+                          </button>
+                          <span className="w-6 text-center text-xs font-bold">{item.quantity}</span>
+                          <button
+                            type="button"
+                            onClick={() => updateCartQty(item.cartId, +1)}
+                            aria-label="Increase quantity"
+                            className="w-7 h-7 rounded-lg border-2 flex items-center justify-center hover:bg-gray-100 dark:hover:bg-zinc-700 focus-visible:ring-2 focus-visible:ring-[var(--dusty-olive)] focus-visible:ring-offset-1 transition"
+                            style={{ borderColor: 'var(--khaki-beige)' }}
+                          >
+                            <Plus size={12} />
+                          </button>
                         </div>
                       </div>
-                      <button onClick={() => removeFromCart(item.cartId)} className="p-1.5 text-red-400 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-xl self-start transition"><X size={16} /></button>
+                      <button
+                        onClick={() => removeFromCart(item.cartId)}
+                        aria-label="Remove from cart"
+                        className="p-1.5 text-red-400 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-xl self-start transition focus-visible:ring-2 focus-visible:ring-red-400"
+                      ><X size={16} /></button>
                     </div>
                   ))
                 )}
@@ -496,9 +550,9 @@ export default function KopalaKits({ onAdminAccess }) {
             <div>
               <h4 className="font-bold text-sm uppercase tracking-widest mb-4 text-gray-500">Find Us</h4>
               <address className="not-italic text-sm text-gray-600 dark:text-gray-400 space-y-1.5">
-                <p>📍 K-Block, Copperbelt University</p>
+                <p className="flex items-start gap-2"><MapPin size={14} className="mt-0.5 flex-shrink-0" /> K-Block, Copperbelt University</p>
                 <p>Kitwe, Copperbelt Province, Zambia</p>
-                <p className="mt-2">📱 <a href={`https://wa.me/${phone}`} className="hover:text-[var(--dusty-olive)] transition font-medium">+{phone.replace(/(\d{3})(\d{3})(\d{3})/, '$1 $2 $3')}</a></p>
+                <p className="mt-2 flex items-center gap-2"><Phone size={14} className="flex-shrink-0" /> <a href={`https://wa.me/${phone}`} className="hover:text-[var(--dusty-olive)] transition font-medium">+{phone.replace(/(\d{3})(\d{3})(\d{3})/, '$1 $2 $3')}</a></p>
               </address>
               <p className="text-xs text-gray-400 mt-4">Mon–Fri 8am–6pm · Sat 9am–4pm</p>
             </div>
@@ -507,7 +561,7 @@ export default function KopalaKits({ onAdminAccess }) {
             © 2026 Kopala Kits · Kitwe, Zambia · All prices in Zambian Kwacha (ZMW)
           </div>
         </footer>
-        <button onClick={openWhatsApp} className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full shadow-2xl flex items-center justify-center transition hover:scale-110 active:scale-95" style={{ backgroundColor: '#25D366' }} aria-label="Chat on WhatsApp" title="Chat on WhatsApp">
+        <button onClick={openWhatsApp} className="fixed right-4 z-50 w-14 h-14 rounded-full shadow-2xl flex items-center justify-center transition hover:scale-110 active:scale-95 mb-[env(safe-area-inset-bottom,0)]" style={{ backgroundColor: '#25D366', bottom: 'max(1.5rem, env(safe-area-inset-bottom, 0))' }} aria-label="Chat on WhatsApp" title="Chat on WhatsApp">
           <MessageCircle size={28} className="text-white" />
         </button>
       </div>

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 520" role="img" aria-label="Jersey coming soon">
+  <defs>
+    <clipPath id="phClip">
+      <path d="M120 60 L160 40 Q200 30 240 40 L280 60 L340 90 L320 170 L290 160 L290 470 Q290 490 270 490 L130 490 Q110 490 110 470 L110 160 L80 170 L60 90 Z" />
+    </clipPath>
+  </defs>
+  <rect width="400" height="520" fill="#EADDC6" />
+  <path d="M120 60 L160 40 Q200 30 240 40 L280 60 L340 90 L320 170 L290 160 L290 470 Q290 490 270 490 L130 490 Q110 490 110 470 L110 160 L80 170 L60 90 Z"
+        fill="#A68A64" />
+  <text x="200" y="280" text-anchor="middle"
+        font-family="system-ui, -apple-system, sans-serif"
+        font-weight="800" font-size="28" fill="#FDF7F0">JERSEY</text>
+  <text x="200" y="320" text-anchor="middle"
+        font-family="system-ui, -apple-system, sans-serif"
+        font-weight="600" font-size="18" fill="#FDF7F0" opacity="0.85">COMING SOON</text>
+</svg>
