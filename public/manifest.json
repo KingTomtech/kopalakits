@@ -1,0 +1,45 @@
+{
+  "name": "Kopala Kits",
+  "short_name": "KopalaKits",
+  "description": "Premium soccer jerseys in Kitwe, Zambia — local, international, national & retro. Order via WhatsApp.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FDF7F0",
+  "theme_color": "#5E6B3C",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en-ZM",
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" },
+    { "src": "/og-image.jpg", "sizes": "1200x630", "type": "image/jpeg", "purpose": "any" }
+  ],
+  "categories": ["shopping", "sports"],
+  "screenshots": [
+    { "src": "/og-image.jpg", "sizes": "1200x630", "type": "image/jpeg", "form_factor": "wide" }
+  ],
+  "shortcuts": [
+    {
+      "name": "Browse Local Teams",
+      "short_name": "Local",
+      "description": "Browse jerseys from Zambian local teams",
+      "url": "/?category=Local",
+      "icons": [{ "src": "/favicon.svg", "sizes": "any" }]
+    },
+    {
+      "name": "Browse International",
+      "short_name": "International",
+      "description": "Browse international club jerseys",
+      "url": "/?category=International",
+      "icons": [{ "src": "/favicon.svg", "sizes": "any" }]
+    },
+    {
+      "name": "Browse Retro",
+      "short_name": "Retro",
+      "description": "Browse retro classic jerseys",
+      "url": "/?category=Retro",
+      "icons": [{ "src": "/favicon.svg", "sizes": "any" }]
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false
+}

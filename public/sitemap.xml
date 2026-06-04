@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://kopala.zingati.app/</loc>
+    <lastmod>2026-05-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://kopala.zingati.app/og-image.jpg</image:loc>
+      <image:title>Kopala Kits — Soccer Jerseys in Kitwe, Zambia</image:title>
+      <image:caption>Premium soccer jerseys from K480. Local, international, national and retro classics.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://kopala.zingati.app/jerseys/argentina-home-stripes.jpeg</image:loc>
+      <image:title>Argentina Home Stripes Jersey — Kopala Kits</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://kopala.zingati.app/jerseys/portugal-home.jpeg</image:loc>
+      <image:title>Portugal Home Red Jersey — Kopala Kits</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://kopala.zingati.app/jerseys/england-away-red.jpeg</image:loc>
+      <image:title>England Away Red Jersey — Kopala Kits</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://kopala.zingati.app/jerseys/france-home-blue.jpeg</image:loc>
+      <image:title>France Home Blue Jersey — Kopala Kits</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://kopala.zingati.app/jerseys/germany-home-white.jpeg</image:loc>
+      <image:title>Germany Home Jersey — Kopala Kits</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://kopala.zingati.app/jerseys/spain-home-red.jpeg</image:loc>
+      <image:title>Spain Home Jersey — Kopala Kits</image:title>
+    </image:image>
+  </url>
+</urlset>

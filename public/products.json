@@ -1,0 +1,29 @@
+[
+  { "id": 1, "name": "Mufulira Wanderers 2025/26 Home Jersey", "price": 520, "category": "Local", "desc": "Green and white stripes home kit of Mighty Mufulira Wanderers.", "image": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800" },
+  { "id": 2, "name": "Kabwe Warriors 2024/25 Home Jersey", "price": 480, "category": "Local", "desc": "Sky blue and white home jersey.", "image": "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=800" },
+  { "id": 3, "name": "Nkana FC 2024/25 Home Jersey", "price": 500, "category": "Local", "desc": "Classic orange/red and white home jersey.", "image": "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=800" },
+  { "id": 4, "name": "Power Dynamos 2025/26 Home Jersey", "price": 490, "category": "Local", "desc": "Iconic yellow Aba Yellow home kit.", "image": "https://images.unsplash.com/photo-1559563458-527698bf5295?w=800" },
+
+  { "id": 5, "name": "Arsenal O2 Home Jersey", "price": 700, "category": "International", "desc": "Arsenal Nike home jersey with O2 sponsor — red and white classic.", "image": "/jerseys/arsenal-o2-home.jpeg" },
+  { "id": 16, "name": "Chelsea UCL Final Moscow 2008 Jersey", "price": 780, "category": "International", "desc": "Special edition Chelsea Adidas blue jersey from the iconic 2008 Champions League Final in Moscow.", "image": "/jerseys/chelsea-ucl-moscow.jpeg" },
+
+  { "id": 101, "name": "Manchester United Classic SHARP Jersey", "price": 650, "category": "Retro", "desc": "Iconic Adidas retro red jersey with SHARP sponsor — a true collectors piece from the golden era.", "image": "/jerseys/manutd-sharp-classic.jpeg", "newArrival": true },
+  { "id": 102, "name": "Manchester United Away SHARP VIEWCAM Jersey", "price": 680, "category": "Retro", "desc": "Classic black Umbro away jersey with SHARP VIEWCAM sponsor — 1993/94 era.", "image": "/jerseys/manutd-sharp-viewcam-away.jpeg", "newArrival": true },
+  { "id": 103, "name": "Arsenal JVC Classic Jersey", "price": 720, "category": "Retro", "desc": "Retro Arsenal Nike kit with JVC sponsor — The Gunners collector classic.", "image": "/jerseys/arsenal-jvc-classic.jpeg", "newArrival": true },
+  { "id": 104, "name": "Liverpool Carlsberg Away Jersey", "price": 700, "category": "Retro", "desc": "Cream Liverpool Reebok away jersey with Carlsberg sponsor — 1990s collector piece.", "image": "/jerseys/liverpool-carlsberg-away.jpeg", "newArrival": true },
+  { "id": 105, "name": "Brazil Away Green Long Sleeve Retro Jersey", "price": 750, "category": "Retro", "desc": "Brazil Nike retro away jersey in green with yellow CBF badge — long sleeve classic.", "image": "/jerseys/brazil-away-green-ls.jpeg", "newArrival": true },
+  { "id": 106, "name": "Brazil Away Blue Long Sleeve Retro Jersey", "price": 750, "category": "Retro", "desc": "Brazil Nike retro away jersey in blue with white stripes — long sleeve classic.", "image": "/jerseys/brazil-away-blue-ls.jpeg", "newArrival": true },
+
+  { "id": 10, "name": "Argentina Home Stripes Jersey", "price": 760, "category": "National", "desc": "La Albiceleste blue and white stripes — featuring FIFA World Champions 2022 badge.", "image": "/jerseys/argentina-home-stripes.jpeg" },
+  { "id": 11, "name": "Argentina Long Sleeve Home Jersey", "price": 780, "category": "National", "desc": "Argentina long sleeve edition with Adidas three stripes.", "image": "/jerseys/argentina-home.jpeg" },
+  { "id": 17, "name": "Argentina Special Edition Black Jersey", "price": 800, "category": "National", "desc": "Stunning Argentina black special edition with intricate blue floral design and FIFA World Champions badge.", "image": "/jerseys/argentina-special-black.jpeg", "newArrival": true },
+  { "id": 12, "name": "Portugal Home Red Jersey", "price": 740, "category": "National", "desc": "Portugal home kit in classic red with Puma wave design.", "image": "/jerseys/portugal-home.jpeg" },
+  { "id": 18, "name": "Portugal Home Red Jersey (Player Version)", "price": 760, "category": "National", "desc": "Portugal Puma home jersey — player version with teal trim.", "image": "/jerseys/portugal-home-red2.jpeg", "newArrival": true },
+  { "id": 19, "name": "Portugal Third Black Jersey", "price": 780, "category": "National", "desc": "Portugal stunning black third kit with all-over crest pattern and gold Puma branding.", "image": "/jerseys/portugal-third-black.jpeg", "newArrival": true },
+  { "id": 13, "name": "Portugal Away Teal Jersey", "price": 740, "category": "National", "desc": "Portugal away kit in stunning teal/white wave pattern.", "image": "/jerseys/portugal-away.jpeg" },
+  { "id": 20, "name": "England Away Red Jersey", "price": 700, "category": "National", "desc": "England Nike away jersey in bold red with Three Lions crest and gold star.", "image": "/jerseys/england-away-red.jpeg" },
+  { "id": 21, "name": "France Home Blue Jersey", "price": 720, "category": "National", "desc": "France Nike home jersey in deep blue with geometric pattern — Les Bleus.", "image": "/jerseys/france-home-blue.jpeg" },
+  { "id": 24, "name": "Germany Home Jersey", "price": 730, "category": "National", "desc": "Germany Adidas home jersey in white with iconic black, red and gold V-design on the chest.", "image": "/jerseys/germany-home-white.jpeg" },
+  { "id": 25, "name": "Spain Home Jersey", "price": 730, "category": "National", "desc": "Spain Adidas home kit in La Roja red with blue sleeves and gold pinstripes.", "image": "/jerseys/spain-home-red.jpeg" },
+  { "id": 14, "name": "Zambia National Team 2025/26 Home Jersey", "price": 600, "category": "National", "desc": "Chipolopolo green home jersey.", "image": "https://images.unsplash.com/photo-1560272564-c83b66b1ad12?w=800" }
+]
