@@ -1,5 +1,6 @@
-import React, { useState, useMemo, useEffect, useCallback } from 'react';
+import { useState, useMemo, useEffect, useCallback } from 'react';
 import { ShoppingCart, Moon, Sun, X, Heart, Plus, Menu, Search, MessageCircle, Loader2 } from 'lucide-react';
+import { STORAGE_KEY, BANNER_KEY, CATEGORIES, SIZES, WISHLIST_KEY, DARK_MODE_KEY, PHONE_FALLBACK } from './constants.js';
 
 const styleVars = `
   :root {
@@ -29,9 +30,6 @@ const styleVars = `
   .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 `;
 
-const STORAGE_KEY = 'kopala_products_v4';
-const BANNER_KEY = 'kopala_banner';
-const CATEGORIES = ['All', 'Local', 'International', 'National', 'Retro'];
 
 export default function KopalaKits({ onAdminAccess }) {
   const [products, setProducts] = useState([]);
@@ -48,7 +46,7 @@ export default function KopalaKits({ onAdminAccess }) {
   const [logoClickCount, setLogoClickCount] = useState(0);
   const [banner, setBanner] = useState(null);
   const [bannerDismissed, setBannerDismissed] = useState(false);
-  const [phone, setPhone] = useState('260770713619');
+  const [phone, setPhone] = useState(PHONE_FALLBACK);
   const [loading, setLoading] = useState(true);
   const [loadError, setLoadError] = useState('');
 
@@ -107,19 +105,25 @@ export default function KopalaKits({ onAdminAccess }) {
   }, []);
 
   useEffect(() => {
+    // Initial data load + localStorage hydration on mount. The state updates
+    // here are async fetch completions, not cascading renders. The
+    // react-hooks/set-state-in-effect rule is suppressed for the synchronous
+    // localStorage hydration block, which is the standard mount pattern.
+    /* eslint-disable react-hooks/set-state-in-effect */
     loadProducts();
     loadBanner();
     loadConfig();
 
-    const savedWishlist = localStorage.getItem('wishlist');
+    const savedWishlist = localStorage.getItem(WISHLIST_KEY);
     if (savedWishlist) setWishlist(JSON.parse(savedWishlist));
 
-    const savedDark = localStorage.getItem('darkMode');
+    const savedDark = localStorage.getItem(DARK_MODE_KEY);
     if (savedDark) {
       const isDark = JSON.parse(savedDark);
       setDarkMode(isDark);
       if (isDark) document.documentElement.classList.add('dark');
     }
+    /* eslint-enable react-hooks/set-state-in-effect */
 
     const handleStorageChange = () => {
       const fresh = localStorage.getItem(STORAGE_KEY);
@@ -145,7 +149,7 @@ export default function KopalaKits({ onAdminAccess }) {
   const toggleDarkMode = () => {
     const newMode = !darkMode;
     setDarkMode(newMode);
-    localStorage.setItem('darkMode', JSON.stringify(newMode));
+    localStorage.setItem(DARK_MODE_KEY, JSON.stringify(newMode));
     if (newMode) document.documentElement.classList.add('dark');
     else document.documentElement.classList.remove('dark');
   };
@@ -153,7 +157,7 @@ export default function KopalaKits({ onAdminAccess }) {
   const toggleWishlist = (id) => {
     const newList = wishlist.includes(id) ? wishlist.filter(i => i !== id) : [...wishlist, id];
     setWishlist(newList);
-    localStorage.setItem('wishlist', JSON.stringify(newList));
+    localStorage.setItem(WISHLIST_KEY, JSON.stringify(newList));
   };
 
   const filteredProducts = useMemo(() => {
@@ -203,7 +207,7 @@ export default function KopalaKits({ onAdminAccess }) {
     window.open(`https://wa.me/${phone}?text=${encodeURIComponent('Hi Kopala Kits! I have a question about your jerseys.')}`, '_blank');
   };
 
-  const sizes = ['S', 'M', 'L', 'XL', 'XXL'];
+  const sizes = SIZES;
 
   return (
     <>

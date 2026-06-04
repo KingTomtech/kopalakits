@@ -1,12 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { X, Plus, Trash2, Save, Upload, LogOut, Edit2, Download, RefreshCw, Loader2, AlertCircle } from 'lucide-react';
+import { useState, useEffect, useRef, useCallback } from 'react';
+import { X, Plus, Trash2, Save, Upload, LogOut, Edit2, Download, RefreshCw } from 'lucide-react';
+import { STORAGE_KEY, BANNER_KEY, AUTH_TOKEN_KEY, ADMIN_CATEGORIES } from './constants.js';
 
-const STORAGE_KEY = 'kopala_products_v4';
-const BANNER_KEY = 'kopala_banner';
-const AUTH_TOKEN_KEY = 'kopala_admin_token';
 
 const defaultProduct = { id: Date.now(), name: '', price: '', category: 'International', desc: '', image: '' };
-const CATEGORIES = ['Local', 'International', 'National', 'Retro'];
 
 
 async function compressImage(file, maxWidth = 800, maxHeight = 800, quality = 0.8) {
@@ -52,7 +49,7 @@ export default function AdminDashboard({ onExit }) {
   const fileInputRef = useRef(null);
   const addFileRef = useRef(null);
 
-  const api = async (path, opts = {}) => {
+  const api = useCallback(async (path, opts = {}) => {
     const res = await fetch(`/api${path}`, {
       ...opts,
       headers: {
@@ -68,16 +65,9 @@ export default function AdminDashboard({ onExit }) {
       throw new Error('Session expired. Please log in again.');
     }
     return res;
-  };
+  }, [token]);
 
-  useEffect(() => {
-    if (authed) {
-      loadProducts();
-      loadBannerFromAPI();
-    }
-  }, [authed]);
-
-  const loadBannerFromAPI = async () => {
+  const loadBannerFromAPI = useCallback(async () => {
     try {
       const res = await api('/banner');
       const data = await res.json();
@@ -87,9 +77,9 @@ export default function AdminDashboard({ onExit }) {
       const saved = localStorage.getItem(BANNER_KEY);
       if (saved) { const b = JSON.parse(saved); setBannerText(b.text || ''); setBannerActive(b.active || false); }
     }
-  };
+  }, [api]);
 
-  const loadProducts = async () => {
+  const loadProducts = useCallback(async () => {
     setLoading(true); setError('');
     try {
       const res = await api('/products');
@@ -100,7 +90,19 @@ export default function AdminDashboard({ onExit }) {
       const stored = localStorage.getItem(STORAGE_KEY);
       if (stored) setProducts(JSON.parse(stored));
     } finally { setLoading(false); }
-  };
+  }, [api]);
+
+  useEffect(() => {
+    // Initial admin data load when the user authenticates. The state updates
+    // here are async fetch completions, not cascading renders. Suppressed
+    // for the standard mount/auth-gate pattern.
+    /* eslint-disable react-hooks/set-state-in-effect */
+    if (authed) {
+      loadProducts();
+      loadBannerFromAPI();
+    }
+    /* eslint-enable react-hooks/set-state-in-effect */
+  }, [authed, loadProducts, loadBannerFromAPI]);
 
   const persistProducts = async (updated) => {
     setSaving(true); setError('');
@@ -260,11 +262,21 @@ export default function AdminDashboard({ onExit }) {
           {toast}
         </div>
       )}
+      {error && (
+        <div className="fixed top-6 right-6 z-[998] bg-red-100 border-2 border-red-300 text-red-800 px-6 py-3 rounded-2xl shadow-xl text-sm font-semibold mt-14">
+          {error}
+          <button onClick={() => setError('')} className="ml-3 text-red-600 hover:text-red-800 font-bold">✕</button>
+        </div>
+      )}
 
       <nav className="bg-white shadow-sm px-6 py-4 flex items-center justify-between sticky top-0 z-50">
         <div>
           <h1 className="text-2xl font-black text-[#3F4A26]">KOPALA KITS — Admin</h1>
-          <p className="text-xs text-gray-500">{products.length} products</p>
+          <p className="text-xs text-gray-500">
+            {products.length} products
+            {loading && <span className="ml-2 px-2 py-0.5 rounded-full bg-amber-100 text-amber-700 font-semibold">Loading…</span>}
+            {saving && <span className="ml-2 px-2 py-0.5 rounded-full bg-blue-100 text-blue-700 font-semibold">Saving…</span>}
+          </p>
         </div>
         <div className="flex gap-2">
           <button onClick={resetToDefault} title="Reset to default" className="p-2.5 rounded-xl hover:bg-gray-100 text-gray-600" >
@@ -493,7 +505,7 @@ function ProductForm({ form, setForm, fileRef, onImageUpload }) {
           onChange={e => setForm(f => ({ ...f, category: e.target.value }))}
           className="w-full border-2 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-[#5E6B3C]"
         >
-          {['Local', 'International', 'National', 'Retro'].map(c => <option key={c}>{c}</option>)}
+          {ADMIN_CATEGORIES.map(c => <option key={c}>{c}</option>)}
         </select>
       </div>
       <div>

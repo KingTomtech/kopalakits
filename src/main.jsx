@@ -3,28 +3,9 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.jsx";
 import AdminDashboard from "./AdminDashboard.jsx";
+import { registerServiceWorker } from "./setup/sw-registration.js";
 
-// ─── Register Service Worker ────────────────────────────────────────────────
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker
-      .register("/sw.js")
-      .then((registration) => {
-        console.log("SW registered:", registration.scope);
-      })
-      .catch((err) => {
-        console.log("SW registration failed:", err);
-      });
-  });
-}
-
-// ─── Register background sync on admin changes ─────────────────────────────
-export async function triggerRefresh() {
-  if ("serviceWorker" in navigator && "sync" in ServiceWorkerRegistration.prototype) {
-    const registration = await navigator.serviceWorker.ready;
-    await registration.sync.register("kopala-refresh");
-  }
-}
+registerServiceWorker();
 
 function Root() {
   const [page, setPage] = useState("shop");
@@ -34,6 +15,9 @@ function Root() {
   }
   return <App onAdminAccess={() => setPage("admin")} />;
 }
+
+// Root is mounted; export it so fast-refresh works during development.
+export { Root };
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
