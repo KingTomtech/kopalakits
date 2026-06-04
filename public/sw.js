@@ -3,7 +3,7 @@
  * Cache-first for static assets, stale-while-revalidate for API data
  */
 
-const CACHE_NAME = "kopala-kits-v2";
+const CACHE_NAME = "kopala-kits-v3";
 const STATIC_ASSETS = [
   "/",
   "/favicon.svg",
@@ -16,7 +16,7 @@ const STATIC_ASSETS = [
   "/robots.txt",
 ];
 
-const API_CACHE_NAME = "kopala-api-v2";
+const API_CACHE_NAME = "kopala-api-v3";
 const API_ROUTES = ["/api/products", "/api/banner", "/api/config"];
 
 // ─── Install ──────────────────────────────────────────────────────────────

@@ -249,6 +249,13 @@ function sanitizeProducts(body) {
   return body.map(sanitizeProduct);
 }
 
+// Heuristic: KV is considered stale if it contains any Unsplash URLs, since
+// /products.json no longer uses them. Re-seeding is non-destructive: it
+// overwrites KV with the static file's contents.
+function needsReseed(products) {
+  return products.some(p => typeof p.image === 'string' && p.image.includes('images.unsplash.com'));
+}
+
 function sanitizeBanner(body) {
   if (!body || typeof body !== 'object') throw new HttpError('Invalid banner payload', 400);
   const text = typeof body.text === 'string' ? body.text.slice(0, 500) : '';
@@ -283,7 +290,25 @@ async function handleProducts(request, ctx) {
   const { origin, env } = ctx;
 
   if (request.method === 'GET') {
-    const stored = await env.KOPALA_KV.get(KV_KEY_PRODUCTS);
+    // Self-heal: if KV holds a stale products list (e.g. still pointing at
+    // the old Unsplash URLs that the seed no longer uses), re-seed from
+    // /products.json so deployed changes propagate without an admin re-post.
+    let stored = null;
+    try {
+      stored = await env.KOPALA_KV.get(KV_KEY_PRODUCTS);
+    } catch { /* ignore */ }
+    if (stored) {
+      try {
+        const parsed = JSON.parse(stored);
+        if (Array.isArray(parsed) && needsReseed(parsed)) {
+          stored = null; // force the re-seed path
+        } else {
+          return jsonResponse(parsed, ctx);
+        }
+      } catch {
+        stored = null; // corrupted KV — re-seed
+      }
+    }
     if (stored) return jsonResponse(JSON.parse(stored), ctx);
 
     try {
