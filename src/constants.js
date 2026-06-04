@@ -16,3 +16,5 @@ export const SIZES = ['S', 'M', 'L', 'XL', 'XXL'];
 
 export const PHONE_FALLBACK = '260770713619';
 export const DEFAULT_CURRENCY = 'ZMW';
+
+export const CART_KEY = 'kopala_cart';

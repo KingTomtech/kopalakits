@@ -3,7 +3,7 @@
  * Cache-first for static assets, stale-while-revalidate for API data
  */
 
-const CACHE_NAME = "kopala-kits-v1";
+const CACHE_NAME = "kopala-kits-v2";
 const STATIC_ASSETS = [
   "/",
   "/favicon.svg",
@@ -16,16 +16,27 @@ const STATIC_ASSETS = [
   "/robots.txt",
 ];
 
-const API_CACHE_NAME = "kopala-api-v1";
+const API_CACHE_NAME = "kopala-api-v2";
 const API_ROUTES = ["/api/products", "/api/banner", "/api/config"];
 
 // ─── Install ──────────────────────────────────────────────────────────────
 self.addEventListener("install", (event) => {
+  // addAll() rejects if ANY URL fails. We don't want a single bad URL
+  // (e.g. a temporarily broken network response) to abort installation
+  // and leave users on the buggy previous SW. Fall back to per-URL
+  // add() so a single failure is non-fatal.
   event.waitUntil(
-    caches
-      .open(CACHE_NAME)
-      .then((cache) => cache.addAll(STATIC_ASSETS))
-      .then(() => self.skipWaiting())
+    caches.open(CACHE_NAME).then(async (cache) => {
+      await Promise.all(
+        STATIC_ASSETS.map(async (url) => {
+          try {
+            const res = await fetch(url, { cache: 'no-cache' });
+            if (res && res.ok) await cache.put(url, res);
+          } catch (_) { /* skip on failure */ }
+        })
+      );
+      await self.skipWaiting();
+    })
   );
 });
 
@@ -100,16 +111,34 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
+  // Navigations: network-first, fall back to cached /index.html, then to
+  // a synthetic 503. Cache-first for navigations is dangerous because a
+  // bad cached response (e.g. an empty 200) is served forever.
+  if (request.mode === "navigate") {
+    event.respondWith(
+      fetch(request)
+        .then((res) => {
+          // Only cache valid 200 responses with a body.
+          if (res && res.ok && res.body) {
+            const copy = res.clone();
+            caches.open(CACHE_NAME).then((cache) => cache.put("/", copy)).catch(() => {});
+          }
+          return res;
+        })
+        .catch(() =>
+          caches.match("/index.html").then(
+            (cached) => cached || new Response("Offline", { status: 503 })
+          )
+        )
+    );
+    return;
+  }
+
   // Everything else — cache-first, network fallback
   event.respondWith(
     caches.match(request).then((cached) => {
       if (cached) return cached;
-      return fetch(request).catch(() => {
-        if (request.mode === "navigate") {
-          return caches.match("/index.html");
-        }
-        return new Response("Offline", { status: 503 });
-      });
+      return fetch(request).catch(() => new Response("", { status: 404 }));
     })
   );
 });

@@ -1,6 +1,6 @@
 import { useState, useMemo, useEffect, useCallback } from 'react';
-import { ShoppingCart, Moon, Sun, X, Heart, Plus, Menu, Search, MessageCircle, Loader2 } from 'lucide-react';
-import { STORAGE_KEY, BANNER_KEY, CATEGORIES, SIZES, WISHLIST_KEY, DARK_MODE_KEY, PHONE_FALLBACK } from './constants.js';
+import { ShoppingCart, Moon, Sun, X, Heart, Plus, Menu, Search, MessageCircle } from 'lucide-react';
+import { STORAGE_KEY, BANNER_KEY, CATEGORIES, SIZES, WISHLIST_KEY, DARK_MODE_KEY, PHONE_FALLBACK, CART_KEY } from './constants.js';
 
 const styleVars = `
   :root {
@@ -35,7 +35,12 @@ export default function KopalaKits({ onAdminAccess }) {
   const [products, setProducts] = useState([]);
   const [filter, setFilter] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState(() => {
+    try {
+      const saved = localStorage.getItem(CART_KEY);
+      return saved ? JSON.parse(saved) : [];
+    } catch { return []; }  // corrupted cart — start fresh
+  });
   const [wishlist, setWishlist] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -153,6 +158,17 @@ export default function KopalaKits({ onAdminAccess }) {
     if (newMode) document.documentElement.classList.add('dark');
     else document.documentElement.classList.remove('dark');
   };
+
+  // Persist cart to localStorage whenever it changes.
+  useEffect(() => {
+    try { localStorage.setItem(CART_KEY, JSON.stringify(cart)); } catch { /* quota or disabled storage */ }
+  }, [cart]);
+
+  // Scroll to top of the product grid when the user changes category or search.
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [filter, searchQuery]);
 
   const toggleWishlist = (id) => {
     const newList = wishlist.includes(id) ? wishlist.filter(i => i !== id) : [...wishlist, id];
@@ -273,9 +289,25 @@ export default function KopalaKits({ onAdminAccess }) {
           </div>
         </div>
         {loading && (
-          <div className="flex flex-col items-center justify-center py-20 gap-3">
-            <Loader2 size={32} className="animate-spin" style={{ color: 'var(--dusty-olive)' }} />
-            <p className="text-sm text-gray-500">Loading kits...</p>
+          <div className="max-w-4xl mx-auto px-4 py-4">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3" aria-label="Loading jerseys" role="status">
+              {Array.from({ length: 8 }).map((_, i) => (
+                <div key={i} className="rounded-2xl overflow-hidden border bg-white dark:bg-zinc-900 animate-pulse" style={{ borderColor: 'var(--khaki-beige)' }}>
+                  <div className="aspect-[3/4] bg-gray-200 dark:bg-zinc-800" />
+                  <div className="p-3 space-y-2">
+                    <div className="h-2.5 w-12 rounded bg-gray-200 dark:bg-zinc-800" />
+                    <div className="h-3.5 w-3/4 rounded bg-gray-200 dark:bg-zinc-800" />
+                    <div className="h-2.5 w-full rounded bg-gray-200 dark:bg-zinc-800" />
+                    <div className="h-2.5 w-2/3 rounded bg-gray-200 dark:bg-zinc-800" />
+                    <div className="flex items-center justify-between pt-1">
+                      <div className="h-5 w-14 rounded bg-gray-200 dark:bg-zinc-800" />
+                      <div className="h-9 w-9 rounded-xl bg-gray-200 dark:bg-zinc-800" />
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <p className="text-center text-xs text-gray-400 mt-6">Loading kits...</p>
           </div>
         )}
         {loadError && !loading && (

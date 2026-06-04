@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.jsx";
 import AdminDashboard from "./AdminDashboard.jsx";
+import ErrorBoundary from "./components/ErrorBoundary.jsx";
 import { registerServiceWorker } from "./setup/sw-registration.js";
 
 registerServiceWorker();
@@ -21,6 +22,8 @@ export { Root };
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <Root />
+    <ErrorBoundary>
+      <Root />
+    </ErrorBoundary>
   </StrictMode>,
 );
