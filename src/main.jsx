@@ -1,5 +1,6 @@
 import { StrictMode, useState } from "react";
 import { createRoot } from "react-dom/client";
+import { BrowserRouter } from "react-router-dom";
 import "./index.css";
 import App from "./App.jsx";
 import AdminDashboard from "./AdminDashboard.jsx";
@@ -14,7 +15,11 @@ function Root() {
   if (page === "admin") {
     return <AdminDashboard onExit={() => setPage("shop")} />;
   }
-  return <App onAdminAccess={() => setPage("admin")} />;
+  return (
+    <BrowserRouter>
+      <App onAdminAccess={() => setPage("admin")} />
+    </BrowserRouter>
+  );
 }
 
 // Root is mounted; export it so fast-refresh works during development.
