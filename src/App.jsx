@@ -194,8 +194,8 @@ export default function KopalaKits({ onAdminAccess }) {
   const totalPrice = useMemo(() => cart.reduce((sum, item) => sum + item.price * item.quantity, 0), [cart]);
 
   const sendCartToWhatsApp = () => {
-    const items = cart.map(item => `- ${item.name} (Size: ${item.size}, Qty: ${item.quantity}) - K${item.price * item.quantity}`).join('\\n');
-    const msg = `Hi Kopala Kits! I'd like to order the following jerseys:\\n\\n${items}\\n\\nTotal: K${totalPrice}\\n\\nPlease confirm availability and delivery details.`;
+    const items = cart.map(item => `- ${item.name} (Size: ${item.size}, Qty: ${item.quantity}) - K${item.price * item.quantity}`).join(' | ');
+    const msg = `Hi Kopala Kits! I'd like to order the following jerseys: ${items}. Total: K${totalPrice}. Please confirm availability and delivery details.`;
     window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank');
   };
 
