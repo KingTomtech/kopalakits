@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { X, Plus, Trash2, Save, Upload, LogOut, Edit2, Download, RefreshCw } from 'lucide-react';
+import FanZoneAdmin from './admin/FanZoneAdmin.jsx';
 import { STORAGE_KEY, BANNER_KEY, AUTH_TOKEN_KEY, ADMIN_CATEGORIES } from './constants.js';
 
 
@@ -323,54 +324,7 @@ export default function AdminDashboard({ onExit }) {
       <div className="max-w-5xl mx-auto p-6">
 
         {adminTab === 'fan' && (
-          <div className="space-y-4">
-            <h2 className="text-xl font-black" style={{ color: '#3F4A26' }}>Fan Zone</h2>
-            <p className="text-sm" style={{ color: '#6B655A' }}>
-              Match predictions and tournaments are public and don't need admin. This
-              page summarises the live data and links to the public pages.
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-              <a href="/predictions" target="_blank" rel="noreferrer" className="block rounded-2xl p-5 bg-white border-2 border-amber-300 hover:shadow-md transition">
-                <div className="text-2xl mb-1">⚽</div>
-                <div className="font-black" style={{ color: '#3F4A26' }}>Predictions</div>
-                <div className="text-xs mt-1" style={{ color: '#6B655A' }}>
-                  Live upcoming fixtures for the teams we sell. Users pick a winner;
-                  votes are stored in KV.
-                </div>
-                <div className="mt-3 text-xs font-bold" style={{ color: '#5E6B3C' }}>View public page →</div>
-              </a>
-              <a href="/tournaments" target="_blank" rel="noreferrer" className="block rounded-2xl p-5 bg-white border-2 border-amber-300 hover:shadow-md transition">
-                <div className="text-2xl mb-1">🏆</div>
-                <div className="font-black" style={{ color: '#3F4A26' }}>Tournaments</div>
-                <div className="text-xs mt-1" style={{ color: '#6B655A' }}>
-                  Bracket-style prediction contests. World Cup 2026, Kopala Cup
-                  2026, more on the way.
-                </div>
-                <div className="mt-3 text-xs font-bold" style={{ color: '#5E6B3C' }}>View public page →</div>
-              </a>
-            </div>
-            <div className="rounded-2xl p-5 bg-white border" style={{ borderColor: '#D8C3A5' }}>
-              <div className="font-black text-sm" style={{ color: '#3F4A26' }}>API endpoints (for reference)</div>
-              <ul className="mt-2 text-xs font-mono space-y-1" style={{ color: '#6B655A' }}>
-                <li>GET    /api/predictions            — list fixtures + tallies</li>
-                <li>POST   /api/predictions/submit     — cast a vote</li>
-                <li>DELETE /api/predictions/:id      — remove a vote</li>
-                <li>POST   /api/predictions/refresh   — re-pull from TheSportsDB</li>
-                <li>GET    /api/predictions/leaderboard</li>
-                <li>GET    /api/tournaments</li>
-                <li>GET    /api/tournaments/:id</li>
-                <li>POST   /api/tournaments/pick      — cast a tournament pick</li>
-              </ul>
-            </div>
-            <div className="rounded-2xl p-5 bg-amber-50 border-2 border-amber-200">
-              <div className="font-black text-sm" style={{ color: '#3F4A26' }}>Coming soon</div>
-              <ul className="mt-2 text-xs space-y-1" style={{ color: '#6B655A' }}>
-                <li>• Admin UI to set match results (so picks can be scored)</li>
-                <li>• Admin UI to create / edit tournaments and bracket rounds</li>
-                <li>• Push notifications to players when their pick is correct</li>
-              </ul>
-            </div>
-          </div>
+          <FanZoneAdmin />
         )}
 
         {/* ANNOUNCEMENT BANNER EDITOR */}

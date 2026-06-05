@@ -3,6 +3,7 @@ import { ArrowRight, Truck, MessageCircle, ShieldCheck, Sparkles, Flame, Clock }
 import ProductGrid from '../components/ProductGrid.jsx';
 import { useWishlist } from '../hooks/useWishlist.js';
 import { getLeagueTable } from '../lib/api.js';
+import { ZUSA, FAZ } from '../lib/orgs.js';
 
 function SkeletonCard() {
   return (
@@ -277,6 +278,55 @@ export default function HomePage({ products, loading, loadError, reload, onAddTo
           </div>
         </section>
       )}
+
+      {/* COMMUNITY HUB — Zambian football + media */}
+      <section className="max-w-5xl mx-auto px-4 pt-12 pb-4">
+        <h2 className="text-xl md:text-2xl font-black tracking-tight" style={{ color: 'var(--text)' }}>
+          The Zambian football world
+        </h2>
+        <p className="text-sm mt-1 max-w-xl" style={{ color: 'var(--text-muted)' }}>
+          University games, the FAZ leagues, the teams you see in the shop — and the
+          social channels where the fans live.
+        </p>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-4">
+          <a
+            href="/faz"
+            className="rounded-2xl p-4 border transition hover:-translate-y-0.5 hover:shadow-md"
+            style={{ borderColor: 'var(--border)', backgroundColor: 'var(--surface)' }}
+          >
+            <div className="w-10 h-10 rounded-xl flex items-center justify-center text-white text-lg mb-2" style={{ backgroundColor: FAZ.accentColor }}>⚽</div>
+            <div className="font-bold text-sm" style={{ color: 'var(--text)' }}>FAZ</div>
+            <div className="text-xs" style={{ color: 'var(--text-faint)' }}>Football Association of Zambia</div>
+          </a>
+          <a
+            href="/zusa"
+            className="rounded-2xl p-4 border transition hover:-translate-y-0.5 hover:shadow-md"
+            style={{ borderColor: 'var(--border)', backgroundColor: 'var(--surface)' }}
+          >
+            <div className="w-10 h-10 rounded-xl flex items-center justify-center text-white text-lg mb-2" style={{ backgroundColor: ZUSA.accentColor }}>🎓</div>
+            <div className="font-bold text-sm" style={{ color: 'var(--text)' }}>ZUSA</div>
+            <div className="text-xs" style={{ color: 'var(--text-faint)' }}>Zambia University Sports</div>
+          </a>
+          <a
+            href="/news"
+            className="rounded-2xl p-4 border transition hover:-translate-y-0.5 hover:shadow-md"
+            style={{ borderColor: 'var(--border)', backgroundColor: 'var(--surface)' }}
+          >
+            <div className="w-10 h-10 rounded-xl flex items-center justify-center text-white text-lg mb-2" style={{ backgroundColor: 'var(--text)' }}>📰</div>
+            <div className="font-bold text-sm" style={{ color: 'var(--text)' }}>News</div>
+            <div className="text-xs" style={{ color: 'var(--text-faint)' }}>BBC Sport + ESPN FC</div>
+          </a>
+          <a
+            href="/media"
+            className="rounded-2xl p-4 border transition hover:-translate-y-0.5 hover:shadow-md"
+            style={{ borderColor: 'var(--border)', backgroundColor: 'var(--surface)' }}
+          >
+            <div className="w-10 h-10 rounded-xl flex items-center justify-center text-white text-lg mb-2" style={{ background: 'linear-gradient(135deg, #f58529 0%, #dd2a7b 50%, #8134af 100%)' }}>📷</div>
+            <div className="font-bold text-sm" style={{ color: 'var(--text)' }}>Media</div>
+            <div className="text-xs" style={{ color: 'var(--text-faint)' }}>YouTube · IG · TikTok</div>
+          </a>
+        </div>
+      </section>
 
       {/* CTA STRIP */}
       <section className="max-w-5xl mx-auto px-4 pt-12 pb-4">

@@ -118,3 +118,8 @@ body {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Mobile bottom-nav clearance */
+@media (max-width: 767px) {
+  main#main { padding-bottom: 5rem; }
+}

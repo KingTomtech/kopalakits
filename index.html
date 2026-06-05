@@ -249,5 +249,54 @@
     }
     </script>
 
+    <!-- ═══════════════════════════════════════════
+         STRUCTURED DATA — Social profiles
+    ═══════════════════════════════════════════ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "@id": "https://kopala.zingati.app/#org-social",
+      "name": "Kopala Kits",
+      "url": "https://kopala.zingati.app/",
+      "logo": "https://kopala.zingati.app/favicon.svg",
+      "sameAs": [
+        "https://www.instagram.com/kopala_kits/",
+        "https://www.youtube.com/@kopala_kits",
+        "https://www.tiktok.com/@kopala.kits",
+        "https://www.facebook.com/kopalakits"
+      ]
+    }
+    </script>
+
+    <!-- STRUCTURED DATA — VideoObject for featured YouTube embeds -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "VideoObject",
+      "name": "Kopala Kits — store walkthrough",
+      "description": "A look inside Kopala Kits, the Kitwe-based soccer jersey shop with WhatsApp ordering.",
+      "thumbnailUrl": "https://kopala.zingati.app/og-image.jpg",
+      "uploadDate": "2026-01-01T00:00:00Z",
+      "contentUrl": "https://kopala.zingati.app/media",
+      "embedUrl": "https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ"
+    }
+    </script>
+
+    <!-- STRUCTURED DATA — WebSite with SearchAction -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "url": "https://kopala.zingati.app/",
+      "name": "Kopala Kits",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://kopala.zingati.app/shop?search={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+
   </body>
 </html>

@@ -47,7 +47,7 @@ function generateSitemap() {
   }
 
   // Top-level pages
-  for (const route of ['', 'shop', 'about', 'contact', 'predictions', 'tournaments', 'admin']) {
+  for (const route of ['', 'shop', 'about', 'contact', 'predictions', 'tournaments', 'news', 'zusa', 'faz', 'media', 'admin']) {
     xml += `  <url>\n`;
     xml += `    <loc>${DOMAIN}/${route}</loc>\n`;
     xml += `    <lastmod>${now}</lastmod>\n`;

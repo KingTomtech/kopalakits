@@ -747,7 +747,6 @@ async function getTournamentsStore(env) {
   try { return JSON.parse(raw); } catch { return {}; }
 }
 
-// eslint-disable-next-line no-unused-vars
 async function saveTournamentsStore(env, store) {
   await env.KOPALA_KV.put(KV_KEY_TOURNAMENTS, JSON.stringify(store));
 }
@@ -941,6 +940,152 @@ async function requireAuth(request, env) {
   return { error: false, payload };
 }
 
+
+// ─── News (RSS proxy) ───────────────────────────────────────────────────
+
+const RSS_FEEDS = [
+  { id: 'bbc-football',           label: 'BBC Sport — Football',          url: 'https://feeds.bbci.co.uk/sport/football/rss.xml' },
+  { id: 'espn-soccer',            label: 'ESPN — Soccer',                url: 'https://www.espn.com/espn/rss/soccer/news' },
+  { id: 'espn-english-premier',   label: 'ESPN — Premier League',         url: 'https://www.espn.com/espn/rss/soccer/_/league/eng.1' },
+];
+
+function parseRssText(xmlText, feedMeta) {
+  const items = [];
+  const matches = xmlText.match(/<item\b[\s\S]*?<\/item>/g) || [];
+  for (const raw of matches.slice(0, 25)) {
+    const title = textOfRss(raw, 'title');
+    const link = textOfRss(raw, 'link');
+    const description = textOfRss(raw, 'description');
+    const pubDate = textOfRss(raw, 'pubDate');
+    const image = enclosureUrlRss(raw) || mediaThumbRss(raw);
+    if (title && link) {
+      items.push({
+        title: decodeEntitiesRss(stripTagsRss(title)),
+        link,
+        description: decodeEntitiesRss(stripTagsRss(description)).slice(0, 240),
+        pubDate: pubDate ? new Date(pubDate).toISOString() : null,
+        source: feedMeta.label,
+        image: image || null,
+      });
+    }
+  }
+  return { feed: feedMeta.id, label: feedMeta.label, items };
+}
+
+function textOfRss(xml, tag) {
+  const re = new RegExp(`<${tag}[^>]*>([\\s\\S]*?)<\\/${tag}>`, 'i');
+  const m = xml.match(re);
+  return m ? m[1].trim() : '';
+}
+function enclosureUrlRss(xml) {
+  const m = xml.match(/<enclosure[^>]+url="([^"]+)"[^>]+type="image/i);
+  return m ? m[1] : null;
+}
+function mediaThumbRss(xml) {
+  const m = xml.match(/<media:thumbnail[^>]+url="([^"]+)"/i);
+  return m ? m[1] : null;
+}
+function stripTagsRss(s) { return s.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim(); }
+function decodeEntitiesRss(s) {
+  return s
+    .replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"').replace(/&apos;/g, "'")
+    .replace(/&#39;/g, "'").replace(/&#x27;/g, "'");
+}
+
+async function handleNews(request, ctx, feedId) {
+  const { env } = ctx;
+  const feedMeta = RSS_FEEDS.find((f) => f.id === feedId);
+  if (!feedMeta) return errorResponse('Unknown feed', 404, ctx);
+  // Cache in KV for 30 min per feed
+  const kvKey = `news_cache:${feedId}`;
+  const cached = await env.KOPALA_KV.get(kvKey);
+  if (cached) {
+    try { return jsonResponse(JSON.parse(cached), ctx); } catch { /* corrupt cache */ }
+  }
+  try {
+    const res = await fetch(feedMeta.url, { headers: { 'User-Agent': 'KopalaKits/1.0' } });
+    if (!res.ok) throw new Error(`Upstream ${res.status}`);
+    const xml = await res.text();
+    const parsed = parseRssText(xml, feedMeta);
+    await env.KOPALA_KV.put(kvKey, JSON.stringify(parsed), { expirationTtl: 30 * 60 });
+    return jsonResponse(parsed, ctx);
+  } catch {
+    return errorResponse('News upstream failed', 502, ctx);
+  }
+}
+
+// ─── Admin: set match result ───────────────────────────────────────────
+
+async function handleAdminSetResult(request, ctx) {
+  if (request.method !== 'POST') return errorResponse('Method not allowed', 405, ctx);
+  const auth = await requireAuth(request, ctx.env);
+  if (auth.error) return auth.response;
+  const { env } = ctx;
+
+  const body = await readJsonBody(request, MAX_BODY_BYTES);
+  const { fixtureId, result } = body || {};
+  if (typeof fixtureId !== 'string' || !['home', 'away', 'draw'].includes(result)) {
+    return errorResponse('fixtureId and result (home/away/draw) are required', 400, ctx, true);
+  }
+
+  const store = await getPredictionsStore(env);
+  const existing = store[fixtureId] || { votes: {}, result: null };
+  existing.result = result;
+  store[fixtureId] = existing;
+  await savePredictionsStore(env, store);
+
+  // Invalidate leaderboard cache
+  await env.KOPALA_KV.delete(KV_KEY_LEADERBOARD);
+
+  return jsonResponse({ success: true, fixtureId, result }, ctx);
+}
+
+// ─── Admin: tournaments CRUD ──────────────────────────────────────────
+
+async function handleAdminTournaments(request, ctx) {
+  const auth = await requireAuth(request, ctx.env);
+  if (auth.error) return auth.response;
+  const { env } = ctx;
+  const store = await getTournamentsStore(env);
+  const url = new URL(request.url);
+
+  if (request.method === 'GET') {
+    return jsonResponse({ tournaments: Object.values(store) }, ctx);
+  }
+
+  if (request.method === 'POST') {
+    // Create or update
+    const body = await readJsonBody(request, MAX_BODY_BYTES);
+    const { id, name, description, status, coverEmoji, accentColor, rounds } = body || {};
+    if (typeof id !== 'string' || typeof name !== 'string' || !Array.isArray(rounds)) {
+      return errorResponse('id, name and rounds[] are required', 400, ctx, true);
+    }
+    const existing = store[id] || {};
+    store[id] = {
+      ...existing,
+      id, name, description: description || '',
+      status: ['upcoming', 'active', 'finished'].includes(status) ? status : 'upcoming',
+      coverEmoji: coverEmoji || '⚽',
+      accentColor: accentColor || '#5E6B3C',
+      rounds,
+      updatedAt: new Date().toISOString(),
+    };
+    await saveTournamentsStore(env, store);
+    return jsonResponse({ success: true, tournament: store[id] }, ctx);
+  }
+
+  if (request.method === 'DELETE') {
+    const id = url.searchParams.get('id');
+    if (!id) return errorResponse('Missing id query param', 400, ctx, true);
+    delete store[id];
+    await saveTournamentsStore(env, store);
+    return jsonResponse({ success: true }, ctx);
+  }
+
+  return errorResponse('Method not allowed', 405, ctx);
+}
+
 // ─── Main Router ─────────────────────────────────────────────────────────
 
 export default {
@@ -960,6 +1105,10 @@ export default {
       if (url.pathname === '/api/logout')    return await handleLogout(request, ctx);
       if (url.pathname === '/api/config')    return await handleConfig(request, ctx);
 
+      if (url.pathname === '/api/news') {
+        const feed = new URL(request.url).searchParams.get('feed') || 'bbc-football';
+        return await handleNews(request, ctx, feed);
+      }
       if (url.pathname === '/api/predictions')           return await handlePredictions(request, ctx);
       if (url.pathname === '/api/predictions/refresh')   return await handlePredictionsRefresh(request, ctx);
       if (url.pathname === '/api/predictions/submit')    return await handlePredictionSubmit(request, ctx);
@@ -968,6 +1117,8 @@ export default {
 
       if (url.pathname === '/api/tournaments')             return await handleTournaments(request, ctx);
       if (url.pathname === '/api/tournaments/pick')        return await handleTournamentPick(request, ctx);
+      if (url.pathname === '/api/admin/predictions/result') return await handleAdminSetResult(request, ctx);
+      if (url.pathname === '/api/admin/tournaments')         return await handleAdminTournaments(request, ctx);
       if (url.pathname.startsWith('/api/tournaments/'))    return await handleTournament(request, ctx);
 
       if (url.pathname === '/api/health') {

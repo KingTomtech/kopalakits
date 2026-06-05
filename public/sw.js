@@ -3,7 +3,7 @@
  * Cache-first for static assets, stale-while-revalidate for API data
  */
 
-const CACHE_NAME = "kopala-kits-v5";
+const CACHE_NAME = "kopala-kits-v7";
 const STATIC_ASSETS = [
   "/",
   "/favicon.svg",
@@ -14,9 +14,11 @@ const STATIC_ASSETS = [
   "/whatsapp-icon.svg",
   "/products.json",
   "/robots.txt",
+  "/icons/icon-192.png",
+  "/icons/icon-512.png",
 ];
 
-const API_CACHE_NAME = "kopala-api-v5";
+const API_CACHE_NAME = "kopala-api-v7";
 const API_ROUTES = ["/api/products", "/api/banner", "/api/config"];
 
 // ─── Install ──────────────────────────────────────────────────────────────

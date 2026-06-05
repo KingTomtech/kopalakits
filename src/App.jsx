@@ -10,6 +10,11 @@ import ContactPage from './pages/ContactPage.jsx';
 import PredictionsPage from './pages/PredictionsPage.jsx';
 import TournamentsPage from './pages/TournamentsPage.jsx';
 import TournamentDetailPage from './pages/TournamentDetailPage.jsx';
+import NewsPage from './pages/NewsPage.jsx';
+import ZusaPage from './pages/ZusaPage.jsx';
+import FazPage from './pages/FazPage.jsx';
+import MediaPage from './pages/MediaPage.jsx';
+import BottomNav from './components/BottomNav.jsx';
 import NotFoundPage from './pages/NotFoundPage.jsx';
 import CartDrawer from './components/CartDrawer.jsx';
 import QuickAddModal from './components/QuickAddModal.jsx';
@@ -100,6 +105,8 @@ export default function App({ onAdminAccess }) {
               Predictions
             </a>
             <a href="/tournaments" className="px-3 py-2 rounded-xl text-sm font-bold hover:bg-black/5" style={{ color: 'var(--text)' }}>Tournaments</a>
+            <a href="/news" className="px-3 py-2 rounded-xl text-sm font-bold hover:bg-black/5" style={{ color: 'var(--text)' }}>News</a>
+            <a href="/media" className="px-3 py-2 rounded-xl text-sm font-bold hover:bg-black/5" style={{ color: 'var(--text)' }}>Media</a>
             <a href="/about" className="px-3 py-2 rounded-xl text-sm font-bold hover:bg-black/5" style={{ color: 'var(--text)' }}>About</a>
             <a href="/contact" className="px-3 py-2 rounded-xl text-sm font-bold hover:bg-black/5" style={{ color: 'var(--text)' }}>Contact</a>
           </nav>
@@ -171,6 +178,10 @@ export default function App({ onAdminAccess }) {
           <Route path="/tournaments/:id" element={
             <TournamentDetailPage showToast={showToast} />
           } />
+          <Route path="/news" element={<NewsPage />} />
+          <Route path="/zusa" element={<ZusaPage />} />
+          <Route path="/faz" element={<FazPage />} />
+          <Route path="/media" element={<MediaPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>
@@ -199,6 +210,7 @@ export default function App({ onAdminAccess }) {
         onToggleDark={toggleDarkMode}
       />
 
+      <BottomNav />
       <FloatingWhatsApp phone={PHONE_FALLBACK} />
 
       <Toast toast={toast} onDismiss={() => setToast(null)} />
