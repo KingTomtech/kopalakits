@@ -8,7 +8,7 @@ export default function CartDrawer({ isOpen, onClose, cart, phone }) {
     const items = cart.cart.map(
       (it) => `- ${it.name} (Size: ${it.size}, Qty: ${it.quantity}) - K${it.price * it.quantity}`
     ).join(' | ');
-    const msg = `Hi Kopala Kits! I'd like to order the following jerseys: ${items}. Total: K${cart.total}. Please confirm availability and delivery details.`;
+    const msg = `Hi Kopala Kits! I'd like to order the following jerseys: ${items}. Total: K${cart.total}. I'm in Kitwe — please confirm availability and delivery details.`;
     window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank');
   };
 

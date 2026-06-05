@@ -19,6 +19,9 @@ const KV_KEY_AUTH       = 'auth_hash';
 const KV_KEY_REVOKED    = 'revoked_jti';
 const KV_KEY_PREDICTIONS = 'predictions';
 const KV_KEY_FIXTURES   = 'fixtures_cache';
+const KV_KEY_TOURNAMENTS = 'tournaments';
+const KV_KEY_TOURNAMENT_PICKS = 'tournament_picks';
+const KV_KEY_LEADERBOARD = 'leaderboard_cache';
 const SPORTSDB_BASE     = 'https://www.thesportsdb.com/api/v1/json/3';
 const FIXTURES_TTL_SEC  = 6 * 60 * 60; // 6 hours
 const PREDICTION_RATE_LIMIT = 30;      // per device per hour
@@ -670,6 +673,254 @@ async function handlePredictionsRefresh(request, ctx) {
   return jsonResponse({ success: true, count: fixtures.length, fixtures }, ctx);
 }
 
+// ─── Tournaments ───────────────────────────────────────────────────────
+
+const SEED_TOURNAMENTS = [
+  {
+    id: 'world-cup-2026',
+    name: 'World Cup 2026',
+    description: 'The world comes to North America. 48 teams, 104 matches, one trophy. Predict every game of the tournament.',
+    status: 'upcoming',
+    coverEmoji: '🏆',
+    accentColor: '#D99404',
+    createdAt: '2026-01-01T00:00:00Z',
+    rounds: [
+      {
+        name: 'Group Stage',
+        matches: [
+          { id: 'm1', home: { name: 'Brazil' },     away: { name: 'Croatia' },   kickoff: '2026-06-11T19:00:00Z' },
+          { id: 'm2', home: { name: 'Argentina' },  away: { name: 'Morocco' },   kickoff: '2026-06-12T19:00:00Z' },
+          { id: 'm3', home: { name: 'France' },     away: { name: 'Denmark' },   kickoff: '2026-06-13T19:00:00Z' },
+          { id: 'm4', home: { name: 'England' },    away: { name: 'Serbia' },    kickoff: '2026-06-14T19:00:00Z' },
+          { id: 'm5', home: { name: 'Germany' },    away: { name: 'Japan' },     kickoff: '2026-06-15T19:00:00Z' },
+          { id: 'm6', home: { name: 'Spain' },      away: { name: 'Netherlands' }, kickoff: '2026-06-16T19:00:00Z' },
+          { id: 'm7', home: { name: 'Portugal' },   away: { name: 'Ghana' },     kickoff: '2026-06-17T19:00:00Z' },
+          { id: 'm8', home: { name: 'Zambia' },     away: { name: 'Senegal' },   kickoff: '2026-06-18T19:00:00Z' },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'kopala-cup-2026',
+    name: 'Kopala Cup 2026',
+    description: 'Our own 8-team knockout: pick the quarter-finals, semi-finals, and the final. Highest accuracy wins bragging rights (and a discount code).',
+    status: 'active',
+    coverEmoji: '⚽',
+    accentColor: '#5E6B3C',
+    createdAt: '2026-04-15T00:00:00Z',
+    rounds: [
+      {
+        name: 'Quarter-finals',
+        matches: [
+          { id: 'kc-qf-1', home: { name: 'Nkana FC' },            away: { name: 'Power Dynamos' },         kickoff: '2026-06-20T14:00:00Z' },
+          { id: 'kc-qf-2', home: { name: 'Mufulira Wanderers' },  away: { name: 'Kabwe Warriors' },        kickoff: '2026-06-20T16:30:00Z' },
+          { id: 'kc-qf-3', home: { name: 'Arsenal' },            away: { name: 'Manchester United' },    kickoff: '2026-06-21T14:00:00Z' },
+          { id: 'kc-qf-4', home: { name: 'Liverpool' },          away: { name: 'Chelsea' },              kickoff: '2026-06-21T16:30:00Z' },
+        ],
+      },
+      {
+        name: 'Semi-finals',
+        matches: [
+          { id: 'kc-sf-1', home: { name: 'Winner QF1' }, away: { name: 'Winner QF2' }, kickoff: '2026-06-27T14:00:00Z' },
+          { id: 'kc-sf-2', home: { name: 'Winner QF3' }, away: { name: 'Winner QF4' }, kickoff: '2026-06-28T14:00:00Z' },
+        ],
+      },
+      {
+        name: 'Final',
+        matches: [
+          { id: 'kc-final', home: { name: 'Winner SF1' }, away: { name: 'Winner SF2' }, kickoff: '2026-07-05T15:00:00Z' },
+        ],
+      },
+    ],
+  },
+];
+
+async function getTournamentsStore(env) {
+  const raw = await env.KOPALA_KV.get(KV_KEY_TOURNAMENTS);
+  if (!raw) {
+    // Seed the store on first read.
+    const seed = {};
+    for (const t of SEED_TOURNAMENTS) seed[t.id] = t;
+    await env.KOPALA_KV.put(KV_KEY_TOURNAMENTS, JSON.stringify(seed));
+    return seed;
+  }
+  try { return JSON.parse(raw); } catch { return {}; }
+}
+
+// eslint-disable-next-line no-unused-vars
+async function saveTournamentsStore(env, store) {
+  await env.KOPALA_KV.put(KV_KEY_TOURNAMENTS, JSON.stringify(store));
+}
+
+async function getPicksStore(env) {
+  const raw = await env.KOPALA_KV.get(KV_KEY_TOURNAMENT_PICKS);
+  if (!raw) return {};
+  try { return JSON.parse(raw); } catch { return {}; }
+}
+
+async function savePicksStore(env, store) {
+  await env.KOPALA_KV.put(KV_KEY_TOURNAMENT_PICKS, JSON.stringify(store));
+}
+
+function tournamentProgress(tournament, picks) {
+  // Count how many matches the user has picked AND how many of those are
+  // correct (the match has a result that matches their pick).
+  let picked = 0;
+  let correct = 0;
+  let played = 0;
+  const allMatches = (tournament.rounds || []).flatMap((r) => r.matches || []);
+  for (const m of allMatches) {
+    if (m.result) played++;
+    const myPick = picks?.[m.id];
+    if (myPick) {
+      picked++;
+      if (m.result && m.result === myPick) correct++;
+    }
+  }
+  return { picked, correct, played, total: allMatches.length };
+}
+
+async function handleTournaments(request, ctx) {
+  if (request.method !== 'GET') return errorResponse('Method not allowed', 405, ctx);
+  const { env } = ctx;
+  const tournaments = await getTournamentsStore(env);
+  const picks = await getPicksStore(env);
+  const deviceId = getDeviceId(request);
+  const list = Object.values(tournaments).map((t) => {
+    const myPicks = deviceId ? (picks[deviceId]?.[t.id] || {}) : {};
+    const progress = tournamentProgress(t, myPicks);
+    return {
+      ...t,
+      myPicks,
+      progress,
+    };
+  });
+  return jsonResponse({ tournaments: list, now: Date.now() }, ctx);
+}
+
+async function handleTournament(request, ctx) {
+  if (request.method !== 'GET') return errorResponse('Method not allowed', 405, ctx);
+  const { env } = ctx;
+  const url = new URL(request.url);
+  const id = url.pathname.split('/').filter(Boolean).pop();
+  const tournaments = await getTournamentsStore(env);
+  const tournament = tournaments[id];
+  if (!tournament) return errorResponse('Tournament not found', 404, ctx);
+  const picks = await getPicksStore(env);
+  const deviceId = getDeviceId(request);
+  const myPicks = deviceId ? (picks[deviceId]?.[id] || {}) : {};
+  return jsonResponse({
+    tournament: { ...tournament, myPicks, progress: tournamentProgress(tournament, myPicks) },
+    now: Date.now(),
+  }, ctx);
+}
+
+async function handleTournamentPick(request, ctx) {
+  if (request.method !== 'POST') return errorResponse('Method not allowed', 405, ctx);
+  const { env } = ctx;
+  const deviceId = getDeviceId(request);
+  if (!deviceId) return errorResponse('Missing X-Device-Id header', 400, ctx, true);
+
+  // Soft rate limit
+  await rateLimitPrediction(env, deviceId);
+
+  const body = await readJsonBody(request, MAX_BODY_BYTES);
+  const { tournamentId, matchId, pick } = body || {};
+  if (typeof tournamentId !== 'string' || typeof matchId !== 'string' || typeof pick !== 'string') {
+    return errorResponse('tournamentId, matchId and pick are required', 400, ctx, true);
+  }
+  if (!['home', 'away', 'draw'].includes(pick)) {
+    return errorResponse('pick must be home, away, or draw', 400, ctx, true);
+  }
+
+  const tournaments = await getTournamentsStore(env);
+  const tournament = tournaments[tournamentId];
+  if (!tournament) return errorResponse('Unknown tournament', 404, ctx, true);
+
+  const allMatches = (tournament.rounds || []).flatMap((r) => r.matches || []);
+  const match = allMatches.find((m) => m.id === matchId);
+  if (!match) return errorResponse('Unknown match', 404, ctx, true);
+
+  if (match.result) {
+    return errorResponse('Match already played — picks locked', 409, ctx, true);
+  }
+  if (new Date(match.kickoff).getTime() <= Date.now()) {
+    return errorResponse('Kickoff has passed — picks locked', 409, ctx, true);
+  }
+  if (pick === 'draw' && !tournament.id) {
+    return errorResponse('Draw not allowed for this match', 400, ctx, true);
+  }
+
+  const picks = await getPicksStore(env);
+  const myAll = picks[deviceId] || {};
+  const myForTournament = myAll[tournamentId] || {};
+  myForTournament[matchId] = pick;
+  myAll[tournamentId] = myForTournament;
+  picks[deviceId] = myAll;
+  await savePicksStore(env, picks);
+
+  return jsonResponse({
+    success: true,
+    tournamentId, matchId, pick,
+    progress: tournamentProgress(tournament, myForTournament),
+  }, ctx);
+}
+
+async function handleLeaderboard(request, ctx) {
+  if (request.method !== 'GET') return errorResponse('Method not allowed', 405, ctx);
+  const { env } = ctx;
+  // Cache the leaderboard for 5 minutes — every visit to the page
+  // recomputes otherwise and that's wasteful.
+  const cached = await env.KOPALA_KV.get(KV_KEY_LEADERBOARD);
+  if (cached) {
+    try {
+      const parsed = JSON.parse(cached);
+      if (parsed && Date.now() - parsed.t < 5 * 60 * 1000) {
+        return jsonResponse(parsed.data, ctx);
+      }
+    } catch (e) { void e; }
+  }
+
+  const picks = await getPicksStore(env);
+  const tournaments = await getTournamentsStore(env);
+  const allMatches = Object.values(tournaments).flatMap((t) =>
+    (t.rounds || []).flatMap((r) => (r.matches || []).map((m) => ({ ...m, tournament: t.id })))
+  );
+  const played = allMatches.filter((m) => !!m.result);
+  const totalMatches = played.length;
+
+  // Per-device tallies
+  const board = [];
+  for (const [deviceId, byTournament] of Object.entries(picks)) {
+    let correct = 0;
+    let picked = 0;
+    for (const [tournamentId, byMatch] of Object.entries(byTournament)) {
+      for (const [matchId, pick] of Object.entries(byMatch)) {
+        const m = allMatches.find((mm) => mm.id === matchId && mm.tournament === tournamentId);
+        if (!m) continue;
+        picked++;
+        if (m.result && m.result === pick) correct++;
+      }
+    }
+    if (picked > 0) {
+      board.push({ deviceId: deviceId.slice(0, 8) + '…', correct, picked, accuracy: picked ? Math.round((correct / picked) * 100) : 0 });
+    }
+  }
+  board.sort((a, b) => b.correct - a.correct || b.accuracy - a.accuracy);
+  const top = board.slice(0, 10);
+
+  const data = {
+    top,
+    totalPlayers: board.length,
+    totalMatches,
+    generatedAt: Date.now(),
+  };
+  await env.KOPALA_KV.put(KV_KEY_LEADERBOARD, JSON.stringify({ t: Date.now(), data }), {
+    expirationTtl: 5 * 60,
+  });
+  return jsonResponse(data, ctx);
+}
+
 // ─── Auth Middleware ──────────────────────────────────────────────────────
 
 async function requireAuth(request, env) {
@@ -712,7 +963,12 @@ export default {
       if (url.pathname === '/api/predictions')           return await handlePredictions(request, ctx);
       if (url.pathname === '/api/predictions/refresh')   return await handlePredictionsRefresh(request, ctx);
       if (url.pathname === '/api/predictions/submit')    return await handlePredictionSubmit(request, ctx);
+      if (url.pathname === '/api/predictions/leaderboard') return await handleLeaderboard(request, ctx);
       if (url.pathname.startsWith('/api/predictions/'))  return await handlePredictionDelete(request, ctx);
+
+      if (url.pathname === '/api/tournaments')             return await handleTournaments(request, ctx);
+      if (url.pathname === '/api/tournaments/pick')        return await handleTournamentPick(request, ctx);
+      if (url.pathname.startsWith('/api/tournaments/'))    return await handleTournament(request, ctx);
 
       if (url.pathname === '/api/health') {
         return jsonResponse({ ok: true, kv: !!env.KOPALA_KV }, ctx);

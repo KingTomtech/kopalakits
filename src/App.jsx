@@ -8,6 +8,8 @@ import ProductPage from './pages/ProductPage.jsx';
 import AboutPage from './pages/AboutPage.jsx';
 import ContactPage from './pages/ContactPage.jsx';
 import PredictionsPage from './pages/PredictionsPage.jsx';
+import TournamentsPage from './pages/TournamentsPage.jsx';
+import TournamentDetailPage from './pages/TournamentDetailPage.jsx';
 import NotFoundPage from './pages/NotFoundPage.jsx';
 import CartDrawer from './components/CartDrawer.jsx';
 import QuickAddModal from './components/QuickAddModal.jsx';
@@ -97,6 +99,7 @@ export default function App({ onAdminAccess }) {
               <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: 'var(--warning)' }} />
               Predictions
             </a>
+            <a href="/tournaments" className="px-3 py-2 rounded-xl text-sm font-bold hover:bg-black/5" style={{ color: 'var(--text)' }}>Tournaments</a>
             <a href="/about" className="px-3 py-2 rounded-xl text-sm font-bold hover:bg-black/5" style={{ color: 'var(--text)' }}>About</a>
             <a href="/contact" className="px-3 py-2 rounded-xl text-sm font-bold hover:bg-black/5" style={{ color: 'var(--text)' }}>Contact</a>
           </nav>
@@ -137,7 +140,7 @@ export default function App({ onAdminAccess }) {
         </div>
       </header>
 
-      <main className="flex-1">
+      <main id="main" className="flex-1">
         <Routes>
           <Route path="/" element={
             <HomePage
@@ -161,6 +164,12 @@ export default function App({ onAdminAccess }) {
           <Route path="/contact" element={<ContactPage phone={PHONE_FALLBACK} />} />
           <Route path="/predictions" element={
             <PredictionsPage showToast={showToast} />
+          } />
+          <Route path="/tournaments" element={
+            <TournamentsPage showToast={showToast} />
+          } />
+          <Route path="/tournaments/:id" element={
+            <TournamentDetailPage showToast={showToast} />
           } />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>

@@ -21,6 +21,13 @@ export default function SiteFooter({ phone }) {
           >
             <MessageCircle size={16} /> Chat with Us
           </a>
+          <a
+            href="/admin"
+            className="mt-2 inline-block text-xs font-bold hover:underline"
+            style={{ color: 'var(--text-faint)' }}
+          >
+            Admin panel →
+          </a>
         </div>
         <div>
           <h4 className="font-bold text-sm uppercase tracking-widest mb-4" style={{ color: 'var(--text-faint)' }}>Browse</h4>
@@ -56,7 +63,7 @@ export default function SiteFooter({ phone }) {
         </div>
       </div>
       <div className="border-t px-6 py-4 text-center text-xs" style={{ borderColor: 'var(--border)', color: 'var(--text-faint)' }}>
-        © 2026 Kopala Kits · Kitwe, Zambia · All prices in Zambian Kwacha (ZMW)
+        {new Date().getFullYear()} Kopala Kits · Kitwe, Zambia · All prices in Zambian Kwacha (ZMW)
       </div>
     </footer>
   );

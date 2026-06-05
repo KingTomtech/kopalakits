@@ -95,6 +95,12 @@ export default function AboutPage() {
               Kopala Kits was born out of frustration. Quality football jerseys were hard to find in
               Zambia, and what you did find was expensive or fake. We set out to change that.
             </p>
+            <p className="text-sm italic" style={{ color: 'var(--text-faint)' }}>
+              <strong>Note:</strong> photographs of kits in the Local and Retro
+              sections are real; the four Zambian Super League kits (Nkana,
+              Power, Mufulira, Kabwe) are illustrated placeholders that show the
+              team's colours and badge area until we get on-pitch photos.
+            </p>
             <p>
               Today we stock local Zambian teams (Nkana, Power, Mufulira Wanderers, Kabwe Warriors),
               international clubs (Arsenal, Chelsea), national sides (Argentina, Portugal, England,
