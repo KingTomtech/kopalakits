@@ -987,39 +987,56 @@ async function requireAuth(request, env, ctx) {
 // ─── News (RSS proxy) ───────────────────────────────────────────────────
 
 const RSS_FEEDS = [
-  /* ── Verified working feeds (tested 2026-06-06) ── */
-  {
-    id: 'espn-soccer',
-    label: 'ESPN FC',
-    url: 'https://www.espn.com/espn/rss/soccer/news',
-    tags: ['football'],
-  },
-  {
-    id: 'yahoo-soccer',
-    label: 'Yahoo Sports Soccer',
-    url: 'https://sports.yahoo.com/soccer/rss.xml',
-    tags: ['football'],
-  },
-  {
-    id: 'fourfourtwo',
-    label: 'FourFourTwo',
-    url: 'http://www.fourfourtwo.com/feeds.xml',
-    tags: ['football', 'kit-launches'],
-  },
-  /* ── Local / African ── */
-  {
-    id: 'bola-yapa-zed',
-    label: 'Bola Yapa Zed',
-    url: 'https://bolayapazed.com/feed/',
-    tags: ['zambia', 'africa'],
-  },
-  /* ── May work via proxy ── */
-  {
-    id: 'gazzetta',
-    label: 'La Gazzetta dello Sport',
-    url: 'https://www.gazzetta.it/dynamic-feed/rss/section/last.xml',
-    tags: ['football'],
-  },
+  // ── GENERAL FOOTBALL / SOCCER ──
+  { id: 'bbc-football',       label: 'BBC Sport – Football',          url: 'https://feeds.bbci.co.uk/sport/football/rss.xml', tags: ['football'] },
+  { id: 'espn-soccer',        label: 'ESPN FC',                       url: 'https://www.espn.com/espn/rss/soccer/news',       tags: ['football'] },
+  { id: 'guardian-football',  label: 'The Guardian – Football',       url: 'https://www.theguardian.com/football/rss',        tags: ['football'] },
+  { id: 'sky-sports-football',label: 'Sky Sports – Football',         url: 'https://www.skysports.com/rss/12040',             tags: ['football'] },
+  { id: 'talksport-football', label: 'talkSPORT',                     url: 'https://talksport.com/feed/',                     tags: ['football', 'general'] },
+  { id: '90min',              label: '90min',                         url: 'https://www.90min.com/rss.xml',                   tags: ['football'] },
+  { id: 'football365',        label: 'Football365',                   url: 'https://www.football365.com/feed',                tags: ['football'] },
+  { id: 'goal-com',           label: 'Goal.com',                      url: 'https://www.goal.com/feeds/en/news',              tags: ['football'] },
+  { id: 'fourfourtwo',        label: 'FourFourTwo',                   url: 'https://www.fourfourtwo.com/rss',                 tags: ['football'] },
+  { id: 'eurosport',          label: 'Eurosport',                     url: 'https://www.eurosport.com/rss.xml',               tags: ['general', 'football'] },
+  { id: 'yahoo-soccer',       label: 'Yahoo Sports Soccer',             url: 'https://sports.yahoo.com/soccer/rss.xml',         tags: ['football'] },
+  { id: 'gazzetta',           label: 'La Gazzetta dello Sport',       url: 'https://www.gazzetta.it/dynamic-feed/rss/section/last.xml', tags: ['football'] },
+
+  // ── PREMIER LEAGUE ──
+  { id: 'espn-english-premier', label: 'ESPN – Premier League',       url: 'https://www.espn.com/espn/rss/soccer/_/league/eng.1', tags: ['football', 'premier-league'] },
+
+  // ── UEFA ──
+  { id: 'espn-ucl',           label: 'ESPN – Champions League',       url: 'https://www.espn.com/espn/rss/soccer/_/league/UEFA.CHAMPIONS', tags: ['football', 'champions-league'] },
+  { id: 'espn-uel',           label: 'ESPN – Europa League',          url: 'https://www.espn.com/espn/rss/soccer/_/league/UEFA.EUROPA',    tags: ['football'] },
+
+  // ── AFRICAN FOOTBALL ──
+  { id: 'caf-online',         label: 'CAF Online',                    url: 'https://www.cafonline.com/news/rss.xml',          tags: ['football', 'africa'] },
+  { id: 'africanews-sport',   label: 'Africanews – Sport',              url: 'https://www.africanews.com/sport/rss',            tags: ['football', 'africa', 'general'] },
+  { id: 'espn-afcon',         label: 'ESPN – AFCON / CAF',              url: 'https://www.espn.com/espn/rss/soccer/_/league/CAF.NATIONS',  tags: ['football', 'africa'] },
+  { id: 'espn-cosafa',        label: 'ESPN – COSAFA',                 url: 'https://www.espn.com/espn/rss/soccer/_/league/CAF.COSAFA',    tags: ['football', 'africa', 'zambia'] },
+
+  // ── ZAMBIA / LOCAL ──
+  { id: 'bola-yapa-zed',      label: 'Bola Yapa Zed',                 url: 'https://bolayapazed.com/feed/',                   tags: ['football', 'zambia', 'africa'] },
+  { id: 'znbc-sport',         label: 'ZNBC Sport',                    url: 'https://www.znbc.co.zm/category/sports/feed/',      tags: ['football', 'zambia'] },
+  { id: 'daily-mail-zm',      label: 'Daily Mail Zambia – Sport',     url: 'https://www.daily-mail.co.zm/category/sports/feed/', tags: ['football', 'zambia', 'general'] },
+  { id: 'times-of-zambia-sport', label: 'Times of Zambia – Sport',    url: 'https://www.times.co.zm/category/sports/feed/',   tags: ['football', 'zambia'] },
+
+  // ── OTHER MAJOR LEAGUES ──
+  { id: 'espn-laliga',        label: 'ESPN – La Liga',                url: 'https://www.espn.com/espn/rss/soccer/_/league/esp.1', tags: ['football'] },
+  { id: 'espn-serie-a',       label: 'ESPN – Serie A',                url: 'https://www.espn.com/espn/rss/soccer/_/league/ita.1', tags: ['football'] },
+  { id: 'espn-bundesliga',    label: 'ESPN – Bundesliga',             url: 'https://www.espn.com/espn/rss/soccer/_/league/ger.1', tags: ['football'] },
+  { id: 'espn-mls',           label: 'ESPN – MLS',                    url: 'https://www.espn.com/espn/rss/soccer/_/league/usa.1', tags: ['football'] },
+  { id: 'espn-world-cup',     label: 'ESPN – World Cup',              url: 'https://www.espn.com/espn/rss/soccer/_/league/FIFA.WORLD', tags: ['football'] },
+
+  // ── MULTI-SPORT / GENERAL ──
+  { id: 'bbc-sport-all',      label: 'BBC Sport – All',               url: 'https://feeds.bbci.co.uk/sport/rss.xml',            tags: ['general'] },
+  { id: 'guardian-sport',     label: 'The Guardian – Sport',          url: 'https://www.theguardian.com/sport/rss',             tags: ['general'] },
+  { id: 'sky-sports-all',     label: 'Sky Sports – All',                url: 'https://www.skysports.com/rss/0,20514,11661,00.xml', tags: ['general'] },
+  { id: 'sporting-news',      label: 'Sporting News',                 url: 'https://sportingnews.com/rss',                      tags: ['general'] },
+  { id: 'reuters-sport',      label: 'Reuters Sport',                   url: 'https://feeds.reuters.com/reuters/sportsNews',      tags: ['general'] },
+
+  // ── KIT / TRANSFER LAUNCHES ──
+  { id: 'footy-headlines',    label: 'Footy Headlines',               url: 'https://www.footyheadlines.com/feeds/posts/default', tags: ['kit-launches', 'football'] },
+  { id: 'kickoff-kits',       label: 'Kickoff – Kits & Fashion',      url: 'https://www.kickoff.com/rss/news/',                 tags: ['kit-launches', 'football', 'africa'] },
 ];
 
 function parseRssText(xmlText, feedMeta) {
@@ -1121,11 +1138,15 @@ async function handleNews(request, ctx, feedId) {
   const { env } = ctx;
   const feedMeta = RSS_FEEDS.find((f) => f.id === feedId);
   if (!feedMeta) return errorResponse('Unknown feed', 404, ctx);
+  const url = new URL(request.url);
+  const force = url.searchParams.get('force') === '1';
   // Cache in KV for 30 min per feed
   const kvKey = `news_cache:${feedId}`;
-  const cached = await env.KOPALA_KV.get(kvKey);
-  if (cached) {
-    try { return jsonResponse(JSON.parse(cached), ctx); } catch { /* corrupt cache */ }
+  if (!force) {
+    const cached = await env.KOPALA_KV.get(kvKey);
+    if (cached) {
+      try { return jsonResponse(JSON.parse(cached), ctx); } catch { /* corrupt cache */ }
+    }
   }
   try {
     const controller = new AbortController();

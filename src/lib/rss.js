@@ -130,6 +130,12 @@ export const RSS_FEEDS = Object.freeze([
 
   // ── ZAMBIA / LOCAL ───────────────────────────────────────────────────────
   {
+    id: 'bola-yapa-zed',
+    label: 'Bola Yapa Zed',
+    url: 'https://bolayapazed.com/feed/',
+    tags: ['football', 'zambia', 'africa'],
+  },
+  {
     id: 'znbc-sport',
     label: 'ZNBC Sport',
     url: 'https://www.znbc.co.zm/category/sports/feed/',
@@ -441,16 +447,18 @@ async function fetchWithRetry(feed, retries = 3, delay = 1000) {
   throw lastError;
 }
 
-async function fetchRssFromProxy(feed) {
+async function fetchRssFromProxy(feed, force = false) {
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), 10000);
-  
-  const res = await fetch(`/api/news?feed=${feed.id}`, {
+
+  const qs = new URLSearchParams({ feed: feed.id });
+  if (force) qs.set('force', '1');
+  const res = await fetch(`/api/news?${qs}`, {
     signal: controller.signal
   });
-  
+
   clearTimeout(timeoutId);
-  
+
   if (!res.ok) throw new Error(`Proxy ${res.status}`);
   return res.json();
 }
@@ -480,7 +488,7 @@ export async function fetchFeed(feedId, options = { force: false }) {
       data = await fetchWithRetry(feed);
     } catch (error) {
       console.warn(`Direct fetch failed for ${feedId}, trying proxy:`, error);
-      data = await fetchRssFromProxy(feed);
+      data = await fetchRssFromProxy(feed, options.force);
     }
     
     rssCache.set(feedId, { t: now, data });
@@ -585,7 +593,13 @@ function parseRssDomParser(xmlText, feed) {
     
     // Get image - comprehensive extraction for namespaced feeds
     let image = extractImageFromXmlElement(elem);
-    
+
+    // Get video enclosure / media
+    let video = extractVideoFromXmlElement(elem);
+    if (!video && /\b(watch|video|highlights|clip|replay)\b/i.test(title)) {
+      video = true; // keyword-flagged video item
+    }
+
     if (title && link) {
       items.push({
         title: title.slice(0, 200),
@@ -594,6 +608,7 @@ function parseRssDomParser(xmlText, feed) {
         pubDate,
         source: feed.label,
         image: validateAndSanitizeUrl(image),
+        video: video || undefined,
       });
     }
   }
@@ -612,13 +627,13 @@ function extractImageFromXmlElement(element) {
     'image',
     'image url'
   ];
-  
+
   for (const selector of imageSelectors) {
     try {
       const imgElem = element.querySelector(selector);
       if (imgElem) {
-        const url = imgElem.getAttribute('url') || 
-                    imgElem.getAttribute('href') || 
+        const url = imgElem.getAttribute('url') ||
+                    imgElem.getAttribute('href') ||
                     imgElem.textContent;
         if (url && url.match(/\.(jpg|jpeg|png|webp|gif)/i)) {
           return url;
@@ -629,7 +644,7 @@ function extractImageFromXmlElement(element) {
       continue;
     }
   }
-  
+
   // Check content:encoded for images
   try {
     const contentEncoded = element.querySelector('content\\:encoded');
@@ -640,7 +655,7 @@ function extractImageFromXmlElement(element) {
   } catch (e) {
     // Ignore namespace errors
   }
-  
+
   // Fallback to description extraction
   const descElem = element.querySelector('description') || element.querySelector('summary');
   if (descElem) {
@@ -648,7 +663,26 @@ function extractImageFromXmlElement(element) {
     const imgMatch = content.match(/<img[^>]+src="([^">]+)"/i);
     if (imgMatch) return imgMatch[1];
   }
-  
+
+  return null;
+}
+
+function extractVideoFromXmlElement(element) {
+  try {
+    const vidEnc = element.querySelector('enclosure[type^="video"]');
+    if (vidEnc) return vidEnc.getAttribute('url') || true;
+  } catch { /* ignore */ }
+  try {
+    const mediaVid = element.querySelector('media\\:content[type^="video"]');
+    if (mediaVid) return mediaVid.getAttribute('url') || true;
+  } catch { /* ignore */ }
+  try {
+    const group = element.querySelector('media\\:group');
+    if (group) {
+      const mv = group.querySelector('media\\:content[type^="video"]');
+      if (mv) return mv.getAttribute('url') || true;
+    }
+  } catch { /* ignore */ }
   return null;
 }
 
@@ -677,11 +711,17 @@ function parseRssRegex(xmlText, feed) {
     
     // Enhanced image extraction for regex parser
     let image = enclosureUrl(raw) || mediaThumb(raw) || mediaContentUrl(raw) || ogImage(raw);
-    
+
     // Also check CDATA content for images
     if (!image && description) {
       const imgMatch = description.match(/<img[^>]+src="([^">]+)"/i);
       if (imgMatch) image = imgMatch[1];
+    }
+
+    // Video extraction for regex parser
+    let video = videoEnclosure(raw) || mediaGroupVideo(raw);
+    if (!video && /\b(watch|video|highlights|clip|replay)\b/i.test(title)) {
+      video = true;
     }
 
     if (title && link) {
@@ -692,6 +732,7 @@ function parseRssRegex(xmlText, feed) {
         pubDate: validPubDate,
         source: feed.label,
         image: validateAndSanitizeUrl(image),
+        video: video || undefined,
       });
     }
   }
@@ -765,6 +806,16 @@ function mediaContentUrl(xml) {
 
 function ogImage(xml) {
   const m = xml.match(/og:image[^"]*"([^"]+\.(?:jpg|jpeg|png|webp))"/i);
+  return m ? m[1] : null;
+}
+
+function videoEnclosure(xml) {
+  const m = xml.match(/<enclosure[^>]+url="([^"]+)"[^>]*type="video/i);
+  return m ? m[1] : null;
+}
+
+function mediaGroupVideo(xml) {
+  const m = xml.match(/<media:group[^>]*>[\s\S]*?<media:content[^>]+url="([^"]+)"[^>]*type="video/i);
   return m ? m[1] : null;
 }
 

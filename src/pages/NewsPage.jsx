@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback, useMemo, useRef } from 'react';
-import { Newspaper, ExternalLink, RefreshCw, Clock, AlertCircle } from 'lucide-react';
+import { Newspaper, ExternalLink, RefreshCw, Clock, AlertCircle, Play } from 'lucide-react';
 import { RSS_FEEDS, fetchFeed, classify, getFeedHealth } from '../lib/rss.js';
 
 // News categories for filtering
@@ -44,7 +44,7 @@ function ItemCard({ item }) {
       className="block rounded-2xl overflow-hidden border transition hover:-translate-y-0.5 hover:shadow-lg kk-rise group"
       style={{ borderColor: 'var(--border)', backgroundColor: 'var(--surface)' }}
     >
-      {/* Image with proper error handling AND lazy loading */}
+      {/* Image with proper error handling, lazy loading, and video overlay */}
       {item.image && !imageError && (
         <div className="aspect-[16/9] bg-gray-100 relative overflow-hidden">
           {!imageLoaded && (
@@ -59,21 +59,37 @@ function ItemCard({ item }) {
             onLoad={() => setImageLoaded(true)}
             onError={() => setImageError(true)}
           />
+          {item.video && (
+            <div className="absolute inset-0 flex items-center justify-center bg-black/30">
+              <div className="w-10 h-10 rounded-full bg-white/90 flex items-center justify-center shadow-lg">
+                <Play size={16} className="text-[var(--danger)] ml-0.5" fill="currentColor" />
+              </div>
+            </div>
+          )}
         </div>
       )}
       {(!item.image || imageError) && (
         <div
-          className="aspect-[16/9] bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center"
+          className={`aspect-[16/9] flex items-center justify-center relative ${item.video ? 'bg-[var(--danger)]/10' : 'bg-gradient-to-br from-gray-100 to-gray-200'}`}
           role="img"
           aria-label={`Placeholder for ${item.title}`}
         >
-          <img 
-            src={defaultImage} 
-            alt="" 
-            className="w-12 h-12 opacity-30"
-            loading="lazy"
-            decoding="async"
-          />
+          {item.video ? (
+            <div className="flex flex-col items-center gap-1">
+              <div className="w-10 h-10 rounded-full bg-[var(--danger)]/15 flex items-center justify-center">
+                <Play size={16} className="text-[var(--danger)] ml-0.5" fill="currentColor" />
+              </div>
+              <span className="text-[10px] font-bold text-[var(--danger)]">VIDEO</span>
+            </div>
+          ) : (
+            <img
+              src={defaultImage}
+              alt=""
+              className="w-12 h-12 opacity-30"
+              loading="lazy"
+              decoding="async"
+            />
+          )}
         </div>
       )}
       <div className="p-4">
@@ -82,6 +98,9 @@ function ItemCard({ item }) {
           style={{ color: 'var(--text-faint)' }}
         >
           <span>{item.source}</span>
+          {item.video && (
+            <span className="px-1.5 py-0.5 rounded bg-[var(--danger)]/15 text-[var(--danger)]">VIDEO</span>
+          )}
           {item.pubDate && (
             <>
               <span>·</span>
@@ -106,7 +125,15 @@ function ItemCard({ item }) {
           className="mt-3 text-[10px] font-bold inline-flex items-center gap-1"
           style={{ color: 'var(--brand-deep)' }}
         >
-          Read full story <ExternalLink size={10} aria-hidden="true" />
+          {item.video ? (
+            <>
+              <Play size={10} aria-hidden="true" fill="currentColor" /> Watch
+            </>
+          ) : (
+            <>
+              Read full story <ExternalLink size={10} aria-hidden="true" />
+            </>
+          )}
         </div>
       </div>
     </a>
