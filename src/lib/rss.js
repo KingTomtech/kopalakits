@@ -559,7 +559,8 @@ function parseRssDomParser(xmlText, feed) {
 
     // Get video enclosure / media
     let video = extractVideoFromXmlElement(elem);
-    if (!video && /\b(watch|video|highlights|clip|replay)\b/i.test(title)) {
+    const videoKeywords = /\b(watch|video|highlights|clip|replay)\b/i;
+    if (!video && (videoKeywords.test(title) || videoKeywords.test(description))) {
       video = true; // keyword-flagged video item
     }
 
@@ -683,7 +684,8 @@ function parseRssRegex(xmlText, feed) {
 
     // Video extraction for regex parser
     let video = videoEnclosure(raw) || mediaGroupVideo(raw);
-    if (!video && /\b(watch|video|highlights|clip|replay)\b/i.test(title)) {
+    const videoKeywordsRe = /\b(watch|video|highlights|clip|replay)\b/i;
+    if (!video && (videoKeywordsRe.test(title) || videoKeywordsRe.test(description))) {
       video = true;
     }
 
@@ -753,8 +755,15 @@ function atomLinkHref(xml) {
 }
 
 function enclosureUrl(xml) {
-  const m = xml.match(/<enclosure[^>]+url="([^"]+)"[^>]+type="image/i);
-  return m ? m[1] : null;
+  const tags = xml.match(/<enclosure\b[^>]*>/gi);
+  if (!tags) return null;
+  for (const tag of tags) {
+    if (/\btype="image/i.test(tag)) {
+      const url = tag.match(/\burl="([^"]+)"/i);
+      if (url) return url[1];
+    }
+  }
+  return null;
 }
 
 function mediaThumb(xml) {
@@ -763,8 +772,15 @@ function mediaThumb(xml) {
 }
 
 function mediaContentUrl(xml) {
-  const m = xml.match(/<media:content[^>]+url="([^"]+)"[\s\S]*?type="image/i);
-  return m ? m[1] : null;
+  const tags = xml.match(/<media:content\b[^>]*>/gi);
+  if (!tags) return null;
+  for (const tag of tags) {
+    if (/\btype="image/i.test(tag)) {
+      const url = tag.match(/\burl="([^"]+)"/i);
+      if (url) return url[1];
+    }
+  }
+  return null;
 }
 
 function ogImage(xml) {
@@ -773,13 +789,31 @@ function ogImage(xml) {
 }
 
 function videoEnclosure(xml) {
-  const m = xml.match(/<enclosure[^>]+url="([^"]+)"[^>]*type="video/i);
-  return m ? m[1] : null;
+  const tags = xml.match(/<enclosure\b[^>]*>/gi);
+  if (!tags) return null;
+  for (const tag of tags) {
+    if (/\btype="video/i.test(tag)) {
+      const url = tag.match(/\burl="([^"]+)"/i);
+      if (url) return url[1];
+    }
+  }
+  return null;
 }
 
 function mediaGroupVideo(xml) {
-  const m = xml.match(/<media:group[^>]*>[\s\S]*?<media:content[^>]+url="([^"]+)"[^>]*type="video/i);
-  return m ? m[1] : null;
+  const groups = xml.match(/<media:group\b[^>]*>[\s\S]*?<\/media:group>/gi);
+  if (!groups) return null;
+  for (const group of groups) {
+    const tags = group.match(/<media:content\b[^>]*>/gi);
+    if (!tags) continue;
+    for (const tag of tags) {
+      if (/\btype="video/i.test(tag)) {
+        const url = tag.match(/\burl="([^"]+)"/i);
+        if (url) return url[1];
+      }
+    }
+  }
+  return null;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

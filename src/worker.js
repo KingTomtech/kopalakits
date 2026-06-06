@@ -1051,7 +1051,8 @@ function parseRssText(xmlText, feedMeta) {
       if (imgMatch) image = imgMatch[1];
     }
     let video = videoEnclosureRss(raw) || mediaGroupVideoRss(raw);
-    if (!video && /\b(watch|video|highlights|clip|replay)\b/i.test(title)) {
+    const videoKeywords = /\b(watch|video|highlights|clip|replay)\b/i;
+    if (!video && (videoKeywords.test(title) || videoKeywords.test(description))) {
       video = 'keyword';
     }
     if (title && link) {
@@ -1079,28 +1080,60 @@ function atomLinkHrefRss(xml) {
   return m ? m[1] : null;
 }
 function enclosureUrlRss(xml) {
-  const m = xml.match(/<enclosure[^>]+url="([^"]+)"[^>]*type="image/i);
-  return m ? m[1] : null;
+  const tags = xml.match(/<enclosure\b[^>]*>/gi);
+  if (!tags) return null;
+  for (const tag of tags) {
+    if (/\btype="image/i.test(tag)) {
+      const url = tag.match(/\burl="([^"]+)"/i);
+      if (url) return url[1];
+    }
+  }
+  return null;
 }
 function mediaThumbRss(xml) {
   const m = xml.match(/<media:thumbnail[^>]+url="([^"]+)"/i);
   return m ? m[1] : null;
 }
 function mediaContentUrlRss(xml) {
-  const m = xml.match(/<media:content[^>]+url="([^"]+)"[\s\S]*?type="image/i);
-  return m ? m[1] : null;
+  const tags = xml.match(/<media:content\b[^>]*>/gi);
+  if (!tags) return null;
+  for (const tag of tags) {
+    if (/\btype="image/i.test(tag)) {
+      const url = tag.match(/\burl="([^"]+)"/i);
+      if (url) return url[1];
+    }
+  }
+  return null;
 }
 function mediaGroupThumbRss(xml) {
   const m = xml.match(/<media:group[^>]*>[\s\S]*?<media:thumbnail[^>]+url="([^"]+)"/i);
   return m ? m[1] : null;
 }
 function videoEnclosureRss(xml) {
-  const m = xml.match(/<enclosure[^>]+url="([^"]+)"[^>]*type="video/i);
-  return m ? m[1] : null;
+  const tags = xml.match(/<enclosure\b[^>]*>/gi);
+  if (!tags) return null;
+  for (const tag of tags) {
+    if (/\btype="video/i.test(tag)) {
+      const url = tag.match(/\burl="([^"]+)"/i);
+      if (url) return url[1];
+    }
+  }
+  return null;
 }
 function mediaGroupVideoRss(xml) {
-  const m = xml.match(/<media:group[^>]*>[\s\S]*?<media:content[^>]+url="([^"]+)"[^>]*type="video/i);
-  return m ? m[1] : null;
+  const groups = xml.match(/<media:group\b[^>]*>[\s\S]*?<\/media:group>/gi);
+  if (!groups) return null;
+  for (const group of groups) {
+    const tags = group.match(/<media:content\b[^>]*>/gi);
+    if (!tags) continue;
+    for (const tag of tags) {
+      if (/\btype="video/i.test(tag)) {
+        const url = tag.match(/\burl="([^"]+)"/i);
+        if (url) return url[1];
+      }
+    }
+  }
+  return null;
 }
 function ogImageRss(xml) {
   const m = xml.match(/og:image[^"]*"([^"]+\.(?:jpg|jpeg|png|webp))"/i);
