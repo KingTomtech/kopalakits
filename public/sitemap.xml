@@ -2,97 +2,97 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://kopala.zingati.app/</loc>
-    <lastmod>2026-06-06T00:00:00.000Z</lastmod>
+    <lastmod>2026-06-06T01:11:16.590Z</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
     <loc>https://kopala.zingati.app/?category=Local</loc>
-    <lastmod>2026-06-06T00:00:00.000Z</lastmod>
+    <lastmod>2026-06-06T01:11:16.590Z</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
     <loc>https://kopala.zingati.app/?category=International</loc>
-    <lastmod>2026-06-06T00:00:00.000Z</lastmod>
+    <lastmod>2026-06-06T01:11:16.590Z</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
     <loc>https://kopala.zingati.app/?category=National</loc>
-    <lastmod>2026-06-06T00:00:00.000Z</lastmod>
+    <lastmod>2026-06-06T01:11:16.590Z</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
     <loc>https://kopala.zingati.app/?category=Retro</loc>
-    <lastmod>2026-06-06T00:00:00.000Z</lastmod>
+    <lastmod>2026-06-06T01:11:16.590Z</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
     <loc>https://kopala.zingati.app/shop</loc>
-    <lastmod>2026-06-06T00:00:00.000Z</lastmod>
+    <lastmod>2026-06-06T01:11:16.590Z</lastmod>
     <priority>0.7</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
     <loc>https://kopala.zingati.app/about</loc>
-    <lastmod>2026-06-06T00:00:00.000Z</lastmod>
+    <lastmod>2026-06-06T01:11:16.590Z</lastmod>
     <priority>0.7</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
     <loc>https://kopala.zingati.app/contact</loc>
-    <lastmod>2026-06-06T00:00:00.000Z</lastmod>
+    <lastmod>2026-06-06T01:11:16.590Z</lastmod>
     <priority>0.7</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
     <loc>https://kopala.zingati.app/predictions</loc>
-    <lastmod>2026-06-06T00:00:00.000Z</lastmod>
+    <lastmod>2026-06-06T01:11:16.590Z</lastmod>
     <priority>0.7</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
     <loc>https://kopala.zingati.app/tournaments</loc>
-    <lastmod>2026-06-06T00:00:00.000Z</lastmod>
+    <lastmod>2026-06-06T01:11:16.590Z</lastmod>
     <priority>0.7</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
     <loc>https://kopala.zingati.app/news</loc>
-    <lastmod>2026-06-06T00:00:00.000Z</lastmod>
+    <lastmod>2026-06-06T01:11:16.590Z</lastmod>
     <priority>0.7</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
     <loc>https://kopala.zingati.app/zusa</loc>
-    <lastmod>2026-06-06T00:00:00.000Z</lastmod>
+    <lastmod>2026-06-06T01:11:16.590Z</lastmod>
     <priority>0.7</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
     <loc>https://kopala.zingati.app/faz</loc>
-    <lastmod>2026-06-06T00:00:00.000Z</lastmod>
+    <lastmod>2026-06-06T01:11:16.590Z</lastmod>
     <priority>0.7</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
     <loc>https://kopala.zingati.app/media</loc>
-    <lastmod>2026-06-06T00:00:00.000Z</lastmod>
+    <lastmod>2026-06-06T01:11:16.590Z</lastmod>
     <priority>0.7</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
-    <loc>https://kopala.zingati.app/product</loc>
-    <lastmod>2026-06-06T00:00:00.000Z</lastmod>
+    <loc>https://kopala.zingati.app/admin</loc>
+    <lastmod>2026-06-06T01:11:16.590Z</lastmod>
     <priority>0.7</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
     <loc>https://kopala.zingati.app/product/1-mufulira-wanderers-2025-26-home-jersey</loc>
-    <lastmod>2026-06-06T00:00:00.000Z</lastmod>
+    <lastmod>2026-06-06T01:11:16.590Z</lastmod>
     <priority>0.6</priority>
     <changefreq>weekly</changefreq>
     <image:image>
@@ -103,7 +103,7 @@
   </url>
   <url>
     <loc>https://kopala.zingati.app/product/2-kabwe-warriors-2024-25-home-jersey</loc>
-    <lastmod>2026-06-06T00:00:00.000Z</lastmod>
+    <lastmod>2026-06-06T01:11:16.590Z</lastmod>
     <priority>0.6</priority>
     <changefreq>weekly</changefreq>
     <image:image>
@@ -114,7 +114,7 @@
   </url>
   <url>
     <loc>https://kopala.zingati.app/product/3-nkana-fc-2024-25-home-jersey</loc>
-    <lastmod>2026-06-06T00:00:00.000Z</lastmod>
+    <lastmod>2026-06-06T01:11:16.590Z</lastmod>
     <priority>0.6</priority>
     <changefreq>weekly</changefreq>
     <image:image>
@@ -125,7 +125,7 @@
   </url>
   <url>
     <loc>https://kopala.zingati.app/product/4-power-dynamos-2025-26-home-jersey</loc>
-    <lastmod>2026-06-06T00:00:00.000Z</lastmod>
+    <lastmod>2026-06-06T01:11:16.590Z</lastmod>
     <priority>0.6</priority>
     <changefreq>weekly</changefreq>
     <image:image>
@@ -136,7 +136,7 @@
   </url>
   <url>
     <loc>https://kopala.zingati.app/product/5-arsenal-o2-home-jersey</loc>
-    <lastmod>2026-06-06T00:00:00.000Z</lastmod>
+    <lastmod>2026-06-06T01:11:16.590Z</lastmod>
     <priority>0.6</priority>
     <changefreq>weekly</changefreq>
     <image:image>
@@ -147,7 +147,7 @@
   </url>
   <url>
     <loc>https://kopala.zingati.app/product/16-chelsea-ucl-final-moscow-2008-jersey</loc>
-    <lastmod>2026-06-06T00:00:00.000Z</lastmod>
+    <lastmod>2026-06-06T01:11:16.590Z</lastmod>
     <priority>0.6</priority>
     <changefreq>weekly</changefreq>
     <image:image>
@@ -158,7 +158,7 @@
   </url>
   <url>
     <loc>https://kopala.zingati.app/product/101-manchester-united-classic-sharp-jersey</loc>
-    <lastmod>2026-06-06T00:00:00.000Z</lastmod>
+    <lastmod>2026-06-06T01:11:16.590Z</lastmod>
     <priority>0.6</priority>
     <changefreq>weekly</changefreq>
     <image:image>
@@ -169,7 +169,7 @@
   </url>
   <url>
     <loc>https://kopala.zingati.app/product/102-manchester-united-away-sharp-viewcam-jersey</loc>
-    <lastmod>2026-06-06T00:00:00.000Z</lastmod>
+    <lastmod>2026-06-06T01:11:16.590Z</lastmod>
     <priority>0.6</priority>
     <changefreq>weekly</changefreq>
     <image:image>
@@ -180,7 +180,7 @@
   </url>
   <url>
     <loc>https://kopala.zingati.app/product/103-arsenal-jvc-classic-jersey</loc>
-    <lastmod>2026-06-06T00:00:00.000Z</lastmod>
+    <lastmod>2026-06-06T01:11:16.590Z</lastmod>
     <priority>0.6</priority>
     <changefreq>weekly</changefreq>
     <image:image>
@@ -191,7 +191,7 @@
   </url>
   <url>
     <loc>https://kopala.zingati.app/product/104-liverpool-carlsberg-away-jersey</loc>
-    <lastmod>2026-06-06T00:00:00.000Z</lastmod>
+    <lastmod>2026-06-06T01:11:16.590Z</lastmod>
     <priority>0.6</priority>
     <changefreq>weekly</changefreq>
     <image:image>
@@ -202,7 +202,7 @@
   </url>
   <url>
     <loc>https://kopala.zingati.app/product/105-brazil-away-green-long-sleeve-retro-jersey</loc>
-    <lastmod>2026-06-06T00:00:00.000Z</lastmod>
+    <lastmod>2026-06-06T01:11:16.590Z</lastmod>
     <priority>0.6</priority>
     <changefreq>weekly</changefreq>
     <image:image>
@@ -213,7 +213,7 @@
   </url>
   <url>
     <loc>https://kopala.zingati.app/product/106-brazil-away-blue-long-sleeve-retro-jersey</loc>
-    <lastmod>2026-06-06T00:00:00.000Z</lastmod>
+    <lastmod>2026-06-06T01:11:16.590Z</lastmod>
     <priority>0.6</priority>
     <changefreq>weekly</changefreq>
     <image:image>
@@ -224,7 +224,7 @@
   </url>
   <url>
     <loc>https://kopala.zingati.app/product/10-argentina-home-stripes-jersey</loc>
-    <lastmod>2026-06-06T00:00:00.000Z</lastmod>
+    <lastmod>2026-06-06T01:11:16.590Z</lastmod>
     <priority>0.6</priority>
     <changefreq>weekly</changefreq>
     <image:image>
@@ -235,7 +235,7 @@
   </url>
   <url>
     <loc>https://kopala.zingati.app/product/11-argentina-long-sleeve-home-jersey</loc>
-    <lastmod>2026-06-06T00:00:00.000Z</lastmod>
+    <lastmod>2026-06-06T01:11:16.590Z</lastmod>
     <priority>0.6</priority>
     <changefreq>weekly</changefreq>
     <image:image>
@@ -246,7 +246,7 @@
   </url>
   <url>
     <loc>https://kopala.zingati.app/product/17-argentina-special-edition-black-jersey</loc>
-    <lastmod>2026-06-06T00:00:00.000Z</lastmod>
+    <lastmod>2026-06-06T01:11:16.590Z</lastmod>
     <priority>0.6</priority>
     <changefreq>weekly</changefreq>
     <image:image>
@@ -257,7 +257,7 @@
   </url>
   <url>
     <loc>https://kopala.zingati.app/product/12-portugal-home-red-jersey</loc>
-    <lastmod>2026-06-06T00:00:00.000Z</lastmod>
+    <lastmod>2026-06-06T01:11:16.590Z</lastmod>
     <priority>0.6</priority>
     <changefreq>weekly</changefreq>
     <image:image>
@@ -268,7 +268,7 @@
   </url>
   <url>
     <loc>https://kopala.zingati.app/product/18-portugal-home-red-jersey-player-version</loc>
-    <lastmod>2026-06-06T00:00:00.000Z</lastmod>
+    <lastmod>2026-06-06T01:11:16.590Z</lastmod>
     <priority>0.6</priority>
     <changefreq>weekly</changefreq>
     <image:image>
@@ -279,7 +279,7 @@
   </url>
   <url>
     <loc>https://kopala.zingati.app/product/19-portugal-third-black-jersey</loc>
-    <lastmod>2026-06-06T00:00:00.000Z</lastmod>
+    <lastmod>2026-06-06T01:11:16.590Z</lastmod>
     <priority>0.6</priority>
     <changefreq>weekly</changefreq>
     <image:image>
@@ -290,7 +290,7 @@
   </url>
   <url>
     <loc>https://kopala.zingati.app/product/13-portugal-away-teal-jersey</loc>
-    <lastmod>2026-06-06T00:00:00.000Z</lastmod>
+    <lastmod>2026-06-06T01:11:16.590Z</lastmod>
     <priority>0.6</priority>
     <changefreq>weekly</changefreq>
     <image:image>
@@ -301,7 +301,7 @@
   </url>
   <url>
     <loc>https://kopala.zingati.app/product/20-england-away-red-jersey</loc>
-    <lastmod>2026-06-06T00:00:00.000Z</lastmod>
+    <lastmod>2026-06-06T01:11:16.590Z</lastmod>
     <priority>0.6</priority>
     <changefreq>weekly</changefreq>
     <image:image>
@@ -312,7 +312,7 @@
   </url>
   <url>
     <loc>https://kopala.zingati.app/product/21-france-home-blue-jersey</loc>
-    <lastmod>2026-06-06T00:00:00.000Z</lastmod>
+    <lastmod>2026-06-06T01:11:16.590Z</lastmod>
     <priority>0.6</priority>
     <changefreq>weekly</changefreq>
     <image:image>
@@ -323,7 +323,7 @@
   </url>
   <url>
     <loc>https://kopala.zingati.app/product/24-germany-home-jersey</loc>
-    <lastmod>2026-06-06T00:00:00.000Z</lastmod>
+    <lastmod>2026-06-06T01:11:16.590Z</lastmod>
     <priority>0.6</priority>
     <changefreq>weekly</changefreq>
     <image:image>
@@ -334,7 +334,7 @@
   </url>
   <url>
     <loc>https://kopala.zingati.app/product/25-spain-home-jersey</loc>
-    <lastmod>2026-06-06T00:00:00.000Z</lastmod>
+    <lastmod>2026-06-06T01:11:16.590Z</lastmod>
     <priority>0.6</priority>
     <changefreq>weekly</changefreq>
     <image:image>
@@ -345,7 +345,7 @@
   </url>
   <url>
     <loc>https://kopala.zingati.app/product/14-zambia-national-team-2025-26-home-jersey</loc>
-    <lastmod>2026-06-06T00:00:00.000Z</lastmod>
+    <lastmod>2026-06-06T01:11:16.590Z</lastmod>
     <priority>0.6</priority>
     <changefreq>weekly</changefreq>
     <image:image>

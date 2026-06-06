@@ -50,34 +50,34 @@ export const RSS_FEEDS = Object.freeze([
     tags: ['football', 'general'],
   },
   {
-    id: '90min',
-    label: '90min',
-    url: 'https://www.90min.com/rss.xml',
-    tags: ['football'],
-  },
-  {
-    id: 'football365',
-    label: 'Football365',
-    url: 'https://www.football365.com/feed',
-    tags: ['football'],
-  },
-  {
-    id: 'goal-com',
-    label: 'Goal.com',
-    url: 'https://www.goal.com/feeds/en/news',
-    tags: ['football'],
-  },
-  {
     id: 'fourfourtwo',
     label: 'FourFourTwo',
     url: 'https://www.fourfourtwo.com/rss',
     tags: ['football'],
   },
   {
-    id: 'eurosport',
-    label: 'Eurosport',
-    url: 'https://www.eurosport.com/rss.xml',
-    tags: ['general', 'football'],
+    id: 'transfermarkt',
+    label: 'Transfermarkt',
+    url: 'https://www.transfermarkt.com/rss/news',
+    tags: ['football', 'general'],
+  },
+  {
+    id: 'worldsoccer',
+    label: 'World Soccer',
+    url: 'https://www.worldsoccer.com/rss',
+    tags: ['football', 'general'],
+  },
+  {
+    id: 'yahoo-soccer',
+    label: 'Yahoo Sports Soccer',
+    url: 'https://sports.yahoo.com/soccer/rss.xml',
+    tags: ['football'],
+  },
+  {
+    id: 'gazzetta',
+    label: 'La Gazzetta dello Sport',
+    url: 'https://www.gazzetta.it/dynamic-feed/rss/section/last.xml',
+    tags: ['football'],
   },
 
   // ── PREMIER LEAGUE ──────────────────────────────────────────────────────
@@ -104,18 +104,6 @@ export const RSS_FEEDS = Object.freeze([
 
   // ── AFRICAN FOOTBALL ────────────────────────────────────────────────────
   {
-    id: 'caf-online',
-    label: 'CAF Online',
-    url: 'https://www.cafonline.com/news/rss.xml',
-    tags: ['football', 'africa'],
-  },
-  {
-    id: 'africanews-sport',
-    label: 'Africanews – Sport',
-    url: 'https://www.africanews.com/sport/rss',
-    tags: ['football', 'africa', 'general'],
-  },
-  {
     id: 'espn-afcon',
     label: 'ESPN – AFCON / CAF',
     url: 'https://www.espn.com/espn/rss/soccer/_/league/CAF.NATIONS',
@@ -136,22 +124,16 @@ export const RSS_FEEDS = Object.freeze([
     tags: ['football', 'zambia', 'africa'],
   },
   {
-    id: 'znbc-sport',
-    label: 'ZNBC Sport',
-    url: 'https://www.znbc.co.zm/category/sports/feed/',
-    tags: ['football', 'zambia'],
-  },
-  {
     id: 'daily-mail-zm',
     label: 'Daily Mail Zambia – Sport',
     url: 'https://www.daily-mail.co.zm/category/sports/feed/',
     tags: ['football', 'zambia', 'general'],
   },
   {
-    id: 'times-of-zambia-sport',
-    label: 'Times of Zambia – Sport',
-    url: 'https://www.times.co.zm/category/sports/feed/',
-    tags: ['football', 'zambia'],
+    id: 'goal-diggers',
+    label: 'Goal Diggers (Zambia)',
+    url: 'https://diggers.news/category/goal-diggers/feed/',
+    tags: ['football', 'zambia', 'africa'],
   },
 
   // ── OTHER MAJOR LEAGUES ──────────────────────────────────────────────────
@@ -206,15 +188,9 @@ export const RSS_FEEDS = Object.freeze([
     tags: ['general'],
   },
   {
-    id: 'sporting-news',
-    label: 'Sporting News',
-    url: 'https://sportingnews.com/rss',
-    tags: ['general'],
-  },
-  {
-    id: 'reuters-sport',
-    label: 'Reuters Sport',
-    url: 'https://feeds.reuters.com/reuters/sportsNews',
+    id: 'espn-sport-all',
+    label: 'ESPN – All Sports',
+    url: 'https://www.espn.com/espn/rss/news',
     tags: ['general'],
   },
 
@@ -224,12 +200,6 @@ export const RSS_FEEDS = Object.freeze([
     label: 'Footy Headlines',
     url: 'https://www.footyheadlines.com/feeds/posts/default',
     tags: ['kit-launches', 'football'],
-  },
-  {
-    id: 'kickoff-kits',
-    label: 'Kickoff – Kits & Fashion',
-    url: 'https://www.kickoff.com/rss/news/',
-    tags: ['kit-launches', 'football', 'africa'],
   },
 ]);
 
@@ -333,7 +303,7 @@ export function classify(item, filter) {
   // Zambia filter - prioritize feed origin
   if (filter === 'zambia') {
     // Feed-based detection (high confidence)
-    const isZambiaFeed = /znbc|daily-mail-zm|times-of-zambia-sport|espn-cosafa/.test(feedId);
+    const isZambiaFeed = /bola-yapa-zed|daily-mail-zm|goal-diggers|espn-cosafa/.test(feedId);
     if (isZambiaFeed) return true;
     
     // Source-based detection (medium confidence)
@@ -352,7 +322,7 @@ export function classify(item, filter) {
 
   // Africa filter - prioritize feed origin
   if (filter === 'africa') {
-    const isAfricaFeed = /caf-online|africanews-sport|espn-afcon|espn-cosafa|kickoff-kits/.test(feedId);
+    const isAfricaFeed = /bola-yapa-zed|goal-diggers|espn-afcon|espn-cosafa/.test(feedId);
     if (isAfricaFeed) return true;
     
     const isAfricaSource = /caf online|africanews|kickoff/.test(src);
@@ -367,7 +337,7 @@ export function classify(item, filter) {
   }
 
   if (filter === 'kit-launches') {
-    const isKitFeed = /footy-headlines|kickoff-kits/.test(feedId);
+    const isKitFeed = /footy-headlines/.test(feedId);
     if (isKitFeed) return true;
     
     const isKitSource = /footy headlines|kickoff/.test(src);
@@ -382,7 +352,7 @@ export function classify(item, filter) {
 
   if (filter === 'world') {
     // Exclude any feed or content that is specifically Zambia/Africa
-    const isExcludedFeed = /znbc|daily-mail-zm|times-of-zambia-sport|caf-online|africanews-sport|espn-afcon|espn-cosafa/.test(feedId);
+    const isExcludedFeed = /bola-yapa-zed|daily-mail-zm|goal-diggers|espn-afcon|espn-cosafa/.test(feedId);
     if (isExcludedFeed) return false;
     
     const isExcludedSource = /znbc|daily mail zambia|times of zambia|caf online|africanews/.test(src);
@@ -483,23 +453,16 @@ export async function fetchFeed(feedId, options = { force: false }) {
   }
   
   try {
-    let data;
-    try {
-      data = await fetchWithRetry(feed);
-    } catch (error) {
-      console.warn(`Direct fetch failed for ${feedId}, trying proxy:`, error);
-      data = await fetchRssFromProxy(feed, options.force);
-    }
-    
+    // Go straight to proxy — external RSS feeds never support browser CORS,
+    // so direct fetch always fails and spams the console. The proxy runs on
+    // the same domain and handles upstream fetching server-side.
+    const data = await fetchRssFromProxy(feed, options.force);
     rssCache.set(feedId, { t: now, data });
     return data;
   } catch (error) {
-    console.error(`Failed to fetch feed ${feedId}:`, error);
     updateFeedHealth(feedId, false);
-    
     // Return cached data if available, even if expired
     if (hit) return hit.data;
-    
     return { id: feedId, label: feed.label, items: [], error: error.message };
   }
 }
