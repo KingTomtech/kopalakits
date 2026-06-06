@@ -99,7 +99,7 @@ export default function FanZoneAdmin() {
           style={{
             backgroundColor: active === 'results' ? 'var(--text)' : 'transparent',
             color: active === 'results' ? 'var(--bg)' : 'var(--text)',
-            border: '1px solid var(--text)',
+            border: '1px solid var(--border)',
           }}
         >
           <Target size={14} className="inline -mt-0.5 mr-1" />
@@ -111,7 +111,7 @@ export default function FanZoneAdmin() {
           style={{
             backgroundColor: active === 'tournaments' ? 'var(--text)' : 'transparent',
             color: active === 'tournaments' ? 'var(--bg)' : 'var(--text)',
-            border: '1px solid var(--text)',
+            border: '1px solid var(--border)',
           }}
         >
           <Trophy size={14} className="inline -mt-0.5 mr-1" />
@@ -119,7 +119,7 @@ export default function FanZoneAdmin() {
         </button>
         <button
           onClick={active === 'results' ? loadFixtures : loadTournaments}
-          className="ml-auto p-2 rounded-lg hover:bg-gray-100"
+          className="ml-auto p-2 rounded-lg hover:bg-[var(--bg-elevated)] transition"
           title="Refresh"
         >
           <RefreshCw size={16} className={loading ? 'animate-spin' : ''} />

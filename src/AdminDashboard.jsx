@@ -1,10 +1,17 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { X, Plus, Trash2, Save, Upload, LogOut, Edit2, Download, RefreshCw } from 'lucide-react';
+import { X, Plus, Trash2, Save, LogOut, Edit2, Download, RefreshCw, Search, Image as ImageIcon } from 'lucide-react';
 import FanZoneAdmin from './admin/FanZoneAdmin.jsx';
-import { STORAGE_KEY, BANNER_KEY, AUTH_TOKEN_KEY, ADMIN_CATEGORIES } from './constants.js';
-
+import { STORAGE_KEY, BANNER_KEY, AUTH_TOKEN_KEY, ADMIN_CATEGORIES, IMAGE_FALLBACK } from './constants.js';
 
 const defaultProduct = { id: Date.now(), name: '', price: '', category: 'International', desc: '', image: '' };
+
+function useKeydown(key, handler) {
+  useEffect(() => {
+    const onKey = (e) => { if (e.key === key) handler(); };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [key, handler]);
+}
 
 
 async function compressImage(file, maxWidth = 800, maxHeight = 800, quality = 0.8) {
@@ -49,8 +56,10 @@ export default function AdminDashboard({ onExit }) {
   const [loading, setLoading] = useState(false);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
   const fileInputRef = useRef(null);
   const addFileRef = useRef(null);
+  const searchRef = useRef(null);
 
   const api = useCallback(async (path, opts = {}) => {
     const res = await fetch(`/api${path}`, {
@@ -154,28 +163,35 @@ export default function AdminDashboard({ onExit }) {
   };
 
   const saveEdit = async () => {
+    const trimmedName = editForm.name.trim();
+    if (!trimmedName) {
+      showToast('Product name is required');
+      return;
+    }
     const price = Number(editForm.price);
     if (!Number.isFinite(price) || price <= 0) {
       showToast('Price must be a positive number');
       return;
     }
-    const updated = products.map(p => p.id === editingId ? { ...editForm, price } : p);
+    const updated = products.map(p => p.id === editingId ? { ...editForm, name: trimmedName, price } : p);
     await persistProducts(updated);
     setEditingId(null);
   };
 
   const deleteProduct = async (id) => {
-    if (!window.confirm('Delete this product?')) return;
+    const product = products.find(p => p.id === id);
+    if (!window.confirm(`Delete "${product?.name || 'this product'}"? This cannot be undone.`)) return;
     await persistProducts(products.filter(p => p.id !== id));
   };
 
   const addProduct = async () => {
-    if (!addForm.name || !addForm.price) return showToast('Name and price required');
+    const trimmedName = addForm.name.trim();
+    if (!trimmedName) return showToast('Product name is required');
     const price = Number(addForm.price);
     if (!Number.isFinite(price) || price <= 0) {
       return showToast('Price must be a positive number');
     }
-    const newProduct = { ...addForm, id: Date.now(), price };
+    const newProduct = { ...addForm, name: trimmedName, id: Date.now(), price };
     await persistProducts([...products, newProduct]);
     setIsAdding(false);
     setAddForm({ ...defaultProduct, id: Date.now() });
@@ -183,6 +199,10 @@ export default function AdminDashboard({ onExit }) {
 
   const handleImageUpload = async (e, target) => {
     const file = e.target.files[0]; if (!file) return;
+    if (!file.type.startsWith('image/')) {
+      showToast('Please upload an image file');
+      return;
+    }
     if (file.size > 5 * 1024 * 1024) {
       showToast('Image too large — max 5 MB');
       return;
@@ -245,6 +265,17 @@ export default function AdminDashboard({ onExit }) {
     await persistProducts(data);
   };
 
+  useKeydown('Escape', () => {
+    if (jsonView) setJsonView(false);
+    else if (isAdding) setIsAdding(false);
+    else if (editingId !== null) cancelEdit();
+  });
+
+  const filteredProducts = products.filter(p =>
+    p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    p.category.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   if (!authed) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-[var(--bg)]">
@@ -286,30 +317,32 @@ export default function AdminDashboard({ onExit }) {
         </div>
       )}
 
-      <nav className="bg-[var(--bg-elevated)] shadow-sm px-6 py-4 flex items-center justify-between sticky top-0 z-50">
+      <nav className="bg-[var(--bg-elevated)] shadow-sm px-4 sm:px-6 py-3 sm:py-4 flex flex-col sm:flex-row sm:items-center justify-between sticky top-0 z-50 gap-3">
         <div>
-          <h1 className="text-2xl font-black text-[var(--brand-deep)]">KOPALA KITS — Admin</h1>
+          <h1 className="text-xl sm:text-2xl font-black text-[var(--brand-deep)]">KOPALA KITS — Admin</h1>
           <p className="text-xs text-[var(--text-faint)]">
             {products.length} products
             {loading && <span className="ml-2 px-2 py-0.5 rounded-full bg-[var(--warning)]/15 text-[var(--warning)] font-semibold">Loading…</span>}
             {saving && <span className="ml-2 px-2 py-0.5 rounded-full bg-[var(--brand)]/15 text-[var(--brand)] font-semibold">Saving…</span>}
           </p>
         </div>
-        <div className="flex gap-2">
-          <button onClick={resetToDefault} title="Reset to default" className="p-2.5 rounded-xl hover:bg-[var(--border)]/20 text-[var(--text-muted)]" >
+        <div className="flex gap-2 flex-wrap sm:flex-nowrap">
+          <button onClick={resetToDefault} title="Reset to default" className="p-2.5 rounded-xl hover:bg-[var(--border)]/20 text-[var(--text-muted)] transition">
             <RefreshCw size={18} />
           </button>
-          <button onClick={openJsonEditor} className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[var(--bg-elevated)] hover:bg-[var(--border)]/40 text-sm font-semibold">
-            Edit JSON
+          <button onClick={openJsonEditor} className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded-xl bg-[var(--bg-elevated)] hover:bg-[var(--border)]/40 text-sm font-semibold transition">
+            <span className="hidden sm:inline">Edit JSON</span>
+            <span className="sm:hidden">JSON</span>
           </button>
-          <button onClick={exportJson} className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[var(--bg-elevated)] hover:bg-[var(--border)]/40 text-sm font-semibold">
-            <Download size={16} /> Export
+          <button onClick={exportJson} className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded-xl bg-[var(--bg-elevated)] hover:bg-[var(--border)]/40 text-sm font-semibold transition">
+            <Download size={16} /> <span className="hidden sm:inline">Export</span>
           </button>
-          <button onClick={onExit} className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[var(--bg-elevated)] hover:bg-[var(--border)]/40 text-sm font-semibold">
-            ← Shop
+          <button onClick={onExit} className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded-xl bg-[var(--bg-elevated)] hover:bg-[var(--border)]/40 text-sm font-semibold transition">
+            <span className="hidden sm:inline">← Shop</span>
+            <span className="sm:hidden">Shop</span>
           </button>
-          <button onClick={logout} className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[var(--danger)]/15 hover:bg-[var(--danger)]/25 text-[var(--danger)] text-sm font-semibold">
-            <LogOut size={16} /> Logout
+          <button onClick={logout} className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded-xl bg-[var(--danger)]/15 hover:bg-[var(--danger)]/25 text-[var(--danger)] text-sm font-semibold transition">
+            <LogOut size={16} /> <span className="hidden sm:inline">Logout</span>
           </button>
         </div>
       </nav>
@@ -409,15 +442,27 @@ export default function AdminDashboard({ onExit }) {
 
             {adminTab === 'products' && (
               <>
-                <button
-                  onClick={async () => { setIsAdding(true); setAddForm({ ...defaultProduct, id: Date.now() }); }}
-                  className="mb-6 flex items-center gap-2 px-6 py-3 bg-[var(--brand)] text-[var(--surface)] rounded-2xl font-bold hover:brightness-110 transition"
-                >
-                  <Plus size={20} /> Add New Product
-                </button>
+                <div className="flex flex-col sm:flex-row gap-3 mb-6">
+                  <button
+                    onClick={() => { setIsAdding(true); setAddForm({ ...defaultProduct, id: Date.now() }); }}
+                    className="flex items-center justify-center gap-2 px-6 py-3 bg-[var(--brand)] text-[var(--surface)] rounded-2xl font-bold hover:brightness-110 transition"
+                  >
+                    <Plus size={20} /> Add New Product
+                  </button>
+                  <div className="relative flex-1">
+                    <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--text-faint)]" />
+                    <input
+                      ref={searchRef}
+                      value={searchQuery}
+                      onChange={e => setSearchQuery(e.target.value)}
+                      placeholder="Search products…"
+                      className="w-full border-2 border-[var(--border)] rounded-2xl pl-9 pr-4 py-3 text-sm focus:outline-none focus:border-[var(--brand)] bg-[var(--surface)] text-[var(--text)]"
+                    />
+                  </div>
+                </div>
 
                 {isAdding && (
-                  <div className="bg-[var(--surface)] rounded-3xl shadow-xl p-6 mb-6 border-2 border-[var(--brand)]">
+                  <div className="bg-[var(--surface)] rounded-3xl shadow-xl p-6 mb-6 border-2 border-[var(--brand)] kk-fade">
                     <h3 className="font-bold text-lg mb-4 text-[var(--brand-deep)]">New Product</h3>
                     <ProductForm
                       form={addForm}
@@ -426,21 +471,55 @@ export default function AdminDashboard({ onExit }) {
                       onImageUpload={e => handleImageUpload(e, 'add')}
                     />
                     <div className="flex gap-3 mt-4">
-                      <button onClick={addProduct} className="flex items-center gap-2 px-6 py-2.5 bg-[var(--brand)] text-[var(--surface)] rounded-2xl font-bold hover:brightness-110">
-                        <Save size={16} /> Save Product
+                      <button
+                        onClick={addProduct}
+                        disabled={saving}
+                        className="flex items-center gap-2 px-6 py-2.5 bg-[var(--brand)] text-[var(--surface)] rounded-2xl font-bold hover:brightness-110 disabled:opacity-50 transition"
+                      >
+                        <Save size={16} className={saving ? 'animate-spin' : ''} /> {saving ? 'Saving…' : 'Save Product'}
                       </button>
-                      <button onClick={() => setIsAdding(false)} className="px-6 py-2.5 border-2 border-[var(--border)] rounded-2xl font-semibold hover:bg-[var(--bg-elevated)] text-[var(--text)]">
+                      <button onClick={() => setIsAdding(false)} className="px-6 py-2.5 border-2 border-[var(--border)] rounded-2xl font-semibold hover:bg-[var(--bg-elevated)] text-[var(--text)] transition">
                         Cancel
                       </button>
                     </div>
                   </div>
                 )}
 
+                {loading && products.length === 0 && (
+                  <div className="space-y-3">
+                    {Array.from({ length: 4 }).map((_, i) => (
+                      <div key={i} className="bg-[var(--surface)] rounded-2xl p-4 flex items-center gap-4">
+                        <div className="w-16 h-16 rounded-xl kk-skeleton flex-shrink-0" />
+                        <div className="flex-1 space-y-2">
+                          <div className="h-4 w-1/3 rounded kk-skeleton" />
+                          <div className="h-3 w-20 rounded kk-skeleton" />
+                        </div>
+                        <div className="w-20 h-8 rounded-xl kk-skeleton flex-shrink-0" />
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {!loading && filteredProducts.length === 0 && (
+                  <div className="rounded-2xl p-10 text-center border-2 border-dashed border-[var(--border)]">
+                    <div className="text-4xl mb-3">📦</div>
+                    <h3 className="font-bold text-[var(--text)]">{searchQuery ? 'No products match your search' : 'No products yet'}</h3>
+                    <p className="text-sm mt-1 text-[var(--text-muted)]">
+                      {searchQuery ? 'Try a different keyword or clear the search.' : 'Add your first product to get started.'}
+                    </p>
+                    {searchQuery && (
+                      <button onClick={() => setSearchQuery('')} className="mt-3 px-4 py-2 rounded-xl text-sm font-bold bg-[var(--bg-elevated)] hover:bg-[var(--border)]/40 text-[var(--text)] transition">
+                        Clear search
+                      </button>
+                    )}
+                  </div>
+                )}
+
                 <div className="space-y-3">
-                  {products.map(product => (
+                  {filteredProducts.map(product => (
                     <div key={product.id} className="bg-[var(--surface)] rounded-2xl shadow-sm overflow-hidden">
                       {editingId === product.id ? (
-                        <div className="p-6">
+                        <div className="p-4 sm:p-6 kk-fade">
                           <ProductForm
                             form={editForm}
                             setForm={setEditForm}
@@ -448,25 +527,40 @@ export default function AdminDashboard({ onExit }) {
                             onImageUpload={e => handleImageUpload(e, 'edit')}
                           />
                           <div className="flex gap-3 mt-4">
-                            <button onClick={saveEdit} className="flex items-center gap-2 px-6 py-2.5 bg-[var(--brand)] text-[var(--surface)] rounded-2xl font-bold hover:brightness-110">
-                              <Save size={16} /> Save
+                            <button
+                              onClick={saveEdit}
+                              disabled={saving}
+                              className="flex items-center gap-2 px-6 py-2.5 bg-[var(--brand)] text-[var(--surface)] rounded-2xl font-bold hover:brightness-110 disabled:opacity-50 transition"
+                            >
+                              <Save size={16} className={saving ? 'animate-spin' : ''} /> {saving ? 'Saving…' : 'Save'}
                             </button>
-                            <button onClick={cancelEdit} className="px-6 py-2.5 border-2 border-[var(--border)] rounded-2xl font-semibold hover:bg-[var(--bg-elevated)] text-[var(--text)]">
+                            <button onClick={cancelEdit} className="px-6 py-2.5 border-2 border-[var(--border)] rounded-2xl font-semibold hover:bg-[var(--bg-elevated)] text-[var(--text)] transition">
                               Cancel
                             </button>
                           </div>
                         </div>
                       ) : (
-                        <div className="flex items-center gap-4 p-4">
-                          <div className="w-16 h-16 rounded-xl overflow-hidden bg-[var(--bg-elevated)] flex-shrink-0">
-                            <img src={product.image} alt={product.name} className="w-full h-full object-cover" onError={e => e.target.style.display='none'} />
+                        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 p-4">
+                          <div className="w-full sm:w-16 h-48 sm:h-16 rounded-xl overflow-hidden bg-[var(--bg-elevated)] flex-shrink-0">
+                            <img
+                              src={product.image || IMAGE_FALLBACK}
+                              alt={product.name}
+                              className="w-full h-full object-cover"
+                              onError={e => { e.currentTarget.onerror = null; e.currentTarget.src = IMAGE_FALLBACK; }}
+                              loading="lazy"
+                              decoding="async"
+                            />
                           </div>
-                          <div className="flex-1 min-w-0">
+                          <div className="flex-1 min-w-0 w-full">
                             <p className="font-bold text-sm truncate text-[var(--text)]">{product.name}</p>
                             <p className="text-xs text-[var(--text-faint)]">{product.category} • K{product.price}</p>
-                            <p className="text-xs text-[var(--text-disabled)] truncate">{product.desc}</p>
+                            {product.desc && <p className="text-xs text-[var(--text-disabled)] truncate">{product.desc}</p>}
+                            <div className="flex flex-wrap gap-1.5 mt-2 sm:hidden">
+                              {product.soldOut && <span className="px-2 py-0.5 rounded-lg text-[10px] font-bold bg-[var(--danger)]/15 text-[var(--danger)]">SOLD OUT</span>}
+                              {product.newArrival && <span className="px-2 py-0.5 rounded-lg text-[10px] font-bold bg-[var(--warning)]/15 text-[var(--warning)]">NEW</span>}
+                            </div>
                           </div>
-                          <div className="flex gap-2 flex-shrink-0 items-center">
+                          <div className="flex gap-2 flex-shrink-0 items-center w-full sm:w-auto justify-end">
                             <button
                               onClick={async () => {
                                 const updated = products.map(p => p.id === product.id ? { ...p, soldOut: !p.soldOut } : p);
@@ -478,10 +572,10 @@ export default function AdminDashboard({ onExit }) {
                             >
                               {product.soldOut ? 'SOLD OUT' : 'In Stock'}
                             </button>
-                            <button onClick={() => startEdit(product)} className="p-2 rounded-xl bg-[var(--bg-elevated)] hover:bg-[var(--border)]/40 text-[var(--text-muted)]">
+                            <button onClick={() => startEdit(product)} className="p-2 rounded-xl bg-[var(--bg-elevated)] hover:bg-[var(--border)]/40 text-[var(--text-muted)] transition">
                               <Edit2 size={16} />
                             </button>
-                            <button onClick={() => deleteProduct(product.id)} className="p-2 rounded-xl bg-[var(--danger)]/15 hover:bg-[var(--danger)]/25 text-[var(--danger)]">
+                            <button onClick={() => deleteProduct(product.id)} className="p-2 rounded-xl bg-[var(--danger)]/15 hover:bg-[var(--danger)]/25 text-[var(--danger)] transition">
                               <Trash2 size={16} />
                             </button>
                           </div>
@@ -528,6 +622,28 @@ export default function AdminDashboard({ onExit }) {
 }
 
 function ProductForm({ form, setForm, fileRef, onImageUpload }) {
+  const [dragOver, setDragOver] = useState(false);
+  const hasImage = !!form.image;
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    setDragOver(false);
+    const file = e.dataTransfer.files[0];
+    if (!file) return;
+    if (!file.type.startsWith('image/')) {
+      // We'll emit a synthetic event so the parent toast fires
+      onImageUpload({ target: { files: [file] } });
+      return;
+    }
+    onImageUpload({ target: { files: [file] } });
+  };
+
+  const clearImage = () => setForm(f => ({ ...f, image: '' }));
+
+  const nameError = !form.name || !form.name.trim();
+  const priceNum = Number(form.price);
+  const priceError = !form.price || !Number.isFinite(priceNum) || priceNum <= 0;
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
       <div>
@@ -536,8 +652,10 @@ function ProductForm({ form, setForm, fileRef, onImageUpload }) {
           value={form.name}
           onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
           placeholder="e.g. Portugal Home Jersey 2026"
-          className="w-full border-2 border-[var(--border)] rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-[var(--brand)] bg-[var(--surface)] text-[var(--text)]"
+          maxLength={100}
+          className={`w-full border-2 rounded-xl px-3 py-2 text-sm focus:outline-none bg-[var(--surface)] text-[var(--text)] ${nameError ? 'border-[var(--danger)]' : 'border-[var(--border)] focus:border-[var(--brand)]'}`}
         />
+        {nameError && <p className="text-[10px] text-[var(--danger)] mt-1">Name is required</p>}
       </div>
       <div>
         <label className="block text-xs font-semibold text-[var(--text-muted)] mb-1">Price (K) *</label>
@@ -546,8 +664,10 @@ function ProductForm({ form, setForm, fileRef, onImageUpload }) {
           value={form.price}
           onChange={e => setForm(f => ({ ...f, price: e.target.value }))}
           placeholder="e.g. 650"
-          className="w-full border-2 border-[var(--border)] rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-[var(--brand)] bg-[var(--surface)] text-[var(--text)]"
+          min={1}
+          className={`w-full border-2 rounded-xl px-3 py-2 text-sm focus:outline-none bg-[var(--surface)] text-[var(--text)] ${priceError ? 'border-[var(--danger)]' : 'border-[var(--border)] focus:border-[var(--brand)]'}`}
         />
+        {priceError && <p className="text-[10px] text-[var(--danger)] mt-1">Enter a positive price</p>}
       </div>
       <div>
         <label className="block text-xs font-semibold text-[var(--text-muted)] mb-1">Category</label>
@@ -565,39 +685,51 @@ function ProductForm({ form, setForm, fileRef, onImageUpload }) {
           value={form.desc}
           onChange={e => setForm(f => ({ ...f, desc: e.target.value }))}
           placeholder="Short description..."
+          maxLength={200}
           className="w-full border-2 border-[var(--border)] rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-[var(--brand)] bg-[var(--surface)] text-[var(--text)]"
         />
       </div>
       <div className="md:col-span-2">
         <label className="block text-xs font-semibold text-[var(--text-muted)] mb-1">Image</label>
-        <div className="flex gap-3 items-start">
-          <div className="flex-1 space-y-2">
+        <div className="flex flex-col sm:flex-row gap-3 items-start">
+          <div className="flex-1 w-full space-y-2">
             <input
               value={form.image && !form.image.startsWith('data:') ? form.image : ''}
               onChange={e => setForm(f => ({ ...f, image: e.target.value }))}
-              placeholder="https://... or upload below"
+              placeholder="https://... or drag & drop / upload below"
               className="w-full border-2 border-[var(--border)] rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-[var(--brand)] bg-[var(--surface)] text-[var(--text)]"
             />
-            <div className="flex items-center gap-2">
+            <div
+              onDragOver={e => { e.preventDefault(); setDragOver(true); }}
+              onDragLeave={() => setDragOver(false)}
+              onDrop={handleDrop}
+              className={`border-2 border-dashed rounded-xl px-4 py-6 text-center transition cursor-pointer ${dragOver ? 'border-[var(--brand)] bg-[var(--brand)]/5' : 'border-[var(--border)] hover:border-[var(--border-strong)] bg-[var(--bg-elevated)]'}`}
+              onClick={() => fileRef.current?.click()}
+            >
+              <div className="flex flex-col items-center gap-1">
+                <ImageIcon size={20} className="text-[var(--text-faint)]" />
+                <span className="text-xs text-[var(--text-muted)] font-medium">Drag & drop an image, or click to browse</span>
+                <span className="text-[10px] text-[var(--text-faint)]">PNG, JPG, WEBP · max 5 MB</span>
+              </div>
               <input ref={fileRef} type="file" accept="image/*" onChange={onImageUpload} className="hidden" />
-              <button
-                type="button"
-                onClick={() => fileRef.current?.click()}
-                className="flex items-center gap-2 px-4 py-2 border-2 border-[var(--border)] rounded-xl text-sm font-semibold hover:bg-[var(--bg-elevated)] text-[var(--text)]"
-              >
-                <Upload size={14} /> Upload Image
-              </button>
-              {form.image && <span className="text-xs text-[var(--success)] font-medium">✓ Image set</span>}
             </div>
           </div>
-          {form.image && (
-            <div className="w-20 h-20 rounded-xl overflow-hidden bg-[var(--bg-elevated)] flex-shrink-0">
-              <img src={form.image} alt="preview" className="w-full h-full object-cover" onError={e => e.target.style.display='none'} />
+          {hasImage && (
+            <div className="relative w-full sm:w-24 h-48 sm:h-24 rounded-xl overflow-hidden bg-[var(--bg-elevated)] flex-shrink-0 border border-[var(--border)]">
+              <img src={form.image} alt="preview" className="w-full h-full object-cover" onError={e => { e.currentTarget.onerror = null; e.currentTarget.src = IMAGE_FALLBACK; }} />
+              <button
+                type="button"
+                onClick={(e) => { e.stopPropagation(); clearImage(); }}
+                className="absolute top-1 right-1 p-1 rounded-lg bg-black/50 text-white hover:bg-black/70 transition"
+                title="Remove image"
+              >
+                <X size={14} />
+              </button>
             </div>
           )}
         </div>
       </div>
-      <div className="md:col-span-2 flex items-center gap-6">
+      <div className="md:col-span-2 flex flex-wrap items-center gap-4 sm:gap-6">
         <label className="flex items-center gap-3 cursor-pointer select-none">
           <div
             onClick={() => setForm(f => ({ ...f, soldOut: !f.soldOut }))}
