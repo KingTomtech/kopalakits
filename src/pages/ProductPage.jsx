@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { Heart, Plus, MessageCircle, ArrowLeft, Share2, Truck, ShieldCheck, Clock } from 'lucide-react';
 import { IMAGE_FALLBACK, SIZES, PHONE_FALLBACK } from '../constants.js';
 import { getTeamLastEvents, getTeamInfo, TEAM_IDS } from '../lib/api.js';
+import { setProductSEO, clearProductSEO } from '../lib/seo.js';
 import { useWishlist } from '../hooks/useWishlist.js';
 import ProductGrid from '../components/ProductGrid.jsx';
 
@@ -32,6 +33,12 @@ export default function ProductPage({ products, loading, onAddToCart, showToast 
   const wishlist = useWishlist();
   const [events, setEvents] = useState([]);
   const [team, setTeam] = useState(null);
+
+  // SEO: inject product-specific meta tags and structured data
+  useEffect(() => {
+    if (product) setProductSEO(product);
+    return () => { clearProductSEO(); };
+  }, [product]);
 
   // Live data from the public sports API
   useEffect(() => {
@@ -123,12 +130,18 @@ export default function ProductPage({ products, loading, onAddToCart, showToast 
             className="w-full h-full object-cover"
           />
           {product.soldOut && (
-            <span className="absolute top-4 left-4 bg-red-500 text-white text-xs font-bold px-3 py-1.5 rounded-lg">
+            <span
+              className="absolute top-4 left-4 text-white text-xs font-bold px-3 py-1.5 rounded-lg"
+              style={{ backgroundColor: 'var(--danger)' }}
+            >
               SOLD OUT
             </span>
           )}
           {product.newArrival && (
-            <span className="absolute top-4 right-4 bg-amber-400 text-black text-xs font-bold px-3 py-1.5 rounded-lg">
+            <span
+              className="absolute top-4 right-4 text-black text-xs font-bold px-3 py-1.5 rounded-lg"
+              style={{ backgroundColor: 'var(--warning)' }}
+            >
               NEW
             </span>
           )}

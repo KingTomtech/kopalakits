@@ -10,6 +10,18 @@ const CACHE_TTL_MS = 6 * 60 * 60 * 1000;
 
 const memoryCache = new Map();
 
+/**
+ * Parse a fetch Response as JSON, but throw a clear error if the
+ * Content-Type is not application/json (e.g. HTML 404 / SPA fallback).
+ */
+export async function safeJson(res) {
+  const ct = res.headers.get('content-type') || '';
+  if (!ct.includes('application/json')) {
+    throw new Error(`Expected JSON, got ${ct.split(';')[0] || 'unknown'}`);
+  }
+  return res.json();
+}
+
 async function cachedFetch(path) {
   const key = path;
   const now = Date.now();
@@ -18,7 +30,7 @@ async function cachedFetch(path) {
   try {
     const res = await fetch(`${BASE}${path}`);
     if (!res.ok) throw new Error(`API ${res.status}`);
-    const data = await res.json();
+    const data = await safeJson(res);
     memoryCache.set(key, { t: now, data });
     return data;
   } catch {

@@ -1,12 +1,5 @@
 User-agent: *
 Allow: /
-Allow: /jerseys/
-Allow: /og-image.jpg
-Allow: /favicon.svg
-
 Disallow: /admin
-Disallow: /api/
 
 Sitemap: https://kopala.zingati.app/sitemap.xml
-
-Host: https://kopala.zingati.app

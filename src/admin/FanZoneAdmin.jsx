@@ -26,8 +26,10 @@ export default function FanZoneAdmin() {
     setLoading(true);
     try {
       const res = await fetch('/api/predictions');
-      const data = await res.json();
+      const data = await res.json().catch(() => ({}));
       setFixtures(data.fixtures || []);
+    } catch (e) {
+      flash(e.message || 'Failed to load fixtures', true);
     } finally { setLoading(false); }
   }, []);
 
@@ -35,8 +37,10 @@ export default function FanZoneAdmin() {
     setLoading(true);
     try {
       const res = await fetch('/api/admin/tournaments', { headers: authHeaders() });
-      const data = await res.json();
+      const data = await res.json().catch(() => ({}));
       setTournaments(data.tournaments || []);
+    } catch (e) {
+      flash(e.message || 'Failed to load tournaments', true);
     } finally { setLoading(false); }
   }, []);
 
@@ -78,12 +82,12 @@ export default function FanZoneAdmin() {
   return (
     <div className="space-y-4">
       {error && (
-        <div className="rounded-xl p-3 flex items-center gap-2 text-sm" style={{ backgroundColor: '#FEE2E2', color: '#7F1D1D' }}>
+        <div className="rounded-xl p-3 flex items-center gap-2 text-sm" style={{ backgroundColor: 'var(--danger-bg)', color: 'var(--danger)' }}>
           <AlertCircle size={16} /> {error}
         </div>
       )}
       {toast && (
-        <div className="rounded-xl p-3 flex items-center gap-2 text-sm" style={{ backgroundColor: '#DCFCE7', color: '#14532D' }}>
+        <div className="rounded-xl p-3 flex items-center gap-2 text-sm" style={{ backgroundColor: 'var(--success-bg)', color: 'var(--success)' }}>
           <Save size={16} /> {toast}
         </div>
       )}
@@ -93,9 +97,9 @@ export default function FanZoneAdmin() {
           onClick={() => setActive('results')}
           className="px-3 py-1.5 rounded-lg text-sm font-bold"
           style={{
-            backgroundColor: active === 'results' ? '#3F4A26' : 'transparent',
-            color: active === 'results' ? '#FFFFFF' : '#3F4A26',
-            border: '1px solid #3F4A26',
+            backgroundColor: active === 'results' ? 'var(--text)' : 'transparent',
+            color: active === 'results' ? 'var(--bg)' : 'var(--text)',
+            border: '1px solid var(--text)',
           }}
         >
           <Target size={14} className="inline -mt-0.5 mr-1" />
@@ -105,9 +109,9 @@ export default function FanZoneAdmin() {
           onClick={() => setActive('tournaments')}
           className="px-3 py-1.5 rounded-lg text-sm font-bold"
           style={{
-            backgroundColor: active === 'tournaments' ? '#3F4A26' : 'transparent',
-            color: active === 'tournaments' ? '#FFFFFF' : '#3F4A26',
-            border: '1px solid #3F4A26',
+            backgroundColor: active === 'tournaments' ? 'var(--text)' : 'transparent',
+            color: active === 'tournaments' ? 'var(--bg)' : 'var(--text)',
+            border: '1px solid var(--text)',
           }}
         >
           <Trophy size={14} className="inline -mt-0.5 mr-1" />
@@ -123,13 +127,13 @@ export default function FanZoneAdmin() {
       </div>
 
       {active === 'results' && (
-        <div className="rounded-2xl p-4 bg-white border" style={{ borderColor: '#D8C3A5' }}>
-          <p className="text-sm mb-3" style={{ color: '#6B655A' }}>
+        <div className="rounded-2xl p-4 border" style={{ backgroundColor: 'var(--surface)', borderColor: 'var(--border)' }}>
+          <p className="text-sm mb-3" style={{ color: 'var(--text-muted)' }}>
             Set the actual result of each finished fixture so predictions can be scored
             and the leaderboard updates. Locked fixtures are past kickoff.
           </p>
           {fixtures.length === 0 ? (
-            <p className="text-sm italic" style={{ color: '#6B655A' }}>
+            <p className="text-sm italic" style={{ color: 'var(--text-muted)' }}>
               No fixtures in the cache yet. Visit the public Predictions page first
               so the system pulls upcoming events, then come back here.
             </p>
@@ -139,17 +143,17 @@ export default function FanZoneAdmin() {
                 <div
                   key={f.id}
                   className="rounded-xl p-3 border"
-                  style={{ borderColor: '#EADDC6', backgroundColor: '#FAFAF8' }}
+                  style={{ borderColor: 'var(--border)', backgroundColor: 'var(--surface)' }}
                 >
-                  <div className="flex items-center gap-2 text-xs mb-2" style={{ color: '#6B655A' }}>
+                  <div className="flex items-center gap-2 text-xs mb-2" style={{ color: 'var(--text-muted)' }}>
                     <span className="font-bold uppercase tracking-wider">{f.league || 'Friendly'}</span>
-                    {f.locked && <span className="px-2 py-0.5 rounded-full bg-red-100 text-red-700 font-bold">Locked</span>}
-                    {f.result && <span className="px-2 py-0.5 rounded-full bg-green-100 text-green-700 font-bold">Result set</span>}
+                    {f.locked && <span className="px-2 py-0.5 rounded-full font-bold" style={{ backgroundColor: 'var(--danger-bg)', color: 'var(--danger)' }}>Locked</span>}
+                    {f.result && <span className="px-2 py-0.5 rounded-full font-bold" style={{ backgroundColor: 'var(--success-bg)', color: 'var(--success)' }}>Result set</span>}
                   </div>
-                  <div className="text-sm font-bold" style={{ color: '#3F4A26' }}>
+                  <div className="text-sm font-bold" style={{ color: 'var(--text)' }}>
                     {f.home.name} vs {f.away.name}
                   </div>
-                  <div className="text-xs mb-2" style={{ color: '#6B655A' }}>
+                  <div className="text-xs mb-2" style={{ color: 'var(--text-muted)' }}>
                     {new Date(f.kickoff).toLocaleString('en-GB', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' })}
                   </div>
                   <div className="flex flex-wrap gap-1.5">
@@ -159,9 +163,9 @@ export default function FanZoneAdmin() {
                         onClick={() => setResult(f.id, r)}
                         className="px-2.5 py-1 rounded-lg text-xs font-bold border"
                         style={{
-                          backgroundColor: f.result === r ? '#5E6B3C' : 'transparent',
-                          borderColor: f.result === r ? '#5E6B3C' : '#D8C3A5',
-                          color: f.result === r ? '#FFFFFF' : '#3F4A26',
+                          backgroundColor: f.result === r ? 'var(--brand)' : 'transparent',
+                          borderColor: f.result === r ? 'var(--brand)' : 'var(--border)',
+                          color: f.result === r ? 'var(--bg)' : 'var(--text)',
                         }}
                       >
                         {RESULT_LABEL[r]}
@@ -176,20 +180,20 @@ export default function FanZoneAdmin() {
       )}
 
       {active === 'tournaments' && (
-        <div className="rounded-2xl p-4 bg-white border" style={{ borderColor: '#D8C3A5' }}>
-          <p className="text-sm mb-3" style={{ color: '#6B655A' }}>
+        <div className="rounded-2xl p-4 border" style={{ backgroundColor: 'var(--surface)', borderColor: 'var(--border)' }}>
+          <p className="text-sm mb-3" style={{ color: 'var(--text-muted)' }}>
             Edit or delete tournaments. The full JSON editor lives in the products
             tab; here you can delete a tournament to reset it.
           </p>
           {tournaments.length === 0 ? (
-            <p className="text-sm italic" style={{ color: '#6B655A' }}>No tournaments yet.</p>
+            <p className="text-sm italic" style={{ color: 'var(--text-muted)' }}>No tournaments yet.</p>
           ) : (
             <div className="space-y-2">
               {tournaments.map((t) => (
                 <div
                   key={t.id}
                   className="rounded-xl p-3 border flex items-center gap-3"
-                  style={{ borderColor: '#EADDC6', backgroundColor: '#FAFAF8' }}
+                  style={{ borderColor: 'var(--border)', backgroundColor: 'var(--surface)' }}
                 >
                   <div
                     className="w-10 h-10 rounded-xl flex items-center justify-center text-xl flex-shrink-0"
@@ -198,14 +202,14 @@ export default function FanZoneAdmin() {
                     {t.coverEmoji || '⚽'}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <div className="font-bold text-sm" style={{ color: '#3F4A26' }}>{t.name}</div>
-                    <div className="text-xs" style={{ color: '#6B655A' }}>
+                    <div className="font-bold text-sm" style={{ color: 'var(--text)' }}>{t.name}</div>
+                    <div className="text-xs" style={{ color: 'var(--text-muted)' }}>
                       {t.status} · {(t.rounds || []).reduce((s, r) => s + (r.matches?.length || 0), 0)} matches
                     </div>
                   </div>
                   <button
                     onClick={() => deleteTournament(t.id)}
-                    className="p-2 rounded-lg hover:bg-red-50 text-red-600"
+                    className="p-2 rounded-lg hover:bg-[var(--danger-bg)] text-[var(--danger)]"
                     title="Delete"
                   >
                     <Trash2 size={16} />
@@ -214,7 +218,7 @@ export default function FanZoneAdmin() {
               ))}
             </div>
           )}
-          <p className="text-xs mt-3" style={{ color: '#9A9388' }}>
+          <p className="text-xs mt-3" style={{ color: 'var(--text-faint)' }}>
             To create or edit a tournament bracket in detail, use the Admin "Edit JSON"
             tab — export the current tournaments, edit, and re-import.
           </p>

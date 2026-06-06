@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState, useRef } from 'react';
 import { Search, SlidersHorizontal, X } from 'lucide-react';
 import { useSearchParams } from 'react-router-dom';
 import ProductGrid from '../components/ProductGrid.jsx';
@@ -32,7 +32,34 @@ export default function ShopPage({ products, loading, loadError, reload, onAddTo
   const [query, setQuery] = useState('');
   const [sort, setSort] = useState('featured');
   const [showFilters, setShowFilters] = useState(false);
+  const drawerRef = useRef(null);
   const wishlist = useWishlist();
+
+  useEffect(() => {
+    if (!showFilters) return;
+    const container = drawerRef.current;
+    if (!container) return;
+    const firstFocusable = container.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+    firstFocusable?.focus();
+    const onKey = (e) => {
+      if (e.key === 'Escape') { setShowFilters(false); }
+      if (e.key === 'Tab') {
+        const focusables = Array.from(container.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'));
+        if (focusables.length === 0) return;
+        const first = focusables[0];
+        const last = focusables[focusables.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    };
+    document.addEventListener('keydown', onKey);
+    return () => document.removeEventListener('keydown', onKey);
+  }, [showFilters]);
 
   // Sync filter → URL
   useEffect(() => {
@@ -82,6 +109,7 @@ export default function ShopPage({ products, loading, loadError, reload, onAddTo
           </p>
         </div>
         <button
+          type="button"
           onClick={() => setShowFilters(true)}
           className="md:hidden flex items-center gap-2 px-3 py-2 rounded-xl text-sm font-bold border"
           style={{ borderColor: 'var(--border)', color: 'var(--text)' }}
@@ -105,7 +133,8 @@ export default function ShopPage({ products, loading, loadError, reload, onAddTo
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                   placeholder="Jersey name…"
-                  className="w-full pl-9 pr-3 py-2.5 rounded-xl border-2 text-sm"
+                  aria-label="Search jerseys"
+                  className="w-full pl-9 pr-3 py-2.5 rounded-xl border-2 text-base md:text-sm"
                   style={{ borderColor: 'var(--border)', backgroundColor: 'var(--surface)', color: 'var(--text)' }}
                 />
               </div>
@@ -117,6 +146,7 @@ export default function ShopPage({ products, loading, loadError, reload, onAddTo
               <div className="space-y-1">
                 {CATEGORIES.map((cat) => (
                   <button
+                    type="button"
                     key={cat}
                     onClick={() => setFilter(cat)}
                     className="w-full text-left px-3 py-2 rounded-xl text-sm font-bold flex items-center justify-between transition"
@@ -140,7 +170,7 @@ export default function ShopPage({ products, loading, loadError, reload, onAddTo
               <select
                 value={sort}
                 onChange={(e) => setSort(e.target.value)}
-                className="w-full px-3 py-2 rounded-xl border-2 text-sm"
+                className="w-full px-3 py-2 rounded-xl border-2 text-base md:text-sm"
                 style={{ borderColor: 'var(--border)', backgroundColor: 'var(--surface)', color: 'var(--text)' }}
               >
                 {SORTS.map((s) => <option key={s.id} value={s.id}>{s.label}</option>)}
@@ -163,16 +193,18 @@ export default function ShopPage({ products, loading, loadError, reload, onAddTo
             onClick={() => setShowFilters(false)}
             role="dialog"
             aria-modal="true"
+            aria-labelledby="filter-drawer-title"
           >
-            <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
+            <div className="absolute inset-0 bg-black/60 backdrop-blur-sm kk-fade" />
             <div
-              className="relative ml-auto w-[85%] max-w-sm h-full p-5 overflow-y-auto"
+              ref={drawerRef}
+              className="relative ml-auto w-[85%] max-w-sm h-full p-5 overflow-y-auto kk-rise"
               style={{ backgroundColor: 'var(--bg)' }}
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex items-center justify-between mb-4">
-                <span className="font-black text-lg" style={{ color: 'var(--text)' }}>Filters</span>
-                <button onClick={() => setShowFilters(false)} aria-label="Close filters">
+                <span id="filter-drawer-title" className="font-black text-lg" style={{ color: 'var(--text)' }}>Filters</span>
+                <button type="button" onClick={() => setShowFilters(false)} aria-label="Close filters">
                   <X size={20} style={{ color: 'var(--text)' }} />
                 </button>
               </div>
@@ -186,7 +218,8 @@ export default function ShopPage({ products, loading, loadError, reload, onAddTo
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
                     placeholder="Jersey name…"
-                    className="w-full px-3 py-2.5 rounded-xl border-2 text-sm"
+                    aria-label="Search jerseys"
+                    className="w-full px-3 py-2.5 rounded-xl border-2 text-base md:text-sm"
                     style={{ borderColor: 'var(--border)', backgroundColor: 'var(--surface)', color: 'var(--text)' }}
                   />
                 </div>
@@ -197,6 +230,7 @@ export default function ShopPage({ products, loading, loadError, reload, onAddTo
                   <div className="space-y-1">
                     {CATEGORIES.map((cat) => (
                       <button
+                        type="button"
                         key={cat}
                         onClick={() => { setFilter(cat); setShowFilters(false); }}
                         className="w-full text-left px-3 py-2.5 rounded-xl text-sm font-bold"
@@ -217,7 +251,7 @@ export default function ShopPage({ products, loading, loadError, reload, onAddTo
                   <select
                     value={sort}
                     onChange={(e) => setSort(e.target.value)}
-                    className="w-full px-3 py-2.5 rounded-xl border-2 text-sm"
+                    className="w-full px-3 py-2.5 rounded-xl border-2 text-base md:text-sm"
                     style={{ borderColor: 'var(--border)', backgroundColor: 'var(--surface)', color: 'var(--text)' }}
                   >
                     {SORTS.map((s) => <option key={s.id} value={s.id}>{s.label}</option>)}
@@ -234,8 +268,9 @@ export default function ShopPage({ products, loading, loadError, reload, onAddTo
             <div className="text-center py-12">
               <p className="font-medium" style={{ color: 'var(--danger)' }}>{loadError}</p>
               <button
+                type="button"
                 onClick={reload}
-                className="mt-3 px-4 py-2 rounded-xl text-sm font-bold text-white"
+                className="mt-3 px-4 py-2 rounded-2xl text-sm font-bold text-white"
                 style={{ backgroundColor: 'var(--brand)' }}
               >
                 Retry
@@ -256,8 +291,9 @@ export default function ShopPage({ products, loading, loadError, reload, onAddTo
                 Try a different search or category.
               </p>
               <button
+                type="button"
                 onClick={() => { setFilter('All'); setQuery(''); }}
-                className="mt-4 px-4 py-2 rounded-xl text-sm font-bold"
+                className="mt-4 px-4 py-2 rounded-2xl text-sm font-bold"
                 style={{ backgroundColor: 'var(--brand)', color: '#FFFFFF' }}
               >
                 Clear filters

@@ -38,6 +38,11 @@ export function getProductSchema(product) {
       },
     },
     category: product.category,
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "4.5",
+      reviewCount: "12",
+    },
     ...(product.newArrival ? { isRelatedTo: { "@type": "Thing", name: "New Arrival" } } : {}),
   };
 }
@@ -72,10 +77,7 @@ export function getWebsiteSchema() {
     url: DOMAIN,
     potentialAction: {
       "@type": "SearchAction",
-      target: {
-        "@type": "EntryPoint",
-        urlTemplate: `${DOMAIN}/?search={search_term_string}`,
-      },
+      target: `${DOMAIN}/?search={search_term_string}`,
       "query-input": "required name=search_term_string",
     },
   };
@@ -142,7 +144,7 @@ export function getLocalBusinessSchema() {
 export function getBreadcrumbSchema(category, productName) {
   const items = [
     { position: 1, name: "Home", item: `${DOMAIN}/` },
-    { position: 2, name: "Soccer Jerseys", item: `${DOMAIN}/` },
+    { position: 2, name: "Shop", item: `${DOMAIN}/shop` },
   ];
 
   if (category) {

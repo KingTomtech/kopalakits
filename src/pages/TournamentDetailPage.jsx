@@ -32,7 +32,7 @@ export default function TournamentDetailPage({ showToast }) {
       const res = await fetch(`/api/tournaments/${id}`, { headers: { 'X-Device-Id': deviceId } });
       if (res.status === 404) { setError('Tournament not found'); return; }
       if (!res.ok) throw new Error(`Failed (${res.status})`);
-      const data = await res.json();
+      const data = await res.json().catch(() => ({}));
       setTournament(data.tournament);
     } catch (e) {
       setError(e.message || 'Could not load tournament.');

@@ -1,4 +1,5 @@
 import { useEffect, useState, useCallback } from 'react';
+import { Link } from 'react-router-dom';
 import { Trophy, Users, Target } from 'lucide-react';
 import { useDeviceId } from '../hooks/useDeviceId.js';
 
@@ -26,8 +27,8 @@ function TournamentCard({ tournament }) {
   const { progress } = tournament;
   const pct = progress.total ? Math.round((progress.picked / progress.total) * 100) : 0;
   return (
-    <a
-      href={`/tournaments/${tournament.id}`}
+    <Link
+      to={`/tournaments/${tournament.id}`}
       className="block rounded-2xl overflow-hidden border transition hover:shadow-lg hover:-translate-y-0.5"
       style={{ borderColor: 'var(--border)', backgroundColor: 'var(--surface)' }}
     >
@@ -63,7 +64,7 @@ function TournamentCard({ tournament }) {
           </div>
         </div>
       </div>
-    </a>
+    </Link>
   );
 }
 
@@ -92,7 +93,7 @@ export default function TournamentsPage({ showToast }) {
     try {
       const res = await fetch('/api/tournaments', { headers: { 'X-Device-Id': deviceId } });
       if (!res.ok) throw new Error(`Failed (${res.status})`);
-      const data = await res.json();
+      const data = await res.json().catch(() => ({}));
       setTournaments(data.tournaments || []);
     } catch (e) {
       setError(e.message || 'Could not load tournaments.');

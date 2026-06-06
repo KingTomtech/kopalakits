@@ -56,27 +56,31 @@ const CORS_ALLOW_METHODS = 'GET, POST, PUT, DELETE, OPTIONS';
 const CORS_ALLOW_HEADERS = 'Content-Type, Authorization';
 
 function corsHeadersFor(origin, isWrite, env, requestUrl) {
-  // Default-deny on state-changing methods; safe methods may also be denied
-  // if origin is unknown — we just omit CORS headers and the browser blocks it.
   const headers = {
     'Access-Control-Allow-Methods': CORS_ALLOW_METHODS,
     'Access-Control-Allow-Headers': CORS_ALLOW_HEADERS,
     'Vary': 'Origin',
   };
-  if (!origin) return headers;
-  if (isWrite && !isTrustedOrigin(origin, env, requestUrl)) return headers; // do not advertise allow-origin
-  headers['Access-Control-Allow-Origin'] = origin;
-  headers['Access-Control-Allow-Credentials'] = 'true';
+  // Allow any origin for reads; mirror origin for writes so credentials stay safe
+  if (!origin) {
+    headers['Access-Control-Allow-Origin'] = '*';
+    return headers;
+  }
+  if (isWrite) {
+    // Writes require a known origin when credentials are used
+    if (!isTrustedOrigin(origin, env, requestUrl)) return headers;
+    headers['Access-Control-Allow-Origin'] = origin;
+    headers['Access-Control-Allow-Credentials'] = 'true';
+    return headers;
+  }
+  // Reads: allow any origin
+  headers['Access-Control-Allow-Origin'] = '*';
   return headers;
 }
 
 function trustedOriginSet(env, requestUrl) {
-  // 1. Same-origin (host of the deployed site) is always trusted.
-  // 2. Plus any ALLOWED_ORIGINS env var (comma-separated).
   const list = new Set();
-  try {
-    list.add(new URL(requestUrl).origin);
-  } catch { /* requestUrl is always a valid URL here */ }
+  try { list.add(new URL(requestUrl).origin); } catch { /* ignore */ }
   const extra = (env[ALLOWED_ORIGINS_ENV] || '').split(',').map(s => s.trim()).filter(Boolean);
   for (const o of extra) list.add(o);
   return list;
@@ -92,22 +96,44 @@ function isTrustedOrigin(origin, env, requestUrl) {
 
 // ─── Helpers ───────────────────────────────────────────────────────────────
 
+function securityHeaders() {
+  return {
+    'X-Content-Type-Options': 'nosniff',
+    'X-Frame-Options': 'DENY',
+    'Referrer-Policy': 'strict-origin-when-cross-origin',
+  };
+}
+
 function jsonResponse(data, ctx, status = 200) {
   return new Response(JSON.stringify(data), {
     status,
-    headers: { 'Content-Type': 'application/json', ...corsHeadersFor(ctx.origin, false, ctx.env, ctx.requestUrl) },
+    headers: {
+      'Content-Type': 'application/json',
+      ...securityHeaders(),
+      ...corsHeadersFor(ctx.origin, false, ctx.env, ctx.requestUrl),
+    },
   });
 }
 
 function errorResponse(message, status, ctx, isWrite = false) {
   return new Response(JSON.stringify({ error: message }), {
     status,
-    headers: { 'Content-Type': 'application/json', ...corsHeadersFor(ctx.origin, isWrite, ctx.env, ctx.requestUrl) },
+    headers: {
+      'Content-Type': 'application/json',
+      ...securityHeaders(),
+      ...corsHeadersFor(ctx.origin, isWrite, ctx.env, ctx.requestUrl),
+    },
   });
 }
 
 function optionsResponse(ctx) {
-  return new Response(null, { status: 204, headers: corsHeadersFor(ctx.origin, true, ctx.env, ctx.requestUrl) });
+  return new Response(null, {
+    status: 204,
+    headers: {
+      ...securityHeaders(),
+      ...corsHeadersFor(ctx.origin, true, ctx.env, ctx.requestUrl),
+    },
+  });
 }
 
 async function readJsonBody(request, maxBytes) {
@@ -348,7 +374,7 @@ async function handleProducts(request, ctx) {
   }
 
   if (request.method === 'POST') {
-    const auth = await requireAuth(request, env);
+    const auth = await requireAuth(request, env, ctx);
     if (auth.error) return auth.response;
 
     if (!isTrustedOrigin(origin, env, request.url)) {
@@ -368,13 +394,17 @@ async function handleBanner(request, ctx) {
   const { origin, env } = ctx;
 
   if (request.method === 'GET') {
-    const stored = await env.KOPALA_KV.get(KV_KEY_BANNER);
-    if (stored) return jsonResponse(JSON.parse(stored), ctx);
+    try {
+      const stored = await env.KOPALA_KV.get(KV_KEY_BANNER);
+      if (stored) return jsonResponse(JSON.parse(stored), ctx);
+    } catch {
+      /* KV read failed — fall through to default */
+    }
     return jsonResponse({ text: '', active: false }, ctx);
   }
 
   if (request.method === 'POST') {
-    const auth = await requireAuth(request, env);
+    const auth = await requireAuth(request, env, ctx);
     if (auth.error) return auth.response;
 
     if (!isTrustedOrigin(origin, env, request.url)) {
@@ -396,7 +426,7 @@ async function handleLogin(request, ctx) {
   if (!isTrustedOrigin(origin, env, request.url) && origin) {
     return errorResponse('Forbidden origin', 403, ctx, true);
   }
-  const ip = request.headers.get('cf-connecting-ip') || request.headers.get('x-forwarded-for')?.split(',')[0].trim() || '';
+  const ip = request.headers.get('cf-connecting-ip') || request.headers.get('x-forwarded-for')?.split(',')?.[0]?.trim() || '';
   try { await rateLimitLogin(env, ip); } catch (e) {
     if (e instanceof HttpError) return errorResponse(e.message, e.status, ctx, true);
     throw e;
@@ -431,6 +461,9 @@ async function handleLogin(request, ctx) {
 }
 
 async function handleLogout(request, ctx) {
+  if (request.method !== 'POST' && request.method !== 'DELETE') {
+    return errorResponse('Method not allowed', 405, ctx);
+  }
   const { env } = ctx;
 
   const header = request.headers.get('Authorization') || '';
@@ -499,8 +532,17 @@ async function refreshFixtures(env) {
   }
   // Sort by kickoff time, only future events, take first 12.
   const now = Date.now();
-  all.sort((a, b) => new Date(a.kickoff) - new Date(b.kickoff));
-  const upcoming = all.filter((f) => new Date(f.kickoff).getTime() > now).slice(0, 12);
+  all.sort((a, b) => {
+    const ta = new Date(a.kickoff).getTime();
+    const tb = new Date(b.kickoff).getTime();
+    if (!Number.isFinite(ta)) return 1;
+    if (!Number.isFinite(tb)) return -1;
+    return ta - tb;
+  });
+  const upcoming = all.filter((f) => {
+    const t = new Date(f.kickoff).getTime();
+    return Number.isFinite(t) && t > now;
+  }).slice(0, 12);
   await env.KOPALA_KV.put(KV_KEY_FIXTURES, JSON.stringify(upcoming), {
     expirationTtl: FIXTURES_TTL_SEC,
   });
@@ -620,8 +662,8 @@ async function handlePredictionSubmit(request, ctx) {
   const fixture = fixtures.find((f) => f.id === fixtureId);
   if (!fixture) return errorResponse('Unknown fixture', 404, ctx, true);
 
-  const kickoff = new Date(fixture.kickoff).getTime();
-  if (kickoff <= Date.now()) {
+  const kickoffMs = new Date(fixture.kickoff).getTime();
+  if (!Number.isFinite(kickoffMs) || kickoffMs <= Date.now()) {
     return errorResponse('Fixture is locked — kickoff has passed', 409, ctx, true);
   }
   // Draws only make sense for league matches. TheSportsDB sets strLeague for
@@ -843,7 +885,8 @@ async function handleTournamentPick(request, ctx) {
   if (match.result) {
     return errorResponse('Match already played — picks locked', 409, ctx, true);
   }
-  if (new Date(match.kickoff).getTime() <= Date.now()) {
+  const kickoffMs = new Date(match.kickoff).getTime();
+  if (!Number.isFinite(kickoffMs) || kickoffMs <= Date.now()) {
     return errorResponse('Kickoff has passed — picks locked', 409, ctx, true);
   }
   if (pick === 'draw' && !tournament.id) {
@@ -922,20 +965,20 @@ async function handleLeaderboard(request, ctx) {
 
 // ─── Auth Middleware ──────────────────────────────────────────────────────
 
-async function requireAuth(request, env) {
+async function requireAuth(request, env, ctx) {
   const header = request.headers.get('Authorization') || '';
   const token = header.replace(/^Bearer\s+/i, '');
-  if (!token) return { error: true, response: new Response(JSON.stringify({ error: 'Unauthorized' }), { status: 401, headers: { 'Content-Type': 'application/json' } }) };
+  if (!token) return { error: true, response: jsonResponse({ error: 'Unauthorized' }, ctx, 401) };
 
   const secret = env[JWT_SECRET_ENV];
-  if (!secret) return { error: true, response: new Response(JSON.stringify({ error: 'Server misconfigured' }), { status: 500, headers: { 'Content-Type': 'application/json' } }) };
+  if (!secret) return { error: true, response: jsonResponse({ error: 'Server misconfigured' }, ctx, 500) };
 
   const payload = await verifyJWT(token, secret);
   if (!payload || payload.role !== 'admin') {
-    return { error: true, response: new Response(JSON.stringify({ error: 'Invalid or expired token' }), { status: 401, headers: { 'Content-Type': 'application/json' } }) };
+    return { error: true, response: jsonResponse({ error: 'Invalid or expired token' }, ctx, 401) };
   }
   if (await isJtiRevoked(env, payload.jti)) {
-    return { error: true, response: new Response(JSON.stringify({ error: 'Token revoked' }), { status: 401, headers: { 'Content-Type': 'application/json' } }) };
+    return { error: true, response: jsonResponse({ error: 'Token revoked' }, ctx, 401) };
   }
   return { error: false, payload };
 }
@@ -944,32 +987,76 @@ async function requireAuth(request, env) {
 // ─── News (RSS proxy) ───────────────────────────────────────────────────
 
 const RSS_FEEDS = [
-  { id: 'bbc-football',           label: 'BBC Sport — Football',          url: 'https://feeds.bbci.co.uk/sport/football/rss.xml' },
-  { id: 'espn-soccer',            label: 'ESPN — Soccer',                url: 'https://www.espn.com/espn/rss/soccer/news' },
-  { id: 'espn-english-premier',   label: 'ESPN — Premier League',         url: 'https://www.espn.com/espn/rss/soccer/_/league/eng.1' },
+  /* ── Verified working feeds (tested 2026-06-06) ── */
+  {
+    id: 'espn-soccer',
+    label: 'ESPN FC',
+    url: 'https://www.espn.com/espn/rss/soccer/news',
+    tags: ['football'],
+  },
+  {
+    id: 'yahoo-soccer',
+    label: 'Yahoo Sports Soccer',
+    url: 'https://sports.yahoo.com/soccer/rss.xml',
+    tags: ['football'],
+  },
+  {
+    id: 'fourfourtwo',
+    label: 'FourFourTwo',
+    url: 'http://www.fourfourtwo.com/feeds.xml',
+    tags: ['football', 'kit-launches'],
+  },
+  /* ── Local / African ── */
+  {
+    id: 'bola-yapa-zed',
+    label: 'Bola Yapa Zed',
+    url: 'https://bolayapazed.com/feed/',
+    tags: ['zambia', 'africa'],
+  },
+  /* ── May work via proxy ── */
+  {
+    id: 'gazzetta',
+    label: 'La Gazzetta dello Sport',
+    url: 'https://www.gazzetta.it/dynamic-feed/rss/section/last.xml',
+    tags: ['football'],
+  },
 ];
 
 function parseRssText(xmlText, feedMeta) {
   const items = [];
-  const matches = xmlText.match(/<item\b[\s\S]*?<\/item>/g) || [];
+  const matches = xmlText.match(/<(?:item|entry)\b[\s\S]*?<\/(?:item|entry)>/g) || [];
   for (const raw of matches.slice(0, 25)) {
     const title = textOfRss(raw, 'title');
-    const link = textOfRss(raw, 'link');
-    const description = textOfRss(raw, 'description');
-    const pubDate = textOfRss(raw, 'pubDate');
-    const image = enclosureUrlRss(raw) || mediaThumbRss(raw);
+    const link = textOfRss(raw, 'link') || atomLinkHrefRss(raw);
+    const description = textOfRss(raw, 'description') || textOfRss(raw, 'summary') || textOfRss(raw, 'content');
+    let pubDate = textOfRss(raw, 'pubDate') || textOfRss(raw, 'published') || textOfRss(raw, 'updated');
+    let validPubDate = null;
+    if (pubDate) {
+      const date = new Date(pubDate);
+      if (!isNaN(date.getTime())) validPubDate = date.toISOString();
+    }
+    let image = enclosureUrlRss(raw) || mediaThumbRss(raw) || mediaContentUrlRss(raw) || mediaGroupThumbRss(raw) || ogImageRss(raw);
+    if (!image && description) {
+      const imgMatch = description.match(/<img[^>]+src="([^">]+)"/i);
+      if (imgMatch) image = imgMatch[1];
+    }
+    let video = videoEnclosureRss(raw) || mediaGroupVideoRss(raw);
+    if (!video && /\b(watch|video|highlights|clip|replay)\b/i.test(title)) {
+      video = 'keyword';
+    }
     if (title && link) {
       items.push({
-        title: decodeEntitiesRss(stripTagsRss(title)),
+        title: decodeEntitiesRss(stripTagsRss(title)).slice(0, 200),
         link,
         description: decodeEntitiesRss(stripTagsRss(description)).slice(0, 240),
-        pubDate: pubDate ? new Date(pubDate).toISOString() : null,
+        pubDate: validPubDate,
         source: feedMeta.label,
         image: image || null,
+        video: video || undefined,
       });
     }
   }
-  return { feed: feedMeta.id, label: feedMeta.label, items };
+  return { id: feedMeta.id, label: feedMeta.label, items };
 }
 
 function textOfRss(xml, tag) {
@@ -977,20 +1064,57 @@ function textOfRss(xml, tag) {
   const m = xml.match(re);
   return m ? m[1].trim() : '';
 }
+function atomLinkHrefRss(xml) {
+  const m = xml.match(/<link[^>]+href="([^"]+)"/i);
+  return m ? m[1] : null;
+}
 function enclosureUrlRss(xml) {
-  const m = xml.match(/<enclosure[^>]+url="([^"]+)"[^>]+type="image/i);
+  const m = xml.match(/<enclosure[^>]+url="([^"]+)"[^>]*type="image/i);
   return m ? m[1] : null;
 }
 function mediaThumbRss(xml) {
   const m = xml.match(/<media:thumbnail[^>]+url="([^"]+)"/i);
   return m ? m[1] : null;
 }
-function stripTagsRss(s) { return s.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim(); }
+function mediaContentUrlRss(xml) {
+  const m = xml.match(/<media:content[^>]+url="([^"]+)"[\s\S]*?type="image/i);
+  return m ? m[1] : null;
+}
+function mediaGroupThumbRss(xml) {
+  const m = xml.match(/<media:group[^>]*>[\s\S]*?<media:thumbnail[^>]+url="([^"]+)"/i);
+  return m ? m[1] : null;
+}
+function videoEnclosureRss(xml) {
+  const m = xml.match(/<enclosure[^>]+url="([^"]+)"[^>]*type="video/i);
+  return m ? m[1] : null;
+}
+function mediaGroupVideoRss(xml) {
+  const m = xml.match(/<media:group[^>]*>[\s\S]*?<media:content[^>]+url="([^"]+)"[^>]*type="video/i);
+  return m ? m[1] : null;
+}
+function ogImageRss(xml) {
+  const m = xml.match(/og:image[^"]*"([^"]+\.(?:jpg|jpeg|png|webp))"/i);
+  return m ? m[1] : null;
+}
+function stripTagsRss(s) {
+  return s.replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, '$1').replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
+}
 function decodeEntitiesRss(s) {
   return s
-    .replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>')
-    .replace(/&quot;/g, '"').replace(/&apos;/g, "'")
-    .replace(/&#39;/g, "'").replace(/&#x27;/g, "'");
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/&apos;/g, "'")
+    .replace(/&#39;/g, "'")
+    .replace(/&#x27;/g, "'")
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&#8211;/g, '–')
+    .replace(/&#8212;/g, '—')
+    .replace(/&#8216;/g, '‘')
+    .replace(/&#8217;/g, '’')
+    .replace(/&#8220;/g, '“')
+    .replace(/&#8221;/g, '”');
 }
 
 async function handleNews(request, ctx, feedId) {
@@ -1004,7 +1128,10 @@ async function handleNews(request, ctx, feedId) {
     try { return jsonResponse(JSON.parse(cached), ctx); } catch { /* corrupt cache */ }
   }
   try {
-    const res = await fetch(feedMeta.url, { headers: { 'User-Agent': 'KopalaKits/1.0' } });
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 12000);
+    const res = await fetch(feedMeta.url, { headers: { 'User-Agent': 'KopalaKits/1.0' }, signal: controller.signal });
+    clearTimeout(timeoutId);
     if (!res.ok) throw new Error(`Upstream ${res.status}`);
     const xml = await res.text();
     const parsed = parseRssText(xml, feedMeta);
@@ -1019,7 +1146,7 @@ async function handleNews(request, ctx, feedId) {
 
 async function handleAdminSetResult(request, ctx) {
   if (request.method !== 'POST') return errorResponse('Method not allowed', 405, ctx);
-  const auth = await requireAuth(request, ctx.env);
+  const auth = await requireAuth(request, ctx.env, ctx);
   if (auth.error) return auth.response;
   const { env } = ctx;
 
@@ -1044,7 +1171,7 @@ async function handleAdminSetResult(request, ctx) {
 // ─── Admin: tournaments CRUD ──────────────────────────────────────────
 
 async function handleAdminTournaments(request, ctx) {
-  const auth = await requireAuth(request, ctx.env);
+  const auth = await requireAuth(request, ctx.env, ctx);
   if (auth.error) return auth.response;
   const { env } = ctx;
   const store = await getTournamentsStore(env);
@@ -1126,11 +1253,35 @@ export default {
       }
     } catch (e) {
       if (e instanceof HttpError) {
-        return errorResponse(e.message, e.status, ctx, request.method !== 'GET');
+        return errorResponse(e.message, e.status, ctx, request.method !== 'GET' && request.method !== 'HEAD');
       }
-      return errorResponse('Internal error', 500, ctx, request.method !== 'GET');
+      return errorResponse('Internal error', 500, ctx, request.method !== 'GET' && request.method !== 'HEAD');
     }
 
-    return env.ASSETS.fetch(request);
+    // SPA fallback: if ASSETS binding is missing or the path doesn't exist,
+    // serve index.html so React Router can handle client-side routing.
+    try {
+      if (env.ASSETS) {
+        const assetRes = await env.ASSETS.fetch(request);
+        // With not_found_handling=spa, this should already be index.html.
+        // Defensive: if it ever returns 404, serve index.html manually.
+        if (assetRes.status === 404) {
+          const indexReq = new Request(new URL('/index.html', request.url));
+          return await env.ASSETS.fetch(indexReq);
+        }
+        return assetRes;
+      }
+    } catch {
+      // If ASSETS throws (e.g. binding misconfigured), try serving index.html
+      try {
+        if (env.ASSETS) {
+          const indexReq = new Request(new URL('/index.html', request.url));
+          return await env.ASSETS.fetch(indexReq);
+        }
+      } catch {
+        // fall through to 404
+      }
+    }
+    return new Response('Not Found', { status: 404 });
   },
 };

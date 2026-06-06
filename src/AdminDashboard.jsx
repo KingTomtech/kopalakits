@@ -19,6 +19,7 @@ async function compressImage(file, maxWidth = 800, maxHeight = 800, quality = 0.
       canvas.width = width;
       canvas.height = height;
       ctx.drawImage(img, 0, 0, width, height);
+      URL.revokeObjectURL(img.src);
       try { resolve(canvas.toDataURL('image/webp', quality)); }
       catch { resolve(canvas.toDataURL('image/jpeg', quality)); }
     };
@@ -72,7 +73,7 @@ export default function AdminDashboard({ onExit }) {
   const loadBannerFromAPI = useCallback(async () => {
     try {
       const res = await api('/banner');
-      const data = await res.json();
+      const data = await res.json().catch(() => ({}));
       setBannerText(data.text || ''); setBannerActive(data.active || false);
       localStorage.setItem(BANNER_KEY, JSON.stringify(data));
     } catch {
@@ -85,7 +86,7 @@ export default function AdminDashboard({ onExit }) {
     setLoading(true); setError('');
     try {
       const res = await api('/products');
-      const data = await res.json();
+      const data = await res.json().catch(() => []);
       if (Array.isArray(data)) { setProducts(data); localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); }
     } catch (err) {
       setError(err.message || 'Failed to load products');
@@ -110,7 +111,7 @@ export default function AdminDashboard({ onExit }) {
     setSaving(true); setError('');
     try {
       const res = await api('/products', { method: 'POST', body: JSON.stringify(updated) });
-      const data = await res.json();
+      const data = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(data.error || 'Save failed');
       setProducts(updated); localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
       window.dispatchEvent(new Event('kopala_products_updated'));
@@ -128,7 +129,7 @@ export default function AdminDashboard({ onExit }) {
     e.preventDefault(); setPwError('');
     try {
       const res = await fetch('/api/login', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ password: pw }) });
-      const data = await res.json();
+      const data = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(data.error || 'Login failed');
       sessionStorage.setItem(AUTH_TOKEN_KEY, data.token);
       setToken(data.token); setAuthed(true);
@@ -153,7 +154,12 @@ export default function AdminDashboard({ onExit }) {
   };
 
   const saveEdit = async () => {
-    const updated = products.map(p => p.id === editingId ? { ...editForm, price: Number(editForm.price) } : p);
+    const price = Number(editForm.price);
+    if (!Number.isFinite(price) || price <= 0) {
+      showToast('Price must be a positive number');
+      return;
+    }
+    const updated = products.map(p => p.id === editingId ? { ...editForm, price } : p);
     await persistProducts(updated);
     setEditingId(null);
   };
@@ -165,7 +171,11 @@ export default function AdminDashboard({ onExit }) {
 
   const addProduct = async () => {
     if (!addForm.name || !addForm.price) return showToast('Name and price required');
-    const newProduct = { ...addForm, id: Date.now(), price: Number(addForm.price) };
+    const price = Number(addForm.price);
+    if (!Number.isFinite(price) || price <= 0) {
+      return showToast('Price must be a positive number');
+    }
+    const newProduct = { ...addForm, id: Date.now(), price };
     await persistProducts([...products, newProduct]);
     setIsAdding(false);
     setAddForm({ ...defaultProduct, id: Date.now() });
@@ -173,6 +183,10 @@ export default function AdminDashboard({ onExit }) {
 
   const handleImageUpload = async (e, target) => {
     const file = e.target.files[0]; if (!file) return;
+    if (file.size > 5 * 1024 * 1024) {
+      showToast('Image too large — max 5 MB');
+      return;
+    }
     try {
       const compressed = await compressImage(file, 800, 800, 0.8);
       if (target === 'edit') setEditForm(f => ({ ...f, image: compressed }));
@@ -193,6 +207,7 @@ export default function AdminDashboard({ onExit }) {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url; a.download = 'products.json'; a.click();
+    URL.revokeObjectURL(url);
   };
 
   const openJsonEditor = () => {
@@ -226,30 +241,30 @@ export default function AdminDashboard({ onExit }) {
   const resetToDefault = async () => {
     if (!window.confirm('Reset all products to default? This cannot be undone.')) return;
     const res = await fetch('/products.json');
-    const data = await res.json();
+    const data = await res.json().catch(() => []);
     await persistProducts(data);
   };
 
   if (!authed) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#f5f0e8]">
-        <div className="bg-white rounded-3xl shadow-2xl p-10 w-full max-w-sm">
-          <h1 className="text-3xl font-black text-[#3F4A26] mb-2 text-center">Admin Panel</h1>
-          <p className="text-center text-gray-500 mb-8 text-sm">Kopala Kits</p>
+      <div className="min-h-screen flex items-center justify-center bg-[var(--bg)]">
+        <div className="bg-[var(--surface)] rounded-3xl shadow-2xl p-10 w-full max-w-sm">
+          <h1 className="text-3xl font-black text-[var(--brand-deep)] mb-2 text-center">Admin Panel</h1>
+          <p className="text-center text-[var(--text-faint)] mb-8 text-sm">Kopala Kits</p>
           <form onSubmit={login} className="space-y-4">
             <input
               type="password"
               placeholder="Password"
               value={pw}
               onChange={e => { setPw(e.target.value); setPwError(''); }}
-              className="w-full border-2 rounded-2xl px-4 py-3 text-lg focus:outline-none focus:border-[#5E6B3C]"
+              className="w-full border-2 border-[var(--border)] rounded-2xl px-4 py-3 text-lg focus:outline-none focus:border-[var(--brand)] bg-[var(--surface)] text-[var(--text)]"
             />
-            {pwError && <p className="text-red-500 text-sm">{pwError}</p>}
-            <button type="submit" className="w-full py-3 bg-[#5E6B3C] text-white font-bold rounded-2xl text-lg hover:brightness-110 transition">
+            {pwError && <p className="text-[var(--danger)] text-sm">{pwError}</p>}
+            <button type="submit" className="w-full py-3 bg-[var(--brand)] text-[var(--surface)] font-bold rounded-2xl text-lg hover:brightness-110 transition">
               Login
             </button>
           </form>
-          <button onClick={onExit} className="mt-6 w-full text-center text-gray-500 hover:text-gray-700 text-sm">
+          <button onClick={onExit} className="mt-6 w-full text-center text-[var(--text-faint)] hover:text-[var(--text)] text-sm">
             ← Back to Shop
           </button>
         </div>
@@ -258,48 +273,48 @@ export default function AdminDashboard({ onExit }) {
   }
 
   return (
-    <div className="min-h-screen bg-[#f5f0e8]">
+    <div className="min-h-screen bg-[var(--bg)]">
       {toast && (
-        <div className="fixed top-6 right-6 z-[999] bg-[#5E6B3C] text-white px-6 py-3 rounded-2xl shadow-xl font-semibold text-sm animate-pulse">
+        <div className="fixed top-6 right-6 z-[999] bg-[var(--brand)] text-[var(--surface)] px-6 py-3 rounded-2xl shadow-xl font-semibold text-sm animate-pulse">
           {toast}
         </div>
       )}
       {error && (
-        <div className="fixed top-6 right-6 z-[998] bg-red-100 border-2 border-red-300 text-red-800 px-6 py-3 rounded-2xl shadow-xl text-sm font-semibold mt-14">
+        <div className="fixed top-6 right-6 z-[998] bg-[var(--danger)]/15 border-2 border-[var(--danger)]/30 text-[var(--danger)] px-6 py-3 rounded-2xl shadow-xl text-sm font-semibold mt-14">
           {error}
-          <button onClick={() => setError('')} className="ml-3 text-red-600 hover:text-red-800 font-bold">✕</button>
+          <button onClick={() => setError('')} className="ml-3 text-[var(--danger)] hover:opacity-80 font-bold">✕</button>
         </div>
       )}
 
-      <nav className="bg-white shadow-sm px-6 py-4 flex items-center justify-between sticky top-0 z-50">
+      <nav className="bg-[var(--bg-elevated)] shadow-sm px-6 py-4 flex items-center justify-between sticky top-0 z-50">
         <div>
-          <h1 className="text-2xl font-black text-[#3F4A26]">KOPALA KITS — Admin</h1>
-          <p className="text-xs text-gray-500">
+          <h1 className="text-2xl font-black text-[var(--brand-deep)]">KOPALA KITS — Admin</h1>
+          <p className="text-xs text-[var(--text-faint)]">
             {products.length} products
-            {loading && <span className="ml-2 px-2 py-0.5 rounded-full bg-amber-100 text-amber-700 font-semibold">Loading…</span>}
-            {saving && <span className="ml-2 px-2 py-0.5 rounded-full bg-blue-100 text-blue-700 font-semibold">Saving…</span>}
+            {loading && <span className="ml-2 px-2 py-0.5 rounded-full bg-[var(--warning)]/15 text-[var(--warning)] font-semibold">Loading…</span>}
+            {saving && <span className="ml-2 px-2 py-0.5 rounded-full bg-[var(--brand)]/15 text-[var(--brand)] font-semibold">Saving…</span>}
           </p>
         </div>
         <div className="flex gap-2">
-          <button onClick={resetToDefault} title="Reset to default" className="p-2.5 rounded-xl hover:bg-gray-100 text-gray-600" >
+          <button onClick={resetToDefault} title="Reset to default" className="p-2.5 rounded-xl hover:bg-[var(--border)]/20 text-[var(--text-muted)]" >
             <RefreshCw size={18} />
           </button>
-          <button onClick={openJsonEditor} className="flex items-center gap-2 px-4 py-2 rounded-xl bg-gray-100 hover:bg-gray-200 text-sm font-semibold">
+          <button onClick={openJsonEditor} className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[var(--bg-elevated)] hover:bg-[var(--border)]/40 text-sm font-semibold">
             Edit JSON
           </button>
-          <button onClick={exportJson} className="flex items-center gap-2 px-4 py-2 rounded-xl bg-gray-100 hover:bg-gray-200 text-sm font-semibold">
+          <button onClick={exportJson} className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[var(--bg-elevated)] hover:bg-[var(--border)]/40 text-sm font-semibold">
             <Download size={16} /> Export
           </button>
-          <button onClick={onExit} className="flex items-center gap-2 px-4 py-2 rounded-xl bg-gray-100 hover:bg-gray-200 text-sm font-semibold">
+          <button onClick={onExit} className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[var(--bg-elevated)] hover:bg-[var(--border)]/40 text-sm font-semibold">
             ← Shop
           </button>
-          <button onClick={logout} className="flex items-center gap-2 px-4 py-2 rounded-xl bg-red-100 hover:bg-red-200 text-red-700 text-sm font-semibold">
+          <button onClick={logout} className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[var(--danger)]/15 hover:bg-[var(--danger)]/25 text-[var(--danger)] text-sm font-semibold">
             <LogOut size={16} /> Logout
           </button>
         </div>
       </nav>
 
-      <div className="bg-white border-b px-6">
+      <div className="bg-[var(--bg-elevated)] border-b border-[var(--border)] px-6">
         <div className="max-w-5xl mx-auto flex gap-1">
           {[
             { id: 'products', label: 'Products' },
@@ -311,8 +326,8 @@ export default function AdminDashboard({ onExit }) {
               onClick={() => setAdminTab(tab.id)}
               className="px-4 py-3 text-sm font-bold border-b-2 transition"
               style={{
-                borderBottomColor: adminTab === tab.id ? '#3F4A26' : 'transparent',
-                color: adminTab === tab.id ? '#3F4A26' : '#6B655A',
+                borderBottomColor: adminTab === tab.id ? 'var(--brand-deep)' : 'transparent',
+                color: adminTab === tab.id ? 'var(--brand-deep)' : 'var(--text-faint)',
               }}
             >
               {tab.label}
@@ -327,173 +342,181 @@ export default function AdminDashboard({ onExit }) {
           <FanZoneAdmin />
         )}
 
-        {/* ANNOUNCEMENT BANNER EDITOR */}
-        <div className="bg-white rounded-3xl shadow-sm border-2 border-dashed border-amber-300 p-5 mb-6">
-          <div className="flex items-center justify-between gap-4">
-            <div className="flex items-center gap-3">
-              <span className="text-xl">📢</span>
-              <div>
-                <p className="font-bold text-sm text-gray-800">Announcement Banner</p>
-                <p className="text-xs text-gray-500">{bannerActive ? <span className="text-green-600 font-semibold">● Live on shop</span> : <span className="text-gray-400">Hidden</span>}</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-2">
-              {bannerActive && !bannerEditing && (
-                <button
-                  onClick={async () => { setBannerActive(false); saveBannerToAPI(bannerText, false); }}
-                  className="px-3 py-1.5 rounded-xl text-xs font-bold bg-red-100 text-red-600 hover:bg-red-200 transition"
-                >
-                  Hide
-                </button>
-              )}
-              <button
-                onClick={() => setBannerEditing(e => !e)}
-                className="px-4 py-1.5 rounded-xl text-xs font-bold bg-amber-100 text-amber-800 hover:bg-amber-200 transition"
-              >
-                {bannerEditing ? 'Cancel' : 'Edit'}
-              </button>
-            </div>
-          </div>
-
-          {bannerEditing && (
-            <div className="mt-4 space-y-3">
-              <input
-                value={bannerText}
-                onChange={e => setBannerText(e.target.value)}
-                placeholder="e.g. 🔥 New Retro Stock Just Landed — Order via WhatsApp!"
-                className="w-full border-2 rounded-2xl px-4 py-3 text-sm focus:outline-none focus:border-[#5E6B3C]"
-                maxLength={120}
-              />
-              <div className="flex gap-3 items-center">
-                <button
-                  onClick={async () => { setBannerActive(true); saveBannerToAPI(bannerText, true); }}
-                  disabled={!bannerText.trim()}
-                  className="px-5 py-2.5 bg-[#5E6B3C] text-white rounded-2xl text-sm font-bold hover:brightness-110 disabled:opacity-40 transition"
-                >
-                  Publish Banner
-                </button>
-                <button
-                  onClick={async () => { setBannerActive(false); saveBannerToAPI(bannerText, false); }}
-                  className="px-5 py-2.5 border-2 rounded-2xl text-sm font-semibold hover:bg-gray-50 transition"
-                >
-                  Save but Hide
-                </button>
-                <span className="text-xs text-gray-400 ml-auto">{bannerText.length}/120</span>
-              </div>
-            </div>
-          )}
-
-          {!bannerEditing && bannerText && (
-            <div className="mt-3 px-4 py-2.5 rounded-2xl bg-amber-50 border border-amber-200 text-sm text-amber-900 font-medium">
-              {bannerText}
-            </div>
-          )}
-        </div>
-
-        <button
-          onClick={async () => { setIsAdding(true); setAddForm({ ...defaultProduct, id: Date.now() }); }}
-          className="mb-6 flex items-center gap-2 px-6 py-3 bg-[#5E6B3C] text-white rounded-2xl font-bold hover:brightness-110 transition"
-        >
-          <Plus size={20} /> Add New Product
-        </button>
-
-        {isAdding && (
-          <div className="bg-white rounded-3xl shadow-xl p-6 mb-6 border-2 border-[#5E6B3C]">
-            <h3 className="font-bold text-lg mb-4 text-[#3F4A26]">New Product</h3>
-            <ProductForm
-              form={addForm}
-              setForm={setAddForm}
-              fileRef={addFileRef}
-              onImageUpload={e => handleImageUpload(e, 'add')}
-            />
-            <div className="flex gap-3 mt-4">
-              <button onClick={addProduct} className="flex items-center gap-2 px-6 py-2.5 bg-[#5E6B3C] text-white rounded-2xl font-bold hover:brightness-110">
-                <Save size={16} /> Save Product
-              </button>
-              <button onClick={() => setIsAdding(false)} className="px-6 py-2.5 border-2 rounded-2xl font-semibold hover:bg-gray-50">
-                Cancel
-              </button>
-            </div>
-          </div>
-        )}
-
-        <div className="space-y-3">
-          {products.map(product => (
-            <div key={product.id} className="bg-white rounded-2xl shadow-sm overflow-hidden">
-              {editingId === product.id ? (
-                <div className="p-6">
-                  <ProductForm
-                    form={editForm}
-                    setForm={setEditForm}
-                    fileRef={fileInputRef}
-                    onImageUpload={e => handleImageUpload(e, 'edit')}
-                  />
-                  <div className="flex gap-3 mt-4">
-                    <button onClick={saveEdit} className="flex items-center gap-2 px-6 py-2.5 bg-[#5E6B3C] text-white rounded-2xl font-bold hover:brightness-110">
-                      <Save size={16} /> Save
-                    </button>
-                    <button onClick={cancelEdit} className="px-6 py-2.5 border-2 rounded-2xl font-semibold hover:bg-gray-50">
-                      Cancel
-                    </button>
+        {(adminTab === 'products' || adminTab === 'banner') && (
+          <>
+            {/* ANNOUNCEMENT BANNER EDITOR */}
+            <div className="bg-[var(--surface)] rounded-3xl shadow-sm border-2 border-dashed border-[var(--warning)]/30 p-5 mb-6">
+              <div className="flex items-center justify-between gap-4">
+                <div className="flex items-center gap-3">
+                  <span className="text-xl">📢</span>
+                  <div>
+                    <p className="font-bold text-sm text-[var(--text)]">Announcement Banner</p>
+                    <p className="text-xs text-[var(--text-faint)]">{bannerActive ? <span className="text-[var(--success)] font-semibold">● Live on shop</span> : <span className="text-[var(--text-disabled)]">Hidden</span>}</p>
                   </div>
                 </div>
-              ) : (
-                <div className="flex items-center gap-4 p-4">
-                  <div className="w-16 h-16 rounded-xl overflow-hidden bg-gray-100 flex-shrink-0">
-                    <img src={product.image} alt={product.name} className="w-full h-full object-cover" onError={e => e.target.style.display='none'} />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="font-bold text-sm truncate">{product.name}</p>
-                    <p className="text-xs text-gray-500">{product.category} • K{product.price}</p>
-                    <p className="text-xs text-gray-400 truncate">{product.desc}</p>
-                  </div>
-                  <div className="flex gap-2 flex-shrink-0 items-center">
+                <div className="flex items-center gap-2">
+                  {bannerActive && !bannerEditing && (
                     <button
-                      onClick={async () => {
-                        const updated = products.map(p => p.id === product.id ? { ...p, soldOut: !p.soldOut } : p);
-                        await persistProducts(updated);
-                        window.dispatchEvent(new Event('kopala_products_updated'));
-                      }}
-                      title={product.soldOut ? 'Mark as In Stock' : 'Mark as Sold Out'}
-                      className={`px-3 py-1.5 rounded-xl text-xs font-bold transition ${product.soldOut ? 'bg-red-100 text-red-600 hover:bg-red-200' : 'bg-gray-100 text-gray-500 hover:bg-gray-200'}`}
+                      onClick={async () => { setBannerActive(false); saveBannerToAPI(bannerText, false); }}
+                      className="px-3 py-1.5 rounded-xl text-xs font-bold bg-[var(--danger)]/15 text-[var(--danger)] hover:bg-[var(--danger)]/25 transition"
                     >
-                      {product.soldOut ? 'SOLD OUT' : 'In Stock'}
+                      Hide
                     </button>
-                    <button onClick={() => startEdit(product)} className="p-2 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-700">
-                      <Edit2 size={16} />
+                  )}
+                  <button
+                    onClick={() => setBannerEditing(e => !e)}
+                    className="px-4 py-1.5 rounded-xl text-xs font-bold bg-[var(--warning)]/15 text-[var(--warning)] hover:bg-[var(--warning)]/25 transition"
+                  >
+                    {bannerEditing ? 'Cancel' : 'Edit'}
+                  </button>
+                </div>
+              </div>
+
+              {bannerEditing && (
+                <div className="mt-4 space-y-3">
+                  <input
+                    value={bannerText}
+                    onChange={e => setBannerText(e.target.value)}
+                    placeholder="e.g. 🔥 New Retro Stock Just Landed — Order via WhatsApp!"
+                    className="w-full border-2 border-[var(--border)] rounded-2xl px-4 py-3 text-sm focus:outline-none focus:border-[var(--brand)] bg-[var(--surface)] text-[var(--text)]"
+                    maxLength={120}
+                  />
+                  <div className="flex gap-3 items-center">
+                    <button
+                      onClick={async () => { setBannerActive(true); saveBannerToAPI(bannerText, true); }}
+                      disabled={!bannerText.trim()}
+                      className="px-5 py-2.5 bg-[var(--brand)] text-[var(--surface)] rounded-2xl text-sm font-bold hover:brightness-110 disabled:opacity-40 transition"
+                    >
+                      Publish Banner
                     </button>
-                    <button onClick={() => deleteProduct(product.id)} className="p-2 rounded-xl bg-red-100 hover:bg-red-200 text-red-600">
-                      <Trash2 size={16} />
+                    <button
+                      onClick={async () => { setBannerActive(false); saveBannerToAPI(bannerText, false); }}
+                      className="px-5 py-2.5 border-2 border-[var(--border)] rounded-2xl text-sm font-semibold hover:bg-[var(--bg-elevated)] transition text-[var(--text)]"
+                    >
+                      Save but Hide
                     </button>
+                    <span className="text-xs text-[var(--text-faint)] ml-auto">{bannerText.length}/120</span>
                   </div>
                 </div>
               )}
+
+              {!bannerEditing && bannerText && (
+                <div className="mt-3 px-4 py-2.5 rounded-2xl bg-[var(--warning)]/10 border border-[var(--warning)]/20 text-sm text-[var(--warning)] font-medium">
+                  {bannerText}
+                </div>
+              )}
             </div>
-          ))}
-        </div>
+
+            {adminTab === 'products' && (
+              <>
+                <button
+                  onClick={async () => { setIsAdding(true); setAddForm({ ...defaultProduct, id: Date.now() }); }}
+                  className="mb-6 flex items-center gap-2 px-6 py-3 bg-[var(--brand)] text-[var(--surface)] rounded-2xl font-bold hover:brightness-110 transition"
+                >
+                  <Plus size={20} /> Add New Product
+                </button>
+
+                {isAdding && (
+                  <div className="bg-[var(--surface)] rounded-3xl shadow-xl p-6 mb-6 border-2 border-[var(--brand)]">
+                    <h3 className="font-bold text-lg mb-4 text-[var(--brand-deep)]">New Product</h3>
+                    <ProductForm
+                      form={addForm}
+                      setForm={setAddForm}
+                      fileRef={addFileRef}
+                      onImageUpload={e => handleImageUpload(e, 'add')}
+                    />
+                    <div className="flex gap-3 mt-4">
+                      <button onClick={addProduct} className="flex items-center gap-2 px-6 py-2.5 bg-[var(--brand)] text-[var(--surface)] rounded-2xl font-bold hover:brightness-110">
+                        <Save size={16} /> Save Product
+                      </button>
+                      <button onClick={() => setIsAdding(false)} className="px-6 py-2.5 border-2 border-[var(--border)] rounded-2xl font-semibold hover:bg-[var(--bg-elevated)] text-[var(--text)]">
+                        Cancel
+                      </button>
+                    </div>
+                  </div>
+                )}
+
+                <div className="space-y-3">
+                  {products.map(product => (
+                    <div key={product.id} className="bg-[var(--surface)] rounded-2xl shadow-sm overflow-hidden">
+                      {editingId === product.id ? (
+                        <div className="p-6">
+                          <ProductForm
+                            form={editForm}
+                            setForm={setEditForm}
+                            fileRef={fileInputRef}
+                            onImageUpload={e => handleImageUpload(e, 'edit')}
+                          />
+                          <div className="flex gap-3 mt-4">
+                            <button onClick={saveEdit} className="flex items-center gap-2 px-6 py-2.5 bg-[var(--brand)] text-[var(--surface)] rounded-2xl font-bold hover:brightness-110">
+                              <Save size={16} /> Save
+                            </button>
+                            <button onClick={cancelEdit} className="px-6 py-2.5 border-2 border-[var(--border)] rounded-2xl font-semibold hover:bg-[var(--bg-elevated)] text-[var(--text)]">
+                              Cancel
+                            </button>
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="flex items-center gap-4 p-4">
+                          <div className="w-16 h-16 rounded-xl overflow-hidden bg-[var(--bg-elevated)] flex-shrink-0">
+                            <img src={product.image} alt={product.name} className="w-full h-full object-cover" onError={e => e.target.style.display='none'} />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <p className="font-bold text-sm truncate text-[var(--text)]">{product.name}</p>
+                            <p className="text-xs text-[var(--text-faint)]">{product.category} • K{product.price}</p>
+                            <p className="text-xs text-[var(--text-disabled)] truncate">{product.desc}</p>
+                          </div>
+                          <div className="flex gap-2 flex-shrink-0 items-center">
+                            <button
+                              onClick={async () => {
+                                const updated = products.map(p => p.id === product.id ? { ...p, soldOut: !p.soldOut } : p);
+                                await persistProducts(updated);
+                                window.dispatchEvent(new Event('kopala_products_updated'));
+                              }}
+                              title={product.soldOut ? 'Mark as In Stock' : 'Mark as Sold Out'}
+                              className={`px-3 py-1.5 rounded-xl text-xs font-bold transition ${product.soldOut ? 'bg-[var(--danger)]/15 text-[var(--danger)] hover:bg-[var(--danger)]/25' : 'bg-[var(--bg-elevated)] text-[var(--text-faint)] hover:bg-[var(--border)]/40'}`}
+                            >
+                              {product.soldOut ? 'SOLD OUT' : 'In Stock'}
+                            </button>
+                            <button onClick={() => startEdit(product)} className="p-2 rounded-xl bg-[var(--bg-elevated)] hover:bg-[var(--border)]/40 text-[var(--text-muted)]">
+                              <Edit2 size={16} />
+                            </button>
+                            <button onClick={() => deleteProduct(product.id)} className="p-2 rounded-xl bg-[var(--danger)]/15 hover:bg-[var(--danger)]/25 text-[var(--danger)]">
+                              <Trash2 size={16} />
+                            </button>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </>
+            )}
+          </>
+        )}
       </div>
 
       {jsonView && (
         <div className="fixed inset-0 z-[500] bg-black/70 flex items-center justify-center p-4">
-          <div className="bg-white rounded-3xl shadow-2xl w-full max-w-3xl max-h-[90vh] flex flex-col">
-            <div className="p-6 border-b flex justify-between items-center">
-              <h2 className="text-xl font-bold">Edit Products JSON</h2>
-              <button onClick={() => setJsonView(false)}><X size={24} /></button>
+          <div className="bg-[var(--surface)] rounded-3xl shadow-2xl w-full max-w-3xl max-h-[90vh] flex flex-col">
+            <div className="p-6 border-b border-[var(--border)] flex justify-between items-center">
+              <h2 className="text-xl font-bold text-[var(--text)]">Edit Products JSON</h2>
+              <button onClick={() => setJsonView(false)} className="text-[var(--text-muted)] hover:text-[var(--text)]"><X size={24} /></button>
             </div>
             <div className="flex-1 overflow-auto p-6">
               <textarea
                 value={jsonText}
                 onChange={e => { setJsonText(e.target.value); setJsonError(''); }}
-                className="w-full h-96 font-mono text-xs border-2 rounded-2xl p-4 focus:outline-none focus:border-[#5E6B3C] resize-none"
+                className="w-full h-96 font-mono text-xs border-2 border-[var(--border)] rounded-2xl p-4 focus:outline-none focus:border-[var(--brand)] resize-none bg-[var(--bg)] text-[var(--text)]"
                 spellCheck={false}
               />
-              {jsonError && <p className="text-red-500 text-sm mt-2">{jsonError}</p>}
+              {jsonError && <p className="text-[var(--danger)] text-sm mt-2">{jsonError}</p>}
             </div>
-            <div className="p-6 border-t flex gap-3">
-              <button onClick={saveJson} className="flex items-center gap-2 px-6 py-3 bg-[#5E6B3C] text-white rounded-2xl font-bold hover:brightness-110">
+            <div className="p-6 border-t border-[var(--border)] flex gap-3">
+              <button onClick={saveJson} className="flex items-center gap-2 px-6 py-3 bg-[var(--brand)] text-[var(--surface)] rounded-2xl font-bold hover:brightness-110">
                 <Save size={16} /> Apply Changes
               </button>
-              <button onClick={() => setJsonView(false)} className="px-6 py-3 border-2 rounded-2xl font-semibold hover:bg-gray-50">
+              <button onClick={() => setJsonView(false)} className="px-6 py-3 border-2 border-[var(--border)] rounded-2xl font-semibold hover:bg-[var(--bg-elevated)] text-[var(--text)]">
                 Cancel
               </button>
             </div>
@@ -508,67 +531,67 @@ function ProductForm({ form, setForm, fileRef, onImageUpload }) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
       <div>
-        <label className="block text-xs font-semibold text-gray-600 mb-1">Product Name *</label>
+        <label className="block text-xs font-semibold text-[var(--text-muted)] mb-1">Product Name *</label>
         <input
           value={form.name}
           onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
           placeholder="e.g. Portugal Home Jersey 2026"
-          className="w-full border-2 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-[#5E6B3C]"
+          className="w-full border-2 border-[var(--border)] rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-[var(--brand)] bg-[var(--surface)] text-[var(--text)]"
         />
       </div>
       <div>
-        <label className="block text-xs font-semibold text-gray-600 mb-1">Price (K) *</label>
+        <label className="block text-xs font-semibold text-[var(--text-muted)] mb-1">Price (K) *</label>
         <input
           type="number"
           value={form.price}
           onChange={e => setForm(f => ({ ...f, price: e.target.value }))}
           placeholder="e.g. 650"
-          className="w-full border-2 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-[#5E6B3C]"
+          className="w-full border-2 border-[var(--border)] rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-[var(--brand)] bg-[var(--surface)] text-[var(--text)]"
         />
       </div>
       <div>
-        <label className="block text-xs font-semibold text-gray-600 mb-1">Category</label>
+        <label className="block text-xs font-semibold text-[var(--text-muted)] mb-1">Category</label>
         <select
           value={form.category}
           onChange={e => setForm(f => ({ ...f, category: e.target.value }))}
-          className="w-full border-2 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-[#5E6B3C]"
+          className="w-full border-2 border-[var(--border)] rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-[var(--brand)] bg-[var(--surface)] text-[var(--text)]"
         >
           {ADMIN_CATEGORIES.map(c => <option key={c}>{c}</option>)}
         </select>
       </div>
       <div>
-        <label className="block text-xs font-semibold text-gray-600 mb-1">Description</label>
+        <label className="block text-xs font-semibold text-[var(--text-muted)] mb-1">Description</label>
         <input
           value={form.desc}
           onChange={e => setForm(f => ({ ...f, desc: e.target.value }))}
           placeholder="Short description..."
-          className="w-full border-2 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-[#5E6B3C]"
+          className="w-full border-2 border-[var(--border)] rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-[var(--brand)] bg-[var(--surface)] text-[var(--text)]"
         />
       </div>
       <div className="md:col-span-2">
-        <label className="block text-xs font-semibold text-gray-600 mb-1">Image</label>
+        <label className="block text-xs font-semibold text-[var(--text-muted)] mb-1">Image</label>
         <div className="flex gap-3 items-start">
           <div className="flex-1 space-y-2">
             <input
               value={form.image && !form.image.startsWith('data:') ? form.image : ''}
               onChange={e => setForm(f => ({ ...f, image: e.target.value }))}
               placeholder="https://... or upload below"
-              className="w-full border-2 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-[#5E6B3C]"
+              className="w-full border-2 border-[var(--border)] rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-[var(--brand)] bg-[var(--surface)] text-[var(--text)]"
             />
             <div className="flex items-center gap-2">
               <input ref={fileRef} type="file" accept="image/*" onChange={onImageUpload} className="hidden" />
               <button
                 type="button"
                 onClick={() => fileRef.current?.click()}
-                className="flex items-center gap-2 px-4 py-2 border-2 rounded-xl text-sm font-semibold hover:bg-gray-50"
+                className="flex items-center gap-2 px-4 py-2 border-2 border-[var(--border)] rounded-xl text-sm font-semibold hover:bg-[var(--bg-elevated)] text-[var(--text)]"
               >
                 <Upload size={14} /> Upload Image
               </button>
-              {form.image && <span className="text-xs text-green-600 font-medium">✓ Image set</span>}
+              {form.image && <span className="text-xs text-[var(--success)] font-medium">✓ Image set</span>}
             </div>
           </div>
           {form.image && (
-            <div className="w-20 h-20 rounded-xl overflow-hidden bg-gray-100 flex-shrink-0">
+            <div className="w-20 h-20 rounded-xl overflow-hidden bg-[var(--bg-elevated)] flex-shrink-0">
               <img src={form.image} alt="preview" className="w-full h-full object-cover" onError={e => e.target.style.display='none'} />
             </div>
           )}
@@ -578,23 +601,23 @@ function ProductForm({ form, setForm, fileRef, onImageUpload }) {
         <label className="flex items-center gap-3 cursor-pointer select-none">
           <div
             onClick={() => setForm(f => ({ ...f, soldOut: !f.soldOut }))}
-            className={`w-12 h-6 rounded-full transition-colors relative ${form.soldOut ? 'bg-red-500' : 'bg-gray-300'}`}
+            className={`w-12 h-6 rounded-full transition-colors relative ${form.soldOut ? 'bg-[var(--danger)]' : 'bg-[var(--border)]'}`}
           >
-            <span className={`absolute top-0.5 w-5 h-5 bg-white rounded-full shadow transition-transform ${form.soldOut ? 'translate-x-6' : 'translate-x-0.5'}`} />
+            <span className={`absolute top-0.5 w-5 h-5 bg-[var(--surface)] rounded-full shadow transition-transform ${form.soldOut ? 'translate-x-6' : 'translate-x-0.5'}`} />
           </div>
-          <span className="text-sm font-semibold text-gray-700">
-            {form.soldOut ? <span className="text-red-600">Marked as Sold Out</span> : 'Mark as Sold Out'}
+          <span className="text-sm font-semibold text-[var(--text-muted)]">
+            {form.soldOut ? <span className="text-[var(--danger)]">Marked as Sold Out</span> : 'Mark as Sold Out'}
           </span>
         </label>
         <label className="flex items-center gap-3 cursor-pointer select-none">
           <div
             onClick={() => setForm(f => ({ ...f, newArrival: !f.newArrival }))}
-            className={`w-12 h-6 rounded-full transition-colors relative ${form.newArrival ? 'bg-amber-400' : 'bg-gray-300'}`}
+            className={`w-12 h-6 rounded-full transition-colors relative ${form.newArrival ? 'bg-[var(--warning)]' : 'bg-[var(--border)]'}`}
           >
-            <span className={`absolute top-0.5 w-5 h-5 bg-white rounded-full shadow transition-transform ${form.newArrival ? 'translate-x-6' : 'translate-x-0.5'}`} />
+            <span className={`absolute top-0.5 w-5 h-5 bg-[var(--surface)] rounded-full shadow transition-transform ${form.newArrival ? 'translate-x-6' : 'translate-x-0.5'}`} />
           </div>
-          <span className="text-sm font-semibold text-gray-700">
-            {form.newArrival ? <span className="text-amber-600">New Arrival badge ON</span> : 'New Arrival badge'}
+          <span className="text-sm font-semibold text-[var(--text-muted)]">
+            {form.newArrival ? <span className="text-[var(--warning)]">New Arrival badge ON</span> : 'New Arrival badge'}
           </span>
         </label>
       </div>

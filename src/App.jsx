@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route, useLocation, Link } from 'react-router-dom';
 import { ShoppingCart, Menu, Sun, Moon } from 'lucide-react';
 import Logo from './components/Logo.jsx';
 import HomePage from './pages/HomePage.jsx';
@@ -26,9 +26,10 @@ import AnnouncementBar from './components/AnnouncementBar.jsx';
 import { useProducts } from './hooks/useProducts.js';
 import { useCart } from './hooks/useCart.js';
 import { useTheme } from './hooks/useTheme.js';
+import { useSEO } from './lib/seo.js';
 import { PHONE_FALLBACK } from './constants.js';
 
-export default function App({ onAdminAccess }) {
+export default function App() {
   const [logoClicks, setLogoClicks] = useState(0);
   const [logoPulsing, setLogoPulsing] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -40,6 +41,9 @@ export default function App({ onAdminAccess }) {
   const { products, loading, loadError, reload, banner, dismissBanner } = useProducts();
   const cart = useCart(setToast);
   const { darkMode, toggleDarkMode } = useTheme();
+
+  // Update page title and meta tags on every route change
+  useSEO(location.pathname);
 
   // Scroll-to-top on route change so detail pages don't carry the home scroll.
   useEffect(() => {
@@ -58,13 +62,13 @@ export default function App({ onAdminAccess }) {
       const next = c + 1;
       if (next >= 5) {
         setLogoPulsing(false);
-        onAdminAccess?.();
+        window.dispatchEvent(new CustomEvent('kopala:open-admin'));
         return 0;
       }
       if (next >= 3) setLogoPulsing(true);
       return next;
     });
-  }, [onAdminAccess]);
+  }, []);
 
   // Reset logo counter after 1.5s of inactivity.
   useEffect(() => {
@@ -88,27 +92,27 @@ export default function App({ onAdminAccess }) {
         style={{ backgroundColor: 'var(--bg-elevated)', borderColor: 'var(--border)' }}
       >
         <div className="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
-          <a
-            href="/"
+          <Link
+            to="/"
             onClick={handleLogoClick}
             className={`group ${logoPulsing ? 'kk-pulse' : ''}`}
             aria-label="Kopala Kits home"
           >
             <Logo size={36} variant="wordmark" color="olive" />
-          </a>
+          </Link>
 
           <nav className="hidden md:flex items-center gap-1">
-            <a href="/" className="px-3 py-2 rounded-xl text-sm font-bold hover:bg-black/5" style={{ color: 'var(--text)' }}>Home</a>
-            <a href="/shop" className="px-3 py-2 rounded-xl text-sm font-bold hover:bg-black/5" style={{ color: 'var(--text)' }}>Shop</a>
-            <a href="/predictions" className="px-3 py-2 rounded-xl text-sm font-bold hover:bg-black/5 inline-flex items-center gap-1.5" style={{ color: 'var(--text)' }}>
+            <Link to="/" className="px-3 py-2 rounded-xl text-sm font-bold hover:bg-black/5" style={{ color: 'var(--text)' }}>Home</Link>
+            <Link to="/shop" className="px-3 py-2 rounded-xl text-sm font-bold hover:bg-black/5" style={{ color: 'var(--text)' }}>Shop</Link>
+            <Link to="/predictions" className="px-3 py-2 rounded-xl text-sm font-bold hover:bg-black/5 inline-flex items-center gap-1.5" style={{ color: 'var(--text)' }}>
               <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: 'var(--warning)' }} />
               Predictions
-            </a>
-            <a href="/tournaments" className="px-3 py-2 rounded-xl text-sm font-bold hover:bg-black/5" style={{ color: 'var(--text)' }}>Tournaments</a>
-            <a href="/news" className="px-3 py-2 rounded-xl text-sm font-bold hover:bg-black/5" style={{ color: 'var(--text)' }}>News</a>
-            <a href="/media" className="px-3 py-2 rounded-xl text-sm font-bold hover:bg-black/5" style={{ color: 'var(--text)' }}>Media</a>
-            <a href="/about" className="px-3 py-2 rounded-xl text-sm font-bold hover:bg-black/5" style={{ color: 'var(--text)' }}>About</a>
-            <a href="/contact" className="px-3 py-2 rounded-xl text-sm font-bold hover:bg-black/5" style={{ color: 'var(--text)' }}>Contact</a>
+            </Link>
+            <Link to="/tournaments" className="px-3 py-2 rounded-xl text-sm font-bold hover:bg-black/5" style={{ color: 'var(--text)' }}>Tournaments</Link>
+            <Link to="/news" className="px-3 py-2 rounded-xl text-sm font-bold hover:bg-black/5" style={{ color: 'var(--text)' }}>News</Link>
+            <Link to="/media" className="px-3 py-2 rounded-xl text-sm font-bold hover:bg-black/5" style={{ color: 'var(--text)' }}>Media</Link>
+            <Link to="/about" className="px-3 py-2 rounded-xl text-sm font-bold hover:bg-black/5" style={{ color: 'var(--text)' }}>About</Link>
+            <Link to="/contact" className="px-3 py-2 rounded-xl text-sm font-bold hover:bg-black/5" style={{ color: 'var(--text)' }}>Contact</Link>
           </nav>
 
           <div className="flex items-center gap-1">

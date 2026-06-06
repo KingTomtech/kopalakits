@@ -1,7 +1,34 @@
+import { useRef, useEffect } from 'react';
 import { X, ShoppingCart, Plus, Minus, MessageCircle } from 'lucide-react';
 import { IMAGE_FALLBACK } from '../constants.js';
 
 export default function CartDrawer({ isOpen, onClose, cart, phone }) {
+  const drawerRef = useRef(null);
+  useEffect(() => {
+    if (!isOpen) return;
+    const container = drawerRef.current;
+    if (!container) return;
+    const firstFocusable = container.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+    firstFocusable?.focus();
+    const onKey = (e) => {
+      if (e.key === 'Escape') { onClose?.(); }
+      if (e.key === 'Tab') {
+        const focusables = Array.from(container.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'));
+        if (focusables.length === 0) return;
+        const first = focusables[0];
+        const last = focusables[focusables.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    };
+    document.addEventListener('keydown', onKey);
+    return () => document.removeEventListener('keydown', onKey);
+  }, [isOpen, onClose]);
   if (!isOpen) return null;
 
   const sendToWhatsApp = () => {
@@ -22,6 +49,7 @@ export default function CartDrawer({ isOpen, onClose, cart, phone }) {
     >
       <div className="absolute inset-0 bg-black/60 backdrop-blur-sm kk-fade" />
       <aside
+        ref={drawerRef}
         className="relative w-full max-w-md h-full flex flex-col shadow-2xl kk-rise"
         style={{ backgroundColor: 'var(--bg)' }}
         onClick={(e) => e.stopPropagation()}
@@ -31,6 +59,7 @@ export default function CartDrawer({ isOpen, onClose, cart, phone }) {
             Your Cart ({cart.count})
           </h2>
           <button
+            type="button"
             onClick={onClose}
             className="p-2 rounded-xl hover:bg-black/5"
             aria-label="Close cart"
@@ -41,7 +70,7 @@ export default function CartDrawer({ isOpen, onClose, cart, phone }) {
 
         <div className="flex-1 overflow-y-auto p-5 space-y-3">
           {cart.cart.length === 0 ? (
-            <div className="text-center py-20" style={{ color: 'var(--text-faint)' }}>
+            <div className="text-center py-12 md:py-20" style={{ color: 'var(--text-faint)' }}>
               <ShoppingCart size={40} className="mx-auto mb-3 opacity-40" />
               <p className="font-semibold" style={{ color: 'var(--text-muted)' }}>Your cart is empty</p>
               <p className="text-sm mt-1">Browse our kits and add your favourites.</p>
@@ -88,9 +117,10 @@ export default function CartDrawer({ isOpen, onClose, cart, phone }) {
                   </div>
                 </div>
                 <button
+                  type="button"
                   onClick={() => cart.remove(item.cartId)}
                   aria-label="Remove from cart"
-                  className="p-1.5 rounded-xl self-start transition"
+                  className="p-1.5 rounded-xl self-start transition hover:text-[var(--danger)]"
                   style={{ color: 'var(--text-faint)' }}
                 >
                   <X size={16} />
@@ -107,6 +137,7 @@ export default function CartDrawer({ isOpen, onClose, cart, phone }) {
               <span className="text-2xl font-black" style={{ color: 'var(--brand-deep)' }}>K{cart.total}</span>
             </div>
             <button
+              type="button"
               onClick={() => { sendToWhatsApp(); onClose(); }}
               className="w-full py-4 rounded-2xl text-white font-bold text-base flex items-center justify-center gap-3 hover:brightness-110 transition shadow-lg"
               style={{ backgroundColor: '#25D366' }}

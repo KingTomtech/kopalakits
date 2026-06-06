@@ -12,7 +12,7 @@ export const ZUSA = {
   shortName: 'ZUSA',
   established: 1973,
   hq: 'University of Zambia, Great East Road Campus, Lusaka',
-  president: 'Dr.稍微 (placeholder — verify before launch)', // intentionally conservative placeholder
+  president: '',
   memberUniversities: [
     'University of Zambia (UNZA)',
     'Copperbelt University (CBU)',

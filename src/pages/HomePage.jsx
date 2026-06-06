@@ -1,9 +1,11 @@
 import { useEffect, useMemo, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { ArrowRight, Truck, MessageCircle, ShieldCheck, Sparkles, Flame, Clock } from 'lucide-react';
 import ProductGrid from '../components/ProductGrid.jsx';
 import { useWishlist } from '../hooks/useWishlist.js';
 import { getLeagueTable } from '../lib/api.js';
 import { ZUSA, FAZ } from '../lib/orgs.js';
+import { IMAGE_FALLBACK } from '../constants.js';
 
 function SkeletonCard() {
   return (
@@ -20,8 +22,8 @@ function SkeletonCard() {
 
 function CategoryHero({ icon, label, count, href, accent }) {
   return (
-    <a
-      href={href}
+    <Link
+      to={href}
       className="group flex flex-col items-start gap-1 p-3 rounded-2xl border transition-all hover:-translate-y-0.5"
       style={{ borderColor: 'var(--border)', backgroundColor: 'var(--surface)' }}
     >
@@ -33,7 +35,7 @@ function CategoryHero({ icon, label, count, href, accent }) {
       </div>
       <div className="text-sm font-bold" style={{ color: 'var(--text)' }}>{label}</div>
       <div className="text-xs" style={{ color: 'var(--text-faint)' }}>{count} kits</div>
-    </a>
+    </Link>
   );
 }
 
@@ -117,13 +119,13 @@ export default function HomePage({ products, loading, loadError, reload, onAddTo
               clubs, national sides and retro classics — all in one place, ordered in a tap via WhatsApp.
             </p>
             <div className="flex flex-wrap gap-3 mt-6">
-              <a
-                href="/shop"
+              <Link
+                to="/shop"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl text-white font-bold transition hover:brightness-110 shadow-lg"
                 style={{ backgroundColor: 'var(--brand)' }}
               >
                 Shop the catalog <ArrowRight size={18} />
-              </a>
+              </Link>
               <a
                 href={`https://wa.me/260770713619`}
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl font-bold transition border"
@@ -149,28 +151,30 @@ export default function HomePage({ products, loading, loadError, reload, onAddTo
                   src={(products.find((p) => p.newArrival) || products[0])?.image}
                   alt="Featured jersey"
                   className="w-full h-full object-cover"
-                  onError={(e) => { e.currentTarget.onerror = null; }}
+                  onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = IMAGE_FALLBACK; }}
                 />
               )}
             </div>
-            <div
-              className="absolute -bottom-4 -left-4 rounded-2xl shadow-xl p-3 max-w-[200px] kk-fade"
-              style={{ backgroundColor: 'var(--surface)', borderColor: 'var(--border)', border: '1px solid' }}
-            >
-              <div className="flex items-center gap-2">
-                <Flame size={16} style={{ color: 'var(--brand-deep)' }} />
-                <span className="text-xs font-bold" style={{ color: 'var(--text)' }}>New arrivals</span>
+            {!loading && (
+              <div
+                className="absolute -bottom-4 -left-4 rounded-2xl shadow-xl p-3 max-w-[200px] kk-fade"
+                style={{ backgroundColor: 'var(--surface)', borderColor: 'var(--border)', border: '1px solid' }}
+              >
+                <div className="flex items-center gap-2">
+                  <Flame size={16} style={{ color: 'var(--brand-deep)' }} />
+                  <span className="text-xs font-bold" style={{ color: 'var(--text)' }}>New arrivals</span>
+                </div>
+                <p className="text-xs mt-1" style={{ color: 'var(--text-muted)' }}>
+                  {byCategory.Retro || 0} retro classics just landed
+                </p>
               </div>
-              <p className="text-xs mt-1" style={{ color: 'var(--text-muted)' }}>
-                {byCategory.Retro || 0} retro classics just landed
-              </p>
-            </div>
+            )}
           </div>
         </div>
       </section>
 
       {/* CATEGORIES — quick tile grid */}
-      <section className="max-w-5xl mx-auto px-4 pt-8">
+      <section className="max-w-5xl mx-auto px-4 py-10">
         <h2 className="text-xl md:text-2xl font-black tracking-tight" style={{ color: 'var(--text)' }}>
           Shop by category
         </h2>
@@ -200,14 +204,15 @@ export default function HomePage({ products, loading, loadError, reload, onAddTo
           <h2 className="text-xl md:text-2xl font-black tracking-tight" style={{ color: 'var(--text)' }}>
             Featured kits
           </h2>
-          <a href="/shop" className="text-sm font-bold flex items-center gap-1" style={{ color: 'var(--brand-deep)' }}>
+          <Link to="/shop" className="text-sm font-bold flex items-center gap-1" style={{ color: 'var(--brand-deep)' }}>
             View all <ArrowRight size={14} />
-          </a>
+          </Link>
         </div>
         {loadError && !loading ? (
           <div className="text-center py-10">
             <p style={{ color: 'var(--danger)' }} className="font-medium">{loadError}</p>
             <button
+              type="button"
               onClick={reload}
               className="mt-3 px-4 py-2 rounded-xl text-sm font-bold text-white"
               style={{ backgroundColor: 'var(--brand)' }}
@@ -289,47 +294,47 @@ export default function HomePage({ products, loading, loadError, reload, onAddTo
           social channels where the fans live.
         </p>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-4">
-          <a
-            href="/faz"
+          <Link
+            to="/faz"
             className="rounded-2xl p-4 border transition hover:-translate-y-0.5 hover:shadow-md"
             style={{ borderColor: 'var(--border)', backgroundColor: 'var(--surface)' }}
           >
             <div className="w-10 h-10 rounded-xl flex items-center justify-center text-white text-lg mb-2" style={{ backgroundColor: FAZ.accentColor }}>⚽</div>
             <div className="font-bold text-sm" style={{ color: 'var(--text)' }}>FAZ</div>
             <div className="text-xs" style={{ color: 'var(--text-faint)' }}>Football Association of Zambia</div>
-          </a>
-          <a
-            href="/zusa"
+          </Link>
+          <Link
+            to="/zusa"
             className="rounded-2xl p-4 border transition hover:-translate-y-0.5 hover:shadow-md"
             style={{ borderColor: 'var(--border)', backgroundColor: 'var(--surface)' }}
           >
             <div className="w-10 h-10 rounded-xl flex items-center justify-center text-white text-lg mb-2" style={{ backgroundColor: ZUSA.accentColor }}>🎓</div>
             <div className="font-bold text-sm" style={{ color: 'var(--text)' }}>ZUSA</div>
             <div className="text-xs" style={{ color: 'var(--text-faint)' }}>Zambia University Sports</div>
-          </a>
-          <a
-            href="/news"
+          </Link>
+          <Link
+            to="/news"
             className="rounded-2xl p-4 border transition hover:-translate-y-0.5 hover:shadow-md"
             style={{ borderColor: 'var(--border)', backgroundColor: 'var(--surface)' }}
           >
             <div className="w-10 h-10 rounded-xl flex items-center justify-center text-white text-lg mb-2" style={{ backgroundColor: 'var(--text)' }}>📰</div>
             <div className="font-bold text-sm" style={{ color: 'var(--text)' }}>News</div>
             <div className="text-xs" style={{ color: 'var(--text-faint)' }}>BBC Sport + ESPN FC</div>
-          </a>
-          <a
-            href="/media"
+          </Link>
+          <Link
+            to="/media"
             className="rounded-2xl p-4 border transition hover:-translate-y-0.5 hover:shadow-md"
             style={{ borderColor: 'var(--border)', backgroundColor: 'var(--surface)' }}
           >
             <div className="w-10 h-10 rounded-xl flex items-center justify-center text-white text-lg mb-2" style={{ background: 'linear-gradient(135deg, #f58529 0%, #dd2a7b 50%, #8134af 100%)' }}>📷</div>
             <div className="font-bold text-sm" style={{ color: 'var(--text)' }}>Media</div>
             <div className="text-xs" style={{ color: 'var(--text-faint)' }}>YouTube · IG · TikTok</div>
-          </a>
+          </Link>
         </div>
       </section>
 
       {/* CTA STRIP */}
-      <section className="max-w-5xl mx-auto px-4 pt-12 pb-4">
+      <section className="max-w-5xl mx-auto px-4 py-10">
         <div
           className="rounded-3xl p-6 md:p-8 grid grid-cols-1 md:grid-cols-[1fr_auto] gap-4 items-center"
           style={{ backgroundColor: 'var(--brand-deep)', color: '#FFFFFF' }}

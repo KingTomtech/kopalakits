@@ -15,47 +15,50 @@ export function useProducts() {
   const [banner, setBanner] = useState(null);
   const [, setBannerDismissed] = useState(false);
 
-  const loadProducts = useCallback(async () => {
+  const loadProducts = useCallback(async (signal) => {
     setLoading(true);
     setLoadError('');
     try {
-      const res = await fetch('/api/products');
+      const res = await fetch('/api/products', { signal });
       if (!res.ok) throw new Error('Failed to load products');
-      const data = await res.json();
+      const data = await res.json().catch(() => []);
       if (Array.isArray(data)) {
         setProducts(data);
         try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch (e) { void e;}
       }
     } catch (e) { void e;
+      if (signal?.aborted) return;
       try {
         const stored = localStorage.getItem(STORAGE_KEY);
         if (stored) setProducts(JSON.parse(stored));
       } catch (e) { void e;}
       try {
-        const res = await fetch('/products.json');
+        const res = await fetch('/products.json', { signal });
         if (res.ok) {
-          const data = await res.json();
+          const data = await res.json().catch(() => []);
           setProducts(data);
           try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch (e) { void e;}
         }
       } catch (e) { void e;
+        if (signal?.aborted) return;
         setLoadError('Could not load products. Please check your connection.');
       }
     } finally {
-      setLoading(false);
+      if (!signal?.aborted) setLoading(false);
     }
   }, []);
 
-  const loadBanner = useCallback(async () => {
+  const loadBanner = useCallback(async (signal) => {
     try {
-      const res = await fetch('/api/banner');
+      const res = await fetch('/api/banner', { signal });
       if (res.ok) {
-        const data = await res.json();
+        const data = await res.json().catch(() => []);
         setBanner(data || FALLBACK_BANNER);
         try { localStorage.setItem(BANNER_KEY, JSON.stringify(data)); } catch (e) { void e;}
         return;
       }
     } catch (e) { void e;}
+    if (signal?.aborted) return;
     try {
       const stored = localStorage.getItem(BANNER_KEY);
       if (stored) setBanner(JSON.parse(stored));
@@ -63,9 +66,11 @@ export function useProducts() {
   }, []);
 
   useEffect(() => {
+    const controller = new AbortController();
     // eslint-disable-next-line react-hooks/set-state-in-effect
-    loadProducts();
-    loadBanner();
+    loadProducts(controller.signal);
+    loadBanner(controller.signal);
+    return () => controller.abort();
     const handler = () => {
       try {
         const fresh = localStorage.getItem(STORAGE_KEY);

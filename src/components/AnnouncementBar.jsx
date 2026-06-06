@@ -5,7 +5,7 @@ export default function AnnouncementBar({ banner, onDismiss }) {
   return (
     <div
       className="relative z-30 text-center text-sm font-semibold py-2.5 px-8"
-      style={{ backgroundColor: 'var(--brand)', color: '#FFFFFF' }}
+      style={{ backgroundColor: 'var(--brand)', color: 'var(--bg)' }}
     >
       <span>{banner.text}</span>
       <button

@@ -8,13 +8,9 @@ const TIKTOK_HANDLE = 'kopala.kits'; // placeholder — verify before launch
 const TIKTOK_URL = `https://www.tiktok.com/@${TIKTOK_HANDLE}`;
 
 // YouTube embeds use the privacy-enhanced youtube-nocookie.com domain which
-// doesn't set cookies until the user clicks Play. We hardcode 2-3 video IDs;
-// the admin can add more later via the embedded array.
-const YOUTUBE_VIDEOS = [
-  { id: 'dQw4w9WgXcQ', title: 'Kopala Kits — store walkthrough', kind: 'walkthrough' },
-  { id: 'kJQP7kiw5Fk', title: 'Nkana FC 2025/26 kit reveal', kind: 'reveal' },
-  { id: '9bZkp7q19f0', title: 'Power Dynamos behind-the-scenes', kind: 'bts' },
-];
+// doesn't set cookies until the user clicks Play.
+// TODO: add real video IDs before launch
+const YOUTUBE_VIDEOS = [];
 
 function YoutubeEmbed({ id, title }) {
   return (

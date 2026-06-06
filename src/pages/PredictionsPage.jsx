@@ -1,4 +1,5 @@
 import { useEffect, useState, useCallback } from 'react';
+import { Link } from 'react-router-dom';
 import { Trophy, MapPin, Clock, Lock, RefreshCw, Heart, Share2, MessageCircle } from 'lucide-react';
 import { useDeviceId } from '../hooks/useDeviceId.js';
 import { PHONE_FALLBACK } from '../constants.js';
@@ -102,6 +103,7 @@ function PredictionCard({ fixture, onVote, onShare, busy }) {
       {/* Footer with share */}
       <div className="px-5 pb-4 flex items-center justify-between">
         <button
+          type="button"
           onClick={() => onShare(fixture)}
           className="inline-flex items-center gap-1.5 text-xs font-bold"
           style={{ color: 'var(--text-muted)' }}
@@ -140,6 +142,7 @@ function PickButton({ side, myPick, disabled, onClick }) {
   const active = myPick === side;
   return (
     <button
+      type="button"
       onClick={onClick}
       disabled={disabled}
       className="py-3 rounded-2xl font-bold text-sm transition border-2"
@@ -195,7 +198,7 @@ export default function PredictionsPage({ showToast }) {
     try {
       const res = await fetch('/api/predictions', { headers: { 'X-Device-Id': deviceId } });
       if (!res.ok) throw new Error(`Failed to load (${res.status})`);
-      const data = await res.json();
+      const data = await res.json().catch(() => ({}));
       setFixtures(data.fixtures || []);
     } catch (e) {
       setError(e.message || 'Could not load fixtures.');
@@ -296,6 +299,7 @@ export default function PredictionsPage({ showToast }) {
             </div>
           </div>
           <button
+            type="button"
             onClick={refresh}
             disabled={refreshing}
             className="inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl font-bold text-sm border self-start md:self-center"
@@ -321,6 +325,7 @@ export default function PredictionsPage({ showToast }) {
         >
           <p className="font-medium" style={{ color: 'var(--danger)' }}>{error}</p>
           <button
+            type="button"
             onClick={load}
             className="mt-3 px-4 py-2 rounded-xl text-sm font-bold text-white"
             style={{ backgroundColor: 'var(--brand)' }}
@@ -345,6 +350,7 @@ export default function PredictionsPage({ showToast }) {
           </p>
           <div className="flex flex-wrap items-center justify-center gap-2 mt-4">
             <button
+              type="button"
               onClick={refresh}
               disabled={refreshing}
               className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold text-white"
@@ -353,13 +359,13 @@ export default function PredictionsPage({ showToast }) {
               <RefreshCw size={14} className={refreshing ? 'animate-spin' : ''} />
               Refresh
             </button>
-            <a
-              href="/shop"
+            <Link
+              to="/shop"
               className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold border"
               style={{ borderColor: 'var(--border)', color: 'var(--text)' }}
             >
               Browse shop
-            </a>
+            </Link>
           </div>
         </div>
       ) : (
@@ -388,19 +394,20 @@ export default function PredictionsPage({ showToast }) {
           </div>
           <div className="flex flex-wrap gap-2">
             <button
+              type="button"
               onClick={openWhatsApp}
               className="inline-flex items-center gap-2 px-5 py-3 rounded-2xl font-bold"
               style={{ backgroundColor: '#FFFFFF', color: 'var(--brand-deep)' }}
             >
               <MessageCircle size={16} /> WhatsApp a friend
             </button>
-            <a
-              href="/shop"
+            <Link
+              to="/shop"
               className="inline-flex items-center gap-2 px-5 py-3 rounded-2xl font-bold border-2"
               style={{ borderColor: 'rgba(255,255,255,0.4)', color: '#FFFFFF' }}
             >
               <Heart size={16} /> Shop the kits
-            </a>
+            </Link>
           </div>
         </div>
       </section>

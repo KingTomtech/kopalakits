@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { MapPin, Phone, MessageCircle, Mail } from 'lucide-react';
 import Logo from './Logo.jsx';
 
@@ -16,7 +17,7 @@ export default function SiteFooter({ phone }) {
           </p>
           <a
             href={`https://wa.me/${phone}`}
-            className="mt-4 inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl text-sm font-bold transition"
+            className="mt-4 inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl text-sm font-bold transition hover:brightness-110"
             style={{ backgroundColor: '#25D366', color: '#FFFFFF' }}
           >
             <MessageCircle size={16} /> Chat with Us
@@ -32,14 +33,14 @@ export default function SiteFooter({ phone }) {
         <div>
           <h4 className="font-bold text-sm uppercase tracking-widest mb-4" style={{ color: 'var(--text-faint)' }}>Browse</h4>
           <ul className="space-y-2 text-sm">
-            <li><a href="/" className="font-medium hover:underline" style={{ color: 'var(--text-muted)' }}>Home</a></li>
-            <li><a href="/shop" className="font-medium hover:underline" style={{ color: 'var(--text-muted)' }}>Shop all kits</a></li>
-            <li><a href="/shop?category=Local" className="font-medium hover:underline" style={{ color: 'var(--text-muted)' }}>Local teams</a></li>
-            <li><a href="/shop?category=International" className="font-medium hover:underline" style={{ color: 'var(--text-muted)' }}>International</a></li>
-            <li><a href="/shop?category=National" className="font-medium hover:underline" style={{ color: 'var(--text-muted)' }}>National teams</a></li>
-            <li><a href="/shop?category=Retro" className="font-medium hover:underline" style={{ color: 'var(--text-muted)' }}>Retro classics</a></li>
-            <li><a href="/about" className="font-medium hover:underline" style={{ color: 'var(--text-muted)' }}>About us</a></li>
-            <li><a href="/contact" className="font-medium hover:underline" style={{ color: 'var(--text-muted)' }}>Contact</a></li>
+            <li><Link to="/" className="font-medium hover:underline" style={{ color: 'var(--text-muted)' }}>Home</Link></li>
+            <li><Link to="/shop" className="font-medium hover:underline" style={{ color: 'var(--text-muted)' }}>Shop all kits</Link></li>
+            <li><Link to="/shop?category=Local" className="font-medium hover:underline" style={{ color: 'var(--text-muted)' }}>Local teams</Link></li>
+            <li><Link to="/shop?category=International" className="font-medium hover:underline" style={{ color: 'var(--text-muted)' }}>International</Link></li>
+            <li><Link to="/shop?category=National" className="font-medium hover:underline" style={{ color: 'var(--text-muted)' }}>National teams</Link></li>
+            <li><Link to="/shop?category=Retro" className="font-medium hover:underline" style={{ color: 'var(--text-muted)' }}>Retro classics</Link></li>
+            <li><Link to="/about" className="font-medium hover:underline" style={{ color: 'var(--text-muted)' }}>About us</Link></li>
+            <li><Link to="/contact" className="font-medium hover:underline" style={{ color: 'var(--text-muted)' }}>Contact</Link></li>
           </ul>
         </div>
         <div>

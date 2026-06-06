@@ -74,7 +74,7 @@ export default function ContactPage({ phone }) {
               </div>
             </a>
             <div
-              className="flex items-center gap-3 p-3 rounded-2xl border"
+              className="flex items-center gap-3 p-3 rounded-2xl border transition hover:shadow-md"
               style={{ borderColor: 'var(--border)', backgroundColor: 'var(--surface)' }}
             >
               <div
@@ -89,7 +89,7 @@ export default function ContactPage({ phone }) {
               </div>
             </div>
             <div
-              className="flex items-center gap-3 p-3 rounded-2xl border"
+              className="flex items-center gap-3 p-3 rounded-2xl border transition hover:shadow-md"
               style={{ borderColor: 'var(--border)', backgroundColor: 'var(--surface)' }}
             >
               <div
@@ -104,7 +104,7 @@ export default function ContactPage({ phone }) {
               </div>
             </div>
             <div
-              className="flex items-center gap-3 p-3 rounded-2xl border"
+              className="flex items-center gap-3 p-3 rounded-2xl border transition hover:shadow-md"
               style={{ borderColor: 'var(--border)', backgroundColor: 'var(--surface)' }}
             >
               <div
@@ -121,7 +121,7 @@ export default function ContactPage({ phone }) {
               </div>
             </div>
             <div
-              className="flex items-center gap-3 p-3 rounded-2xl border"
+              className="flex items-center gap-3 p-3 rounded-2xl border transition hover:shadow-md"
               style={{ borderColor: 'var(--border)', backgroundColor: 'var(--surface)' }}
             >
               <div
@@ -159,7 +159,7 @@ export default function ContactPage({ phone }) {
                   type="text"
                   value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
-                  className="w-full px-3 py-2.5 rounded-xl border-2 text-sm"
+                  className="w-full px-3 py-2.5 rounded-xl border-2 text-base md:text-sm"
                   style={{ borderColor: 'var(--border)', backgroundColor: 'var(--bg)', color: 'var(--text)' }}
                   placeholder="Your name"
                 />
@@ -170,7 +170,7 @@ export default function ContactPage({ phone }) {
                   type="email"
                   value={form.email}
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
-                  className="w-full px-3 py-2.5 rounded-xl border-2 text-sm"
+                  className="w-full px-3 py-2.5 rounded-xl border-2 text-base md:text-sm"
                   style={{ borderColor: 'var(--border)', backgroundColor: 'var(--bg)', color: 'var(--text)' }}
                   placeholder="you@example.com"
                 />
@@ -180,7 +180,7 @@ export default function ContactPage({ phone }) {
                 <select
                   value={form.subject}
                   onChange={(e) => setForm({ ...form, subject: e.target.value })}
-                  className="w-full px-3 py-2.5 rounded-xl border-2 text-sm"
+                  className="w-full px-3 py-2.5 rounded-xl border-2 text-base md:text-sm"
                   style={{ borderColor: 'var(--border)', backgroundColor: 'var(--bg)', color: 'var(--text)' }}
                 >
                   <option>General</option>
@@ -194,7 +194,7 @@ export default function ContactPage({ phone }) {
                 <textarea
                   value={form.message}
                   onChange={(e) => setForm({ ...form, message: e.target.value })}
-                  className="w-full px-3 py-2.5 rounded-xl border-2 text-sm min-h-[100px]"
+                  className="w-full px-3 py-2.5 rounded-xl border-2 text-base md:text-sm min-h-[100px]"
                   style={{ borderColor: 'var(--border)', backgroundColor: 'var(--bg)', color: 'var(--text)' }}
                   placeholder="Tell us what you're looking for…"
                   required
@@ -202,7 +202,7 @@ export default function ContactPage({ phone }) {
               </div>
               <button
                 type="submit"
-                className="w-full inline-flex items-center justify-center gap-2 py-3 rounded-xl font-bold text-white transition hover:brightness-110"
+                className="w-full inline-flex items-center justify-center gap-2 py-3 rounded-2xl font-bold text-white transition hover:brightness-110"
                 style={{ backgroundColor: 'var(--brand)' }}
               >
                 <Send size={16} /> {sent ? 'Opening WhatsApp…' : 'Send via WhatsApp'}

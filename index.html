@@ -20,14 +20,35 @@
          FAVICON & ICONS
     ═══════════════════════════════════════════ -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/favicon.svg" />
+    <!-- iOS Safari requires PNG for touch icons; SVG is ignored -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="/icons/icon-192.png" />
+    <link rel="apple-touch-icon" sizes="167x167" href="/icons/icon-192.png" />
+    <link rel="mask-icon" href="/favicon.svg" color="#5E6B3C" />
+
+    <!-- Windows / IE pinned tab -->
     <meta name="msapplication-TileColor" content="#5E6B3C" />
+    <meta name="msapplication-TileImage" content="/icons/icon-512.png" />
+    <meta name="msapplication-config" content="none" />
+
+    <!-- iOS standalone app -->
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="Kopala Kits" />
+
+    <!-- iOS splash / startup images (generated from og-image.jpg) -->
+    <link rel="apple-touch-startup-image" href="/splash/splash-1284x2778.jpg" media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3)" />
+    <link rel="apple-touch-startup-image" href="/splash/splash-1170x2532.jpg" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3)" />
+    <link rel="apple-touch-startup-image" href="/splash/splash-750x1334.jpg" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)" />
+    <link rel="apple-touch-startup-image" href="/splash/splash-2048x2732.jpg" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)" />
+
+    <!-- Android Chrome -->
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="application-name" content="Kopala Kits" />
-    <meta name="msapplication-TileImage" content="/og-image.jpg" />
+
+    <!-- Theme colour adapts to dark mode -->
+    <meta name="theme-color" content="#5E6B3C" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#2E2C2A" media="(prefers-color-scheme: dark)" />
 
     <!-- ═══════════════════════════════════════════
          PRIMARY SEO
@@ -40,6 +61,10 @@
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <meta name="googlebot" content="index, follow" />
     <link rel="canonical" href="https://kopala.zingati.app/" />
+    <link rel="alternate" media="only screen and (max-width: 640px)" href="https://kopala.zingati.app/" />
+    <meta name="format-detection" content="telephone=yes" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="renderer" content="webkit" />
 
     <!-- ═══════════════════════════════════════════
          OPEN GRAPH (Facebook, WhatsApp, LinkedIn)
@@ -52,8 +77,8 @@
     <meta property="og:image" content="https://kopala.zingati.app/og-image.jpg" />
     <meta property="og:image:secure_url" content="https://kopala.zingati.app/og-image.jpg" />
     <meta property="og:image:type" content="image/jpeg" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
+    <meta property="og:image:width" content="874" />
+    <meta property="og:image:height" content="1080" />
     <meta property="og:image:alt" content="Kopala Kits — Soccer Jerseys in Kitwe, Zambia" />
     <meta property="og:locale" content="en_ZM" />
 
@@ -81,7 +106,6 @@
     ═══════════════════════════════════════════ -->
     <meta name="language" content="en" />
     <meta name="rating" content="general" />
-    <meta name="revisit-after" content="7 days" />
     <meta name="category" content="Sports, Soccer, Jerseys, Zambia" />
     <meta name="classification" content="Shopping / Sports Apparel" />
     <meta name="coverage" content="Zambia, Copperbelt, Kitwe" />
@@ -89,13 +113,6 @@
     <meta name="HandheldFriendly" content="True" />
     <meta name="MobileOptimized" content="320" />
 
-    <!-- ═══════════════════════════════════════════
-         PERFORMANCE HINTS
-    ═══════════════════════════════════════════ -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preconnect" href="https://images.unsplash.com" />
-    <link rel="dns-prefetch" href="https://wa.me" />
   </head>
 
   <body>
@@ -216,8 +233,8 @@
         {
           "@type": "ListItem",
           "position": 2,
-          "name": "Soccer Jerseys",
-          "item": "https://kopala.zingati.app/"
+          "name": "Shop",
+          "item": "https://kopala.zingati.app/shop"
         }
       ]
     }
@@ -269,19 +286,6 @@
     }
     </script>
 
-    <!-- STRUCTURED DATA — VideoObject for featured YouTube embeds -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "VideoObject",
-      "name": "Kopala Kits — store walkthrough",
-      "description": "A look inside Kopala Kits, the Kitwe-based soccer jersey shop with WhatsApp ordering.",
-      "thumbnailUrl": "https://kopala.zingati.app/og-image.jpg",
-      "uploadDate": "2026-01-01T00:00:00Z",
-      "contentUrl": "https://kopala.zingati.app/media",
-      "embedUrl": "https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ"
-    }
-    </script>
 
     <!-- STRUCTURED DATA — WebSite with SearchAction -->
     <script type="application/ld+json">
