@@ -1,0 +1,7 @@
+- generic [ref=e4]:
+  - heading "Admin Panel" [level=1] [ref=e5]
+  - paragraph [ref=e6]: Kopala Kits
+  - generic [ref=e7]:
+    - textbox "Password" [ref=e8]
+    - button "Login" [ref=e9] [cursor=pointer]
+  - button "← Back to Shop" [ref=e10] [cursor=pointer]

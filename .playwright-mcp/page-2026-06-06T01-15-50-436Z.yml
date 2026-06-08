@@ -1,0 +1,181 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - link "Kopala Kits home" [ref=e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e7]:
+          - img "Kopala Kits" [ref=e8]
+          - generic [ref=e9]: KOPALA KITS
+      - navigation [ref=e10]:
+        - link "Home" [ref=e11] [cursor=pointer]:
+          - /url: /
+        - link "Shop" [ref=e12] [cursor=pointer]:
+          - /url: /shop
+        - link "Predictions" [ref=e13] [cursor=pointer]:
+          - /url: /predictions
+          - text: Predictions
+        - link "Tournaments" [ref=e15] [cursor=pointer]:
+          - /url: /tournaments
+        - link "News" [ref=e16] [cursor=pointer]:
+          - /url: /news
+        - link "Media" [ref=e17] [cursor=pointer]:
+          - /url: /media
+        - link "About" [ref=e18] [cursor=pointer]:
+          - /url: /about
+        - link "Contact" [ref=e19] [cursor=pointer]:
+          - /url: /contact
+      - generic [ref=e20]:
+        - button "Open cart, 0 items" [ref=e21] [cursor=pointer]:
+          - img [ref=e22]
+        - button "Switch to dark mode" [ref=e26] [cursor=pointer]:
+          - img [ref=e27]
+  - main [ref=e29]:
+    - generic [ref=e30]:
+      - link "Back to shop" [ref=e31] [cursor=pointer]:
+        - /url: /shop
+        - img [ref=e32]
+        - text: Back to shop
+      - generic [ref=e34]:
+        - img "Mufulira Wanderers 2025/26 Home Jersey" [ref=e36]
+        - generic [ref=e37]:
+          - text: Local
+          - heading "Mufulira Wanderers 2025/26 Home Jersey" [level=1] [ref=e38]
+          - paragraph [ref=e39]: Green and white stripes home kit of Mighty Mufulira Wanderers.
+          - generic [ref=e40]:
+            - generic [ref=e41]: K520
+            - generic [ref=e42]: ZMW
+          - generic [ref=e43]:
+            - generic [ref=e44]:
+              - img [ref=e45]
+              - text: Same-day in Kitwe
+            - generic [ref=e50]:
+              - img [ref=e51]
+              - text: Authentic
+            - generic [ref=e54]:
+              - img [ref=e55]
+              - text: In stock
+            - generic [ref=e58]:
+              - img [ref=e59]
+              - text: WhatsApp order
+          - generic [ref=e61]:
+            - button "Add to cart" [ref=e62] [cursor=pointer]:
+              - img [ref=e63]
+              - text: Add to cart
+            - button "WhatsApp" [ref=e64] [cursor=pointer]:
+              - img [ref=e65]
+              - text: WhatsApp
+            - button "Add to wishlist" [ref=e67] [cursor=pointer]:
+              - img [ref=e68]
+            - button "Share" [ref=e70] [cursor=pointer]:
+              - img [ref=e71]
+          - generic [ref=e77]:
+            - generic [ref=e78]: Available sizes
+            - generic [ref=e79]:
+              - generic [ref=e80]: S
+              - generic [ref=e81]: M
+              - generic [ref=e82]: L
+              - generic [ref=e83]: XL
+              - generic [ref=e84]: XXL
+            - paragraph [ref=e85]: Size is selected at checkout on WhatsApp. Don't see your size? Message us.
+      - generic [ref=e86]:
+        - heading "You might also like" [level=2] [ref=e87]
+        - generic [ref=e89]:
+          - article [ref=e90]:
+            - generic [ref=e91] [cursor=pointer]:
+              - img "Kabwe Warriors 2024/25 Home Jersey" [ref=e92]
+              - button "Add to wishlist" [ref=e93]:
+                - img [ref=e94]
+            - generic [ref=e96] [cursor=pointer]:
+              - text: Local
+              - heading "Kabwe Warriors 2024/25 Home Jersey" [level=3] [ref=e97]
+              - paragraph [ref=e98]: Sky blue and white home jersey.
+              - generic [ref=e99]:
+                - generic [ref=e100]: K480
+                - button "Quick add Kabwe Warriors 2024/25 Home Jersey" [ref=e101]:
+                  - img [ref=e102]
+          - article [ref=e103]:
+            - generic [ref=e104] [cursor=pointer]:
+              - img "Nkana FC 2024/25 Home Jersey" [ref=e105]
+              - button "Add to wishlist" [ref=e106]:
+                - img [ref=e107]
+            - generic [ref=e109] [cursor=pointer]:
+              - text: Local
+              - heading "Nkana FC 2024/25 Home Jersey" [level=3] [ref=e110]
+              - paragraph [ref=e111]: Classic orange/red and white home jersey.
+              - generic [ref=e112]:
+                - generic [ref=e113]: K500
+                - button "Quick add Nkana FC 2024/25 Home Jersey" [ref=e114]:
+                  - img [ref=e115]
+          - article [ref=e116]:
+            - generic [ref=e117] [cursor=pointer]:
+              - img "Power Dynamos 2025/26 Home Jersey" [ref=e118]
+              - button "Add to wishlist" [ref=e119]:
+                - img [ref=e120]
+            - generic [ref=e122] [cursor=pointer]:
+              - text: Local
+              - heading "Power Dynamos 2025/26 Home Jersey" [level=3] [ref=e123]
+              - paragraph [ref=e124]: Iconic yellow Aba Yellow home kit.
+              - generic [ref=e125]:
+                - generic [ref=e126]: K490
+                - button "Quick add Power Dynamos 2025/26 Home Jersey" [ref=e127]:
+                  - img [ref=e128]
+  - contentinfo [ref=e129]:
+    - generic [ref=e130]:
+      - generic [ref=e131]:
+        - generic [ref=e132]:
+          - img "Kopala Kits" [ref=e133]
+          - generic [ref=e134]: KOPALA KITS
+        - paragraph [ref=e135]: Premium soccer jerseys for every fan. Local, international, national & retro classics — all at the best prices in Kitwe.
+        - link "Chat with Us" [ref=e136] [cursor=pointer]:
+          - /url: https://wa.me/260770713619
+          - img [ref=e137]
+          - text: Chat with Us
+        - link "Admin panel →" [ref=e139] [cursor=pointer]:
+          - /url: /admin
+      - generic [ref=e140]:
+        - heading "Browse" [level=4] [ref=e141]
+        - list [ref=e142]:
+          - listitem [ref=e143]:
+            - link "Home" [ref=e144] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=e145]:
+            - link "Shop all kits" [ref=e146] [cursor=pointer]:
+              - /url: /shop
+          - listitem [ref=e147]:
+            - link "Local teams" [ref=e148] [cursor=pointer]:
+              - /url: /shop?category=Local
+          - listitem [ref=e149]:
+            - link "International" [ref=e150] [cursor=pointer]:
+              - /url: /shop?category=International
+          - listitem [ref=e151]:
+            - link "National teams" [ref=e152] [cursor=pointer]:
+              - /url: /shop?category=National
+          - listitem [ref=e153]:
+            - link "Retro classics" [ref=e154] [cursor=pointer]:
+              - /url: /shop?category=Retro
+          - listitem [ref=e155]:
+            - link "About us" [ref=e156] [cursor=pointer]:
+              - /url: /about
+          - listitem [ref=e157]:
+            - link "Contact" [ref=e158] [cursor=pointer]:
+              - /url: /contact
+      - generic [ref=e159]:
+        - heading "Find Us" [level=4] [ref=e160]
+        - generic [ref=e161]:
+          - paragraph [ref=e162]:
+            - img [ref=e163]
+            - generic [ref=e166]:
+              - text: K-Block, Copperbelt University
+              - text: Kitwe, Copperbelt Province, Zambia
+          - paragraph [ref=e167]:
+            - img [ref=e168]
+            - link "+260 770 713619" [ref=e170] [cursor=pointer]:
+              - /url: https://wa.me/260770713619
+          - paragraph [ref=e171]:
+            - img [ref=e172]
+            - link "hello@kopala.zingati.app" [ref=e175] [cursor=pointer]:
+              - /url: mailto:hello@kopala.zingati.app
+        - paragraph [ref=e176]: Mon–Fri 8am–6pm · Sat 9am–4pm
+    - generic [ref=e177]: 2026 Kopala Kits · Kitwe, Zambia · All prices in Zambian Kwacha (ZMW)
+  - button "Chat on WhatsApp" [ref=e178] [cursor=pointer]:
+    - img [ref=e179]

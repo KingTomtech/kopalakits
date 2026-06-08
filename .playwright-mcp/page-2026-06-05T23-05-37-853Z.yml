@@ -1,0 +1,198 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - link "Kopala Kits home" [ref=e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e7]:
+          - img "Kopala Kits" [ref=e8]
+          - generic [ref=e15]: KOPALA KITS
+      - navigation [ref=e16]:
+        - link "Home" [ref=e17] [cursor=pointer]:
+          - /url: /
+        - link "Shop" [ref=e18] [cursor=pointer]:
+          - /url: /shop
+        - link "Predictions" [ref=e19] [cursor=pointer]:
+          - /url: /predictions
+          - text: Predictions
+        - link "Tournaments" [ref=e21] [cursor=pointer]:
+          - /url: /tournaments
+        - link "News" [ref=e22] [cursor=pointer]:
+          - /url: /news
+        - link "Media" [ref=e23] [cursor=pointer]:
+          - /url: /media
+        - link "About" [ref=e24] [cursor=pointer]:
+          - /url: /about
+        - link "Contact" [ref=e25] [cursor=pointer]:
+          - /url: /contact
+      - generic [ref=e26]:
+        - button "Open cart, 0 items" [ref=e27] [cursor=pointer]:
+          - img [ref=e28]
+        - button "Switch to dark mode" [ref=e32] [cursor=pointer]:
+          - img [ref=e33]
+  - main [ref=e35]:
+    - generic [ref=e36]:
+      - generic [ref=e37]:
+        - generic [ref=e38]:
+          - heading "Talk to us." [level=1] [ref=e39]
+          - paragraph [ref=e40]: WhatsApp is the fastest way to reach us. We typically reply within an hour during business hours.
+          - generic [ref=e41]:
+            - link "WhatsApp (fastest) +260 770 713619" [ref=e42] [cursor=pointer]:
+              - /url: https://wa.me/260770713619
+              - img [ref=e44]
+              - generic [ref=e46]:
+                - generic [ref=e47]: WhatsApp (fastest)
+                - generic [ref=e48]: +260 770 713619
+            - generic [ref=e49]:
+              - img [ref=e51]
+              - generic [ref=e53]:
+                - generic [ref=e54]: Phone
+                - generic [ref=e55]: +260 770 713619
+            - generic [ref=e56]:
+              - img [ref=e58]
+              - generic [ref=e61]:
+                - generic [ref=e62]: Email
+                - generic [ref=e63]: hello@kopala.zingati.app
+            - generic [ref=e64]:
+              - img [ref=e66]
+              - generic [ref=e69]:
+                - generic [ref=e70]: Visit
+                - generic [ref=e71]: K-Block, Copperbelt University, Kitwe
+            - generic [ref=e72]:
+              - img [ref=e74]
+              - generic [ref=e77]:
+                - generic [ref=e78]: Hours
+                - generic [ref=e79]: Mon–Fri 8am–6pm · Sat 9am–4pm · Sun closed
+        - generic [ref=e80]:
+          - generic [ref=e81]:
+            - heading "Send us a message" [level=2] [ref=e82]
+            - paragraph [ref=e83]: Submitting opens WhatsApp with your message pre-filled.
+            - generic [ref=e84]:
+              - generic [ref=e85]:
+                - generic [ref=e86]: Your name
+                - textbox "Your name" [ref=e87]
+              - generic [ref=e88]:
+                - generic [ref=e89]: Email
+                - textbox "you@example.com" [ref=e90]
+              - generic [ref=e91]:
+                - generic [ref=e92]: Subject
+                - combobox [ref=e93]:
+                  - option "General" [selected]
+                  - option "Order question"
+                  - option "Sourcing request"
+                  - option "Wholesale / bulk"
+              - generic [ref=e94]:
+                - generic [ref=e95]: Message
+                - textbox "Tell us what you're looking for…" [ref=e96]
+              - button "Send via WhatsApp" [ref=e97] [cursor=pointer]:
+                - img [ref=e98]
+                - text: Send via WhatsApp
+          - iframe [ref=e102]:
+            - generic [ref=f13e2]:
+              - img
+              - generic:
+                - region "Map" [ref=f13e3]
+                - button "[missing \"en-US.javascripts.map.marker.title\" translation]" [ref=f13e4]:
+                  - img [ref=f13e5]
+              - generic:
+                - generic [ref=f13e8]:
+                  - button "Zoom In" [ref=f13e9] [cursor=pointer]
+                  - button "Zoom Out" [ref=f13e11] [cursor=pointer]
+                - group [ref=f13e13]:
+                  - generic [ref=f13e14]:
+                    - text: ©
+                    - link "OpenStreetMap contributors" [ref=f13e15] [cursor=pointer]:
+                      - /url: /copyright
+                    - text: ♥️
+                    - link "Make a Donation" [ref=f13e16] [cursor=pointer]:
+                      - /url: https://supporting.openstreetmap.org
+                    - text: .
+                    - link "Website and API terms" [ref=f13e17] [cursor=pointer]:
+                      - /url: https://wiki.osmfoundation.org/wiki/Terms_of_Use
+      - generic [ref=e103]:
+        - heading "Frequently asked" [level=2] [ref=e104]
+        - generic [ref=e105]:
+          - group [ref=e106]:
+            - generic "How do I order? −" [ref=e107] [cursor=pointer]:
+              - text: How do I order?
+              - generic [ref=e108]: −
+            - generic [ref=e109]: Browse the shop, add jerseys to your cart, then tap "Order via WhatsApp" — a pre-filled message opens in WhatsApp. We confirm availability, you pay on delivery.
+          - group [ref=e110]:
+            - generic "Do you have a physical store? +" [ref=e111] [cursor=pointer]:
+              - text: Do you have a physical store?
+              - generic [ref=e112]: +
+          - group [ref=e113]:
+            - generic "Do you ship outside Kitwe? +" [ref=e114] [cursor=pointer]:
+              - text: Do you ship outside Kitwe?
+              - generic [ref=e115]: +
+          - group [ref=e116]:
+            - generic "What if my size is out of stock? +" [ref=e117] [cursor=pointer]:
+              - text: What if my size is out of stock?
+              - generic [ref=e118]: +
+          - group [ref=e119]:
+            - generic "Do you accept returns? +" [ref=e120] [cursor=pointer]:
+              - text: Do you accept returns?
+              - generic [ref=e121]: +
+          - group [ref=e122]:
+            - generic "Are the jerseys authentic? +" [ref=e123] [cursor=pointer]:
+              - text: Are the jerseys authentic?
+              - generic [ref=e124]: +
+  - contentinfo [ref=e125]:
+    - generic [ref=e126]:
+      - generic [ref=e127]:
+        - generic [ref=e128]:
+          - img "Kopala Kits" [ref=e129]
+          - generic [ref=e136]: KOPALA KITS
+        - paragraph [ref=e137]: Premium soccer jerseys for every fan. Local, international, national & retro classics — all at the best prices in Kitwe.
+        - link "Chat with Us" [ref=e138] [cursor=pointer]:
+          - /url: https://wa.me/260770713619
+          - img [ref=e139]
+          - text: Chat with Us
+        - link "Admin panel →" [ref=e141] [cursor=pointer]:
+          - /url: /admin
+      - generic [ref=e142]:
+        - heading "Browse" [level=4] [ref=e143]
+        - list [ref=e144]:
+          - listitem [ref=e145]:
+            - link "Home" [ref=e146] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=e147]:
+            - link "Shop all kits" [ref=e148] [cursor=pointer]:
+              - /url: /shop
+          - listitem [ref=e149]:
+            - link "Local teams" [ref=e150] [cursor=pointer]:
+              - /url: /shop?category=Local
+          - listitem [ref=e151]:
+            - link "International" [ref=e152] [cursor=pointer]:
+              - /url: /shop?category=International
+          - listitem [ref=e153]:
+            - link "National teams" [ref=e154] [cursor=pointer]:
+              - /url: /shop?category=National
+          - listitem [ref=e155]:
+            - link "Retro classics" [ref=e156] [cursor=pointer]:
+              - /url: /shop?category=Retro
+          - listitem [ref=e157]:
+            - link "About us" [ref=e158] [cursor=pointer]:
+              - /url: /about
+          - listitem [ref=e159]:
+            - link "Contact" [ref=e160] [cursor=pointer]:
+              - /url: /contact
+      - generic [ref=e161]:
+        - heading "Find Us" [level=4] [ref=e162]
+        - generic [ref=e163]:
+          - paragraph [ref=e164]:
+            - img [ref=e165]
+            - generic [ref=e168]:
+              - text: K-Block, Copperbelt University
+              - text: Kitwe, Copperbelt Province, Zambia
+          - paragraph [ref=e169]:
+            - img [ref=e170]
+            - link "+260 770 713619" [ref=e172] [cursor=pointer]:
+              - /url: https://wa.me/260770713619
+          - paragraph [ref=e173]:
+            - img [ref=e174]
+            - link "hello@kopala.zingati.app" [ref=e177] [cursor=pointer]:
+              - /url: mailto:hello@kopala.zingati.app
+        - paragraph [ref=e178]: Mon–Fri 8am–6pm · Sat 9am–4pm
+    - generic [ref=e179]: 2026 Kopala Kits · Kitwe, Zambia · All prices in Zambian Kwacha (ZMW)
+  - button "Chat on WhatsApp" [ref=e180] [cursor=pointer]:
+    - img [ref=e181]

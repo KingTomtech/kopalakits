@@ -8,7 +8,20 @@ const NEWS_CATEGORIES = [
   { id: 'zambia', label: 'Zambia' },
   { id: 'africa', label: 'Africa' },
   { id: 'world', label: 'Rest of World' },
+  { id: 'all-sports', label: 'All Sports' },
   { id: 'kit-launches', label: 'Kit Launches' },
+];
+
+// Feeds used by the "All Sports" tab. These are intentionally
+// multi-sport outlets (BBC Sport, Guardian, ESPN general) that mix
+// cricket, NBA, NFL, tennis, F1, etc. with some football. They are
+// hidden from the "All" tab so that view stays football-only, and
+// surfaced here instead.
+const ALL_SPORTS_FEED_IDS = [
+  'bbc-sport-all',
+  'guardian-sport',
+  'espn-sport-all',
+  'espn-cosafa',
 ];
 
 function relativeTime(iso) {
@@ -33,8 +46,27 @@ function relativeTime(iso) {
 function ItemCard({ item }) {
   const [imageError, setImageError] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
-  
+
   const defaultImage = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"%3E%3Crect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"%3E%3C/rect%3E%3Cpath d="M7 2v20M17 2v20M2 12h20M2 7h5M2 17h5M17 17h5M17 7h5"%3E%3C/path%3E%3C/svg%3E';
+
+  // Stable hash from the source label so each outlet gets its own gradient.
+  // Avoids the "every card looks identical" problem when feeds ship no
+  // images (Lusaka Star, Guardian etc.).
+  const sourceHash = (() => {
+    const s = item.source || '';
+    let h = 0;
+    for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) | 0;
+    return Math.abs(h);
+  })();
+  const gradients = [
+    'linear-gradient(135deg, #1f2937 0%, #C5364A 100%)',
+    'linear-gradient(135deg, #0f766e 0%, #facc15 100%)',
+    'linear-gradient(135deg, #1e3a8a 0%, #dc2626 100%)',
+    'linear-gradient(135deg, #581c87 0%, #14b8a6 100%)',
+    'linear-gradient(135deg, #064e3b 0%, #f97316 100%)',
+    'linear-gradient(135deg, #7c2d12 0%, #1d4ed8 100%)',
+  ];
+  const placeholderBg = gradients[sourceHash % gradients.length];
 
   return (
     <a
@@ -61,8 +93,8 @@ function ItemCard({ item }) {
           />
           {item.video && (
             <div className="absolute inset-0 flex items-center justify-center bg-black/30">
-              <div className="w-10 h-10 rounded-full bg-white/90 flex items-center justify-center shadow-lg">
-                <Play size={16} className="text-[var(--danger)] ml-0.5" fill="currentColor" />
+              <div className="w-12 h-12 rounded-full bg-white/95 flex items-center justify-center shadow-lg">
+                <Play size={20} className="text-[var(--danger)] ml-0.5" fill="currentColor" />
               </div>
             </div>
           )}
@@ -70,25 +102,54 @@ function ItemCard({ item }) {
       )}
       {(!item.image || imageError) && (
         <div
-          className={`aspect-[16/9] flex items-center justify-center relative ${item.video ? 'bg-[var(--danger)]/10' : 'bg-gradient-to-br from-gray-100 to-gray-200'}`}
+          className="aspect-[16/9] flex items-center justify-center relative overflow-hidden"
+          style={{ background: item.video ? 'linear-gradient(135deg, #0f172a 0%, #991b1b 100%)' : placeholderBg }}
           role="img"
           aria-label={`Placeholder for ${item.title}`}
         >
           {item.video ? (
-            <div className="flex flex-col items-center gap-1">
-              <div className="w-10 h-10 rounded-full bg-[var(--danger)]/15 flex items-center justify-center">
-                <Play size={16} className="text-[var(--danger)] ml-0.5" fill="currentColor" />
+            <>
+              {/* Subtle football-pitch stripe pattern for video cards */}
+              <div
+                className="absolute inset-0 opacity-20"
+                style={{
+                  backgroundImage:
+                    'repeating-linear-gradient(0deg, rgba(255,255,255,0.15) 0px, rgba(255,255,255,0.15) 2px, transparent 2px, transparent 24px)',
+                }}
+                aria-hidden="true"
+              />
+              <div className="flex flex-col items-center gap-2 relative z-10">
+                <div className="w-14 h-14 rounded-full bg-white/95 flex items-center justify-center shadow-xl">
+                  <Play size={22} className="text-[var(--danger)] ml-0.5" fill="currentColor" />
+                </div>
+                <span
+                  className="px-2 py-0.5 rounded text-[10px] font-black tracking-widest text-white"
+                  style={{ backgroundColor: 'rgba(0,0,0,0.45)' }}
+                >
+                  VIDEO
+                </span>
               </div>
-              <span className="text-[10px] font-bold text-[var(--danger)]">VIDEO</span>
-            </div>
+            </>
           ) : (
-            <img
-              src={defaultImage}
-              alt=""
-              className="w-12 h-12 opacity-30"
-              loading="lazy"
-              decoding="async"
-            />
+            <>
+              {/* Faint newspaper icon for text-only cards */}
+              <img
+                src={defaultImage}
+                alt=""
+                className="w-10 h-10 opacity-40 invert"
+                loading="lazy"
+                decoding="async"
+                style={{ filter: 'invert(1) brightness(2)' }}
+              />
+              {item.source && (
+                <span
+                  className="absolute bottom-2 right-2 px-2 py-0.5 rounded text-[9px] font-black tracking-wider text-white/90"
+                  style={{ backgroundColor: 'rgba(0,0,0,0.4)' }}
+                >
+                  {(item.source || '').split(/[–-]/)[0].trim().slice(0, 18)}
+                </span>
+              )}
+            </>
           )}
         </div>
       )}
@@ -196,6 +257,7 @@ export default function NewsPage() {
     if (filter === 'zambia')       return RSS_FEEDS.filter((f) => f.tags?.includes('zambia')).map((f) => f.id);
     if (filter === 'africa')       return RSS_FEEDS.filter((f) => f.tags?.includes('africa')).map((f) => f.id);
     if (filter === 'kit-launches') return RSS_FEEDS.filter((f) => f.tags?.includes('kit-launches')).map((f) => f.id);
+    if (filter === 'all-sports')   return ALL_SPORTS_FEED_IDS;
     return RSS_FEEDS.map((f) => f.id);
   }, [filter]);
 
@@ -331,12 +393,13 @@ export default function NewsPage() {
             className="text-3xl md:text-4xl font-black tracking-tight"
             style={{ color: 'var(--text)' }}
           >
-            Soccer news
+            {filter === 'all-sports' ? 'All sports news' : 'Soccer news'}
           </h1>
         </div>
         <p className="max-w-xl" style={{ color: 'var(--text-muted)' }}>
-          Live football news from local and global feeds. Cached for 30 minutes.
-          Filter by region, league, or kit launches.
+          {filter === 'all-sports'
+            ? 'Cricket, NBA, NFL, tennis, F1 and more from global sport outlets. Cached for 30 minutes.'
+            : 'Live football news from local and global feeds. Cached for 30 minutes. Filter by region, league, or kit launches.'}
         </p>
         <div className="flex flex-wrap gap-2 mt-4" role="tablist" aria-label="News filters">
           {NEWS_CATEGORIES.map((c) => (

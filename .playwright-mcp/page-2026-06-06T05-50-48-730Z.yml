@@ -1,0 +1,304 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - link "Kopala Kits home" [ref=e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e7]:
+          - img "Kopala Kits" [ref=e8]
+          - generic [ref=e9]: KOPALA KITS
+      - generic [ref=e10]:
+        - button "Open cart, 0 items" [ref=e11] [cursor=pointer]:
+          - img [ref=e12]
+        - button "Open menu" [ref=e16] [cursor=pointer]:
+          - img [ref=e17]
+  - main [ref=e18]:
+    - generic [ref=e19]:
+      - generic [ref=e20]:
+        - generic [ref=e21]:
+          - img [ref=e22]
+          - heading "Soccer news" [level=1] [ref=e25]
+        - paragraph [ref=e26]: Live football news from local and global feeds. Cached for 30 minutes. Filter by region, league, or kit launches.
+        - tablist "News filters" [ref=e27]:
+          - tab "All News" [selected] [ref=e28] [cursor=pointer]
+          - tab "Zambia" [ref=e29] [cursor=pointer]
+          - tab "Africa" [ref=e30] [cursor=pointer]
+          - tab "Rest of World" [ref=e31] [cursor=pointer]
+          - tab "Kit Launches" [ref=e32] [cursor=pointer]
+          - button "Refresh news" [ref=e33] [cursor=pointer]:
+            - img [ref=e34]
+            - text: Refresh
+      - tabpanel "All News" [ref=e170]:
+        - link "Image for 2026 Football Boots Footy Headlines · just now 2026 Football Boots - ![](/static/img/post/2026/06/05/T20doehJv2zMAaP. Read full story" [ref=e171] [cursor=pointer]:
+          - /url: https://www.footyheadlines.com/6521896256/2026-football-boots.html
+          - img "Image for 2026 Football Boots" [ref=e173]
+          - generic [ref=e174]:
+            - generic [ref=e175]:
+              - generic [ref=e176]: Footy Headlines
+              - generic [ref=e177]: ·
+              - generic [ref=e178]:
+                - img [ref=e179]
+                - text: just now
+            - heading "2026 Football Boots" [level=3] [ref=e182]
+            - paragraph [ref=e183]: "- ![](/static/img/post/2026/06/05/T20doehJv2zMAaP."
+            - generic [ref=e184]:
+              - text: Read full story
+              - img [ref=e185]
+        - link "Placeholder for The Knicks take Game 2! Biggest takeaways and what... ESPN – Premier League · just now The Knicks take Game 2! Biggest takeaways and what... NBA insiders break down the takeaways from Game 2, look ahead to the rest of the Knicks-Spurs showdown. Read full story" [ref=e189] [cursor=pointer]:
+          - /url: <![CDATA[https://www.espn.com/nba/story/_/id/48940704/2026-nba-finals-biggest-takeaways-highlights-san-antonio-spurs-new-york-knicks-championship]]>
+          - img "Placeholder for The Knicks take Game 2! Biggest takeaways and what..." [ref=e190]
+          - generic [ref=e191]:
+            - generic [ref=e192]:
+              - generic [ref=e193]: ESPN – Premier League
+              - generic [ref=e194]: ·
+              - generic [ref=e195]:
+                - img [ref=e196]
+                - text: just now
+            - heading "The Knicks take Game 2! Biggest takeaways and what..." [level=3] [ref=e199]
+            - paragraph [ref=e200]: NBA insiders break down the takeaways from Game 2, look ahead to the rest of the Knicks-Spurs showdown.
+            - generic [ref=e201]:
+              - text: Read full story
+              - img [ref=e202]
+        - link "Placeholder for Larkin, Kyrou ... Matthews? Ranking NHL trade cand... ESPN – Premier League · just now Larkin, Kyrou ... Matthews? Ranking NHL trade cand... Which difference-makers could be swapping franchises this summer? Read full story" [ref=e206] [cursor=pointer]:
+          - /url: <![CDATA[https://www.espn.com/nhl/story/_/id/48968493/nhl-2026-offseason-trades-rankings-targets-market-draft-picks-contracts]]>
+          - img "Placeholder for Larkin, Kyrou ... Matthews? Ranking NHL trade cand..." [ref=e207]
+          - generic [ref=e208]:
+            - generic [ref=e209]:
+              - generic [ref=e210]: ESPN – Premier League
+              - generic [ref=e211]: ·
+              - generic [ref=e212]:
+                - img [ref=e213]
+                - text: just now
+            - heading "Larkin, Kyrou ... Matthews? Ranking NHL trade cand..." [level=3] [ref=e216]
+            - paragraph [ref=e217]: Which difference-makers could be swapping franchises this summer?
+            - generic [ref=e218]:
+              - text: Read full story
+              - img [ref=e219]
+        - link "Placeholder for Knicks survive Spurs rush for 2-0 NBA Finals lead ESPN – Premier League · just now Knicks survive Spurs rush for 2-0 NBA Finals lead Jalen Brunson hit a go-ahead free throw with 9.5 seconds left after a turnover by Victor Wembanyama moments earlier, then Wembanyama missed a jumper at the end of New York's 105-104 win over the Spurs on Friday night for a 2-0 lead in the N Read full story" [ref=e223] [cursor=pointer]:
+          - /url: <![CDATA[https://www.espn.com/nba/story/_/id/48980267/knicks-hold-spurs-comeback-game-2-seize-2-0-lead-nba-finals]]>
+          - img "Placeholder for Knicks survive Spurs rush for 2-0 NBA Finals lead" [ref=e224]
+          - generic [ref=e225]:
+            - generic [ref=e226]:
+              - generic [ref=e227]: ESPN – Premier League
+              - generic [ref=e228]: ·
+              - generic [ref=e229]:
+                - img [ref=e230]
+                - text: just now
+            - heading "Knicks survive Spurs rush for 2-0 NBA Finals lead" [level=3] [ref=e233]
+            - paragraph [ref=e234]: Jalen Brunson hit a go-ahead free throw with 9.5 seconds left after a turnover by Victor Wembanyama moments earlier, then Wembanyama missed a jumper at the end of New York's 105-104 win over the Spurs on Friday night for a 2-0 lead in the N
+            - generic [ref=e235]:
+              - text: Read full story
+              - img [ref=e236]
+        - 'link "Placeholder for Reports: NCAA rejects TTU''s appeal for QB Sorsby ESPN – Premier League · just now Reports: NCAA rejects TTU''s appeal for QB Sorsby The NCAA has denied Texas Tech''s appeal to reinstate quarterback Brendan Sorsby''s eligibility, according to multiple reports. Read full story" [ref=e240] [cursor=pointer]':
+          - /url: <![CDATA[https://www.espn.com/college-football/story/_/id/48980735/reports-ncaa-rejects-texas-tech-appeal-reinstate-sorsby]]>
+          - 'img "Placeholder for Reports: NCAA rejects TTU''s appeal for QB Sorsby" [ref=e241]'
+          - generic [ref=e242]:
+            - generic [ref=e243]:
+              - generic [ref=e244]: ESPN – Premier League
+              - generic [ref=e245]: ·
+              - generic [ref=e246]:
+                - img [ref=e247]
+                - text: just now
+            - 'heading "Reports: NCAA rejects TTU''s appeal for QB Sorsby" [level=3] [ref=e250]'
+            - paragraph [ref=e251]: The NCAA has denied Texas Tech's appeal to reinstate quarterback Brendan Sorsby's eligibility, according to multiple reports.
+            - generic [ref=e252]:
+              - text: Read full story
+              - img [ref=e253]
+        - 'link "Placeholder for Sources: NBA interviews Kawhi in Aspiration case ESPN – Premier League · just now Sources: NBA interviews Kawhi in Aspiration case LA Clippers star Kawhi Leonard and his business adviser have been interviewed by NBA investigators amid the league''s probe into allegations the team circumvented the salary cap to compensate Leonard, sources said. Read full story" [ref=e257] [cursor=pointer]':
+          - /url: <![CDATA[https://www.espn.com/nba/story/_/id/48977481/sources-nba-interviews-leonard-adviser-aspiration-case]]>
+          - 'img "Placeholder for Sources: NBA interviews Kawhi in Aspiration case" [ref=e258]'
+          - generic [ref=e259]:
+            - generic [ref=e260]:
+              - generic [ref=e261]: ESPN – Premier League
+              - generic [ref=e262]: ·
+              - generic [ref=e263]:
+                - img [ref=e264]
+                - text: just now
+            - 'heading "Sources: NBA interviews Kawhi in Aspiration case" [level=3] [ref=e267]'
+            - paragraph [ref=e268]: LA Clippers star Kawhi Leonard and his business adviser have been interviewed by NBA investigators amid the league's probe into allegations the team circumvented the salary cap to compensate Leonard, sources said.
+            - generic [ref=e269]:
+              - text: Read full story
+              - img [ref=e270]
+        - link "Placeholder for Sankey scoffs at notion of SEC-B1G super league ESPN – Premier League · just now Sankey scoffs at notion of SEC-B1G super league SEC commissioner Greg Sankey called the notion that the conference wants to form a super league with the Big Ten \"not consistent with the truth.\" Read full story" [ref=e274] [cursor=pointer]:
+          - /url: <![CDATA[https://www.espn.com/college-sports/story/_/id/48978492/sec-sankey-idea-super-league-not-consistent-truth]]>
+          - img "Placeholder for Sankey scoffs at notion of SEC-B1G super league" [ref=e275]
+          - generic [ref=e276]:
+            - generic [ref=e277]:
+              - generic [ref=e278]: ESPN – Premier League
+              - generic [ref=e279]: ·
+              - generic [ref=e280]:
+                - img [ref=e281]
+                - text: just now
+            - heading "Sankey scoffs at notion of SEC-B1G super league" [level=3] [ref=e284]
+            - paragraph [ref=e285]: SEC commissioner Greg Sankey called the notion that the conference wants to form a super league with the Big Ten "not consistent with the truth."
+            - generic [ref=e286]:
+              - text: Read full story
+              - img [ref=e287]
+        - link "Placeholder for Judge says rib originally fractured on dive in Apr... ESPN – Premier League · just now Judge says rib originally fractured on dive in Apr... Yankees outfielder Aaron Judge said the stress fracture in his right rib stems from him diving for a ball in late April. Read full story" [ref=e291] [cursor=pointer]:
+          - /url: <![CDATA[https://www.espn.com/mlb/story/_/id/48977766/aaron-judge-says-right-rib-initially-fractured-dive-late-april]]>
+          - img "Placeholder for Judge says rib originally fractured on dive in Apr..." [ref=e292]
+          - generic [ref=e293]:
+            - generic [ref=e294]:
+              - generic [ref=e295]: ESPN – Premier League
+              - generic [ref=e296]: ·
+              - generic [ref=e297]:
+                - img [ref=e298]
+                - text: just now
+            - heading "Judge says rib originally fractured on dive in Apr..." [level=3] [ref=e301]
+            - paragraph [ref=e302]: Yankees outfielder Aaron Judge said the stress fracture in his right rib stems from him diving for a ball in late April.
+            - generic [ref=e303]:
+              - text: Read full story
+              - img [ref=e304]
+        - 'link "Placeholder for UFC''s White: Pereira the GOAT if he beats Gane ESPN – Premier League · just now UFC''s White: Pereira the GOAT if he beats Gane UFC president Dana White believes two-weight UFC champion Alex Pereira will surpass Jon Jones as the greatest MMA fighter of all time if he beats Ciryl Gane on June 14 at the White House. Read full story" [ref=e308] [cursor=pointer]':
+          - /url: <![CDATA[https://www.espn.com/mma/story/_/id/48978261/ufc-white-pereira-surpasses-jones-goat-win-vs-gane]]>
+          - 'img "Placeholder for UFC''s White: Pereira the GOAT if he beats Gane" [ref=e309]'
+          - generic [ref=e310]:
+            - generic [ref=e311]:
+              - generic [ref=e312]: ESPN – Premier League
+              - generic [ref=e313]: ·
+              - generic [ref=e314]:
+                - img [ref=e315]
+                - text: just now
+            - 'heading "UFC''s White: Pereira the GOAT if he beats Gane" [level=3] [ref=e318]'
+            - paragraph [ref=e319]: UFC president Dana White believes two-weight UFC champion Alex Pereira will surpass Jon Jones as the greatest MMA fighter of all time if he beats Ciryl Gane on June 14 at the White House.
+            - generic [ref=e320]:
+              - text: Read full story
+              - img [ref=e321]
+        - link "Placeholder for 🏈 Caleb Williams' Madden cover inspired by MJ ESPN – Premier League · just now 🏈 Caleb Williams' Madden cover inspired by MJ The Bears quarterback said the pose, skyline and overall concept were designed as a tribute to Chicago's most famous athlete. Read full story" [ref=e325] [cursor=pointer]:
+          - /url: <![CDATA[https://www.espn.com/nfl/story/_/id/48970798/caleb-williams-madden-cover-tribute-chicago-jumpman-michael-jordan]]>
+          - img "Placeholder for 🏈 Caleb Williams' Madden cover inspired by MJ" [ref=e326]
+          - generic [ref=e327]:
+            - generic [ref=e328]:
+              - generic [ref=e329]: ESPN – Premier League
+              - generic [ref=e330]: ·
+              - generic [ref=e331]:
+                - img [ref=e332]
+                - text: just now
+            - heading "🏈 Caleb Williams' Madden cover inspired by MJ" [level=3] [ref=e335]
+            - paragraph [ref=e336]: The Bears quarterback said the pose, skyline and overall concept were designed as a tribute to Chicago's most famous athlete.
+            - generic [ref=e337]:
+              - text: Read full story
+              - img [ref=e338]
+        - 'link "Image for Brunson e Towns spaziali, Wemby pasticcia nel finale: New York vince a San Antonio e va sul 2-0 La Gazzetta dello Sport · 17 minutes ago Brunson e Towns spaziali, Wemby pasticcia nel finale: New York vince a San Antonio e va sul 2-0 Il francese sbaglia tutto negli ultimi secondi, i Knicks resistono alla rimonta degli Spurs e conquistano la 13ª vittoria consecutiva<span class&#x3D;\"\" contenteditable&#x3D;\"false\" tabindex&#x3D;\"-1\" style&#x3D;\"user-select: none; pointer- Read full story" [ref=e342] [cursor=pointer]':
+          - /url: https://www.gazzetta.it/Nba/06-06-2026/nba-finals-new-york-vince-a-san-antonio-serie-2-0.shtml
+          - 'img "Image for Brunson e Towns spaziali, Wemby pasticcia nel finale: New York vince a San Antonio e va sul 2-0" [ref=e345]'
+          - generic [ref=e346]:
+            - generic [ref=e347]:
+              - generic [ref=e348]: La Gazzetta dello Sport
+              - generic [ref=e349]: ·
+              - generic [ref=e350]:
+                - img [ref=e351]
+                - text: 17 minutes ago
+            - 'heading "Brunson e Towns spaziali, Wemby pasticcia nel finale: New York vince a San Antonio e va sul 2-0" [level=3] [ref=e354]'
+            - paragraph [ref=e355]: "Il francese sbaglia tutto negli ultimi secondi, i Knicks resistono alla rimonta degli Spurs e conquistano la 13ª vittoria consecutiva<span class&#x3D;\"\" contenteditable&#x3D;\"false\" tabindex&#x3D;\"-1\" style&#x3D;\"user-select: none; pointer-"
+            - generic [ref=e356]:
+              - text: Read full story
+              - img [ref=e357]
+        - link "Image for Lungo l'autostrada A14, mangiare bene a 10 minuti dal casello La Gazzetta dello Sport · 18 minutes ago Lungo l'autostrada A14, mangiare bene a 10 minuti dal casello Per chi non ha fretta nel percorrere l'Adriatica, da Bologna a Taranto, o cerca una valida insegna, ecco la nostra selezione di locali. Per andare sul sicuro Read full story" [ref=e361] [cursor=pointer]:
+          - /url: https://www.gazzetta.it/motori/la-mia-auto/storie/06-06-2026/ristoranti-lungo-la-autostrada-a14-a-10-minuti-dal-casello/profumo-di-mare.shtml
+          - img "Image for Lungo l'autostrada A14, mangiare bene a 10 minuti dal casello" [ref=e364]
+          - generic [ref=e365]:
+            - generic [ref=e366]:
+              - generic [ref=e367]: La Gazzetta dello Sport
+              - generic [ref=e368]: ·
+              - generic [ref=e369]:
+                - img [ref=e370]
+                - text: 18 minutes ago
+            - heading "Lungo l'autostrada A14, mangiare bene a 10 minuti dal casello" [level=3] [ref=e373]
+            - paragraph [ref=e374]: Per chi non ha fretta nel percorrere l'Adriatica, da Bologna a Taranto, o cerca una valida insegna, ecco la nostra selezione di locali. Per andare sul sicuro
+            - generic [ref=e375]:
+              - text: Read full story
+              - img [ref=e376]
+      - button "Load more stories" [ref=e381] [cursor=pointer]: Load more (12 of 337)
+      - paragraph [ref=e82]: News items link to original sources. We don't host the content.
+  - contentinfo [ref=e83]:
+    - generic [ref=e84]:
+      - generic [ref=e85]:
+        - generic [ref=e86]:
+          - img "Kopala Kits" [ref=e87]
+          - generic [ref=e88]: KOPALA KITS
+        - paragraph [ref=e89]: Premium soccer jerseys for every fan. Local, international, national & retro classics — all at the best prices in Kitwe.
+        - link "Chat with Us" [ref=e90] [cursor=pointer]:
+          - /url: https://wa.me/260770713619
+          - img [ref=e91]
+          - text: Chat with Us
+        - link "Admin panel →" [ref=e93] [cursor=pointer]:
+          - /url: /admin
+      - generic [ref=e94]:
+        - heading "Browse" [level=4] [ref=e95]
+        - list [ref=e96]:
+          - listitem [ref=e97]:
+            - link "Home" [ref=e98] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=e99]:
+            - link "Shop all kits" [ref=e100] [cursor=pointer]:
+              - /url: /shop
+          - listitem [ref=e101]:
+            - link "Local teams" [ref=e102] [cursor=pointer]:
+              - /url: /shop?category=Local
+          - listitem [ref=e103]:
+            - link "International" [ref=e104] [cursor=pointer]:
+              - /url: /shop?category=International
+          - listitem [ref=e105]:
+            - link "National teams" [ref=e106] [cursor=pointer]:
+              - /url: /shop?category=National
+          - listitem [ref=e107]:
+            - link "Retro classics" [ref=e108] [cursor=pointer]:
+              - /url: /shop?category=Retro
+          - listitem [ref=e109]:
+            - link "About us" [ref=e110] [cursor=pointer]:
+              - /url: /about
+          - listitem [ref=e111]:
+            - link "Contact" [ref=e112] [cursor=pointer]:
+              - /url: /contact
+      - generic [ref=e113]:
+        - heading "Find Us" [level=4] [ref=e114]
+        - generic [ref=e115]:
+          - paragraph [ref=e116]:
+            - img [ref=e117]
+            - generic [ref=e120]:
+              - text: K-Block, Copperbelt University
+              - text: Kitwe, Copperbelt Province, Zambia
+          - paragraph [ref=e121]:
+            - img [ref=e122]
+            - link "+260 770 713619" [ref=e124] [cursor=pointer]:
+              - /url: https://wa.me/260770713619
+          - paragraph [ref=e125]:
+            - img [ref=e126]
+            - link "hello@kopala.zingati.app" [ref=e129] [cursor=pointer]:
+              - /url: mailto:hello@kopala.zingati.app
+        - paragraph [ref=e130]: Mon–Fri 8am–6pm · Sat 9am–4pm
+    - generic [ref=e131]: 2026 Kopala Kits · Kitwe, Zambia · All prices in Zambian Kwacha (ZMW)
+  - navigation "Primary" [ref=e132]:
+    - list [ref=e133]:
+      - listitem [ref=e134]:
+        - link "Home" [ref=e135] [cursor=pointer]:
+          - /url: /
+          - img [ref=e136]
+          - text: Home
+      - listitem [ref=e139]:
+        - link "Shop" [ref=e140] [cursor=pointer]:
+          - /url: /shop
+          - img [ref=e141]
+          - text: Shop
+      - listitem [ref=e144]:
+        - link "Predict" [ref=e145] [cursor=pointer]:
+          - /url: /predictions
+          - img [ref=e146]
+          - text: Predict
+      - listitem [ref=e149]:
+        - link "Tournaments" [ref=e150] [cursor=pointer]:
+          - /url: /tournaments
+          - img [ref=e151]
+          - text: Tournaments
+      - listitem [ref=e157]:
+        - link "News" [ref=e158] [cursor=pointer]:
+          - /url: /news
+          - img [ref=e159]
+          - text: News
+      - listitem [ref=e162]:
+        - link "Media" [ref=e163] [cursor=pointer]:
+          - /url: /media
+          - img [ref=e164]
+          - text: Media
+  - button "Chat on WhatsApp" [ref=e167] [cursor=pointer]:
+    - img [ref=e168]

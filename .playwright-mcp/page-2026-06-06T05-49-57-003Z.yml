@@ -1,0 +1,328 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - link "Kopala Kits home" [ref=e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e7]:
+          - img "Kopala Kits" [ref=e8]
+          - generic [ref=e9]: KOPALA KITS
+      - generic [ref=e10]:
+        - button "Open cart, 0 items" [ref=e11] [cursor=pointer]:
+          - img [ref=e12]
+        - button "Open menu" [ref=e16] [cursor=pointer]:
+          - img [ref=e17]
+  - main [ref=e18]:
+    - generic [ref=e19]:
+      - generic [ref=e21]:
+        - generic [ref=e22]:
+          - generic [ref=e23]:
+            - img [ref=e24]
+            - text: Kitwe, Zambia
+          - heading "Premium football jerseys, delivered to your door." [level=1] [ref=e27]
+          - paragraph [ref=e28]: From Mufulira Wanderers to Manchester United. Local Zambian teams, international clubs, national sides and retro classics — all in one place, ordered in a tap via WhatsApp.
+          - generic [ref=e29]:
+            - link "Shop the catalog" [ref=e30] [cursor=pointer]:
+              - /url: /shop
+              - text: Shop the catalog
+              - img [ref=e31]
+            - link "Chat with us" [ref=e33] [cursor=pointer]:
+              - /url: https://wa.me/260770713619
+              - img [ref=e34]
+              - text: Chat with us
+          - generic [ref=e36]:
+            - generic [ref=e37]:
+              - img [ref=e38]
+              - text: Same-day in Kitwe
+            - generic [ref=e43]:
+              - img [ref=e44]
+              - text: Verified authentic
+        - generic [ref=e47]:
+          - img "Featured jersey" [ref=e266]
+          - generic [ref=e267]:
+            - generic [ref=e268]:
+              - img [ref=e269]
+              - generic [ref=e271]: New arrivals
+            - paragraph [ref=e272]: 6 retro classics just landed
+      - generic [ref=e50]:
+        - heading "Shop by category" [level=2] [ref=e51]
+        - generic [ref=e52]:
+          - link "⚽ Local 4 kits" [ref=e273] [cursor=pointer]:
+            - /url: /shop?category=Local
+            - generic [ref=e54]: ⚽
+            - generic [ref=e55]: Local
+            - generic [ref=e56]: 4 kits
+          - link "🌍 International 2 kits" [ref=e274] [cursor=pointer]:
+            - /url: /shop?category=International
+            - generic [ref=e58]: 🌍
+            - generic [ref=e59]: International
+            - generic [ref=e60]: 2 kits
+          - link "🏴 National 12 kits" [ref=e275] [cursor=pointer]:
+            - /url: /shop?category=National
+            - generic [ref=e62]: 🏴
+            - generic [ref=e63]: National
+            - generic [ref=e64]: 12 kits
+          - link "🏆 Retro 6 kits" [ref=e276] [cursor=pointer]:
+            - /url: /shop?category=Retro
+            - generic [ref=e66]: 🏆
+            - generic [ref=e67]: Retro
+            - generic [ref=e68]: 6 kits
+      - generic [ref=e70]:
+        - generic [ref=e71]:
+          - img [ref=e73]
+          - generic [ref=e78]:
+            - generic [ref=e79]: Copperbelt delivery
+            - generic [ref=e80]: Same-day in Kitwe, next-day elsewhere
+        - generic [ref=e81]:
+          - img [ref=e83]
+          - generic [ref=e85]:
+            - generic [ref=e86]: Order via WhatsApp
+            - generic [ref=e87]: One tap to checkout, no forms
+        - generic [ref=e88]:
+          - img [ref=e90]
+          - generic [ref=e93]:
+            - generic [ref=e94]: Authentic only
+            - generic [ref=e95]: Sourced from official suppliers
+      - generic [ref=e96]:
+        - generic [ref=e97]:
+          - heading "Featured kits" [level=2] [ref=e98]
+          - link "View all" [ref=e99] [cursor=pointer]:
+            - /url: /shop
+            - text: View all
+            - img [ref=e100]
+        - generic [ref=e277]:
+          - article [ref=e278]:
+            - generic [ref=e279] [cursor=pointer]:
+              - img "Manchester United Classic SHARP Jersey" [ref=e280]
+              - generic [ref=e281]: NEW
+              - button "Add to wishlist" [ref=e282]:
+                - img [ref=e283]
+            - generic [ref=e285] [cursor=pointer]:
+              - text: Retro
+              - heading "Manchester United Classic SHARP Jersey" [level=3] [ref=e286]
+              - paragraph [ref=e287]: Iconic Adidas retro red jersey with SHARP sponsor — a true collectors piece from the golden era.
+              - generic [ref=e288]:
+                - generic [ref=e289]: K650
+                - button "Quick add Manchester United Classic SHARP Jersey" [ref=e290]:
+                  - img [ref=e291]
+          - article [ref=e292]:
+            - generic [ref=e293] [cursor=pointer]:
+              - img "Manchester United Away SHARP VIEWCAM Jersey" [ref=e294]
+              - generic [ref=e295]: NEW
+              - button "Add to wishlist" [ref=e296]:
+                - img [ref=e297]
+            - generic [ref=e299] [cursor=pointer]:
+              - text: Retro
+              - heading "Manchester United Away SHARP VIEWCAM Jersey" [level=3] [ref=e300]
+              - paragraph [ref=e301]: Classic black Umbro away jersey with SHARP VIEWCAM sponsor — 1993/94 era.
+              - generic [ref=e302]:
+                - generic [ref=e303]: K680
+                - button "Quick add Manchester United Away SHARP VIEWCAM Jersey" [ref=e304]:
+                  - img [ref=e305]
+          - article [ref=e306]:
+            - generic [ref=e307] [cursor=pointer]:
+              - img "Arsenal JVC Classic Jersey" [ref=e308]
+              - generic [ref=e309]: NEW
+              - button "Add to wishlist" [ref=e310]:
+                - img [ref=e311]
+            - generic [ref=e313] [cursor=pointer]:
+              - text: Retro
+              - heading "Arsenal JVC Classic Jersey" [level=3] [ref=e314]
+              - paragraph [ref=e315]: Retro Arsenal Nike kit with JVC sponsor — The Gunners collector classic.
+              - generic [ref=e316]:
+                - generic [ref=e317]: K720
+                - button "Quick add Arsenal JVC Classic Jersey" [ref=e318]:
+                  - img [ref=e319]
+          - article [ref=e320]:
+            - generic [ref=e321] [cursor=pointer]:
+              - img "Liverpool Carlsberg Away Jersey" [ref=e322]
+              - generic [ref=e323]: NEW
+              - button "Add to wishlist" [ref=e324]:
+                - img [ref=e325]
+            - generic [ref=e327] [cursor=pointer]:
+              - text: Retro
+              - heading "Liverpool Carlsberg Away Jersey" [level=3] [ref=e328]
+              - paragraph [ref=e329]: Cream Liverpool Reebok away jersey with Carlsberg sponsor — 1990s collector piece.
+              - generic [ref=e330]:
+                - generic [ref=e331]: K700
+                - button "Quick add Liverpool Carlsberg Away Jersey" [ref=e332]:
+                  - img [ref=e333]
+          - article [ref=e334]:
+            - generic [ref=e335] [cursor=pointer]:
+              - img "Brazil Away Green Long Sleeve Retro Jersey" [ref=e336]
+              - generic [ref=e337]: NEW
+              - button "Add to wishlist" [ref=e338]:
+                - img [ref=e339]
+            - generic [ref=e341] [cursor=pointer]:
+              - text: Retro
+              - heading "Brazil Away Green Long Sleeve Retro Jersey" [level=3] [ref=e342]
+              - paragraph [ref=e343]: Brazil Nike retro away jersey in green with yellow CBF badge — long sleeve classic.
+              - generic [ref=e344]:
+                - generic [ref=e345]: K750
+                - button "Quick add Brazil Away Green Long Sleeve Retro Jersey" [ref=e346]:
+                  - img [ref=e347]
+          - article [ref=e348]:
+            - generic [ref=e349] [cursor=pointer]:
+              - img "Brazil Away Blue Long Sleeve Retro Jersey" [ref=e350]
+              - generic [ref=e351]: NEW
+              - button "Add to wishlist" [ref=e352]:
+                - img [ref=e353]
+            - generic [ref=e355] [cursor=pointer]:
+              - text: Retro
+              - heading "Brazil Away Blue Long Sleeve Retro Jersey" [level=3] [ref=e356]
+              - paragraph [ref=e357]: Brazil Nike retro away jersey in blue with white stripes — long sleeve classic.
+              - generic [ref=e358]:
+                - generic [ref=e359]: K750
+                - button "Quick add Brazil Away Blue Long Sleeve Retro Jersey" [ref=e360]:
+                  - img [ref=e361]
+          - article [ref=e362]:
+            - generic [ref=e363] [cursor=pointer]:
+              - img "Argentina Special Edition Black Jersey" [ref=e364]
+              - generic [ref=e365]: NEW
+              - button "Add to wishlist" [ref=e366]:
+                - img [ref=e367]
+            - generic [ref=e369] [cursor=pointer]:
+              - text: National
+              - heading "Argentina Special Edition Black Jersey" [level=3] [ref=e370]
+              - paragraph [ref=e371]: Stunning Argentina black special edition with intricate blue floral design and FIFA World Champions badge.
+              - generic [ref=e372]:
+                - generic [ref=e373]: K800
+                - button "Quick add Argentina Special Edition Black Jersey" [ref=e374]:
+                  - img [ref=e375]
+          - article [ref=e376]:
+            - generic [ref=e377] [cursor=pointer]:
+              - img "Portugal Home Red Jersey (Player Version)" [ref=e378]
+              - generic [ref=e379]: NEW
+              - button "Add to wishlist" [ref=e380]:
+                - img [ref=e381]
+            - generic [ref=e383] [cursor=pointer]:
+              - text: National
+              - heading "Portugal Home Red Jersey (Player Version)" [level=3] [ref=e384]
+              - paragraph [ref=e385]: Portugal Puma home jersey — player version with teal trim.
+              - generic [ref=e386]:
+                - generic [ref=e387]: K760
+                - button "Quick add Portugal Home Red Jersey (Player Version)" [ref=e388]:
+                  - img [ref=e389]
+      - generic [ref=e151]:
+        - heading "The Zambian football world" [level=2] [ref=e152]
+        - paragraph [ref=e153]: University games, the FAZ leagues, the teams you see in the shop — and the social channels where the fans live.
+        - generic [ref=e154]:
+          - link "⚽ FAZ Football Association of Zambia" [ref=e155] [cursor=pointer]:
+            - /url: /faz
+            - generic [ref=e156]: ⚽
+            - generic [ref=e157]: FAZ
+            - generic [ref=e158]: Football Association of Zambia
+          - link "🎓 ZUSA Zambia University Sports" [ref=e159] [cursor=pointer]:
+            - /url: /zusa
+            - generic [ref=e160]: 🎓
+            - generic [ref=e161]: ZUSA
+            - generic [ref=e162]: Zambia University Sports
+          - link "📰 News BBC Sport + ESPN FC" [ref=e163] [cursor=pointer]:
+            - /url: /news
+            - generic [ref=e164]: 📰
+            - generic [ref=e165]: News
+            - generic [ref=e166]: BBC Sport + ESPN FC
+          - link "📷 Media YouTube · IG · TikTok" [ref=e167] [cursor=pointer]:
+            - /url: /media
+            - generic [ref=e168]: 📷
+            - generic [ref=e169]: Media
+            - generic [ref=e170]: YouTube · IG · TikTok
+      - generic [ref=e172]:
+        - generic [ref=e173]:
+          - heading "Can't find the kit you want?" [level=3] [ref=e174]
+          - paragraph [ref=e175]: Message us on WhatsApp — we source special requests across Zambia and the region.
+        - link "Ask on WhatsApp" [ref=e176] [cursor=pointer]:
+          - /url: https://wa.me/260770713619?text=Hi%20Kopala%20Kits!%20I'm%20looking%20for%20a%20specific%20jersey.%20Can%20you%20help%3F
+          - img [ref=e177]
+          - text: Ask on WhatsApp
+  - contentinfo [ref=e179]:
+    - generic [ref=e180]:
+      - generic [ref=e181]:
+        - generic [ref=e182]:
+          - img "Kopala Kits" [ref=e183]
+          - generic [ref=e184]: KOPALA KITS
+        - paragraph [ref=e185]: Premium soccer jerseys for every fan. Local, international, national & retro classics — all at the best prices in Kitwe.
+        - link "Chat with Us" [ref=e186] [cursor=pointer]:
+          - /url: https://wa.me/260770713619
+          - img [ref=e187]
+          - text: Chat with Us
+        - link "Admin panel →" [ref=e189] [cursor=pointer]:
+          - /url: /admin
+      - generic [ref=e190]:
+        - heading "Browse" [level=4] [ref=e191]
+        - list [ref=e192]:
+          - listitem [ref=e193]:
+            - link "Home" [ref=e194] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=e195]:
+            - link "Shop all kits" [ref=e196] [cursor=pointer]:
+              - /url: /shop
+          - listitem [ref=e197]:
+            - link "Local teams" [ref=e198] [cursor=pointer]:
+              - /url: /shop?category=Local
+          - listitem [ref=e199]:
+            - link "International" [ref=e200] [cursor=pointer]:
+              - /url: /shop?category=International
+          - listitem [ref=e201]:
+            - link "National teams" [ref=e202] [cursor=pointer]:
+              - /url: /shop?category=National
+          - listitem [ref=e203]:
+            - link "Retro classics" [ref=e204] [cursor=pointer]:
+              - /url: /shop?category=Retro
+          - listitem [ref=e205]:
+            - link "About us" [ref=e206] [cursor=pointer]:
+              - /url: /about
+          - listitem [ref=e207]:
+            - link "Contact" [ref=e208] [cursor=pointer]:
+              - /url: /contact
+      - generic [ref=e209]:
+        - heading "Find Us" [level=4] [ref=e210]
+        - generic [ref=e211]:
+          - paragraph [ref=e212]:
+            - img [ref=e213]
+            - generic [ref=e216]:
+              - text: K-Block, Copperbelt University
+              - text: Kitwe, Copperbelt Province, Zambia
+          - paragraph [ref=e217]:
+            - img [ref=e218]
+            - link "+260 770 713619" [ref=e220] [cursor=pointer]:
+              - /url: https://wa.me/260770713619
+          - paragraph [ref=e221]:
+            - img [ref=e222]
+            - link "hello@kopala.zingati.app" [ref=e225] [cursor=pointer]:
+              - /url: mailto:hello@kopala.zingati.app
+        - paragraph [ref=e226]: Mon–Fri 8am–6pm · Sat 9am–4pm
+    - generic [ref=e227]: 2026 Kopala Kits · Kitwe, Zambia · All prices in Zambian Kwacha (ZMW)
+  - navigation "Primary" [ref=e228]:
+    - list [ref=e229]:
+      - listitem [ref=e230]:
+        - link "Home" [ref=e231] [cursor=pointer]:
+          - /url: /
+          - img [ref=e232]
+          - text: Home
+      - listitem [ref=e235]:
+        - link "Shop" [ref=e236] [cursor=pointer]:
+          - /url: /shop
+          - img [ref=e237]
+          - text: Shop
+      - listitem [ref=e240]:
+        - link "Predict" [ref=e241] [cursor=pointer]:
+          - /url: /predictions
+          - img [ref=e242]
+          - text: Predict
+      - listitem [ref=e245]:
+        - link "Tournaments" [ref=e246] [cursor=pointer]:
+          - /url: /tournaments
+          - img [ref=e247]
+          - text: Tournaments
+      - listitem [ref=e253]:
+        - link "News" [ref=e254] [cursor=pointer]:
+          - /url: /news
+          - img [ref=e255]
+          - text: News
+      - listitem [ref=e258]:
+        - link "Media" [ref=e259] [cursor=pointer]:
+          - /url: /media
+          - img [ref=e260]
+          - text: Media
+  - button "Chat on WhatsApp" [ref=e263] [cursor=pointer]:
+    - img [ref=e264]

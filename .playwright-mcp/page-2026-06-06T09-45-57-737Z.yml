@@ -1,0 +1,326 @@
+- generic [ref=e3]:
+  - navigation [ref=e4]:
+    - generic [ref=e5]:
+      - heading "KOPALA KITS — Admin" [level=1] [ref=e6]
+      - paragraph [ref=e7]: 24 products
+    - generic [ref=e8]:
+      - button "Reset to default" [ref=e9] [cursor=pointer]:
+        - img [ref=e10]
+      - button "Edit JSON" [ref=e15] [cursor=pointer]:
+        - generic [ref=e16]: Edit JSON
+      - button "Export" [ref=e17] [cursor=pointer]:
+        - img [ref=e18]
+        - generic [ref=e21]: Export
+      - button "← Shop" [ref=e22] [cursor=pointer]:
+        - generic [ref=e23]: ← Shop
+      - button "Logout" [ref=e24] [cursor=pointer]:
+        - img [ref=e25]
+        - generic [ref=e28]: Logout
+  - generic [ref=e30]:
+    - button "Products" [ref=e31] [cursor=pointer]
+    - button "Banner" [ref=e32] [cursor=pointer]
+    - button "Fan Zone" [ref=e33] [cursor=pointer]
+  - generic [ref=e34]:
+    - generic [ref=e36]:
+      - generic [ref=e37]:
+        - generic [ref=e38]: 📢
+        - generic [ref=e39]:
+          - paragraph [ref=e40]: Announcement Banner
+          - paragraph [ref=e41]: Hidden
+      - button "Edit" [ref=e43] [cursor=pointer]
+    - generic [ref=e44]:
+      - button "Add New Product" [ref=e45] [cursor=pointer]:
+        - img [ref=e46]
+        - text: Add New Product
+      - generic [ref=e47]:
+        - img [ref=e48]
+        - textbox "Search products…" [ref=e51]
+    - generic [ref=e52]:
+      - generic [ref=e54]:
+        - img "Mufulira Wanderers 2025/26 Home Jersey" [ref=e56]
+        - generic [ref=e57]:
+          - paragraph [ref=e58]: Mufulira Wanderers 2025/26 Home Jersey
+          - paragraph [ref=e59]: Local • K520
+          - paragraph [ref=e60]: Green and white stripes home kit of Mighty Mufulira Wanderers.
+        - generic [ref=e61]:
+          - button "In Stock" [ref=e62] [cursor=pointer]
+          - button [ref=e63] [cursor=pointer]:
+            - img [ref=e64]
+          - button [ref=e66] [cursor=pointer]:
+            - img [ref=e67]
+      - generic [ref=e71]:
+        - img "Kabwe Warriors 2024/25 Home Jersey" [ref=e73]
+        - generic [ref=e74]:
+          - paragraph [ref=e75]: Kabwe Warriors 2024/25 Home Jersey
+          - paragraph [ref=e76]: Local • K480
+          - paragraph [ref=e77]: Sky blue and white home jersey.
+        - generic [ref=e78]:
+          - button "In Stock" [ref=e79] [cursor=pointer]
+          - button [ref=e80] [cursor=pointer]:
+            - img [ref=e81]
+          - button [ref=e83] [cursor=pointer]:
+            - img [ref=e84]
+      - generic [ref=e88]:
+        - img "Nkana FC 2024/25 Home Jersey" [ref=e90]
+        - generic [ref=e91]:
+          - paragraph [ref=e92]: Nkana FC 2024/25 Home Jersey
+          - paragraph [ref=e93]: Local • K500
+          - paragraph [ref=e94]: Classic orange/red and white home jersey.
+        - generic [ref=e95]:
+          - button "In Stock" [ref=e96] [cursor=pointer]
+          - button [ref=e97] [cursor=pointer]:
+            - img [ref=e98]
+          - button [ref=e100] [cursor=pointer]:
+            - img [ref=e101]
+      - generic [ref=e105]:
+        - img "Power Dynamos 2025/26 Home Jersey" [ref=e107]
+        - generic [ref=e108]:
+          - paragraph [ref=e109]: Power Dynamos 2025/26 Home Jersey
+          - paragraph [ref=e110]: Local • K490
+          - paragraph [ref=e111]: Iconic yellow Aba Yellow home kit.
+        - generic [ref=e112]:
+          - button "In Stock" [ref=e113] [cursor=pointer]
+          - button [ref=e114] [cursor=pointer]:
+            - img [ref=e115]
+          - button [ref=e117] [cursor=pointer]:
+            - img [ref=e118]
+      - generic [ref=e122]:
+        - img "Arsenal O2 Home Jersey" [ref=e124]
+        - generic [ref=e125]:
+          - paragraph [ref=e126]: Arsenal O2 Home Jersey
+          - paragraph [ref=e127]: International • K700
+          - paragraph [ref=e128]: Arsenal Nike home jersey with O2 sponsor — red and white classic.
+        - generic [ref=e129]:
+          - button "In Stock" [ref=e130] [cursor=pointer]
+          - button [ref=e131] [cursor=pointer]:
+            - img [ref=e132]
+          - button [ref=e134] [cursor=pointer]:
+            - img [ref=e135]
+      - generic [ref=e139]:
+        - img "Chelsea UCL Final Moscow 2008 Jersey" [ref=e141]
+        - generic [ref=e142]:
+          - paragraph [ref=e143]: Chelsea UCL Final Moscow 2008 Jersey
+          - paragraph [ref=e144]: International • K780
+          - paragraph [ref=e145]: Special edition Chelsea Adidas blue jersey from the iconic 2008 Champions League Final in Moscow.
+        - generic [ref=e146]:
+          - button "In Stock" [ref=e147] [cursor=pointer]
+          - button [ref=e148] [cursor=pointer]:
+            - img [ref=e149]
+          - button [ref=e151] [cursor=pointer]:
+            - img [ref=e152]
+      - generic [ref=e156]:
+        - img "Manchester United Classic SHARP Jersey" [ref=e158]
+        - generic [ref=e159]:
+          - paragraph [ref=e160]: Manchester United Classic SHARP Jersey
+          - paragraph [ref=e161]: Retro • K650
+          - paragraph [ref=e162]: Iconic Adidas retro red jersey with SHARP sponsor — a true collectors piece from the golden era.
+        - generic [ref=e163]:
+          - button "In Stock" [ref=e164] [cursor=pointer]
+          - button [ref=e165] [cursor=pointer]:
+            - img [ref=e166]
+          - button [ref=e168] [cursor=pointer]:
+            - img [ref=e169]
+      - generic [ref=e173]:
+        - img "Manchester United Away SHARP VIEWCAM Jersey" [ref=e175]
+        - generic [ref=e176]:
+          - paragraph [ref=e177]: Manchester United Away SHARP VIEWCAM Jersey
+          - paragraph [ref=e178]: Retro • K680
+          - paragraph [ref=e179]: Classic black Umbro away jersey with SHARP VIEWCAM sponsor — 1993/94 era.
+        - generic [ref=e180]:
+          - button "In Stock" [ref=e181] [cursor=pointer]
+          - button [ref=e182] [cursor=pointer]:
+            - img [ref=e183]
+          - button [ref=e185] [cursor=pointer]:
+            - img [ref=e186]
+      - generic [ref=e190]:
+        - img "Arsenal JVC Classic Jersey" [ref=e192]
+        - generic [ref=e193]:
+          - paragraph [ref=e194]: Arsenal JVC Classic Jersey
+          - paragraph [ref=e195]: Retro • K720
+          - paragraph [ref=e196]: Retro Arsenal Nike kit with JVC sponsor — The Gunners collector classic.
+        - generic [ref=e197]:
+          - button "In Stock" [ref=e198] [cursor=pointer]
+          - button [ref=e199] [cursor=pointer]:
+            - img [ref=e200]
+          - button [ref=e202] [cursor=pointer]:
+            - img [ref=e203]
+      - generic [ref=e207]:
+        - img "Liverpool Carlsberg Away Jersey" [ref=e209]
+        - generic [ref=e210]:
+          - paragraph [ref=e211]: Liverpool Carlsberg Away Jersey
+          - paragraph [ref=e212]: Retro • K700
+          - paragraph [ref=e213]: Cream Liverpool Reebok away jersey with Carlsberg sponsor — 1990s collector piece.
+        - generic [ref=e214]:
+          - button "In Stock" [ref=e215] [cursor=pointer]
+          - button [ref=e216] [cursor=pointer]:
+            - img [ref=e217]
+          - button [ref=e219] [cursor=pointer]:
+            - img [ref=e220]
+      - generic [ref=e224]:
+        - img "Brazil Away Green Long Sleeve Retro Jersey" [ref=e226]
+        - generic [ref=e227]:
+          - paragraph [ref=e228]: Brazil Away Green Long Sleeve Retro Jersey
+          - paragraph [ref=e229]: Retro • K750
+          - paragraph [ref=e230]: Brazil Nike retro away jersey in green with yellow CBF badge — long sleeve classic.
+        - generic [ref=e231]:
+          - button "In Stock" [ref=e232] [cursor=pointer]
+          - button [ref=e233] [cursor=pointer]:
+            - img [ref=e234]
+          - button [ref=e236] [cursor=pointer]:
+            - img [ref=e237]
+      - generic [ref=e241]:
+        - img "Brazil Away Blue Long Sleeve Retro Jersey" [ref=e243]
+        - generic [ref=e244]:
+          - paragraph [ref=e245]: Brazil Away Blue Long Sleeve Retro Jersey
+          - paragraph [ref=e246]: Retro • K750
+          - paragraph [ref=e247]: Brazil Nike retro away jersey in blue with white stripes — long sleeve classic.
+        - generic [ref=e248]:
+          - button "In Stock" [ref=e249] [cursor=pointer]
+          - button [ref=e250] [cursor=pointer]:
+            - img [ref=e251]
+          - button [ref=e253] [cursor=pointer]:
+            - img [ref=e254]
+      - generic [ref=e258]:
+        - img "Argentina Home Stripes Jersey" [ref=e260]
+        - generic [ref=e261]:
+          - paragraph [ref=e262]: Argentina Home Stripes Jersey
+          - paragraph [ref=e263]: National • K760
+          - paragraph [ref=e264]: La Albiceleste blue and white stripes — featuring FIFA World Champions 2022 badge.
+        - generic [ref=e265]:
+          - button "In Stock" [ref=e266] [cursor=pointer]
+          - button [ref=e267] [cursor=pointer]:
+            - img [ref=e268]
+          - button [ref=e270] [cursor=pointer]:
+            - img [ref=e271]
+      - generic [ref=e275]:
+        - img "Argentina Long Sleeve Home Jersey" [ref=e277]
+        - generic [ref=e278]:
+          - paragraph [ref=e279]: Argentina Long Sleeve Home Jersey
+          - paragraph [ref=e280]: National • K780
+          - paragraph [ref=e281]: Argentina long sleeve edition with Adidas three stripes.
+        - generic [ref=e282]:
+          - button "In Stock" [ref=e283] [cursor=pointer]
+          - button [ref=e284] [cursor=pointer]:
+            - img [ref=e285]
+          - button [ref=e287] [cursor=pointer]:
+            - img [ref=e288]
+      - generic [ref=e292]:
+        - img "Argentina Special Edition Black Jersey" [ref=e294]
+        - generic [ref=e295]:
+          - paragraph [ref=e296]: Argentina Special Edition Black Jersey
+          - paragraph [ref=e297]: National • K800
+          - paragraph [ref=e298]: Stunning Argentina black special edition with intricate blue floral design and FIFA World Champions badge.
+        - generic [ref=e299]:
+          - button "In Stock" [ref=e300] [cursor=pointer]
+          - button [ref=e301] [cursor=pointer]:
+            - img [ref=e302]
+          - button [ref=e304] [cursor=pointer]:
+            - img [ref=e305]
+      - generic [ref=e309]:
+        - img "Portugal Home Red Jersey" [ref=e311]
+        - generic [ref=e312]:
+          - paragraph [ref=e313]: Portugal Home Red Jersey
+          - paragraph [ref=e314]: National • K740
+          - paragraph [ref=e315]: Portugal home kit in classic red with Puma wave design.
+        - generic [ref=e316]:
+          - button "In Stock" [ref=e317] [cursor=pointer]
+          - button [ref=e318] [cursor=pointer]:
+            - img [ref=e319]
+          - button [ref=e321] [cursor=pointer]:
+            - img [ref=e322]
+      - generic [ref=e326]:
+        - img "Portugal Home Red Jersey (Player Version)" [ref=e328]
+        - generic [ref=e329]:
+          - paragraph [ref=e330]: Portugal Home Red Jersey (Player Version)
+          - paragraph [ref=e331]: National • K760
+          - paragraph [ref=e332]: Portugal Puma home jersey — player version with teal trim.
+        - generic [ref=e333]:
+          - button "In Stock" [ref=e334] [cursor=pointer]
+          - button [ref=e335] [cursor=pointer]:
+            - img [ref=e336]
+          - button [ref=e338] [cursor=pointer]:
+            - img [ref=e339]
+      - generic [ref=e343]:
+        - img "Portugal Third Black Jersey" [ref=e345]
+        - generic [ref=e346]:
+          - paragraph [ref=e347]: Portugal Third Black Jersey
+          - paragraph [ref=e348]: National • K780
+          - paragraph [ref=e349]: Portugal stunning black third kit with all-over crest pattern and gold Puma branding.
+        - generic [ref=e350]:
+          - button "In Stock" [ref=e351] [cursor=pointer]
+          - button [ref=e352] [cursor=pointer]:
+            - img [ref=e353]
+          - button [ref=e355] [cursor=pointer]:
+            - img [ref=e356]
+      - generic [ref=e360]:
+        - img "Portugal Away Teal Jersey" [ref=e362]
+        - generic [ref=e363]:
+          - paragraph [ref=e364]: Portugal Away Teal Jersey
+          - paragraph [ref=e365]: National • K740
+          - paragraph [ref=e366]: Portugal away kit in stunning teal/white wave pattern.
+        - generic [ref=e367]:
+          - button "In Stock" [ref=e368] [cursor=pointer]
+          - button [ref=e369] [cursor=pointer]:
+            - img [ref=e370]
+          - button [ref=e372] [cursor=pointer]:
+            - img [ref=e373]
+      - generic [ref=e377]:
+        - img "England Away Red Jersey" [ref=e379]
+        - generic [ref=e380]:
+          - paragraph [ref=e381]: England Away Red Jersey
+          - paragraph [ref=e382]: National • K700
+          - paragraph [ref=e383]: England Nike away jersey in bold red with Three Lions crest and gold star.
+        - generic [ref=e384]:
+          - button "In Stock" [ref=e385] [cursor=pointer]
+          - button [ref=e386] [cursor=pointer]:
+            - img [ref=e387]
+          - button [ref=e389] [cursor=pointer]:
+            - img [ref=e390]
+      - generic [ref=e394]:
+        - img "France Home Blue Jersey" [ref=e396]
+        - generic [ref=e397]:
+          - paragraph [ref=e398]: France Home Blue Jersey
+          - paragraph [ref=e399]: National • K720
+          - paragraph [ref=e400]: France Nike home jersey in deep blue with geometric pattern — Les Bleus.
+        - generic [ref=e401]:
+          - button "In Stock" [ref=e402] [cursor=pointer]
+          - button [ref=e403] [cursor=pointer]:
+            - img [ref=e404]
+          - button [ref=e406] [cursor=pointer]:
+            - img [ref=e407]
+      - generic [ref=e411]:
+        - img "Germany Home Jersey" [ref=e413]
+        - generic [ref=e414]:
+          - paragraph [ref=e415]: Germany Home Jersey
+          - paragraph [ref=e416]: National • K730
+          - paragraph [ref=e417]: Germany Adidas home jersey in white with iconic black, red and gold V-design on the chest.
+        - generic [ref=e418]:
+          - button "In Stock" [ref=e419] [cursor=pointer]
+          - button [ref=e420] [cursor=pointer]:
+            - img [ref=e421]
+          - button [ref=e423] [cursor=pointer]:
+            - img [ref=e424]
+      - generic [ref=e428]:
+        - img "Spain Home Jersey" [ref=e430]
+        - generic [ref=e431]:
+          - paragraph [ref=e432]: Spain Home Jersey
+          - paragraph [ref=e433]: National • K730
+          - paragraph [ref=e434]: Spain Adidas home kit in La Roja red with blue sleeves and gold pinstripes.
+        - generic [ref=e435]:
+          - button "In Stock" [ref=e436] [cursor=pointer]
+          - button [ref=e437] [cursor=pointer]:
+            - img [ref=e438]
+          - button [ref=e440] [cursor=pointer]:
+            - img [ref=e441]
+      - generic [ref=e445]:
+        - img "Zambia National Team 2025/26 Home Jersey" [ref=e447]
+        - generic [ref=e448]:
+          - paragraph [ref=e449]: Zambia National Team 2025/26 Home Jersey
+          - paragraph [ref=e450]: National • K600
+          - paragraph [ref=e451]: Chipolopolo green home jersey.
+        - generic [ref=e452]:
+          - button "In Stock" [ref=e453] [cursor=pointer]
+          - button [ref=e454] [cursor=pointer]:
+            - img [ref=e455]
+          - button [ref=e457] [cursor=pointer]:
+            - img [ref=e458]

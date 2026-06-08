@@ -1,0 +1,156 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - link "Kopala Kits home" [ref=e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e7]:
+          - img "Kopala Kits" [ref=e8]
+          - generic [ref=e15]: KOPALA KITS
+      - navigation [ref=e16]:
+        - link "Home" [ref=e17] [cursor=pointer]:
+          - /url: /
+        - link "Shop" [ref=e18] [cursor=pointer]:
+          - /url: /shop
+        - link "Predictions" [ref=e19] [cursor=pointer]:
+          - /url: /predictions
+          - text: Predictions
+        - link "Tournaments" [ref=e21] [cursor=pointer]:
+          - /url: /tournaments
+        - link "News" [ref=e22] [cursor=pointer]:
+          - /url: /news
+        - link "Media" [ref=e23] [cursor=pointer]:
+          - /url: /media
+        - link "About" [ref=e24] [cursor=pointer]:
+          - /url: /about
+        - link "Contact" [ref=e25] [cursor=pointer]:
+          - /url: /contact
+      - generic [ref=e26]:
+        - button "Open cart, 0 items" [ref=e27] [cursor=pointer]:
+          - img [ref=e28]
+        - button "Switch to dark mode" [ref=e32] [cursor=pointer]:
+          - img [ref=e33]
+  - main [ref=e35]:
+    - generic [ref=e36]:
+      - generic [ref=e38]:
+        - img "Kopala Kits" [ref=e39]
+        - heading "We're Kopala Kits." [level=1] [ref=e46]
+        - paragraph [ref=e47]: A small Zambian business with a big love for football. We started in Kitwe selling jerseys to friends, and now we ship to the whole Copperbelt. Premium kits, fair prices, no friction — order in a tap on WhatsApp.
+      - generic [ref=e49]:
+        - generic [ref=e50]:
+          - generic [ref=e51]: 24+
+          - generic [ref=e52]: Kits in stock
+        - generic [ref=e53]:
+          - generic [ref=e54]: "4"
+          - generic [ref=e55]: Categories
+        - generic [ref=e56]:
+          - generic [ref=e57]: 100%
+          - generic [ref=e58]: Authentic
+        - generic [ref=e59]:
+          - generic [ref=e60]: "1"
+          - generic [ref=e61]: Tap to order
+      - generic [ref=e63]:
+        - generic [ref=e64]:
+          - text: Our story
+          - heading "Built in Kitwe, for the fans." [level=2] [ref=e65]
+        - generic [ref=e66]:
+          - paragraph [ref=e67]: Kopala Kits was born out of frustration. Quality football jerseys were hard to find in Zambia, and what you did find was expensive or fake. We set out to change that.
+          - paragraph [ref=e68]:
+            - strong [ref=e69]: "Note:"
+            - text: photographs of kits in the Local and Retro sections are real; the four Zambian Super League kits (Nkana, Power, Mufulira, Kabwe) are illustrated placeholders that show the team's colours and badge area until we get on-pitch photos.
+          - paragraph [ref=e70]: Today we stock local Zambian teams (Nkana, Power, Mufulira Wanderers, Kabwe Warriors), international clubs (Arsenal, Chelsea), national sides (Argentina, Portugal, England, France, Germany, Spain, Brazil, Zambia) and a growing retro archive of 90s classics.
+          - paragraph [ref=e71]: "Our promise is simple: real jerseys, fair prices, no friction. You browse, you tap, you WhatsApp us. We confirm, you pay on delivery."
+      - generic [ref=e72]:
+        - heading "What we stand for" [level=2] [ref=e73]
+        - generic [ref=e74]:
+          - generic [ref=e75]:
+            - img [ref=e77]
+            - heading "Authentic only" [level=3] [ref=e80]
+            - paragraph [ref=e81]: Every jersey we sell is sourced from official suppliers. No knock-offs, no counterfeits — just real kits for real fans.
+          - generic [ref=e82]:
+            - img [ref=e84]
+            - heading "Fast in Zambia" [level=3] [ref=e89]
+            - paragraph [ref=e90]: Same-day delivery in Kitwe, next-day to Ndola, Lusaka and the rest of the Copperbelt. We deliver.
+          - generic [ref=e91]:
+            - img [ref=e93]
+            - heading "Local love" [level=3] [ref=e95]
+            - paragraph [ref=e96]: We celebrate Zambian football as much as the international game. Nkana, Power, Mufulira, Kabwe — all here.
+          - generic [ref=e97]:
+            - img [ref=e99]
+            - heading "Real fans, run by fans" [level=3] [ref=e102]
+            - paragraph [ref=e103]: We started because finding a quality jersey in Kitwe was hard. Now it is one WhatsApp message.
+          - generic [ref=e104]:
+            - img [ref=e106]
+            - heading "Retro archive" [level=3] [ref=e109]
+            - paragraph [ref=e110]: Sharp-era Man United, JVC Arsenal, Carlsberg Liverpool — collector pieces from the 90s, sourced with care.
+          - generic [ref=e111]:
+            - img [ref=e113]
+            - heading "Worldwide demand" [level=3] [ref=e116]
+            - paragraph [ref=e117]: We ship across the region. If you want a kit we do not have, message us — we source on request.
+      - generic [ref=e119]:
+        - heading "Ready to find your kit?" [level=2] [ref=e120]
+        - paragraph [ref=e121]: 24 jerseys, 4 categories, 1 tap to order.
+        - generic [ref=e122]:
+          - link "Shop the catalog" [ref=e123] [cursor=pointer]:
+            - /url: /shop
+          - link "WhatsApp us" [ref=e124] [cursor=pointer]:
+            - /url: https://wa.me/260770713619
+  - contentinfo [ref=e125]:
+    - generic [ref=e126]:
+      - generic [ref=e127]:
+        - generic [ref=e128]:
+          - img "Kopala Kits" [ref=e129]
+          - generic [ref=e136]: KOPALA KITS
+        - paragraph [ref=e137]: Premium soccer jerseys for every fan. Local, international, national & retro classics — all at the best prices in Kitwe.
+        - link "Chat with Us" [ref=e138] [cursor=pointer]:
+          - /url: https://wa.me/260770713619
+          - img [ref=e139]
+          - text: Chat with Us
+        - link "Admin panel →" [ref=e141] [cursor=pointer]:
+          - /url: /admin
+      - generic [ref=e142]:
+        - heading "Browse" [level=4] [ref=e143]
+        - list [ref=e144]:
+          - listitem [ref=e145]:
+            - link "Home" [ref=e146] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=e147]:
+            - link "Shop all kits" [ref=e148] [cursor=pointer]:
+              - /url: /shop
+          - listitem [ref=e149]:
+            - link "Local teams" [ref=e150] [cursor=pointer]:
+              - /url: /shop?category=Local
+          - listitem [ref=e151]:
+            - link "International" [ref=e152] [cursor=pointer]:
+              - /url: /shop?category=International
+          - listitem [ref=e153]:
+            - link "National teams" [ref=e154] [cursor=pointer]:
+              - /url: /shop?category=National
+          - listitem [ref=e155]:
+            - link "Retro classics" [ref=e156] [cursor=pointer]:
+              - /url: /shop?category=Retro
+          - listitem [ref=e157]:
+            - link "About us" [ref=e158] [cursor=pointer]:
+              - /url: /about
+          - listitem [ref=e159]:
+            - link "Contact" [ref=e160] [cursor=pointer]:
+              - /url: /contact
+      - generic [ref=e161]:
+        - heading "Find Us" [level=4] [ref=e162]
+        - generic [ref=e163]:
+          - paragraph [ref=e164]:
+            - img [ref=e165]
+            - generic [ref=e168]:
+              - text: K-Block, Copperbelt University
+              - text: Kitwe, Copperbelt Province, Zambia
+          - paragraph [ref=e169]:
+            - img [ref=e170]
+            - link "+260 770 713619" [ref=e172] [cursor=pointer]:
+              - /url: https://wa.me/260770713619
+          - paragraph [ref=e173]:
+            - img [ref=e174]
+            - link "hello@kopala.zingati.app" [ref=e177] [cursor=pointer]:
+              - /url: mailto:hello@kopala.zingati.app
+        - paragraph [ref=e178]: Mon–Fri 8am–6pm · Sat 9am–4pm
+    - generic [ref=e179]: 2026 Kopala Kits · Kitwe, Zambia · All prices in Zambian Kwacha (ZMW)
+  - button "Chat on WhatsApp" [ref=e180] [cursor=pointer]:
+    - img [ref=e181]

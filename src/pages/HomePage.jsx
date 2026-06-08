@@ -181,7 +181,7 @@ export default function HomePage({ products, loading, loadError, reload, onAddTo
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-4">
           <CategoryHero icon="⚽" label="Local" count={byCategory.Local} href="/shop?category=Local" accent="#198A00" />
           <CategoryHero icon="🌍" label="International" count={byCategory.International} href="/shop?category=International" accent="#1F4E96" />
-          <CategoryHero icon="🏴" label="National" count={byCategory.National} href="/shop?category=National" accent="#C5364A" />
+          <CategoryHero icon="🏴" label="Leagues" count={byCategory.Leagues} href="/shop?category=Leagues" accent="#C5364A" />
           <CategoryHero icon="🏆" label="Retro" count={byCategory.Retro} href="/shop?category=Retro" accent="#D99404" />
         </div>
       </section>

@@ -1,0 +1,296 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - link "Kopala Kits home" [ref=e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e7]:
+          - img "Kopala Kits" [ref=e8]
+          - generic [ref=e9]: KOPALA KITS
+      - navigation [ref=e10]:
+        - link "Home" [ref=e11] [cursor=pointer]:
+          - /url: /
+        - link "Shop" [ref=e12] [cursor=pointer]:
+          - /url: /shop
+        - link "Predictions" [ref=e13] [cursor=pointer]:
+          - /url: /predictions
+          - text: Predictions
+        - link "Tournaments" [ref=e15] [cursor=pointer]:
+          - /url: /tournaments
+        - link "News" [ref=e16] [cursor=pointer]:
+          - /url: /news
+        - link "Media" [ref=e17] [cursor=pointer]:
+          - /url: /media
+        - link "About" [ref=e18] [cursor=pointer]:
+          - /url: /about
+        - link "Contact" [ref=e19] [cursor=pointer]:
+          - /url: /contact
+      - generic [ref=e20]:
+        - button "Open cart, 0 items" [ref=e21] [cursor=pointer]:
+          - img [ref=e22]
+        - button "Switch to dark mode" [ref=e26] [cursor=pointer]:
+          - img [ref=e27]
+  - main [ref=e29]:
+    - generic [ref=e30]:
+      - generic [ref=e31]:
+        - generic [ref=e32]:
+          - img [ref=e33]
+          - heading "Soccer news" [level=1] [ref=e36]
+        - paragraph [ref=e37]: Live football news from local and global feeds. Cached for 30 minutes. Filter by region, league, or kit launches.
+        - tablist "News filters" [ref=e38]:
+          - tab "All News" [selected] [ref=e39] [cursor=pointer]
+          - tab "Zambia" [ref=e40] [cursor=pointer]
+          - tab "Africa" [ref=e41] [cursor=pointer]
+          - tab "Rest of World" [ref=e42] [cursor=pointer]
+          - tab "Kit Launches" [ref=e43] [cursor=pointer]
+          - button "Refresh news" [ref=e44] [cursor=pointer]:
+            - img [ref=e45]
+            - text: Refresh
+      - tabpanel "All News" [ref=e146]:
+        - link "Image for 2026 Football Boots Footy Headlines · just now 2026 Football Boots - ![](/static/img/post/2026/06/05/T20doehJv2zMAaP. Read full story" [ref=e147] [cursor=pointer]:
+          - /url: https://www.footyheadlines.com/6521896256/2026-football-boots.html
+          - img "Image for 2026 Football Boots" [ref=e149]
+          - generic [ref=e150]:
+            - generic [ref=e151]:
+              - generic [ref=e152]: Footy Headlines
+              - generic [ref=e153]: ·
+              - generic [ref=e154]:
+                - img [ref=e155]
+                - text: just now
+            - heading "2026 Football Boots" [level=3] [ref=e158]
+            - paragraph [ref=e159]: "- ![](/static/img/post/2026/06/05/T20doehJv2zMAaP."
+            - generic [ref=e160]:
+              - text: Read full story
+              - img [ref=e161]
+        - 'link "Placeholder for Predicting how all 48 World Cup teams will do: A r... ESPN FC · just now Predicting how all 48 World Cup teams will do: A r... Who will win the FIFA World Cup? Instead of predicting a final winner, we''ve picked every single result to show HOW our predicted winner will do it. Read full story" [ref=e165] [cursor=pointer]':
+          - /url: https://www.espn.com/soccer/story/_/id/48962628/world-cup-predictions-picking-winner-every-game-entire-tournament
+          - 'img "Placeholder for Predicting how all 48 World Cup teams will do: A r..." [ref=e166]':
+            - generic [ref=e167]: ESPN FC
+          - generic [ref=e168]:
+            - generic [ref=e169]:
+              - generic [ref=e170]: ESPN FC
+              - generic [ref=e171]: ·
+              - generic [ref=e172]:
+                - img [ref=e173]
+                - text: just now
+            - 'heading "Predicting how all 48 World Cup teams will do: A r..." [level=3] [ref=e176]'
+            - paragraph [ref=e177]: Who will win the FIFA World Cup? Instead of predicting a final winner, we've picked every single result to show HOW our predicted winner will do it.
+            - generic [ref=e178]:
+              - text: Read full story
+              - img [ref=e179]
+        - 'link "Image for Australia v Mexico: women’s international football friendly – live The Guardian – Football · 7 minutes ago Australia v Mexico: women’s international football friendly – live <ul><li><p>Updates from the Matildas clash at McDonald Jones Stadium</p></li><li><p>Kick-off time in Newcastle is 7.15pm AEST</p></li><li><p>Any thoughts? Get in touch with <a href=\"mailto:martin.pegan@theguardian.com\">an email</a></p></li> Read full story" [ref=e183] [cursor=pointer]':
+          - /url: https://www.theguardian.com/football/live/2026/jun/06/australia-vs-mexico-live-updates-matildas-aus-v-mex-womens-international-football-friendly
+          - 'img "Image for Australia v Mexico: women’s international football friendly – live" [ref=e185]'
+          - generic [ref=e186]:
+            - generic [ref=e187]:
+              - generic [ref=e188]: The Guardian – Football
+              - generic [ref=e189]: ·
+              - generic [ref=e190]:
+                - img [ref=e191]
+                - text: 7 minutes ago
+            - 'heading "Australia v Mexico: women’s international football friendly – live" [level=3] [ref=e194]'
+            - paragraph [ref=e195]: <ul><li><p>Updates from the Matildas clash at McDonald Jones Stadium</p></li><li><p>Kick-off time in Newcastle is 7.15pm AEST</p></li><li><p>Any thoughts? Get in touch with <a href="mailto:martin.pegan@theguardian.com">an email</a></p></li>
+            - generic [ref=e196]:
+              - text: Read full story
+              - img [ref=e197]
+        - 'link "Placeholder for Transfer rumors, news: Bayern''s Olise is Perez''s R... ESPN FC · 19 minutes ago Transfer rumors, news: Bayern''s Olise is Perez''s R... Real Madrid will launch a €150 million offer to sign Bayern Munich winger Michael Olise if Florentino Perez wins the club''s presidential election. Transfer Talk has the latest. Read full story" [ref=e201] [cursor=pointer]':
+          - /url: https://www.espn.com/soccer/story/_/id/48981673/transfer-rumors-news-bayern-olise-real-madrid-target-perez
+          - 'img "Placeholder for Transfer rumors, news: Bayern''s Olise is Perez''s R..." [ref=e202]':
+            - generic [ref=e203]: ESPN FC
+          - generic [ref=e204]:
+            - generic [ref=e205]:
+              - generic [ref=e206]: ESPN FC
+              - generic [ref=e207]: ·
+              - generic [ref=e208]:
+                - img [ref=e209]
+                - text: 19 minutes ago
+            - 'heading "Transfer rumors, news: Bayern''s Olise is Perez''s R..." [level=3] [ref=e212]'
+            - paragraph [ref=e213]: Real Madrid will launch a €150 million offer to sign Bayern Munich winger Michael Olise if Florentino Perez wins the club's presidential election. Transfer Talk has the latest.
+            - generic [ref=e214]:
+              - text: Read full story
+              - img [ref=e215]
+        - link "Placeholder for 16 players who could use World Cup to get a big tr... ESPN FC · 20 minutes ago 16 players who could use World Cup to get a big tr... The World Cup is the biggest stage in sports, so which players can use it to get their next big transfer? Read full story" [ref=e219] [cursor=pointer]:
+          - /url: https://www.espn.com/soccer/story/_/id/48956021/16-players-use-world-cup-get-big-transfer-europe
+          - img "Placeholder for 16 players who could use World Cup to get a big tr..." [ref=e220]:
+            - generic [ref=e221]: ESPN FC
+          - generic [ref=e222]:
+            - generic [ref=e223]:
+              - generic [ref=e224]: ESPN FC
+              - generic [ref=e225]: ·
+              - generic [ref=e226]:
+                - img [ref=e227]
+                - text: 20 minutes ago
+            - heading "16 players who could use World Cup to get a big tr..." [level=3] [ref=e230]
+            - paragraph [ref=e231]: The World Cup is the biggest stage in sports, so which players can use it to get their next big transfer?
+            - generic [ref=e232]:
+              - text: Read full story
+              - img [ref=e233]
+        - link "Image for Nike 2026 World Cup Lifestyle Retro Jerseys Released Footy Headlines · 23 minutes ago Nike 2026 World Cup Lifestyle Retro Jerseys Released Just one week ahead of kickoff of the 2026 World Cup, Nike has released a stylish retro national teams collection. Read full story" [ref=e237] [cursor=pointer]:
+          - /url: https://www.footyheadlines.com/2025/09/new-nike-2026-world-cup-lifestyle-retro-jerseys.html
+          - img "Image for Nike 2026 World Cup Lifestyle Retro Jerseys Released" [ref=e239]
+          - generic [ref=e240]:
+            - generic [ref=e241]:
+              - generic [ref=e242]: Footy Headlines
+              - generic [ref=e243]: ·
+              - generic [ref=e244]:
+                - img [ref=e245]
+                - text: 23 minutes ago
+            - heading "Nike 2026 World Cup Lifestyle Retro Jerseys Released" [level=3] [ref=e248]
+            - paragraph [ref=e249]: Just one week ahead of kickoff of the 2026 World Cup, Nike has released a stylish retro national teams collection.
+            - generic [ref=e250]:
+              - text: Read full story
+              - img [ref=e251]
+        - link "Placeholder for Milan in no rush over decision making as Glasner remains favourite Football Italia · 24 minutes ago Milan in no rush over decision making as Glasner remains favourite Milan remain without a coach, sporting director or any clear leadership structure more than two... Read full story" [ref=e255] [cursor=pointer]:
+          - /url: https://football-italia.net/milan-in-no-rush-over-decision-making/
+          - img "Placeholder for Milan in no rush over decision making as Glasner remains favourite" [ref=e256]:
+            - generic [ref=e257]: Football Italia
+          - generic [ref=e258]:
+            - generic [ref=e259]:
+              - generic [ref=e260]: Football Italia
+              - generic [ref=e261]: ·
+              - generic [ref=e262]:
+                - img [ref=e263]
+                - text: 24 minutes ago
+            - heading "Milan in no rush over decision making as Glasner remains favourite" [level=3] [ref=e266]
+            - paragraph [ref=e267]: Milan remain without a coach, sporting director or any clear leadership structure more than two...
+            - generic [ref=e268]:
+              - text: Read full story
+              - img [ref=e269]
+        - link "Placeholder for Arsenal to receive trophy bonuses from key sponsors Yahoo Sports Soccer · 29 minutes ago Arsenal to receive trophy bonuses from key sponsors Arsenal are set to receive around £10m in bonuses from Emirates and Adidas for winning the Premier League and reaching the Champions League final, as well as a trophy bonus from Visit Rwanda.Photo by... Read full story" [ref=e273] [cursor=pointer]:
+          - /url: https://sports.yahoo.com/articles/arsenal-receive-trophy-bonuses-key-090500248.html
+          - img "Placeholder for Arsenal to receive trophy bonuses from key sponsors" [ref=e274]:
+            - generic [ref=e275]: Yahoo Sports Socce
+          - generic [ref=e276]:
+            - generic [ref=e277]:
+              - generic [ref=e278]: Yahoo Sports Soccer
+              - generic [ref=e279]: ·
+              - generic [ref=e280]:
+                - img [ref=e281]
+                - text: 29 minutes ago
+            - heading "Arsenal to receive trophy bonuses from key sponsors" [level=3] [ref=e284]
+            - paragraph [ref=e285]: Arsenal are set to receive around £10m in bonuses from Emirates and Adidas for winning the Premier League and reaching the Champions League final, as well as a trophy bonus from Visit Rwanda.Photo by...
+            - generic [ref=e286]:
+              - text: Read full story
+              - img [ref=e287]
+        - 'link "Image for Esteti, romantici o vendicatori: senza l''Italia per chi tiferete al Mondiale? La Gazzetta dello Sport · 30 minutes ago Esteti, romantici o vendicatori: senza l''Italia per chi tiferete al Mondiale? Dai tifosi delle stelle agli amanti delle outsider, passando per chi seguirà Ancelotti o farà il tifo contro i rivali storici. Nella speranza che tra 4 anni sia molto diverso Read full story" [ref=e291] [cursor=pointer]':
+          - /url: https://www.gazzetta.it/Calcio/Mondiali/06-06-2026/mondiali-senza-italia-guida-al-tifo-da-modric-a-messi-da-ancelotti-alle-outsider.shtml
+          - 'img "Image for Esteti, romantici o vendicatori: senza l''Italia per chi tiferete al Mondiale?" [ref=e293]'
+          - generic [ref=e294]:
+            - generic [ref=e295]:
+              - generic [ref=e296]: La Gazzetta dello Sport
+              - generic [ref=e297]: ·
+              - generic [ref=e298]:
+                - img [ref=e299]
+                - text: 30 minutes ago
+            - 'heading "Esteti, romantici o vendicatori: senza l''Italia per chi tiferete al Mondiale?" [level=3] [ref=e302]'
+            - paragraph [ref=e303]: Dai tifosi delle stelle agli amanti delle outsider, passando per chi seguirà Ancelotti o farà il tifo contro i rivali storici. Nella speranza che tra 4 anni sia molto diverso
+            - generic [ref=e304]:
+              - text: Read full story
+              - img [ref=e305]
+        - 'link "Placeholder for France vs Côte d’Ivoire : Guéla Doué ne cache pas sa «fierté» Africa Top Sports · 32 minutes ago France vs Côte d’Ivoire : Guéla Doué ne cache pas sa «fierté» Guéla Doué n’est pas près d’oublier cette soirée. Auteur d’un but et d’une passe décisive lors de la victoire de la Côte d’Ivoire contre la France (2-1) en match amical Continue reading The post France vs Côte d&rsquo;Ivoire : Guéla Doué ne Read full story" [ref=e309] [cursor=pointer]':
+          - /url: https://africatopsports.com/afrique-football/france-vs-cote-divoire-guela-doue-ne-cache-pas-sa-fierte/
+          - 'img "Placeholder for France vs Côte d’Ivoire : Guéla Doué ne cache pas sa «fierté»" [ref=e310]':
+            - generic [ref=e311]: Africa Top Sports
+          - generic [ref=e312]:
+            - generic [ref=e313]:
+              - generic [ref=e314]: Africa Top Sports
+              - generic [ref=e315]: ·
+              - generic [ref=e316]:
+                - img [ref=e317]
+                - text: 32 minutes ago
+            - 'heading "France vs Côte d’Ivoire : Guéla Doué ne cache pas sa «fierté»" [level=3] [ref=e320]'
+            - paragraph [ref=e321]: "Guéla Doué n’est pas près d’oublier cette soirée. Auteur d’un but et d’une passe décisive lors de la victoire de la Côte d’Ivoire contre la France (2-1) en match amical Continue reading The post France vs Côte d&rsquo;Ivoire : Guéla Doué ne"
+            - generic [ref=e322]:
+              - text: Read full story
+              - img [ref=e323]
+        - link "Image for Sooryavanshi, 15, get first India call-up BBC Sport – All · 33 minutes ago Sooryavanshi, 15, get first India call-up Fifteen-year-old batting sensation Vaibhav Sooryavanshi receives his first international call-up by making the India T20 squad to tour England and Ireland. Read full story" [ref=e327] [cursor=pointer]:
+          - /url: https://www.bbc.com/sport/cricket/articles/c0ky4jnkyrdo?at_medium=RSS&amp;at_campaign=rss
+          - img "Image for Sooryavanshi, 15, get first India call-up" [ref=e329]
+          - generic [ref=e330]:
+            - generic [ref=e331]:
+              - generic [ref=e332]: BBC Sport – All
+              - generic [ref=e333]: ·
+              - generic [ref=e334]:
+                - img [ref=e335]
+                - text: 33 minutes ago
+            - heading "Sooryavanshi, 15, get first India call-up" [level=3] [ref=e338]
+            - paragraph [ref=e339]: Fifteen-year-old batting sensation Vaibhav Sooryavanshi receives his first international call-up by making the India T20 squad to tour England and Ireland.
+            - generic [ref=e340]:
+              - text: Read full story
+              - img [ref=e341]
+        - 'link "Image for Relentless rise of VAR, new red card offences and more: those new World Cup rules in full The Guardian – Football · 34 minutes ago Relentless rise of VAR, new red card offences and more: those new World Cup rules in full <p>2026 tournament will be the biggest, longest and most expensive – and the most intricately refereed – ever seen</p><p>The 2026 World Cup will be the biggest, longest and most expensive. It will also feature a hefty number of rule changes Read full story" [ref=e345] [cursor=pointer]':
+          - /url: https://www.theguardian.com/football/2026/jun/06/relentless-rise-of-var-new-red-card-offences-and-more-those-new-world-cup-rules-in-full
+          - 'img "Image for Relentless rise of VAR, new red card offences and more: those new World Cup rules in full" [ref=e347]'
+          - generic [ref=e348]:
+            - generic [ref=e349]:
+              - generic [ref=e350]: The Guardian – Football
+              - generic [ref=e351]: ·
+              - generic [ref=e352]:
+                - img [ref=e353]
+                - text: 34 minutes ago
+            - 'heading "Relentless rise of VAR, new red card offences and more: those new World Cup rules in full" [level=3] [ref=e356]'
+            - paragraph [ref=e357]: <p>2026 tournament will be the biggest, longest and most expensive – and the most intricately refereed – ever seen</p><p>The 2026 World Cup will be the biggest, longest and most expensive. It will also feature a hefty number of rule changes
+            - generic [ref=e358]:
+              - text: Read full story
+              - img [ref=e359]
+      - button "Load more stories" [ref=e364] [cursor=pointer]: Load more (12 of 411)
+      - paragraph [ref=e93]: News items link to original sources. We don't host the content.
+  - contentinfo [ref=e94]:
+    - generic [ref=e95]:
+      - generic [ref=e96]:
+        - generic [ref=e97]:
+          - img "Kopala Kits" [ref=e98]
+          - generic [ref=e99]: KOPALA KITS
+        - paragraph [ref=e100]: Premium soccer jerseys for every fan. Local, international, national & retro classics — all at the best prices in Kitwe.
+        - link "Chat with Us" [ref=e101] [cursor=pointer]:
+          - /url: https://wa.me/260770713619
+          - img [ref=e102]
+          - text: Chat with Us
+        - link "Admin panel →" [ref=e104] [cursor=pointer]:
+          - /url: /admin
+      - generic [ref=e105]:
+        - heading "Browse" [level=4] [ref=e106]
+        - list [ref=e107]:
+          - listitem [ref=e108]:
+            - link "Home" [ref=e109] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=e110]:
+            - link "Shop all kits" [ref=e111] [cursor=pointer]:
+              - /url: /shop
+          - listitem [ref=e112]:
+            - link "Local teams" [ref=e113] [cursor=pointer]:
+              - /url: /shop?category=Local
+          - listitem [ref=e114]:
+            - link "International" [ref=e115] [cursor=pointer]:
+              - /url: /shop?category=International
+          - listitem [ref=e116]:
+            - link "National teams" [ref=e117] [cursor=pointer]:
+              - /url: /shop?category=National
+          - listitem [ref=e118]:
+            - link "Retro classics" [ref=e119] [cursor=pointer]:
+              - /url: /shop?category=Retro
+          - listitem [ref=e120]:
+            - link "About us" [ref=e121] [cursor=pointer]:
+              - /url: /about
+          - listitem [ref=e122]:
+            - link "Contact" [ref=e123] [cursor=pointer]:
+              - /url: /contact
+      - generic [ref=e124]:
+        - heading "Find Us" [level=4] [ref=e125]
+        - generic [ref=e126]:
+          - paragraph [ref=e127]:
+            - img [ref=e128]
+            - generic [ref=e131]:
+              - text: K-Block, Copperbelt University
+              - text: Kitwe, Copperbelt Province, Zambia
+          - paragraph [ref=e132]:
+            - img [ref=e133]
+            - link "+260 770 713619" [ref=e135] [cursor=pointer]:
+              - /url: https://wa.me/260770713619
+          - paragraph [ref=e136]:
+            - img [ref=e137]
+            - link "hello@kopala.zingati.app" [ref=e140] [cursor=pointer]:
+              - /url: mailto:hello@kopala.zingati.app
+        - paragraph [ref=e141]: Mon–Fri 8am–6pm · Sat 9am–4pm
+    - generic [ref=e142]: 2026 Kopala Kits · Kitwe, Zambia · All prices in Zambian Kwacha (ZMW)
+  - button "Chat on WhatsApp" [ref=e143] [cursor=pointer]:
+    - img [ref=e144]

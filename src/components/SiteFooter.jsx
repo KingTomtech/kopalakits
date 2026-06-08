@@ -48,7 +48,20 @@ export default function SiteFooter({ phone }) {
           <address className="not-italic text-sm space-y-1.5" style={{ color: 'var(--text-muted)' }}>
             <p className="flex items-start gap-2">
               <MapPin size={14} className="mt-0.5 flex-shrink-0" style={{ color: 'var(--text-faint)' }} />
-              <span>Kitwe</span>
+              <span className="inline-flex flex-wrap items-center gap-1.5">
+                <span
+                  className="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-bold tracking-wide"
+                  style={{ backgroundColor: 'var(--brand)', color: '#FFFFFF' }}
+                >
+                  Kitwe
+                </span>
+                <span
+                  className="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium border"
+                  style={{ borderColor: 'var(--border)', color: 'var(--text-muted)', backgroundColor: 'var(--bg)' }}
+                >
+                  Copperbelt Province
+                </span>
+              </span>
             </p>
             <p className="flex items-center gap-2">
               <Phone size={14} className="flex-shrink-0" style={{ color: 'var(--text-faint)' }} />

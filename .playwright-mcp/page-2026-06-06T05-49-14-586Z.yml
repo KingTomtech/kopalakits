@@ -1,0 +1,213 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - link "Kopala Kits home" [ref=e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e7]:
+          - img "Kopala Kits" [ref=e8]
+          - generic [ref=e9]: KOPALA KITS
+      - navigation [ref=e10]:
+        - link "Home" [ref=e11] [cursor=pointer]:
+          - /url: /
+        - link "Shop" [ref=e12] [cursor=pointer]:
+          - /url: /shop
+        - link "Predictions" [ref=e13] [cursor=pointer]:
+          - /url: /predictions
+          - text: Predictions
+        - link "Tournaments" [ref=e15] [cursor=pointer]:
+          - /url: /tournaments
+        - link "News" [ref=e16] [cursor=pointer]:
+          - /url: /news
+        - link "Media" [ref=e17] [cursor=pointer]:
+          - /url: /media
+        - link "About" [ref=e18] [cursor=pointer]:
+          - /url: /about
+        - link "Contact" [ref=e19] [cursor=pointer]:
+          - /url: /contact
+      - generic [ref=e20]:
+        - button "Open cart, 0 items" [ref=e21] [cursor=pointer]:
+          - img [ref=e22]
+        - button "Switch to dark mode" [ref=e26] [cursor=pointer]:
+          - img [ref=e27]
+  - main [ref=e29]:
+    - generic [ref=e30]:
+      - generic [ref=e32]:
+        - generic [ref=e33]:
+          - generic [ref=e34]: ⚽
+          - generic [ref=e36]: Est. 1929
+        - heading "Football Association of Zambia" [level=1] [ref=e37]
+        - paragraph [ref=e38]: The home of Zambian football. Leagues, national teams, fixtures, and the stories behind the badges we sell.
+      - generic [ref=e40]:
+        - generic [ref=e41]:
+          - heading "About FAZ" [level=2] [ref=e42]
+          - paragraph [ref=e43]: Founded in 1929, FAZ is the national governing body for football in Zambia. It runs the domestic league pyramid from the Super League down to regional divisions, the women's league, age-group national teams, and the Chipolopolo and Copper Queens who carry Zambia's flag at AFCON and the World Cup.
+        - generic [ref=e44]:
+          - heading "Football House" [level=3] [ref=e45]
+          - paragraph [ref=e46]:
+            - img [ref=e47]
+            - text: Football House, Alick Nkhata Road, Lusaka
+          - paragraph [ref=e50]:
+            - text: "President:"
+            - strong [ref=e51]: Andrew Kamanga
+          - link "https://www.faz.co.zm" [ref=e52] [cursor=pointer]:
+            - /url: https://www.faz.co.zm
+            - img [ref=e53]
+            - text: https://www.faz.co.zm
+      - generic [ref=e56]:
+        - heading "National teams" [level=2] [ref=e57]
+        - generic [ref=e58]:
+          - generic [ref=e59]:
+            - generic [ref=e60]: 🦛
+            - generic [ref=e61]:
+              - generic [ref=e62]: Chipolopolo (Men)
+              - generic [ref=e63]: The Copper Bullets
+              - generic [ref=e64]:
+                - text: "Coach:"
+                - strong [ref=e65]: Avram Grant (placeholder)
+                - text: "· Captain:"
+                - strong [ref=e66]: Patience Mumba
+          - generic [ref=e67]:
+            - generic [ref=e68]: 🦛
+            - generic [ref=e69]:
+              - generic [ref=e70]: Copper Queens (Women)
+              - generic [ref=e71]: The Copper Queens
+              - generic [ref=e72]:
+                - text: "Coach:"
+                - strong [ref=e73]: Bruce Mwape
+                - text: "· Captain:"
+                - strong [ref=e74]: Grace Chanda
+          - generic [ref=e75]:
+            - generic [ref=e76]: 🦛
+            - generic [ref=e77]:
+              - generic [ref=e78]: U-20 Men
+              - generic [ref=e79]: Junior Chipolopolo
+          - generic [ref=e80]:
+            - generic [ref=e81]: 🦛
+            - generic [ref=e82]:
+              - generic [ref=e83]: U-17 Men
+              - generic [ref=e84]: Young Bullets
+      - generic [ref=e85]:
+        - heading "League pyramid" [level=2] [ref=e86]
+        - generic [ref=e87]:
+          - generic [ref=e88]:
+            - generic [ref=e89]: T1
+            - generic [ref=e90]:
+              - generic [ref=e91]: Zambia Super League (ZSL)
+              - generic [ref=e92]: 18 teams
+              - generic [ref=e93]: Top 1 → CAF Champions League
+          - generic [ref=e94]:
+            - generic [ref=e95]: T2
+            - generic [ref=e96]:
+              - generic [ref=e97]: Zambia National Division One
+              - generic [ref=e98]: 24 teams
+          - generic [ref=e99]:
+            - generic [ref=e100]: T3
+            - generic [ref=e102]: Zambia Division Two (regional)
+          - generic [ref=e103]:
+            - generic [ref=e104]: T1
+            - generic [ref=e105]:
+              - generic [ref=e106]: FAZ Women's Super League
+              - generic [ref=e107]: 12 teams
+          - generic [ref=e108]:
+            - generic [ref=e109]: T3
+            - generic [ref=e111]: Copperbelt Provincial League
+      - generic [ref=e112]:
+        - heading "Upcoming events" [level=2] [ref=e113]
+        - generic [ref=e114]:
+          - generic [ref=e115]:
+            - img [ref=e117]
+            - generic [ref=e119]:
+              - generic [ref=e120]: World Cup Qualifier
+              - generic [ref=e121]: Zambia vs Morocco
+            - generic [ref=e122]: 04 Sept
+          - generic [ref=e123]:
+            - img [ref=e125]
+            - generic [ref=e127]:
+              - generic [ref=e128]: AFCON Qualifier
+              - generic [ref=e129]: Zambia vs Ivory Coast
+            - generic [ref=e130]: 08 Sept
+          - generic [ref=e131]:
+            - img [ref=e133]
+            - generic [ref=e135]:
+              - generic [ref=e136]: COSAFA Cup
+              - generic [ref=e137]: vs
+              - generic [ref=e138]: South Africa
+            - generic [ref=e139]: Invalid Date
+        - paragraph [ref=e140]: Dates are indicative — confirm at https://www.faz.co.zm.
+      - generic [ref=e142]:
+        - generic [ref=e143]:
+          - heading "One nation. One game." [level=3] [ref=e144]
+          - paragraph [ref=e145]: Get the official FAZ updates, fixtures, and live scores.
+        - generic [ref=e146]:
+          - link "info@faz.co.zm" [ref=e147] [cursor=pointer]:
+            - /url: mailto:info@faz.co.zm
+            - img [ref=e148]
+            - text: info@faz.co.zm
+          - link "+260 211 250 766" [ref=e151] [cursor=pointer]:
+            - /url: tel:+260211250766
+            - img [ref=e152]
+            - text: +260 211 250 766
+          - link "Visit FAZ" [ref=e154] [cursor=pointer]:
+            - /url: https://www.faz.co.zm
+            - img [ref=e155]
+            - text: Visit FAZ
+  - contentinfo [ref=e158]:
+    - generic [ref=e159]:
+      - generic [ref=e160]:
+        - generic [ref=e161]:
+          - img "Kopala Kits" [ref=e162]
+          - generic [ref=e163]: KOPALA KITS
+        - paragraph [ref=e164]: Premium soccer jerseys for every fan. Local, international, national & retro classics — all at the best prices in Kitwe.
+        - link "Chat with Us" [ref=e165] [cursor=pointer]:
+          - /url: https://wa.me/260770713619
+          - img [ref=e166]
+          - text: Chat with Us
+        - link "Admin panel →" [ref=e168] [cursor=pointer]:
+          - /url: /admin
+      - generic [ref=e169]:
+        - heading "Browse" [level=4] [ref=e170]
+        - list [ref=e171]:
+          - listitem [ref=e172]:
+            - link "Home" [ref=e173] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=e174]:
+            - link "Shop all kits" [ref=e175] [cursor=pointer]:
+              - /url: /shop
+          - listitem [ref=e176]:
+            - link "Local teams" [ref=e177] [cursor=pointer]:
+              - /url: /shop?category=Local
+          - listitem [ref=e178]:
+            - link "International" [ref=e179] [cursor=pointer]:
+              - /url: /shop?category=International
+          - listitem [ref=e180]:
+            - link "National teams" [ref=e181] [cursor=pointer]:
+              - /url: /shop?category=National
+          - listitem [ref=e182]:
+            - link "Retro classics" [ref=e183] [cursor=pointer]:
+              - /url: /shop?category=Retro
+          - listitem [ref=e184]:
+            - link "About us" [ref=e185] [cursor=pointer]:
+              - /url: /about
+          - listitem [ref=e186]:
+            - link "Contact" [ref=e187] [cursor=pointer]:
+              - /url: /contact
+      - generic [ref=e188]:
+        - heading "Find Us" [level=4] [ref=e189]
+        - generic [ref=e190]:
+          - paragraph [ref=e191]:
+            - img [ref=e192]
+            - generic [ref=e195]:
+              - text: K-Block, Copperbelt University
+              - text: Kitwe, Copperbelt Province, Zambia
+          - paragraph [ref=e196]:
+            - img [ref=e197]
+            - link "+260 770 713619" [ref=e199] [cursor=pointer]:
+              - /url: https://wa.me/260770713619
+          - paragraph [ref=e200]:
+            - img [ref=e201]
+            - link "hello@kopala.zingati.app" [ref=e204] [cursor=pointer]:
+              - /url: mailto:hello@kopala.zingati.app
+        - paragraph [ref=e205]: Mon–Fri 8am–6pm · Sat 9am–4pm
+    - generic [ref=e206]: 2026 Kopala Kits · Kitwe, Zambia · All prices in Zambian Kwacha (ZMW)
+  - button "Chat on WhatsApp" [ref=e207] [cursor=pointer]:
+    - img [ref=e208]

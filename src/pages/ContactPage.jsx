@@ -115,8 +115,19 @@ export default function ContactPage({ phone }) {
               </div>
               <div>
                 <div className="text-sm font-bold" style={{ color: 'var(--text)' }}>Visit</div>
-                <div className="text-xs" style={{ color: 'var(--text-muted)' }}>
-                  Kitwe
+                <div className="mt-1 flex items-center gap-1.5 flex-wrap">
+                  <span
+                    className="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-bold tracking-wide"
+                    style={{ backgroundColor: 'var(--brand)', color: '#FFFFFF' }}
+                  >
+                    Kitwe
+                  </span>
+                  <span
+                    className="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium border"
+                    style={{ borderColor: 'var(--border)', color: 'var(--text-muted)', backgroundColor: 'var(--bg)' }}
+                  >
+                    Copperbelt Province
+                  </span>
                 </div>
               </div>
             </div>

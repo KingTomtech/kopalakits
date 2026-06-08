@@ -9,8 +9,8 @@ export const AUTH_TOKEN_KEY = 'kopala_admin_token';
 export const WISHLIST_KEY = 'wishlist';
 export const DARK_MODE_KEY = 'darkMode';
 
-export const CATEGORIES = ['All', 'Local', 'International', 'National', 'Retro'];
-export const ADMIN_CATEGORIES = ['Local', 'International', 'National', 'Retro'];
+export const CATEGORIES = ['All', 'Local', 'International', 'Leagues', 'Retro'];
+export const ADMIN_CATEGORIES = ['Local', 'International', 'Leagues', 'Retro'];
 
 export const SIZES = ['S', 'M', 'L', 'XL', 'XXL'];
 

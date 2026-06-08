@@ -1,0 +1,290 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - link "Kopala Kits home" [ref=e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e7]:
+          - img "Kopala Kits" [ref=e8]
+          - generic [ref=e9]: KOPALA KITS
+      - navigation [ref=e10]:
+        - link "Home" [ref=e11] [cursor=pointer]:
+          - /url: /
+        - link "Shop" [ref=e12] [cursor=pointer]:
+          - /url: /shop
+        - link "Predictions" [ref=e13] [cursor=pointer]:
+          - /url: /predictions
+          - text: Predictions
+        - link "Tournaments" [ref=e15] [cursor=pointer]:
+          - /url: /tournaments
+        - link "News" [ref=e16] [cursor=pointer]:
+          - /url: /news
+        - link "Media" [ref=e17] [cursor=pointer]:
+          - /url: /media
+        - link "About" [ref=e18] [cursor=pointer]:
+          - /url: /about
+        - link "Contact" [ref=e19] [cursor=pointer]:
+          - /url: /contact
+      - generic [ref=e20]:
+        - button "Open cart, 0 items" [ref=e21] [cursor=pointer]:
+          - img [ref=e22]
+        - button "Switch to dark mode" [ref=e26] [cursor=pointer]:
+          - img [ref=e27]
+  - main [ref=e29]:
+    - generic [ref=e30]:
+      - generic [ref=e31]:
+        - generic [ref=e32]:
+          - img [ref=e33]
+          - heading "Soccer news" [level=1] [ref=e36]
+        - paragraph [ref=e37]: Live football news from local and global feeds. Cached for 30 minutes. Filter by region, league, or kit launches.
+        - tablist "News filters" [ref=e38]:
+          - tab "All News" [selected] [ref=e39] [cursor=pointer]
+          - tab "Zambia" [ref=e40] [cursor=pointer]
+          - tab "Africa" [ref=e41] [cursor=pointer]
+          - tab "Rest of World" [ref=e42] [cursor=pointer]
+          - tab "Kit Launches" [ref=e43] [cursor=pointer]
+          - button "Refresh news" [ref=e44] [cursor=pointer]:
+            - img [ref=e45]
+            - text: Refresh
+      - tabpanel "All News" [ref=e146]:
+        - link "Image for 2026 Football Boots Footy Headlines · just now 2026 Football Boots - ![](/static/img/post/2026/06/05/T20doehJv2zMAaP. Read full story" [ref=e147] [cursor=pointer]:
+          - /url: https://www.footyheadlines.com/6521896256/2026-football-boots.html
+          - img "Image for 2026 Football Boots" [ref=e149]
+          - generic [ref=e150]:
+            - generic [ref=e151]:
+              - generic [ref=e152]: Footy Headlines
+              - generic [ref=e153]: ·
+              - generic [ref=e154]:
+                - img [ref=e155]
+                - text: just now
+            - heading "2026 Football Boots" [level=3] [ref=e158]
+            - paragraph [ref=e159]: "- ![](/static/img/post/2026/06/05/T20doehJv2zMAaP."
+            - generic [ref=e160]:
+              - text: Read full story
+              - img [ref=e161]
+        - link "Placeholder for The Knicks take Game 2! Biggest takeaways and what... ESPN – Premier League · just now The Knicks take Game 2! Biggest takeaways and what... NBA insiders break down the takeaways from Game 2, look ahead to the rest of the Knicks-Spurs showdown. Read full story" [ref=e165] [cursor=pointer]:
+          - /url: <![CDATA[https://www.espn.com/nba/story/_/id/48940704/2026-nba-finals-biggest-takeaways-highlights-san-antonio-spurs-new-york-knicks-championship]]>
+          - img "Placeholder for The Knicks take Game 2! Biggest takeaways and what..." [ref=e166]
+          - generic [ref=e167]:
+            - generic [ref=e168]:
+              - generic [ref=e169]: ESPN – Premier League
+              - generic [ref=e170]: ·
+              - generic [ref=e171]:
+                - img [ref=e172]
+                - text: just now
+            - heading "The Knicks take Game 2! Biggest takeaways and what..." [level=3] [ref=e175]
+            - paragraph [ref=e176]: NBA insiders break down the takeaways from Game 2, look ahead to the rest of the Knicks-Spurs showdown.
+            - generic [ref=e177]:
+              - text: Read full story
+              - img [ref=e178]
+        - link "Placeholder for Poch 'annoyed' as Richards out of final U.S. tuneu... ESPN FC · just now Poch 'annoyed' as Richards out of final U.S. tuneu... United States coach Mauricio Pochettino expressed his frustration after revealing that first-choice center back Chris Richards would miss the team's final friendly before the World Cup with an ankle injury. Read full story" [ref=e182] [cursor=pointer]:
+          - /url: <![CDATA[https://www.espn.com/soccer/story/_/id/48976577/usa-world-cup-chris-richards-injury-mauricio-pochettino-germany]]>
+          - img "Placeholder for Poch 'annoyed' as Richards out of final U.S. tuneu..." [ref=e183]
+          - generic [ref=e184]:
+            - generic [ref=e185]:
+              - generic [ref=e186]: ESPN FC
+              - generic [ref=e187]: ·
+              - generic [ref=e188]:
+                - img [ref=e189]
+                - text: just now
+            - heading "Poch 'annoyed' as Richards out of final U.S. tuneu..." [level=3] [ref=e192]
+            - paragraph [ref=e193]: United States coach Mauricio Pochettino expressed his frustration after revealing that first-choice center back Chris Richards would miss the team's final friendly before the World Cup with an ankle injury.
+            - generic [ref=e194]:
+              - text: Read full story
+              - img [ref=e195]
+        - link "Placeholder for FIFA reverses WC water bottle ban after backlash ESPN FC · just now FIFA reverses WC water bottle ban after backlash FIFA has reversed its decision to bar World Cup fans from bringing refillable water bottles into the tournament's 16 stadiums across North America, following fierce backlash. Read full story" [ref=e199] [cursor=pointer]:
+          - /url: <![CDATA[https://www.espn.com/soccer/story/_/id/48978502/fifa-reverses-world-cup-water-bottle-ban-backlash]]>
+          - img "Placeholder for FIFA reverses WC water bottle ban after backlash" [ref=e200]
+          - generic [ref=e201]:
+            - generic [ref=e202]:
+              - generic [ref=e203]: ESPN FC
+              - generic [ref=e204]: ·
+              - generic [ref=e205]:
+                - img [ref=e206]
+                - text: just now
+            - heading "FIFA reverses WC water bottle ban after backlash" [level=3] [ref=e209]
+            - paragraph [ref=e210]: FIFA has reversed its decision to bar World Cup fans from bringing refillable water bottles into the tournament's 16 stadiums across North America, following fierce backlash.
+            - generic [ref=e211]:
+              - text: Read full story
+              - img [ref=e212]
+        - link "Placeholder for Messi 'doing well', could play World Cup warmups ESPN FC · just now Messi 'doing well', could play World Cup warmups Argentina coach Lionel Scaloni said Lionel Messi is improving from muscle fatigue in his left hamstring and could play some minutes in the warmups before his team's World Cup debut on June 16. Read full story" [ref=e216] [cursor=pointer]:
+          - /url: <![CDATA[https://www.espn.com/soccer/story/_/id/48979047/scaloni-messi-doing-well-set-minutes-world-cup-warmups]]>
+          - img "Placeholder for Messi 'doing well', could play World Cup warmups" [ref=e217]
+          - generic [ref=e218]:
+            - generic [ref=e219]:
+              - generic [ref=e220]: ESPN FC
+              - generic [ref=e221]: ·
+              - generic [ref=e222]:
+                - img [ref=e223]
+                - text: just now
+            - heading "Messi 'doing well', could play World Cup warmups" [level=3] [ref=e226]
+            - paragraph [ref=e227]: Argentina coach Lionel Scaloni said Lionel Messi is improving from muscle fatigue in his left hamstring and could play some minutes in the warmups before his team's World Cup debut on June 16.
+            - generic [ref=e228]:
+              - text: Read full story
+              - img [ref=e229]
+        - link "Placeholder for SoFi workers authorize strike days before WCup ESPN FC · just now SoFi workers authorize strike days before WCup Service workers at SoFi Stadium have voted to authorize a potential strike just days before the venue is scheduled to host the United States opening World Cup match against Paraguay on June 12. Read full story" [ref=e233] [cursor=pointer]:
+          - /url: <![CDATA[https://www.espn.com/espn/story/_/id/48980083/sofi-stadium-workers-authorize-strike-ahead-usa-world-cup-opener]]>
+          - img "Placeholder for SoFi workers authorize strike days before WCup" [ref=e234]
+          - generic [ref=e235]:
+            - generic [ref=e236]:
+              - generic [ref=e237]: ESPN FC
+              - generic [ref=e238]: ·
+              - generic [ref=e239]:
+                - img [ref=e240]
+                - text: just now
+            - heading "SoFi workers authorize strike days before WCup" [level=3] [ref=e243]
+            - paragraph [ref=e244]: Service workers at SoFi Stadium have voted to authorize a potential strike just days before the venue is scheduled to host the United States opening World Cup match against Paraguay on June 12.
+            - generic [ref=e245]:
+              - text: Read full story
+              - img [ref=e246]
+        - link "Placeholder for Iran players receive U.S. visas for World Cup ESPN FC · just now Iran players receive U.S. visas for World Cup A U.S. official confirmed to ABC News on Friday that the players on Iran's World Cup team have received visas that will allow them to enter and compete in the United States. Read full story" [ref=e250] [cursor=pointer]:
+          - /url: <![CDATA[https://www.espn.com/soccer/story/_/id/48977850/iran-players-receive-us-visas-2026-world-cup]]>
+          - img "Placeholder for Iran players receive U.S. visas for World Cup" [ref=e251]
+          - generic [ref=e252]:
+            - generic [ref=e253]:
+              - generic [ref=e254]: ESPN FC
+              - generic [ref=e255]: ·
+              - generic [ref=e256]:
+                - img [ref=e257]
+                - text: just now
+            - heading "Iran players receive U.S. visas for World Cup" [level=3] [ref=e260]
+            - paragraph [ref=e261]: A U.S. official confirmed to ABC News on Friday that the players on Iran's World Cup team have received visas that will allow them to enter and compete in the United States.
+            - generic [ref=e262]:
+              - text: Read full story
+              - img [ref=e263]
+        - link "Placeholder for Madrid candidate Riquelme targets Klopp if elected... ESPN FC · just now Madrid candidate Riquelme targets Klopp if elected... Real Madrid presidential candidate Enrique Riquelme said in a statement that his chosen sporting director will reach out to Jürgen Klopp to offer him the coaching position if he's elected on Sunday. Read full story" [ref=e267] [cursor=pointer]:
+          - /url: <![CDATA[https://www.espn.com/soccer/story/_/id/48978746/madrid-candidate-riquelme-pledges-pursue-jurgen-klopp-elected]]>
+          - img "Placeholder for Madrid candidate Riquelme targets Klopp if elected..." [ref=e268]
+          - generic [ref=e269]:
+            - generic [ref=e270]:
+              - generic [ref=e271]: ESPN FC
+              - generic [ref=e272]: ·
+              - generic [ref=e273]:
+                - img [ref=e274]
+                - text: just now
+            - heading "Madrid candidate Riquelme targets Klopp if elected..." [level=3] [ref=e277]
+            - paragraph [ref=e278]: Real Madrid presidential candidate Enrique Riquelme said in a statement that his chosen sporting director will reach out to Jürgen Klopp to offer him the coaching position if he's elected on Sunday.
+            - generic [ref=e279]:
+              - text: Read full story
+              - img [ref=e280]
+        - link "Placeholder for Germany's Karl out of WC after training injury ESPN FC · just now Germany's Karl out of WC after training injury Germany's 18-year-old midfielder Lennart Karl will miss the World Cup after suffering an injury in training on Friday. Read full story" [ref=e284] [cursor=pointer]:
+          - /url: <![CDATA[https://www.espn.com/soccer/story/_/id/48977173/lennart-karl-injured-germany-training-miss-world-cup]]>
+          - img "Placeholder for Germany's Karl out of WC after training injury" [ref=e285]
+          - generic [ref=e286]:
+            - generic [ref=e287]:
+              - generic [ref=e288]: ESPN FC
+              - generic [ref=e289]: ·
+              - generic [ref=e290]:
+                - img [ref=e291]
+                - text: just now
+            - heading "Germany's Karl out of WC after training injury" [level=3] [ref=e294]
+            - paragraph [ref=e295]: Germany's 18-year-old midfielder Lennart Karl will miss the World Cup after suffering an injury in training on Friday.
+            - generic [ref=e296]:
+              - text: Read full story
+              - img [ref=e297]
+        - link "Placeholder for 📈 Ranking all 48 World Cup squads ESPN FC · just now 📈 Ranking all 48 World Cup squads We have the final 26-player squads that can win the FIFA World Cup, so let's go through all 48 teams and rank where they stand. Read full story" [ref=e301] [cursor=pointer]:
+          - /url: <![CDATA[https://www.espn.com/soccer/story/_/id/48941820/world-cup-final-squads-ranked-all-48-national-teams-win-summer]]>
+          - img "Placeholder for 📈 Ranking all 48 World Cup squads" [ref=e302]
+          - generic [ref=e303]:
+            - generic [ref=e304]:
+              - generic [ref=e305]: ESPN FC
+              - generic [ref=e306]: ·
+              - generic [ref=e307]:
+                - img [ref=e308]
+                - text: just now
+            - heading "📈 Ranking all 48 World Cup squads" [level=3] [ref=e311]
+            - paragraph [ref=e312]: We have the final 26-player squads that can win the FIFA World Cup, so let's go through all 48 teams and rank where they stand.
+            - generic [ref=e313]:
+              - text: Read full story
+              - img [ref=e314]
+        - 'link "Placeholder for Hayes: Brazil ''chaos'' will help USWNT improve ESPN FC · just now Hayes: Brazil ''chaos'' will help USWNT improve United States women''s national team head coach Emma Hayes said that the \"chaos\" that Brazil causes will provide a formidable test for her team in their friendly matches over the next week. Read full story" [ref=e318] [cursor=pointer]':
+          - /url: <![CDATA[https://www.espn.com/soccer/story/_/id/48976643/uswnt-improve-playing-brazil-chaos-emma-hayes]]>
+          - 'img "Placeholder for Hayes: Brazil ''chaos'' will help USWNT improve" [ref=e319]'
+          - generic [ref=e320]:
+            - generic [ref=e321]:
+              - generic [ref=e322]: ESPN FC
+              - generic [ref=e323]: ·
+              - generic [ref=e324]:
+                - img [ref=e325]
+                - text: just now
+            - 'heading "Hayes: Brazil ''chaos'' will help USWNT improve" [level=3] [ref=e328]'
+            - paragraph [ref=e329]: United States women's national team head coach Emma Hayes said that the "chaos" that Brazil causes will provide a formidable test for her team in their friendly matches over the next week.
+            - generic [ref=e330]:
+              - text: Read full story
+              - img [ref=e331]
+        - link "Placeholder for Knicks survive Spurs rush for 2-0 NBA Finals lead ESPN – Premier League · just now Knicks survive Spurs rush for 2-0 NBA Finals lead Jalen Brunson hit a go-ahead free throw with 9.5 seconds left after a turnover by Victor Wembanyama moments earlier, then Wembanyama missed a jumper at the end of New York's 105-104 win over the Spurs on Friday night for a 2-0 lead in the N Read full story" [ref=e335] [cursor=pointer]:
+          - /url: <![CDATA[https://www.espn.com/nba/story/_/id/48980267/knicks-hold-spurs-comeback-game-2-seize-2-0-lead-nba-finals]]>
+          - img "Placeholder for Knicks survive Spurs rush for 2-0 NBA Finals lead" [ref=e336]
+          - generic [ref=e337]:
+            - generic [ref=e338]:
+              - generic [ref=e339]: ESPN – Premier League
+              - generic [ref=e340]: ·
+              - generic [ref=e341]:
+                - img [ref=e342]
+                - text: just now
+            - heading "Knicks survive Spurs rush for 2-0 NBA Finals lead" [level=3] [ref=e345]
+            - paragraph [ref=e346]: Jalen Brunson hit a go-ahead free throw with 9.5 seconds left after a turnover by Victor Wembanyama moments earlier, then Wembanyama missed a jumper at the end of New York's 105-104 win over the Spurs on Friday night for a 2-0 lead in the N
+            - generic [ref=e347]:
+              - text: Read full story
+              - img [ref=e348]
+      - button "Load more stories" [ref=e353] [cursor=pointer]: Load more (12 of 312)
+      - paragraph [ref=e93]: News items link to original sources. We don't host the content.
+  - contentinfo [ref=e94]:
+    - generic [ref=e95]:
+      - generic [ref=e96]:
+        - generic [ref=e97]:
+          - img "Kopala Kits" [ref=e98]
+          - generic [ref=e99]: KOPALA KITS
+        - paragraph [ref=e100]: Premium soccer jerseys for every fan. Local, international, national & retro classics — all at the best prices in Kitwe.
+        - link "Chat with Us" [ref=e101] [cursor=pointer]:
+          - /url: https://wa.me/260770713619
+          - img [ref=e102]
+          - text: Chat with Us
+        - link "Admin panel →" [ref=e104] [cursor=pointer]:
+          - /url: /admin
+      - generic [ref=e105]:
+        - heading "Browse" [level=4] [ref=e106]
+        - list [ref=e107]:
+          - listitem [ref=e108]:
+            - link "Home" [ref=e109] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=e110]:
+            - link "Shop all kits" [ref=e111] [cursor=pointer]:
+              - /url: /shop
+          - listitem [ref=e112]:
+            - link "Local teams" [ref=e113] [cursor=pointer]:
+              - /url: /shop?category=Local
+          - listitem [ref=e114]:
+            - link "International" [ref=e115] [cursor=pointer]:
+              - /url: /shop?category=International
+          - listitem [ref=e116]:
+            - link "National teams" [ref=e117] [cursor=pointer]:
+              - /url: /shop?category=National
+          - listitem [ref=e118]:
+            - link "Retro classics" [ref=e119] [cursor=pointer]:
+              - /url: /shop?category=Retro
+          - listitem [ref=e120]:
+            - link "About us" [ref=e121] [cursor=pointer]:
+              - /url: /about
+          - listitem [ref=e122]:
+            - link "Contact" [ref=e123] [cursor=pointer]:
+              - /url: /contact
+      - generic [ref=e124]:
+        - heading "Find Us" [level=4] [ref=e125]
+        - generic [ref=e126]:
+          - paragraph [ref=e127]:
+            - img [ref=e128]
+            - generic [ref=e131]:
+              - text: K-Block, Copperbelt University
+              - text: Kitwe, Copperbelt Province, Zambia
+          - paragraph [ref=e132]:
+            - img [ref=e133]
+            - link "+260 770 713619" [ref=e135] [cursor=pointer]:
+              - /url: https://wa.me/260770713619
+          - paragraph [ref=e136]:
+            - img [ref=e137]
+            - link "hello@kopala.zingati.app" [ref=e140] [cursor=pointer]:
+              - /url: mailto:hello@kopala.zingati.app
+        - paragraph [ref=e141]: Mon–Fri 8am–6pm · Sat 9am–4pm
+    - generic [ref=e142]: 2026 Kopala Kits · Kitwe, Zambia · All prices in Zambian Kwacha (ZMW)
+  - button "Chat on WhatsApp" [ref=e143] [cursor=pointer]:
+    - img [ref=e144]

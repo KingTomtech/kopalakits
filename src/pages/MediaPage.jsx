@@ -4,12 +4,14 @@ import { useState } from 'react';
 
 const INSTAGRAM_HANDLE = 'kopala_kits';
 const INSTAGRAM_URL = `https://www.instagram.com/${INSTAGRAM_HANDLE}/`;
-const TIKTOK_HANDLE = 'kopala.kits'; // placeholder — verify before launch
-const TIKTOK_URL = `https://www.tiktok.com/@${TIKTOK_HANDLE}`;
+const TIKTOK_HANDLE = 'kopalakits';
+const TIKTOK_URL = 'https://www.tiktok.com/@kopalakits?_r=1&_t=ZS-972QN6cPSSu';
 
 // YouTube embeds use the privacy-enhanced youtube-nocookie.com domain which
 // doesn't set cookies until the user clicks Play.
-// TODO: add real video IDs before launch
+// Add { id: 'dQw4w9WgXcQ', title: 'Kopala Kits — Kit Reveal' } entries here
+// as the channel publishes new videos. Empty = the YouTube tab is hidden
+// from the tab bar so the user never lands on an empty grid.
 const YOUTUBE_VIDEOS = [];
 
 function YoutubeEmbed({ id, title }) {
@@ -94,7 +96,7 @@ function FacebookPage() {
       </div>
       <iframe
         title="Kopala Kits on Facebook"
-        src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fkopalakits&tabs=timeline&width=500&height=600&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true"
+        src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fshare%2F18mDdFGSiv%2F&tabs=timeline&width=500&height=600&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true"
         loading="lazy"
         className="w-full"
         style={{ border: 'none', overflow: 'hidden', height: 600 }}
@@ -149,7 +151,20 @@ function TikTokEmbed() {
 }
 
 export default function MediaPage() {
-  const [tab, setTab] = useState('youtube'); // 'youtube' | 'instagram' | 'tiktok' | 'facebook'
+  // Hide the YouTube tab entirely when there are no videos to embed.
+  const visibleTabs = YOUTUBE_VIDEOS.length > 0
+    ? [
+        { id: 'youtube',   label: 'YouTube',  icon: <YouTubeIcon size={14} />,   color: '#FF0000' },
+        { id: 'instagram', label: 'Instagram', icon: <InstagramIcon size={14} />, color: '#E1306C' },
+        { id: 'tiktok',    label: 'TikTok',   icon: <Music2 size={14} />,        color: '#000000' },
+        { id: 'facebook',  label: 'Facebook', icon: <FacebookIcon size={14} />,  color: '#1877F2' },
+      ]
+    : [
+        { id: 'instagram', label: 'Instagram', icon: <InstagramIcon size={14} />, color: '#E1306C' },
+        { id: 'tiktok',    label: 'TikTok',   icon: <Music2 size={14} />,        color: '#000000' },
+        { id: 'facebook',  label: 'Facebook', icon: <FacebookIcon size={14} />,  color: '#1877F2' },
+      ];
+  const [tab, setTab] = useState(visibleTabs[0]?.id || 'instagram');
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-8 kk-fade">
@@ -163,12 +178,7 @@ export default function MediaPage() {
           new content weekly — follow to never miss a drop.
         </p>
         <div className="flex flex-wrap gap-2 mt-4">
-          {[
-            { id: 'youtube',   label: 'YouTube',  icon: <YouTubeIcon size={14} />,   color: '#FF0000' },
-            { id: 'instagram', label: 'Instagram', icon: <InstagramIcon size={14} />, color: '#E1306C' },
-            { id: 'tiktok',    label: 'TikTok',   icon: <Music2 size={14} />,    color: '#000000' },
-            { id: 'facebook',  label: 'Facebook', icon: <FacebookIcon size={14} />,  color: '#1877F2' },
-          ].map((t) => (
+          {visibleTabs.map((t) => (
             <button
               key={t.id}
               onClick={() => setTab(t.id)}
@@ -176,7 +186,7 @@ export default function MediaPage() {
               style={{
                 backgroundColor: tab === t.id ? t.color : 'transparent',
                 borderColor: tab === t.id ? t.color : 'rgba(255,255,255,0.4)',
-                color: tab === t.id ? '#FFFFFF' : '#FFFFFF',
+                color: '#FFFFFF',
               }}
             >
               {t.icon} {t.label}

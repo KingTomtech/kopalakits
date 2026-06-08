@@ -1,0 +1,298 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - link "Kopala Kits home" [ref=e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e7]:
+          - img "Kopala Kits" [ref=e8]
+          - generic [ref=e9]: KOPALA KITS
+      - navigation [ref=e10]:
+        - link "Home" [ref=e11] [cursor=pointer]:
+          - /url: /
+        - link "Shop" [ref=e12] [cursor=pointer]:
+          - /url: /shop
+        - link "Predictions" [ref=e13] [cursor=pointer]:
+          - /url: /predictions
+          - text: Predictions
+        - link "Tournaments" [ref=e15] [cursor=pointer]:
+          - /url: /tournaments
+        - link "News" [ref=e16] [cursor=pointer]:
+          - /url: /news
+        - link "Media" [ref=e17] [cursor=pointer]:
+          - /url: /media
+        - link "About" [ref=e18] [cursor=pointer]:
+          - /url: /about
+        - link "Contact" [ref=e19] [cursor=pointer]:
+          - /url: /contact
+      - generic [ref=e20]:
+        - button "Open cart, 0 items" [ref=e21] [cursor=pointer]:
+          - img [ref=e22]
+        - button "Switch to dark mode" [ref=e26] [cursor=pointer]:
+          - img [ref=e27]
+  - main [ref=e29]:
+    - generic [ref=e30]:
+      - generic [ref=e31]:
+        - generic [ref=e32]:
+          - img [ref=e33]
+          - heading "All sports news" [level=1] [ref=e366]
+        - paragraph [ref=e37]: Cricket, NBA, NFL, tennis, F1 and more from global sport outlets. Cached for 30 minutes.
+        - tablist "News filters" [ref=e38]:
+          - tab "All News" [ref=e39] [cursor=pointer]
+          - tab "Zambia" [ref=e40] [cursor=pointer]
+          - tab "Africa" [ref=e41] [cursor=pointer]
+          - tab "Rest of World" [ref=e42] [cursor=pointer]
+          - tab "All Sports" [selected] [ref=e43] [cursor=pointer]
+          - tab "Kit Launches" [ref=e44] [cursor=pointer]
+          - button "Refresh news" [ref=e45] [cursor=pointer]:
+            - img [ref=e46]
+            - text: Refresh
+      - tabpanel "All Sports" [ref=e367]:
+        - link "Image for Sooryavanshi, 15, get first India call-up BBC Sport – All · 7 minutes ago Sooryavanshi, 15, get first India call-up Fifteen-year-old batting sensation Vaibhav Sooryavanshi receives his first international call-up by making the India T20 squad to tour England and Ireland. Read full story" [ref=e368] [cursor=pointer]:
+          - /url: https://www.bbc.com/sport/cricket/articles/c0ky4jnkyrdo?at_medium=RSS&amp;at_campaign=rss
+          - img "Image for Sooryavanshi, 15, get first India call-up" [ref=e370]
+          - generic [ref=e371]:
+            - generic [ref=e372]:
+              - generic [ref=e373]: BBC Sport – All
+              - generic [ref=e374]: ·
+              - generic [ref=e375]:
+                - img [ref=e376]
+                - text: 7 minutes ago
+            - heading "Sooryavanshi, 15, get first India call-up" [level=3] [ref=e379]
+            - paragraph [ref=e380]: Fifteen-year-old batting sensation Vaibhav Sooryavanshi receives his first international call-up by making the India T20 squad to tour England and Ireland.
+            - generic [ref=e381]:
+              - text: Read full story
+              - img [ref=e382]
+        - link "Image for Scheffler and McIlroy struggle at Memorial Tournament BBC Sport – All · 26 minutes ago Scheffler and McIlroy struggle at Memorial Tournament The world's top two players Scottie Scheffler and Rory McIlroy struggle in their second round at the Memorial Tournament and sit eight shots behind leader JT Poston. Read full story" [ref=e386] [cursor=pointer]:
+          - /url: https://www.bbc.com/sport/golf/articles/ce8j0dxjmjmo?at_medium=RSS&amp;at_campaign=rss
+          - img "Image for Scheffler and McIlroy struggle at Memorial Tournament" [ref=e388]
+          - generic [ref=e389]:
+            - generic [ref=e390]:
+              - generic [ref=e391]: BBC Sport – All
+              - generic [ref=e392]: ·
+              - generic [ref=e393]:
+                - img [ref=e394]
+                - text: 26 minutes ago
+            - heading "Scheffler and McIlroy struggle at Memorial Tournament" [level=3] [ref=e397]
+            - paragraph [ref=e398]: The world's top two players Scottie Scheffler and Rory McIlroy struggle in their second round at the Memorial Tournament and sit eight shots behind leader JT Poston.
+            - generic [ref=e399]:
+              - text: Read full story
+              - img [ref=e400]
+        - 'link "Image for England v New Zealand: first men’s cricket Test, day three – live The Guardian – Sport · 31 minutes ago England v New Zealand: first men’s cricket Test, day three – live <ul><li><p>Over-by-over updates from 11am UK time</p></li><li><p><a href=\"https://www.theguardian.com/sport/2026/jun/06/india-ipl-sensation-vaibhav-sooryavanshi-called-up-to-face-england-cricket\">Sooryavanshi to face England</a> | <a href=\" Read full story" [ref=e404] [cursor=pointer]':
+          - /url: https://www.theguardian.com/sport/live/2026/jun/06/england-v-new-zealand-first-mens-cricket-test-day-three-live
+          - 'img "Image for England v New Zealand: first men’s cricket Test, day three – live" [ref=e406]'
+          - generic [ref=e407]:
+            - generic [ref=e408]:
+              - generic [ref=e409]: The Guardian – Sport
+              - generic [ref=e410]: ·
+              - generic [ref=e411]:
+                - img [ref=e412]
+                - text: 31 minutes ago
+            - 'heading "England v New Zealand: first men’s cricket Test, day three – live" [level=3] [ref=e415]'
+            - paragraph [ref=e416]: <ul><li><p>Over-by-over updates from 11am UK time</p></li><li><p><a href="https://www.theguardian.com/sport/2026/jun/06/india-ipl-sensation-vaibhav-sooryavanshi-called-up-to-face-england-cricket">Sooryavanshi to face England</a> | <a href="
+            - generic [ref=e417]:
+              - text: Read full story
+              - img [ref=e418]
+        - link "Image for India’s 15-year-old IPL sensation Vaibhav Sooryavanshi called up to face England The Guardian – Sport · 55 minutes ago India’s 15-year-old IPL sensation Vaibhav Sooryavanshi called up to face England <ul><li><p>Teenager in squad for T20s against Ireland and England</p></li><li><p>Set to be youngest India debutant since Tendulkar</p></li></ul><p>Teenage phenomenon Vaibhav Sooryavanshi has been handed his maiden India call-up for their up Read full story" [ref=e422] [cursor=pointer]:
+          - /url: https://www.theguardian.com/sport/2026/jun/06/india-ipl-sensation-vaibhav-sooryavanshi-called-up-to-face-england-cricket
+          - img "Image for India’s 15-year-old IPL sensation Vaibhav Sooryavanshi called up to face England" [ref=e424]
+          - generic [ref=e425]:
+            - generic [ref=e426]:
+              - generic [ref=e427]: The Guardian – Sport
+              - generic [ref=e428]: ·
+              - generic [ref=e429]:
+                - img [ref=e430]
+                - text: 55 minutes ago
+            - heading "India’s 15-year-old IPL sensation Vaibhav Sooryavanshi called up to face England" [level=3] [ref=e433]
+            - paragraph [ref=e434]: <ul><li><p>Teenager in squad for T20s against Ireland and England</p></li><li><p>Set to be youngest India debutant since Tendulkar</p></li></ul><p>Teenage phenomenon Vaibhav Sooryavanshi has been handed his maiden India call-up for their up
+            - generic [ref=e435]:
+              - text: Read full story
+              - img [ref=e436]
+        - 'link "Image for Relentless rise of VAR, new red card offences and more: those new World Cup rules in full The Guardian – Sport · 1 hour ago Relentless rise of VAR, new red card offences and more: those new World Cup rules in full <p>2026 tournament will be the biggest, longest and most expensive – and the most intricately refereed – ever seen</p><p>The 2026 World Cup will be the biggest, longest and most expensive. It will also feature a hefty number of rule changes Read full story" [ref=e440] [cursor=pointer]':
+          - /url: https://www.theguardian.com/football/2026/jun/06/relentless-rise-of-var-new-red-card-offences-and-more-those-new-world-cup-rules-in-full
+          - 'img "Image for Relentless rise of VAR, new red card offences and more: those new World Cup rules in full" [ref=e442]'
+          - generic [ref=e443]:
+            - generic [ref=e444]:
+              - generic [ref=e445]: The Guardian – Sport
+              - generic [ref=e446]: ·
+              - generic [ref=e447]:
+                - img [ref=e448]
+                - text: 1 hour ago
+            - 'heading "Relentless rise of VAR, new red card offences and more: those new World Cup rules in full" [level=3] [ref=e451]'
+            - paragraph [ref=e452]: <p>2026 tournament will be the biggest, longest and most expensive – and the most intricately refereed – ever seen</p><p>The 2026 World Cup will be the biggest, longest and most expensive. It will also feature a hefty number of rule changes
+            - generic [ref=e453]:
+              - text: Read full story
+              - img [ref=e454]
+        - 'link "Placeholder for Wemby rues costly turnover: ''This game was ours'' ESPN – All Sports · 1 hour ago Wemby rues costly turnover: ''This game was ours'' Spurs star Victor Wembanyama admitted urgency got the better of him when he committed a late turnover in Friday''s Game 2 loss, but he said he would use the frustration as fuel for the next game. Read full story" [ref=e458] [cursor=pointer]':
+          - /url: https://www.espn.com/nba/story/_/id/48981597/wemby-rues-costly-turnover-spurs-fall-game-2-nba-finals
+          - 'img "Placeholder for Wemby rues costly turnover: ''This game was ours''" [ref=e459]':
+            - generic [ref=e460]: ESPN
+          - generic [ref=e461]:
+            - generic [ref=e462]:
+              - generic [ref=e463]: ESPN – All Sports
+              - generic [ref=e464]: ·
+              - generic [ref=e465]:
+                - img [ref=e466]
+                - text: 1 hour ago
+            - 'heading "Wemby rues costly turnover: ''This game was ours''" [level=3] [ref=e469]'
+            - paragraph [ref=e470]: Spurs star Victor Wembanyama admitted urgency got the better of him when he committed a late turnover in Friday's Game 2 loss, but he said he would use the frustration as fuel for the next game.
+            - generic [ref=e471]:
+              - text: Read full story
+              - img [ref=e472]
+        - link "Placeholder for Knicks survive Spurs rush for 2-0 NBA Finals lead ESPN – All Sports · 1 hour ago Knicks survive Spurs rush for 2-0 NBA Finals lead Karl-Anthony Towns carried the Knicks on both ends of the floor Friday night, when New York held off the Spurs in Game 2 and became just the third team to win the first two games of the NBA Finals on the road. Read full story" [ref=e476] [cursor=pointer]:
+          - /url: https://www.espn.com/nba/story/_/id/48980267/knicks-hold-spurs-comeback-game-2-seize-2-0-lead-nba-finals
+          - img "Placeholder for Knicks survive Spurs rush for 2-0 NBA Finals lead" [ref=e477]:
+            - generic [ref=e478]: ESPN
+          - generic [ref=e479]:
+            - generic [ref=e480]:
+              - generic [ref=e481]: ESPN – All Sports
+              - generic [ref=e482]: ·
+              - generic [ref=e483]:
+                - img [ref=e484]
+                - text: 1 hour ago
+            - heading "Knicks survive Spurs rush for 2-0 NBA Finals lead" [level=3] [ref=e487]
+            - paragraph [ref=e488]: Karl-Anthony Towns carried the Knicks on both ends of the floor Friday night, when New York held off the Spurs in Game 2 and became just the third team to win the first two games of the NBA Finals on the road.
+            - generic [ref=e489]:
+              - text: Read full story
+              - img [ref=e490]
+        - 'link "Placeholder for Reports: NCAA rejects TTU''s appeal for QB Sorsby ESPN – All Sports · 1 hour ago Reports: NCAA rejects TTU''s appeal for QB Sorsby The NCAA has denied Texas Tech''s appeal to reinstate quarterback Brendan Sorsby''s eligibility, according to multiple reports. Read full story" [ref=e494] [cursor=pointer]':
+          - /url: https://www.espn.com/college-football/story/_/id/48980735/reports-ncaa-rejects-texas-tech-appeal-reinstate-sorsby
+          - 'img "Placeholder for Reports: NCAA rejects TTU''s appeal for QB Sorsby" [ref=e495]':
+            - generic [ref=e496]: ESPN
+          - generic [ref=e497]:
+            - generic [ref=e498]:
+              - generic [ref=e499]: ESPN – All Sports
+              - generic [ref=e500]: ·
+              - generic [ref=e501]:
+                - img [ref=e502]
+                - text: 1 hour ago
+            - 'heading "Reports: NCAA rejects TTU''s appeal for QB Sorsby" [level=3] [ref=e505]'
+            - paragraph [ref=e506]: The NCAA has denied Texas Tech's appeal to reinstate quarterback Brendan Sorsby's eligibility, according to multiple reports.
+            - generic [ref=e507]:
+              - text: Read full story
+              - img [ref=e508]
+        - 'link "Placeholder for Sources: NBA interviews Kawhi in Aspiration case ESPN – All Sports · 1 hour ago Sources: NBA interviews Kawhi in Aspiration case LA Clippers star Kawhi Leonard and his business adviser have been interviewed by NBA investigators amid the league''s probe into allegations the team circumvented the salary cap to compensate Leonard, sources said. Read full story" [ref=e512] [cursor=pointer]':
+          - /url: https://www.espn.com/nba/story/_/id/48977481/sources-nba-interviews-leonard-adviser-aspiration-case
+          - 'img "Placeholder for Sources: NBA interviews Kawhi in Aspiration case" [ref=e513]':
+            - generic [ref=e514]: ESPN
+          - generic [ref=e515]:
+            - generic [ref=e516]:
+              - generic [ref=e517]: ESPN – All Sports
+              - generic [ref=e518]: ·
+              - generic [ref=e519]:
+                - img [ref=e520]
+                - text: 1 hour ago
+            - 'heading "Sources: NBA interviews Kawhi in Aspiration case" [level=3] [ref=e523]'
+            - paragraph [ref=e524]: LA Clippers star Kawhi Leonard and his business adviser have been interviewed by NBA investigators amid the league's probe into allegations the team circumvented the salary cap to compensate Leonard, sources said.
+            - generic [ref=e525]:
+              - text: Read full story
+              - img [ref=e526]
+        - link "Placeholder for Sankey scoffs at notion of SEC-B1G super league ESPN – All Sports · 1 hour ago Sankey scoffs at notion of SEC-B1G super league SEC commissioner Greg Sankey called the notion that the conference wants to form a super league with the Big Ten \"not consistent with the truth.\" Read full story" [ref=e530] [cursor=pointer]:
+          - /url: https://www.espn.com/college-sports/story/_/id/48978492/sec-sankey-idea-super-league-not-consistent-truth
+          - img "Placeholder for Sankey scoffs at notion of SEC-B1G super league" [ref=e531]:
+            - generic [ref=e532]: ESPN
+          - generic [ref=e533]:
+            - generic [ref=e534]:
+              - generic [ref=e535]: ESPN – All Sports
+              - generic [ref=e536]: ·
+              - generic [ref=e537]:
+                - img [ref=e538]
+                - text: 1 hour ago
+            - heading "Sankey scoffs at notion of SEC-B1G super league" [level=3] [ref=e541]
+            - paragraph [ref=e542]: SEC commissioner Greg Sankey called the notion that the conference wants to form a super league with the Big Ten "not consistent with the truth."
+            - generic [ref=e543]:
+              - text: Read full story
+              - img [ref=e544]
+        - link "Placeholder for Judge says rib originally fractured on dive in Apr... ESPN – All Sports · 1 hour ago Judge says rib originally fractured on dive in Apr... Yankees outfielder Aaron Judge said the stress fracture in his right rib stems from him diving for a ball in late April. Read full story" [ref=e548] [cursor=pointer]:
+          - /url: https://www.espn.com/mlb/story/_/id/48977766/aaron-judge-says-right-rib-initially-fractured-dive-late-april
+          - img "Placeholder for Judge says rib originally fractured on dive in Apr..." [ref=e549]:
+            - generic [ref=e550]: ESPN
+          - generic [ref=e551]:
+            - generic [ref=e552]:
+              - generic [ref=e553]: ESPN – All Sports
+              - generic [ref=e554]: ·
+              - generic [ref=e555]:
+                - img [ref=e556]
+                - text: 1 hour ago
+            - heading "Judge says rib originally fractured on dive in Apr..." [level=3] [ref=e559]
+            - paragraph [ref=e560]: Yankees outfielder Aaron Judge said the stress fracture in his right rib stems from him diving for a ball in late April.
+            - generic [ref=e561]:
+              - text: Read full story
+              - img [ref=e562]
+        - 'link "Placeholder for UFC''s White: Pereira the GOAT if he beats Gane ESPN – All Sports · 1 hour ago UFC''s White: Pereira the GOAT if he beats Gane UFC president Dana White believes two-weight UFC champion Alex Pereira will surpass Jon Jones as the greatest MMA fighter of all time if he beats Ciryl Gane on June 14 at the White House. Read full story" [ref=e566] [cursor=pointer]':
+          - /url: https://www.espn.com/mma/story/_/id/48978261/ufc-white-pereira-surpasses-jones-goat-win-vs-gane
+          - 'img "Placeholder for UFC''s White: Pereira the GOAT if he beats Gane" [ref=e567]':
+            - generic [ref=e568]: ESPN
+          - generic [ref=e569]:
+            - generic [ref=e570]:
+              - generic [ref=e571]: ESPN – All Sports
+              - generic [ref=e572]: ·
+              - generic [ref=e573]:
+                - img [ref=e574]
+                - text: 1 hour ago
+            - 'heading "UFC''s White: Pereira the GOAT if he beats Gane" [level=3] [ref=e577]'
+            - paragraph [ref=e578]: UFC president Dana White believes two-weight UFC champion Alex Pereira will surpass Jon Jones as the greatest MMA fighter of all time if he beats Ciryl Gane on June 14 at the White House.
+            - generic [ref=e579]:
+              - text: Read full story
+              - img [ref=e580]
+      - button "Load more stories" [ref=e365] [cursor=pointer]: Load more (12 of 75)
+      - paragraph [ref=e94]: News items link to original sources. We don't host the content.
+  - contentinfo [ref=e95]:
+    - generic [ref=e96]:
+      - generic [ref=e97]:
+        - generic [ref=e98]:
+          - img "Kopala Kits" [ref=e99]
+          - generic [ref=e100]: KOPALA KITS
+        - paragraph [ref=e101]: Premium soccer jerseys for every fan. Local, international, national & retro classics — all at the best prices in Kitwe.
+        - link "Chat with Us" [ref=e102] [cursor=pointer]:
+          - /url: https://wa.me/260770713619
+          - img [ref=e103]
+          - text: Chat with Us
+        - link "Admin panel →" [ref=e105] [cursor=pointer]:
+          - /url: /admin
+      - generic [ref=e106]:
+        - heading "Browse" [level=4] [ref=e107]
+        - list [ref=e108]:
+          - listitem [ref=e109]:
+            - link "Home" [ref=e110] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=e111]:
+            - link "Shop all kits" [ref=e112] [cursor=pointer]:
+              - /url: /shop
+          - listitem [ref=e113]:
+            - link "Local teams" [ref=e114] [cursor=pointer]:
+              - /url: /shop?category=Local
+          - listitem [ref=e115]:
+            - link "International" [ref=e116] [cursor=pointer]:
+              - /url: /shop?category=International
+          - listitem [ref=e117]:
+            - link "National teams" [ref=e118] [cursor=pointer]:
+              - /url: /shop?category=National
+          - listitem [ref=e119]:
+            - link "Retro classics" [ref=e120] [cursor=pointer]:
+              - /url: /shop?category=Retro
+          - listitem [ref=e121]:
+            - link "About us" [ref=e122] [cursor=pointer]:
+              - /url: /about
+          - listitem [ref=e123]:
+            - link "Contact" [ref=e124] [cursor=pointer]:
+              - /url: /contact
+      - generic [ref=e125]:
+        - heading "Find Us" [level=4] [ref=e126]
+        - generic [ref=e127]:
+          - paragraph [ref=e128]:
+            - img [ref=e129]
+            - generic [ref=e132]:
+              - text: K-Block, Copperbelt University
+              - text: Kitwe, Copperbelt Province, Zambia
+          - paragraph [ref=e133]:
+            - img [ref=e134]
+            - link "+260 770 713619" [ref=e136] [cursor=pointer]:
+              - /url: https://wa.me/260770713619
+          - paragraph [ref=e137]:
+            - img [ref=e138]
+            - link "hello@kopala.zingati.app" [ref=e141] [cursor=pointer]:
+              - /url: mailto:hello@kopala.zingati.app
+        - paragraph [ref=e142]: Mon–Fri 8am–6pm · Sat 9am–4pm
+    - generic [ref=e143]: 2026 Kopala Kits · Kitwe, Zambia · All prices in Zambian Kwacha (ZMW)
+  - button "Chat on WhatsApp" [ref=e144] [cursor=pointer]:
+    - img [ref=e145]

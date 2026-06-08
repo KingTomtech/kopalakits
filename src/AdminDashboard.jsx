@@ -14,7 +14,24 @@ function useKeydown(key, handler) {
 }
 
 
-async function compressImage(file, maxWidth = 800, maxHeight = 800, quality = 0.8) {
+// Cap the compressed output to stay under the worker's per-image limit.
+// Worker rejects data URLs > 500 KB (see MAX_DATAURL_BYTES in worker.js).
+// We aim for ~450 KB to leave headroom for base64 inflation vs byte length.
+const TARGET_MAX_BYTES = 450_000;
+const ABSOLUTE_MAX_BYTES = 500_000;
+
+async function compressImage(file, maxWidth = 1400, maxHeight = 1400, quality = 0.92) {
+  // Try the requested quality first, then step down if output exceeds target.
+  let q = quality;
+  let attempt = await encodeAt(file, maxWidth, maxHeight, q);
+  while (attempt.length > TARGET_MAX_BYTES && q > 0.4) {
+    q -= 0.1;
+    attempt = await encodeAt(file, maxWidth, maxHeight, q);
+  }
+  return attempt;
+}
+
+function encodeAt(file, maxWidth, maxHeight, quality) {
   return new Promise((resolve, reject) => {
     const img = new Image();
     img.onload = () => {
@@ -198,26 +215,49 @@ export default function AdminDashboard({ onExit }) {
   };
 
   const handleImageUpload = async (e, target) => {
-    const file = e.target.files[0]; if (!file) return;
+    const file = e.target.files?.[0];
+    if (!file) return;
+
     if (!file.type.startsWith('image/')) {
       showToast('Please upload an image file');
       return;
     }
-    if (file.size > 5 * 1024 * 1024) {
-      showToast('Image too large — max 5 MB');
+
+    if (file.size > 20 * 1024 * 1024) {
+      showToast('Image too large — max 20 MB');
       return;
     }
+
     try {
-      const compressed = await compressImage(file, 800, 800, 0.8);
-      if (target === 'edit') setEditForm(f => ({ ...f, image: compressed }));
-      else setAddForm(f => ({ ...f, image: compressed }));
-      showToast('Image compressed');
-    } catch {
+      // Increased compression settings for better quality
+      const compressed = await compressImage(file, 1400, 1400, 0.92);
+
+      if (compressed.length > ABSOLUTE_MAX_BYTES) {
+        showToast('Image is too detailed — even at lower quality it exceeds 500 KB. Try cropping or simplifying.');
+        return;
+      }
+
+      if (target === 'edit') {
+        setEditForm(f => ({ ...f, image: compressed }));
+      } else {
+        setAddForm(f => ({ ...f, image: compressed }));
+      }
+
+      showToast('Image compressed successfully');
+    } catch (error) {
+      console.warn('Compression failed, falling back to original:', error);
+
       const reader = new FileReader();
       reader.onload = (ev) => {
-        if (target === 'edit') setEditForm(f => ({ ...f, image: ev.target.result }));
-        else setAddForm(f => ({ ...f, image: ev.target.result }));
+        if (target === 'edit') {
+          setEditForm(f => ({ ...f, image: ev.target.result }));
+        } else {
+          setAddForm(f => ({ ...f, image: ev.target.result }));
+        }
+        showToast('Image loaded (original size)');
       };
+
+      reader.onerror = () => showToast('Failed to read image');
       reader.readAsDataURL(file);
     }
   };

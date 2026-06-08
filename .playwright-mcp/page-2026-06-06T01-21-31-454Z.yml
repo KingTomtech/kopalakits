@@ -1,0 +1,97 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - link "Kopala Kits home" [ref=e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e7]:
+          - img "Kopala Kits" [ref=e8]
+          - generic [ref=e9]: KOPALA KITS
+      - navigation [ref=e10]:
+        - link "Home" [ref=e11] [cursor=pointer]:
+          - /url: /
+        - link "Shop" [ref=e12] [cursor=pointer]:
+          - /url: /shop
+        - link "Predictions" [ref=e13] [cursor=pointer]:
+          - /url: /predictions
+          - text: Predictions
+        - link "Tournaments" [ref=e15] [cursor=pointer]:
+          - /url: /tournaments
+        - link "News" [ref=e16] [cursor=pointer]:
+          - /url: /news
+        - link "Media" [ref=e17] [cursor=pointer]:
+          - /url: /media
+        - link "About" [ref=e18] [cursor=pointer]:
+          - /url: /about
+        - link "Contact" [ref=e19] [cursor=pointer]:
+          - /url: /contact
+      - generic [ref=e20]:
+        - button "Open cart, 0 items" [ref=e21] [cursor=pointer]:
+          - img [ref=e22]
+        - button "Switch to dark mode" [ref=e26] [cursor=pointer]:
+          - img [ref=e27]
+  - main [ref=e29]:
+    - generic [ref=e31]:
+      - generic [ref=e32]:
+        - img [ref=e33]
+        - heading "Tournaments" [level=1] [ref=e39]
+      - paragraph [ref=e40]: Predict the outcomes of full tournament brackets. Pick the World Cup, the Kopala Cup, the Champions League — every match, every round. Highest accuracy wins bragging rights (and maybe a discount code).
+  - contentinfo [ref=e66]:
+    - generic [ref=e67]:
+      - generic [ref=e68]:
+        - generic [ref=e69]:
+          - img "Kopala Kits" [ref=e70]
+          - generic [ref=e71]: KOPALA KITS
+        - paragraph [ref=e72]: Premium soccer jerseys for every fan. Local, international, national & retro classics — all at the best prices in Kitwe.
+        - link "Chat with Us" [ref=e73] [cursor=pointer]:
+          - /url: https://wa.me/260770713619
+          - img [ref=e74]
+          - text: Chat with Us
+        - link "Admin panel →" [ref=e76] [cursor=pointer]:
+          - /url: /admin
+      - generic [ref=e77]:
+        - heading "Browse" [level=4] [ref=e78]
+        - list [ref=e79]:
+          - listitem [ref=e80]:
+            - link "Home" [ref=e81] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=e82]:
+            - link "Shop all kits" [ref=e83] [cursor=pointer]:
+              - /url: /shop
+          - listitem [ref=e84]:
+            - link "Local teams" [ref=e85] [cursor=pointer]:
+              - /url: /shop?category=Local
+          - listitem [ref=e86]:
+            - link "International" [ref=e87] [cursor=pointer]:
+              - /url: /shop?category=International
+          - listitem [ref=e88]:
+            - link "National teams" [ref=e89] [cursor=pointer]:
+              - /url: /shop?category=National
+          - listitem [ref=e90]:
+            - link "Retro classics" [ref=e91] [cursor=pointer]:
+              - /url: /shop?category=Retro
+          - listitem [ref=e92]:
+            - link "About us" [ref=e93] [cursor=pointer]:
+              - /url: /about
+          - listitem [ref=e94]:
+            - link "Contact" [ref=e95] [cursor=pointer]:
+              - /url: /contact
+      - generic [ref=e96]:
+        - heading "Find Us" [level=4] [ref=e97]
+        - generic [ref=e98]:
+          - paragraph [ref=e99]:
+            - img [ref=e100]
+            - generic [ref=e103]:
+              - text: K-Block, Copperbelt University
+              - text: Kitwe, Copperbelt Province, Zambia
+          - paragraph [ref=e104]:
+            - img [ref=e105]
+            - link "+260 770 713619" [ref=e107] [cursor=pointer]:
+              - /url: https://wa.me/260770713619
+          - paragraph [ref=e108]:
+            - img [ref=e109]
+            - link "hello@kopala.zingati.app" [ref=e112] [cursor=pointer]:
+              - /url: mailto:hello@kopala.zingati.app
+        - paragraph [ref=e113]: Mon–Fri 8am–6pm · Sat 9am–4pm
+    - generic [ref=e114]: 2026 Kopala Kits · Kitwe, Zambia · All prices in Zambian Kwacha (ZMW)
+  - button "Chat on WhatsApp" [ref=e115] [cursor=pointer]:
+    - img [ref=e116]

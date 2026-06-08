@@ -1,0 +1,123 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - link "Kopala Kits home" [ref=e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e7]:
+          - img "Kopala Kits" [ref=e8]
+          - generic [ref=e9]: KOPALA KITS
+      - generic [ref=e10]:
+        - button "Open cart, 0 items" [ref=e11] [cursor=pointer]:
+          - img [ref=e12]
+        - button "Open menu" [ref=e16] [cursor=pointer]:
+          - img [ref=e17]
+  - main [ref=e18]:
+    - generic [ref=e19]:
+      - generic [ref=e20]:
+        - generic [ref=e21]:
+          - img [ref=e22]
+          - heading "Soccer news" [level=1] [ref=e25]
+        - paragraph [ref=e26]: Live football news from local and global feeds. Cached for 30 minutes. Filter by region, league, or kit launches.
+        - tablist "News filters" [ref=e27]:
+          - tab "All News" [selected] [ref=e28] [cursor=pointer]
+          - tab "Zambia" [ref=e29] [cursor=pointer]
+          - tab "Africa" [ref=e30] [cursor=pointer]
+          - tab "Rest of World" [ref=e31] [cursor=pointer]
+          - tab "Kit Launches" [ref=e32] [cursor=pointer]
+          - button "Refresh news" [disabled] [ref=e33]:
+            - img [ref=e34]
+            - text: Refresh
+      - status "Loading news stories…" [ref=e39]
+      - paragraph [ref=e82]: News items link to original sources. We don't host the content.
+  - contentinfo [ref=e83]:
+    - generic [ref=e84]:
+      - generic [ref=e85]:
+        - generic [ref=e86]:
+          - img "Kopala Kits" [ref=e87]
+          - generic [ref=e88]: KOPALA KITS
+        - paragraph [ref=e89]: Premium soccer jerseys for every fan. Local, international, national & retro classics — all at the best prices in Kitwe.
+        - link "Chat with Us" [ref=e90] [cursor=pointer]:
+          - /url: https://wa.me/260770713619
+          - img [ref=e91]
+          - text: Chat with Us
+        - link "Admin panel →" [ref=e93] [cursor=pointer]:
+          - /url: /admin
+      - generic [ref=e94]:
+        - heading "Browse" [level=4] [ref=e95]
+        - list [ref=e96]:
+          - listitem [ref=e97]:
+            - link "Home" [ref=e98] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=e99]:
+            - link "Shop all kits" [ref=e100] [cursor=pointer]:
+              - /url: /shop
+          - listitem [ref=e101]:
+            - link "Local teams" [ref=e102] [cursor=pointer]:
+              - /url: /shop?category=Local
+          - listitem [ref=e103]:
+            - link "International" [ref=e104] [cursor=pointer]:
+              - /url: /shop?category=International
+          - listitem [ref=e105]:
+            - link "National teams" [ref=e106] [cursor=pointer]:
+              - /url: /shop?category=National
+          - listitem [ref=e107]:
+            - link "Retro classics" [ref=e108] [cursor=pointer]:
+              - /url: /shop?category=Retro
+          - listitem [ref=e109]:
+            - link "About us" [ref=e110] [cursor=pointer]:
+              - /url: /about
+          - listitem [ref=e111]:
+            - link "Contact" [ref=e112] [cursor=pointer]:
+              - /url: /contact
+      - generic [ref=e113]:
+        - heading "Find Us" [level=4] [ref=e114]
+        - generic [ref=e115]:
+          - paragraph [ref=e116]:
+            - img [ref=e117]
+            - generic [ref=e120]:
+              - text: K-Block, Copperbelt University
+              - text: Kitwe, Copperbelt Province, Zambia
+          - paragraph [ref=e121]:
+            - img [ref=e122]
+            - link "+260 770 713619" [ref=e124] [cursor=pointer]:
+              - /url: https://wa.me/260770713619
+          - paragraph [ref=e125]:
+            - img [ref=e126]
+            - link "hello@kopala.zingati.app" [ref=e129] [cursor=pointer]:
+              - /url: mailto:hello@kopala.zingati.app
+        - paragraph [ref=e130]: Mon–Fri 8am–6pm · Sat 9am–4pm
+    - generic [ref=e131]: 2026 Kopala Kits · Kitwe, Zambia · All prices in Zambian Kwacha (ZMW)
+  - navigation "Primary" [ref=e132]:
+    - list [ref=e133]:
+      - listitem [ref=e134]:
+        - link "Home" [ref=e135] [cursor=pointer]:
+          - /url: /
+          - img [ref=e136]
+          - text: Home
+      - listitem [ref=e139]:
+        - link "Shop" [ref=e140] [cursor=pointer]:
+          - /url: /shop
+          - img [ref=e141]
+          - text: Shop
+      - listitem [ref=e144]:
+        - link "Predict" [ref=e145] [cursor=pointer]:
+          - /url: /predictions
+          - img [ref=e146]
+          - text: Predict
+      - listitem [ref=e149]:
+        - link "Tournaments" [ref=e150] [cursor=pointer]:
+          - /url: /tournaments
+          - img [ref=e151]
+          - text: Tournaments
+      - listitem [ref=e157]:
+        - link "News" [ref=e158] [cursor=pointer]:
+          - /url: /news
+          - img [ref=e159]
+          - text: News
+      - listitem [ref=e162]:
+        - link "Media" [ref=e163] [cursor=pointer]:
+          - /url: /media
+          - img [ref=e164]
+          - text: Media
+  - button "Chat on WhatsApp" [ref=e167] [cursor=pointer]:
+    - img [ref=e168]

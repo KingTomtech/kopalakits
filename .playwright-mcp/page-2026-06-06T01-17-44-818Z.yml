@@ -1,0 +1,290 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - link "Kopala Kits home" [ref=e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e7]:
+          - img "Kopala Kits" [ref=e8]
+          - generic [ref=e9]: KOPALA KITS
+      - navigation [ref=e10]:
+        - link "Home" [ref=e11] [cursor=pointer]:
+          - /url: /
+        - link "Shop" [ref=e12] [cursor=pointer]:
+          - /url: /shop
+        - link "Predictions" [ref=e13] [cursor=pointer]:
+          - /url: /predictions
+          - text: Predictions
+        - link "Tournaments" [ref=e15] [cursor=pointer]:
+          - /url: /tournaments
+        - link "News" [ref=e16] [cursor=pointer]:
+          - /url: /news
+        - link "Media" [ref=e17] [cursor=pointer]:
+          - /url: /media
+        - link "About" [ref=e18] [cursor=pointer]:
+          - /url: /about
+        - link "Contact" [ref=e19] [cursor=pointer]:
+          - /url: /contact
+      - generic [ref=e20]:
+        - button "Open cart, 0 items" [ref=e21] [cursor=pointer]:
+          - img [ref=e22]
+        - button "Switch to dark mode" [ref=e26] [cursor=pointer]:
+          - img [ref=e27]
+  - main [ref=e29]:
+    - generic [ref=e30]:
+      - generic [ref=e31]:
+        - generic [ref=e32]:
+          - img [ref=e33]
+          - heading "Soccer news" [level=1] [ref=e36]
+        - paragraph [ref=e37]: Live football news from local and global feeds. Cached for 30 minutes. Filter by region, league, or kit launches.
+        - tablist "News filters" [ref=e38]:
+          - tab "All News" [ref=e39] [cursor=pointer]
+          - tab "Zambia" [ref=e40] [cursor=pointer]
+          - tab "Africa" [ref=e41] [cursor=pointer]
+          - tab "Rest of World" [selected] [ref=e42] [cursor=pointer]
+          - tab "Kit Launches" [ref=e43] [cursor=pointer]
+          - button "Refresh news" [ref=e44] [cursor=pointer]:
+            - img [ref=e45]
+            - text: Refresh
+      - tabpanel "Rest of World" [ref=e444]:
+        - link "Image for 2026 Football Boots Footy Headlines · just now 2026 Football Boots - ![](/static/img/post/2026/06/05/T20doehJv2zMAaP. Read full story" [ref=e445] [cursor=pointer]:
+          - /url: https://www.footyheadlines.com/6521896256/2026-football-boots.html
+          - img "Image for 2026 Football Boots" [ref=e447]
+          - generic [ref=e448]:
+            - generic [ref=e449]:
+              - generic [ref=e450]: Footy Headlines
+              - generic [ref=e451]: ·
+              - generic [ref=e452]:
+                - img [ref=e453]
+                - text: just now
+            - heading "2026 Football Boots" [level=3] [ref=e456]
+            - paragraph [ref=e457]: "- ![](/static/img/post/2026/06/05/T20doehJv2zMAaP."
+            - generic [ref=e458]:
+              - text: Read full story
+              - img [ref=e459]
+        - 'link "Placeholder for Sources: NBA interviews Kawhi in Aspiration case ESPN – Premier League · just now Sources: NBA interviews Kawhi in Aspiration case LA Clippers star Kawhi Leonard and his business adviser have been interviewed by NBA investigators amid the league''s probe into allegations the team circumvented the salary cap to compensate Leonard, sources said. Read full story" [ref=e463] [cursor=pointer]':
+          - /url: <![CDATA[https://www.espn.com/nba/story/_/id/48977481/sources-nba-interviews-leonard-adviser-aspiration-case]]>
+          - 'img "Placeholder for Sources: NBA interviews Kawhi in Aspiration case" [ref=e166]'
+          - generic [ref=e167]:
+            - generic [ref=e168]:
+              - generic [ref=e169]: ESPN – Premier League
+              - generic [ref=e170]: ·
+              - generic [ref=e171]:
+                - img [ref=e172]
+                - text: just now
+            - 'heading "Sources: NBA interviews Kawhi in Aspiration case" [level=3] [ref=e175]'
+            - paragraph [ref=e176]: LA Clippers star Kawhi Leonard and his business adviser have been interviewed by NBA investigators amid the league's probe into allegations the team circumvented the salary cap to compensate Leonard, sources said.
+            - generic [ref=e177]:
+              - text: Read full story
+              - img [ref=e178]
+        - link "Placeholder for Sankey scoffs at notion of SEC-B1G super league ESPN – Premier League · just now Sankey scoffs at notion of SEC-B1G super league SEC commissioner Greg Sankey called the notion that the conference wants to form a super league with the Big Ten \"not consistent with the truth.\" Read full story" [ref=e464] [cursor=pointer]:
+          - /url: <![CDATA[https://www.espn.com/college-sports/story/_/id/48978492/sec-sankey-idea-super-league-not-consistent-truth]]>
+          - img "Placeholder for Sankey scoffs at notion of SEC-B1G super league" [ref=e183]
+          - generic [ref=e184]:
+            - generic [ref=e185]:
+              - generic [ref=e186]: ESPN – Premier League
+              - generic [ref=e187]: ·
+              - generic [ref=e188]:
+                - img [ref=e189]
+                - text: just now
+            - heading "Sankey scoffs at notion of SEC-B1G super league" [level=3] [ref=e192]
+            - paragraph [ref=e193]: SEC commissioner Greg Sankey called the notion that the conference wants to form a super league with the Big Ten "not consistent with the truth."
+            - generic [ref=e194]:
+              - text: Read full story
+              - img [ref=e195]
+        - link "Placeholder for Judge says rib originally fractured on dive in Apr... ESPN – Premier League · just now Judge says rib originally fractured on dive in Apr... Yankees outfielder Aaron Judge said the stress fracture in his right rib stems from him diving for a ball in late April. Read full story" [ref=e465] [cursor=pointer]:
+          - /url: <![CDATA[https://www.espn.com/mlb/story/_/id/48977766/aaron-judge-says-right-rib-initially-fractured-dive-late-april]]>
+          - img "Placeholder for Judge says rib originally fractured on dive in Apr..." [ref=e200]
+          - generic [ref=e201]:
+            - generic [ref=e202]:
+              - generic [ref=e203]: ESPN – Premier League
+              - generic [ref=e204]: ·
+              - generic [ref=e205]:
+                - img [ref=e206]
+                - text: just now
+            - heading "Judge says rib originally fractured on dive in Apr..." [level=3] [ref=e209]
+            - paragraph [ref=e210]: Yankees outfielder Aaron Judge said the stress fracture in his right rib stems from him diving for a ball in late April.
+            - generic [ref=e211]:
+              - text: Read full story
+              - img [ref=e212]
+        - 'link "Placeholder for UFC''s White: Pereira the GOAT if he beats Gane ESPN – Premier League · just now UFC''s White: Pereira the GOAT if he beats Gane UFC president Dana White believes two-weight UFC champion Alex Pereira will surpass Jon Jones as the greatest MMA fighter of all time if he beats Ciryl Gane on June 14 at the White House. Read full story" [ref=e466] [cursor=pointer]':
+          - /url: <![CDATA[https://www.espn.com/mma/story/_/id/48978261/ufc-white-pereira-surpasses-jones-goat-win-vs-gane]]>
+          - 'img "Placeholder for UFC''s White: Pereira the GOAT if he beats Gane" [ref=e217]'
+          - generic [ref=e218]:
+            - generic [ref=e219]:
+              - generic [ref=e220]: ESPN – Premier League
+              - generic [ref=e221]: ·
+              - generic [ref=e222]:
+                - img [ref=e223]
+                - text: just now
+            - 'heading "UFC''s White: Pereira the GOAT if he beats Gane" [level=3] [ref=e226]'
+            - paragraph [ref=e227]: UFC president Dana White believes two-weight UFC champion Alex Pereira will surpass Jon Jones as the greatest MMA fighter of all time if he beats Ciryl Gane on June 14 at the White House.
+            - generic [ref=e228]:
+              - text: Read full story
+              - img [ref=e229]
+        - link "Placeholder for NASCAR Hall of Famer Ned Jarrett dies at 93 ESPN – Premier League · just now NASCAR Hall of Famer Ned Jarrett dies at 93 NASCAR Hall of Famer Ned Jarrett, a two-time Cup champion and longtime broadcaster, died peacefully Thursday of natural causes at his home in Newton, North Carolina, his family announced. He was 93. Read full story" [ref=e467] [cursor=pointer]:
+          - /url: <![CDATA[https://www.espn.com/racing/nascar/story/_/id/48976519/nascar-hall-fame-driver-announcer-ned-jarrett-dies-93]]>
+          - img "Placeholder for NASCAR Hall of Famer Ned Jarrett dies at 93" [ref=e234]
+          - generic [ref=e235]:
+            - generic [ref=e236]:
+              - generic [ref=e237]: ESPN – Premier League
+              - generic [ref=e238]: ·
+              - generic [ref=e239]:
+                - img [ref=e240]
+                - text: just now
+            - heading "NASCAR Hall of Famer Ned Jarrett dies at 93" [level=3] [ref=e243]
+            - paragraph [ref=e244]: NASCAR Hall of Famer Ned Jarrett, a two-time Cup champion and longtime broadcaster, died peacefully Thursday of natural causes at his home in Newton, North Carolina, his family announced. He was 93.
+            - generic [ref=e245]:
+              - text: Read full story
+              - img [ref=e246]
+        - link "Placeholder for 🏈 Caleb Williams' Madden cover inspired by MJ ESPN – Premier League · just now 🏈 Caleb Williams' Madden cover inspired by MJ The Bears quarterback said the pose, skyline and overall concept were designed as a tribute to Chicago's most famous athlete. Read full story" [ref=e468] [cursor=pointer]:
+          - /url: <![CDATA[https://www.espn.com/nfl/story/_/id/48970798/caleb-williams-madden-cover-tribute-chicago-jumpman-michael-jordan]]>
+          - img "Placeholder for 🏈 Caleb Williams' Madden cover inspired by MJ" [ref=e251]
+          - generic [ref=e252]:
+            - generic [ref=e253]:
+              - generic [ref=e254]: ESPN – Premier League
+              - generic [ref=e255]: ·
+              - generic [ref=e256]:
+                - img [ref=e257]
+                - text: just now
+            - heading "🏈 Caleb Williams' Madden cover inspired by MJ" [level=3] [ref=e260]
+            - paragraph [ref=e261]: The Bears quarterback said the pose, skyline and overall concept were designed as a tribute to Chicago's most famous athlete.
+            - generic [ref=e262]:
+              - text: Read full story
+              - img [ref=e263]
+        - link "Placeholder for Poch 'annoyed' as Richards out of final U.S. tuneu... ESPN FC · just now Poch 'annoyed' as Richards out of final U.S. tuneu... United States coach Mauricio Pochettino expressed his frustration after revealing that first-choice center back Chris Richards would miss the team's final friendly before the World Cup with an ankle injury. Read full story" [ref=e469] [cursor=pointer]:
+          - /url: <![CDATA[https://www.espn.com/soccer/story/_/id/48976577/usa-world-cup-chris-richards-injury-mauricio-pochettino-germany]]>
+          - img "Placeholder for Poch 'annoyed' as Richards out of final U.S. tuneu..." [ref=e470]
+          - generic [ref=e471]:
+            - generic [ref=e472]:
+              - generic [ref=e473]: ESPN FC
+              - generic [ref=e474]: ·
+              - generic [ref=e475]:
+                - img [ref=e476]
+                - text: just now
+            - heading "Poch 'annoyed' as Richards out of final U.S. tuneu..." [level=3] [ref=e479]
+            - paragraph [ref=e480]: United States coach Mauricio Pochettino expressed his frustration after revealing that first-choice center back Chris Richards would miss the team's final friendly before the World Cup with an ankle injury.
+            - generic [ref=e481]:
+              - text: Read full story
+              - img [ref=e482]
+        - link "Placeholder for FIFA reverses WC water bottle ban after backlash ESPN FC · just now FIFA reverses WC water bottle ban after backlash FIFA has reversed its decision to bar World Cup fans from bringing refillable water bottles into the tournament's 16 stadiums across North America, following fierce backlash. Read full story" [ref=e486] [cursor=pointer]:
+          - /url: <![CDATA[https://www.espn.com/soccer/story/_/id/48978502/fifa-reverses-world-cup-water-bottle-ban-backlash]]>
+          - img "Placeholder for FIFA reverses WC water bottle ban after backlash" [ref=e285]
+          - generic [ref=e286]:
+            - generic [ref=e287]:
+              - generic [ref=e288]: ESPN FC
+              - generic [ref=e289]: ·
+              - generic [ref=e290]:
+                - img [ref=e291]
+                - text: just now
+            - heading "FIFA reverses WC water bottle ban after backlash" [level=3] [ref=e294]
+            - paragraph [ref=e295]: FIFA has reversed its decision to bar World Cup fans from bringing refillable water bottles into the tournament's 16 stadiums across North America, following fierce backlash.
+            - generic [ref=e296]:
+              - text: Read full story
+              - img [ref=e297]
+        - link "Placeholder for Iran players receive U.S. visas for World Cup ESPN FC · just now Iran players receive U.S. visas for World Cup A U.S. official confirmed to ABC News on Friday that the players on Iran's World Cup team have received visas that will allow them to enter and compete in the United States. Read full story" [ref=e487] [cursor=pointer]:
+          - /url: <![CDATA[https://www.espn.com/soccer/story/_/id/48977850/iran-players-receive-us-visas-2026-world-cup]]>
+          - img "Placeholder for Iran players receive U.S. visas for World Cup" [ref=e302]
+          - generic [ref=e303]:
+            - generic [ref=e304]:
+              - generic [ref=e305]: ESPN FC
+              - generic [ref=e306]: ·
+              - generic [ref=e307]:
+                - img [ref=e308]
+                - text: just now
+            - heading "Iran players receive U.S. visas for World Cup" [level=3] [ref=e311]
+            - paragraph [ref=e312]: A U.S. official confirmed to ABC News on Friday that the players on Iran's World Cup team have received visas that will allow them to enter and compete in the United States.
+            - generic [ref=e313]:
+              - text: Read full story
+              - img [ref=e314]
+        - link "Placeholder for Madrid candidate Riquelme targets Klopp if elected... ESPN FC · just now Madrid candidate Riquelme targets Klopp if elected... Real Madrid presidential candidate Enrique Riquelme said in a statement that his chosen sporting director will reach out to Jürgen Klopp to offer him the coaching position if he's elected on Sunday. Read full story" [ref=e488] [cursor=pointer]:
+          - /url: <![CDATA[https://www.espn.com/soccer/story/_/id/48978746/madrid-candidate-riquelme-pledges-pursue-jurgen-klopp-elected]]>
+          - img "Placeholder for Madrid candidate Riquelme targets Klopp if elected..." [ref=e489]
+          - generic [ref=e490]:
+            - generic [ref=e491]:
+              - generic [ref=e492]: ESPN FC
+              - generic [ref=e493]: ·
+              - generic [ref=e494]:
+                - img [ref=e495]
+                - text: just now
+            - heading "Madrid candidate Riquelme targets Klopp if elected..." [level=3] [ref=e498]
+            - paragraph [ref=e499]: Real Madrid presidential candidate Enrique Riquelme said in a statement that his chosen sporting director will reach out to Jürgen Klopp to offer him the coaching position if he's elected on Sunday.
+            - generic [ref=e500]:
+              - text: Read full story
+              - img [ref=e501]
+        - link "Placeholder for Germany's Karl out of WC after training injury ESPN FC · just now Germany's Karl out of WC after training injury Germany's 18-year-old midfielder Lennart Karl will miss the World Cup after suffering an injury in training on Friday. Read full story" [ref=e505] [cursor=pointer]:
+          - /url: <![CDATA[https://www.espn.com/soccer/story/_/id/48977173/lennart-karl-injured-germany-training-miss-world-cup]]>
+          - img "Placeholder for Germany's Karl out of WC after training injury" [ref=e506]
+          - generic [ref=e507]:
+            - generic [ref=e508]:
+              - generic [ref=e509]: ESPN FC
+              - generic [ref=e510]: ·
+              - generic [ref=e511]:
+                - img [ref=e512]
+                - text: just now
+            - heading "Germany's Karl out of WC after training injury" [level=3] [ref=e515]
+            - paragraph [ref=e516]: Germany's 18-year-old midfielder Lennart Karl will miss the World Cup after suffering an injury in training on Friday.
+            - generic [ref=e517]:
+              - text: Read full story
+              - img [ref=e518]
+      - button "Load more stories" [ref=e353] [cursor=pointer]: Load more (12 of 307)
+      - paragraph [ref=e93]: News items link to original sources. We don't host the content.
+  - contentinfo [ref=e94]:
+    - generic [ref=e95]:
+      - generic [ref=e96]:
+        - generic [ref=e97]:
+          - img "Kopala Kits" [ref=e98]
+          - generic [ref=e99]: KOPALA KITS
+        - paragraph [ref=e100]: Premium soccer jerseys for every fan. Local, international, national & retro classics — all at the best prices in Kitwe.
+        - link "Chat with Us" [ref=e101] [cursor=pointer]:
+          - /url: https://wa.me/260770713619
+          - img [ref=e102]
+          - text: Chat with Us
+        - link "Admin panel →" [ref=e104] [cursor=pointer]:
+          - /url: /admin
+      - generic [ref=e105]:
+        - heading "Browse" [level=4] [ref=e106]
+        - list [ref=e107]:
+          - listitem [ref=e108]:
+            - link "Home" [ref=e109] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=e110]:
+            - link "Shop all kits" [ref=e111] [cursor=pointer]:
+              - /url: /shop
+          - listitem [ref=e112]:
+            - link "Local teams" [ref=e113] [cursor=pointer]:
+              - /url: /shop?category=Local
+          - listitem [ref=e114]:
+            - link "International" [ref=e115] [cursor=pointer]:
+              - /url: /shop?category=International
+          - listitem [ref=e116]:
+            - link "National teams" [ref=e117] [cursor=pointer]:
+              - /url: /shop?category=National
+          - listitem [ref=e118]:
+            - link "Retro classics" [ref=e119] [cursor=pointer]:
+              - /url: /shop?category=Retro
+          - listitem [ref=e120]:
+            - link "About us" [ref=e121] [cursor=pointer]:
+              - /url: /about
+          - listitem [ref=e122]:
+            - link "Contact" [ref=e123] [cursor=pointer]:
+              - /url: /contact
+      - generic [ref=e124]:
+        - heading "Find Us" [level=4] [ref=e125]
+        - generic [ref=e126]:
+          - paragraph [ref=e127]:
+            - img [ref=e128]
+            - generic [ref=e131]:
+              - text: K-Block, Copperbelt University
+              - text: Kitwe, Copperbelt Province, Zambia
+          - paragraph [ref=e132]:
+            - img [ref=e133]
+            - link "+260 770 713619" [ref=e135] [cursor=pointer]:
+              - /url: https://wa.me/260770713619
+          - paragraph [ref=e136]:
+            - img [ref=e137]
+            - link "hello@kopala.zingati.app" [ref=e140] [cursor=pointer]:
+              - /url: mailto:hello@kopala.zingati.app
+        - paragraph [ref=e141]: Mon–Fri 8am–6pm · Sat 9am–4pm
+    - generic [ref=e142]: 2026 Kopala Kits · Kitwe, Zambia · All prices in Zambian Kwacha (ZMW)
+  - button "Chat on WhatsApp" [ref=e143] [cursor=pointer]:
+    - img [ref=e144]

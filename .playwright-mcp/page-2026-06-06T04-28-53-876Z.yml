@@ -1,0 +1,1016 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - link "Kopala Kits home" [ref=e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e7]:
+          - img "Kopala Kits" [ref=e8]
+          - generic [ref=e9]: KOPALA KITS
+      - navigation [ref=e10]:
+        - link "Home" [ref=e11] [cursor=pointer]:
+          - /url: /
+        - link "Shop" [ref=e12] [cursor=pointer]:
+          - /url: /shop
+        - link "Predictions" [ref=e13] [cursor=pointer]:
+          - /url: /predictions
+          - text: Predictions
+        - link "Tournaments" [ref=e15] [cursor=pointer]:
+          - /url: /tournaments
+        - link "News" [ref=e16] [cursor=pointer]:
+          - /url: /news
+        - link "Media" [ref=e17] [cursor=pointer]:
+          - /url: /media
+        - link "About" [ref=e18] [cursor=pointer]:
+          - /url: /about
+        - link "Contact" [ref=e19] [cursor=pointer]:
+          - /url: /contact
+      - generic [ref=e20]:
+        - button "Open cart, 0 items" [ref=e21] [cursor=pointer]:
+          - img [ref=e22]
+        - button "Switch to dark mode" [ref=e26] [cursor=pointer]:
+          - img [ref=e27]
+  - main [ref=e29]:
+    - generic [ref=e30]:
+      - generic [ref=e31]:
+        - generic [ref=e32]:
+          - img [ref=e33]
+          - heading "Soccer news" [level=1] [ref=e36]
+        - paragraph [ref=e37]: Live football news from local and global feeds. Cached for 30 minutes. Filter by region, league, or kit launches.
+        - tablist "News filters" [ref=e38]:
+          - tab "All News" [selected] [ref=e39] [cursor=pointer]
+          - tab "Zambia" [ref=e40] [cursor=pointer]
+          - tab "Africa" [ref=e41] [cursor=pointer]
+          - tab "Rest of World" [ref=e42] [cursor=pointer]
+          - tab "Kit Launches" [ref=e43] [cursor=pointer]
+          - button "Refresh news" [ref=e44] [cursor=pointer]:
+            - img [ref=e45]
+            - text: Refresh
+      - tabpanel "All News" [ref=e146]:
+        - link "Image for 2026 Football Boots Footy Headlines · just now 2026 Football Boots - ![](/static/img/post/2026/06/05/T20doehJv2zMAaP. Read full story" [ref=e147] [cursor=pointer]:
+          - /url: https://www.footyheadlines.com/6521896256/2026-football-boots.html
+          - img "Image for 2026 Football Boots" [ref=e149]
+          - generic [ref=e150]:
+            - generic [ref=e151]:
+              - generic [ref=e152]: Footy Headlines
+              - generic [ref=e153]: ·
+              - generic [ref=e154]:
+                - img [ref=e155]
+                - text: just now
+            - heading "2026 Football Boots" [level=3] [ref=e158]
+            - paragraph [ref=e159]: "- ![](/static/img/post/2026/06/05/T20doehJv2zMAaP."
+            - generic [ref=e160]:
+              - text: Read full story
+              - img [ref=e161]
+        - link "Placeholder for The Knicks take Game 2! Biggest takeaways and what... ESPN – Premier League · just now The Knicks take Game 2! Biggest takeaways and what... NBA insiders break down the takeaways from Game 2, look ahead to the rest of the Knicks-Spurs showdown. Read full story" [ref=e165] [cursor=pointer]:
+          - /url: <![CDATA[https://www.espn.com/nba/story/_/id/48940704/2026-nba-finals-biggest-takeaways-highlights-san-antonio-spurs-new-york-knicks-championship]]>
+          - img "Placeholder for The Knicks take Game 2! Biggest takeaways and what..." [ref=e166]
+          - generic [ref=e167]:
+            - generic [ref=e168]:
+              - generic [ref=e169]: ESPN – Premier League
+              - generic [ref=e170]: ·
+              - generic [ref=e171]:
+                - img [ref=e172]
+                - text: just now
+            - heading "The Knicks take Game 2! Biggest takeaways and what..." [level=3] [ref=e175]
+            - paragraph [ref=e176]: NBA insiders break down the takeaways from Game 2, look ahead to the rest of the Knicks-Spurs showdown.
+            - generic [ref=e177]:
+              - text: Read full story
+              - img [ref=e178]
+        - link "Placeholder for Poch 'annoyed' as Richards out of final U.S. tuneu... ESPN FC · just now Poch 'annoyed' as Richards out of final U.S. tuneu... United States coach Mauricio Pochettino expressed his frustration after revealing that first-choice center back Chris Richards would miss the team's final friendly before the World Cup with an ankle injury. Read full story" [ref=e182] [cursor=pointer]:
+          - /url: <![CDATA[https://www.espn.com/soccer/story/_/id/48976577/usa-world-cup-chris-richards-injury-mauricio-pochettino-germany]]>
+          - img "Placeholder for Poch 'annoyed' as Richards out of final U.S. tuneu..." [ref=e183]
+          - generic [ref=e184]:
+            - generic [ref=e185]:
+              - generic [ref=e186]: ESPN FC
+              - generic [ref=e187]: ·
+              - generic [ref=e188]:
+                - img [ref=e189]
+                - text: just now
+            - heading "Poch 'annoyed' as Richards out of final U.S. tuneu..." [level=3] [ref=e192]
+            - paragraph [ref=e193]: United States coach Mauricio Pochettino expressed his frustration after revealing that first-choice center back Chris Richards would miss the team's final friendly before the World Cup with an ankle injury.
+            - generic [ref=e194]:
+              - text: Read full story
+              - img [ref=e195]
+        - link "Placeholder for FIFA reverses WC water bottle ban after backlash ESPN FC · just now FIFA reverses WC water bottle ban after backlash FIFA has reversed its decision to bar World Cup fans from bringing refillable water bottles into the tournament's 16 stadiums across North America, following fierce backlash. Read full story" [ref=e199] [cursor=pointer]:
+          - /url: <![CDATA[https://www.espn.com/soccer/story/_/id/48978502/fifa-reverses-world-cup-water-bottle-ban-backlash]]>
+          - img "Placeholder for FIFA reverses WC water bottle ban after backlash" [ref=e200]
+          - generic [ref=e201]:
+            - generic [ref=e202]:
+              - generic [ref=e203]: ESPN FC
+              - generic [ref=e204]: ·
+              - generic [ref=e205]:
+                - img [ref=e206]
+                - text: just now
+            - heading "FIFA reverses WC water bottle ban after backlash" [level=3] [ref=e209]
+            - paragraph [ref=e210]: FIFA has reversed its decision to bar World Cup fans from bringing refillable water bottles into the tournament's 16 stadiums across North America, following fierce backlash.
+            - generic [ref=e211]:
+              - text: Read full story
+              - img [ref=e212]
+        - link "Placeholder for Messi 'doing well', could play World Cup warmups ESPN FC · just now Messi 'doing well', could play World Cup warmups Argentina coach Lionel Scaloni said Lionel Messi is improving from muscle fatigue in his left hamstring and could play some minutes in the warmups before his team's World Cup debut on June 16. Read full story" [ref=e216] [cursor=pointer]:
+          - /url: <![CDATA[https://www.espn.com/soccer/story/_/id/48979047/scaloni-messi-doing-well-set-minutes-world-cup-warmups]]>
+          - img "Placeholder for Messi 'doing well', could play World Cup warmups" [ref=e217]
+          - generic [ref=e218]:
+            - generic [ref=e219]:
+              - generic [ref=e220]: ESPN FC
+              - generic [ref=e221]: ·
+              - generic [ref=e222]:
+                - img [ref=e223]
+                - text: just now
+            - heading "Messi 'doing well', could play World Cup warmups" [level=3] [ref=e226]
+            - paragraph [ref=e227]: Argentina coach Lionel Scaloni said Lionel Messi is improving from muscle fatigue in his left hamstring and could play some minutes in the warmups before his team's World Cup debut on June 16.
+            - generic [ref=e228]:
+              - text: Read full story
+              - img [ref=e229]
+        - link "Placeholder for SoFi workers authorize strike days before WCup ESPN FC · just now SoFi workers authorize strike days before WCup Service workers at SoFi Stadium have voted to authorize a potential strike just days before the venue is scheduled to host the United States opening World Cup match against Paraguay on June 12. Read full story" [ref=e233] [cursor=pointer]:
+          - /url: <![CDATA[https://www.espn.com/espn/story/_/id/48980083/sofi-stadium-workers-authorize-strike-ahead-usa-world-cup-opener]]>
+          - img "Placeholder for SoFi workers authorize strike days before WCup" [ref=e234]
+          - generic [ref=e235]:
+            - generic [ref=e236]:
+              - generic [ref=e237]: ESPN FC
+              - generic [ref=e238]: ·
+              - generic [ref=e239]:
+                - img [ref=e240]
+                - text: just now
+            - heading "SoFi workers authorize strike days before WCup" [level=3] [ref=e243]
+            - paragraph [ref=e244]: Service workers at SoFi Stadium have voted to authorize a potential strike just days before the venue is scheduled to host the United States opening World Cup match against Paraguay on June 12.
+            - generic [ref=e245]:
+              - text: Read full story
+              - img [ref=e246]
+        - link "Placeholder for Iran players receive U.S. visas for World Cup ESPN FC · just now Iran players receive U.S. visas for World Cup A U.S. official confirmed to ABC News on Friday that the players on Iran's World Cup team have received visas that will allow them to enter and compete in the United States. Read full story" [ref=e250] [cursor=pointer]:
+          - /url: <![CDATA[https://www.espn.com/soccer/story/_/id/48977850/iran-players-receive-us-visas-2026-world-cup]]>
+          - img "Placeholder for Iran players receive U.S. visas for World Cup" [ref=e251]
+          - generic [ref=e252]:
+            - generic [ref=e253]:
+              - generic [ref=e254]: ESPN FC
+              - generic [ref=e255]: ·
+              - generic [ref=e256]:
+                - img [ref=e257]
+                - text: just now
+            - heading "Iran players receive U.S. visas for World Cup" [level=3] [ref=e260]
+            - paragraph [ref=e261]: A U.S. official confirmed to ABC News on Friday that the players on Iran's World Cup team have received visas that will allow them to enter and compete in the United States.
+            - generic [ref=e262]:
+              - text: Read full story
+              - img [ref=e263]
+        - link "Placeholder for Madrid candidate Riquelme targets Klopp if elected... ESPN FC · just now Madrid candidate Riquelme targets Klopp if elected... Real Madrid presidential candidate Enrique Riquelme said in a statement that his chosen sporting director will reach out to Jürgen Klopp to offer him the coaching position if he's elected on Sunday. Read full story" [ref=e267] [cursor=pointer]:
+          - /url: <![CDATA[https://www.espn.com/soccer/story/_/id/48978746/madrid-candidate-riquelme-pledges-pursue-jurgen-klopp-elected]]>
+          - img "Placeholder for Madrid candidate Riquelme targets Klopp if elected..." [ref=e268]
+          - generic [ref=e269]:
+            - generic [ref=e270]:
+              - generic [ref=e271]: ESPN FC
+              - generic [ref=e272]: ·
+              - generic [ref=e273]:
+                - img [ref=e274]
+                - text: just now
+            - heading "Madrid candidate Riquelme targets Klopp if elected..." [level=3] [ref=e277]
+            - paragraph [ref=e278]: Real Madrid presidential candidate Enrique Riquelme said in a statement that his chosen sporting director will reach out to Jürgen Klopp to offer him the coaching position if he's elected on Sunday.
+            - generic [ref=e279]:
+              - text: Read full story
+              - img [ref=e280]
+        - link "Placeholder for Germany's Karl out of WC after training injury ESPN FC · just now Germany's Karl out of WC after training injury Germany's 18-year-old midfielder Lennart Karl will miss the World Cup after suffering an injury in training on Friday. Read full story" [ref=e284] [cursor=pointer]:
+          - /url: <![CDATA[https://www.espn.com/soccer/story/_/id/48977173/lennart-karl-injured-germany-training-miss-world-cup]]>
+          - img "Placeholder for Germany's Karl out of WC after training injury" [ref=e285]
+          - generic [ref=e286]:
+            - generic [ref=e287]:
+              - generic [ref=e288]: ESPN FC
+              - generic [ref=e289]: ·
+              - generic [ref=e290]:
+                - img [ref=e291]
+                - text: just now
+            - heading "Germany's Karl out of WC after training injury" [level=3] [ref=e294]
+            - paragraph [ref=e295]: Germany's 18-year-old midfielder Lennart Karl will miss the World Cup after suffering an injury in training on Friday.
+            - generic [ref=e296]:
+              - text: Read full story
+              - img [ref=e297]
+        - link "Placeholder for 📈 Ranking all 48 World Cup squads ESPN FC · just now 📈 Ranking all 48 World Cup squads We have the final 26-player squads that can win the FIFA World Cup, so let's go through all 48 teams and rank where they stand. Read full story" [ref=e301] [cursor=pointer]:
+          - /url: <![CDATA[https://www.espn.com/soccer/story/_/id/48941820/world-cup-final-squads-ranked-all-48-national-teams-win-summer]]>
+          - img "Placeholder for 📈 Ranking all 48 World Cup squads" [ref=e302]
+          - generic [ref=e303]:
+            - generic [ref=e304]:
+              - generic [ref=e305]: ESPN FC
+              - generic [ref=e306]: ·
+              - generic [ref=e307]:
+                - img [ref=e308]
+                - text: just now
+            - heading "📈 Ranking all 48 World Cup squads" [level=3] [ref=e311]
+            - paragraph [ref=e312]: We have the final 26-player squads that can win the FIFA World Cup, so let's go through all 48 teams and rank where they stand.
+            - generic [ref=e313]:
+              - text: Read full story
+              - img [ref=e314]
+        - 'link "Placeholder for Hayes: Brazil ''chaos'' will help USWNT improve ESPN FC · just now Hayes: Brazil ''chaos'' will help USWNT improve United States women''s national team head coach Emma Hayes said that the \"chaos\" that Brazil causes will provide a formidable test for her team in their friendly matches over the next week. Read full story" [ref=e318] [cursor=pointer]':
+          - /url: <![CDATA[https://www.espn.com/soccer/story/_/id/48976643/uswnt-improve-playing-brazil-chaos-emma-hayes]]>
+          - 'img "Placeholder for Hayes: Brazil ''chaos'' will help USWNT improve" [ref=e319]'
+          - generic [ref=e320]:
+            - generic [ref=e321]:
+              - generic [ref=e322]: ESPN FC
+              - generic [ref=e323]: ·
+              - generic [ref=e324]:
+                - img [ref=e325]
+                - text: just now
+            - 'heading "Hayes: Brazil ''chaos'' will help USWNT improve" [level=3] [ref=e328]'
+            - paragraph [ref=e329]: United States women's national team head coach Emma Hayes said that the "chaos" that Brazil causes will provide a formidable test for her team in their friendly matches over the next week.
+            - generic [ref=e330]:
+              - text: Read full story
+              - img [ref=e331]
+        - link "Placeholder for Knicks survive Spurs rush for 2-0 NBA Finals lead ESPN – Premier League · just now Knicks survive Spurs rush for 2-0 NBA Finals lead Jalen Brunson hit a go-ahead free throw with 9.5 seconds left after a turnover by Victor Wembanyama moments earlier, then Wembanyama missed a jumper at the end of New York's 105-104 win over the Spurs on Friday night for a 2-0 lead in the N Read full story" [ref=e335] [cursor=pointer]:
+          - /url: <![CDATA[https://www.espn.com/nba/story/_/id/48980267/knicks-hold-spurs-comeback-game-2-seize-2-0-lead-nba-finals]]>
+          - img "Placeholder for Knicks survive Spurs rush for 2-0 NBA Finals lead" [ref=e336]
+          - generic [ref=e337]:
+            - generic [ref=e338]:
+              - generic [ref=e339]: ESPN – Premier League
+              - generic [ref=e340]: ·
+              - generic [ref=e341]:
+                - img [ref=e342]
+                - text: just now
+            - heading "Knicks survive Spurs rush for 2-0 NBA Finals lead" [level=3] [ref=e345]
+            - paragraph [ref=e346]: Jalen Brunson hit a go-ahead free throw with 9.5 seconds left after a turnover by Victor Wembanyama moments earlier, then Wembanyama missed a jumper at the end of New York's 105-104 win over the Spurs on Friday night for a 2-0 lead in the N
+            - generic [ref=e347]:
+              - text: Read full story
+              - img [ref=e348]
+        - 'link "Placeholder for Sources: NBA interviews Kawhi in Aspiration case ESPN – Premier League · just now Sources: NBA interviews Kawhi in Aspiration case LA Clippers star Kawhi Leonard and his business adviser have been interviewed by NBA investigators amid the league''s probe into allegations the team circumvented the salary cap to compensate Leonard, sources said. Read full story" [ref=e354] [cursor=pointer]':
+          - /url: <![CDATA[https://www.espn.com/nba/story/_/id/48977481/sources-nba-interviews-leonard-adviser-aspiration-case]]>
+          - 'img "Placeholder for Sources: NBA interviews Kawhi in Aspiration case" [ref=e355]'
+          - generic [ref=e356]:
+            - generic [ref=e357]:
+              - generic [ref=e358]: ESPN – Premier League
+              - generic [ref=e359]: ·
+              - generic [ref=e360]:
+                - img [ref=e361]
+                - text: just now
+            - 'heading "Sources: NBA interviews Kawhi in Aspiration case" [level=3] [ref=e364]'
+            - paragraph [ref=e365]: LA Clippers star Kawhi Leonard and his business adviser have been interviewed by NBA investigators amid the league's probe into allegations the team circumvented the salary cap to compensate Leonard, sources said.
+            - generic [ref=e366]:
+              - text: Read full story
+              - img [ref=e367]
+        - link "Placeholder for Sankey scoffs at notion of SEC-B1G super league ESPN – Premier League · just now Sankey scoffs at notion of SEC-B1G super league SEC commissioner Greg Sankey called the notion that the conference wants to form a super league with the Big Ten \"not consistent with the truth.\" Read full story" [ref=e371] [cursor=pointer]:
+          - /url: <![CDATA[https://www.espn.com/college-sports/story/_/id/48978492/sec-sankey-idea-super-league-not-consistent-truth]]>
+          - img "Placeholder for Sankey scoffs at notion of SEC-B1G super league" [ref=e372]
+          - generic [ref=e373]:
+            - generic [ref=e374]:
+              - generic [ref=e375]: ESPN – Premier League
+              - generic [ref=e376]: ·
+              - generic [ref=e377]:
+                - img [ref=e378]
+                - text: just now
+            - heading "Sankey scoffs at notion of SEC-B1G super league" [level=3] [ref=e381]
+            - paragraph [ref=e382]: SEC commissioner Greg Sankey called the notion that the conference wants to form a super league with the Big Ten "not consistent with the truth."
+            - generic [ref=e383]:
+              - text: Read full story
+              - img [ref=e384]
+        - link "Placeholder for Judge says rib originally fractured on dive in Apr... ESPN – Premier League · just now Judge says rib originally fractured on dive in Apr... Yankees outfielder Aaron Judge said the stress fracture in his right rib stems from him diving for a ball in late April. Read full story" [ref=e388] [cursor=pointer]:
+          - /url: <![CDATA[https://www.espn.com/mlb/story/_/id/48977766/aaron-judge-says-right-rib-initially-fractured-dive-late-april]]>
+          - img "Placeholder for Judge says rib originally fractured on dive in Apr..." [ref=e389]
+          - generic [ref=e390]:
+            - generic [ref=e391]:
+              - generic [ref=e392]: ESPN – Premier League
+              - generic [ref=e393]: ·
+              - generic [ref=e394]:
+                - img [ref=e395]
+                - text: just now
+            - heading "Judge says rib originally fractured on dive in Apr..." [level=3] [ref=e398]
+            - paragraph [ref=e399]: Yankees outfielder Aaron Judge said the stress fracture in his right rib stems from him diving for a ball in late April.
+            - generic [ref=e400]:
+              - text: Read full story
+              - img [ref=e401]
+        - 'link "Placeholder for UFC''s White: Pereira the GOAT if he beats Gane ESPN – Premier League · just now UFC''s White: Pereira the GOAT if he beats Gane UFC president Dana White believes two-weight UFC champion Alex Pereira will surpass Jon Jones as the greatest MMA fighter of all time if he beats Ciryl Gane on June 14 at the White House. Read full story" [ref=e405] [cursor=pointer]':
+          - /url: <![CDATA[https://www.espn.com/mma/story/_/id/48978261/ufc-white-pereira-surpasses-jones-goat-win-vs-gane]]>
+          - 'img "Placeholder for UFC''s White: Pereira the GOAT if he beats Gane" [ref=e406]'
+          - generic [ref=e407]:
+            - generic [ref=e408]:
+              - generic [ref=e409]: ESPN – Premier League
+              - generic [ref=e410]: ·
+              - generic [ref=e411]:
+                - img [ref=e412]
+                - text: just now
+            - 'heading "UFC''s White: Pereira the GOAT if he beats Gane" [level=3] [ref=e415]'
+            - paragraph [ref=e416]: UFC president Dana White believes two-weight UFC champion Alex Pereira will surpass Jon Jones as the greatest MMA fighter of all time if he beats Ciryl Gane on June 14 at the White House.
+            - generic [ref=e417]:
+              - text: Read full story
+              - img [ref=e418]
+        - link "Placeholder for 🏈 Caleb Williams' Madden cover inspired by MJ ESPN – Premier League · just now 🏈 Caleb Williams' Madden cover inspired by MJ The Bears quarterback said the pose, skyline and overall concept were designed as a tribute to Chicago's most famous athlete. Read full story" [ref=e422] [cursor=pointer]:
+          - /url: <![CDATA[https://www.espn.com/nfl/story/_/id/48970798/caleb-williams-madden-cover-tribute-chicago-jumpman-michael-jordan]]>
+          - img "Placeholder for 🏈 Caleb Williams' Madden cover inspired by MJ" [ref=e423]
+          - generic [ref=e424]:
+            - generic [ref=e425]:
+              - generic [ref=e426]: ESPN – Premier League
+              - generic [ref=e427]: ·
+              - generic [ref=e428]:
+                - img [ref=e429]
+                - text: just now
+            - heading "🏈 Caleb Williams' Madden cover inspired by MJ" [level=3] [ref=e432]
+            - paragraph [ref=e433]: The Bears quarterback said the pose, skyline and overall concept were designed as a tribute to Chicago's most famous athlete.
+            - generic [ref=e434]:
+              - text: Read full story
+              - img [ref=e435]
+        - link "Image for Celtic 26-27 Third Kit Leaked Footy Headlines · 31 minutes ago Celtic 26-27 Third Kit Leaked The Celtic 2026-2027 third kit was leaked. Read full story" [ref=e977] [cursor=pointer]:
+          - /url: https://www.footyheadlines.com/2026/03/celtic-26-27-third-kit.html
+          - img "Image for Celtic 26-27 Third Kit Leaked" [ref=e441]
+          - generic [ref=e442]:
+            - generic [ref=e443]:
+              - generic [ref=e444]: Footy Headlines
+              - generic [ref=e445]: ·
+              - generic [ref=e446]:
+                - img [ref=e447]
+                - text: 31 minutes ago
+            - heading "Celtic 26-27 Third Kit Leaked" [level=3] [ref=e450]
+            - paragraph [ref=e451]: The Celtic 2026-2027 third kit was leaked.
+            - generic [ref=e452]:
+              - text: Read full story
+              - img [ref=e453]
+        - 'link "Placeholder for NBA finals: Knicks within two wins of elusive title after holding off Spurs in Game 2 The Guardian – Sport · 51 minutes ago NBA finals: Knicks within two wins of elusive title after holding off Spurs in Game 2 <ul><li><p>Brunson leads Knicks to second road finals win</p></li><li><p>New York take 2-0 series lead back to Garden</p></li><li><p>Spurs face uphill battle after home-court sweep</p></li></ul><p>The white-hot New York Knicks moved within Read full story" [ref=e978] [cursor=pointer]':
+          - /url: https://www.theguardian.com/sport/2026/jun/05/knicks-spurs-game-2-nba-finals-brunson-new-york
+          - 'img "Placeholder for NBA finals: Knicks within two wins of elusive title after holding off Spurs in Game 2" [ref=e458]'
+          - generic [ref=e459]:
+            - generic [ref=e460]:
+              - generic [ref=e461]: The Guardian – Sport
+              - generic [ref=e462]: ·
+              - generic [ref=e463]:
+                - img [ref=e464]
+                - text: 51 minutes ago
+            - 'heading "NBA finals: Knicks within two wins of elusive title after holding off Spurs in Game 2" [level=3] [ref=e467]'
+            - paragraph [ref=e468]: <ul><li><p>Brunson leads Knicks to second road finals win</p></li><li><p>New York take 2-0 series lead back to Garden</p></li><li><p>Spurs face uphill battle after home-court sweep</p></li></ul><p>The white-hot New York Knicks moved within
+            - generic [ref=e469]:
+              - text: Read full story
+              - img [ref=e470]
+        - link "Placeholder for How the USMNT went from embarrassment in Italy to ... ESPN FC · 58 minutes ago How the USMNT went from embarrassment in Italy to ... A World Cup on home soil looms. The last time America hosted, things were very different. Read full story" [ref=e979] [cursor=pointer]:
+          - /url: <![CDATA[https://www.espn.com/soccer/story/_/id/48893158/how-usmnt-went-italia-90-embarrassment-world-cup-force-1994]]>
+          - img "Placeholder for How the USMNT went from embarrassment in Italy to ..." [ref=e475]
+          - generic [ref=e476]:
+            - generic [ref=e477]:
+              - generic [ref=e478]: ESPN FC
+              - generic [ref=e479]: ·
+              - generic [ref=e480]:
+                - img [ref=e481]
+                - text: 58 minutes ago
+            - heading "How the USMNT went from embarrassment in Italy to ..." [level=3] [ref=e484]
+            - paragraph [ref=e485]: A World Cup on home soil looms. The last time America hosted, things were very different.
+            - generic [ref=e486]:
+              - text: Read full story
+              - img [ref=e487]
+        - link "Placeholder for Jurgen Klopp camp bite back at Real Madrid claims – “It’s annoying” Yahoo Sports Soccer · 1 hour ago Jurgen Klopp camp bite back at Real Madrid claims – “It’s annoying” Real Madrid are still yet to officially appoint their next manager, but the matter should be resolved as early as next week. If Florentino Perez retains the presidency, he would finalise the appointme... Read full story" [ref=e491] [cursor=pointer]:
+          - /url: https://sports.yahoo.com/articles/jurgen-klopp-camp-bite-back-032000455.html
+          - img "Placeholder for Jurgen Klopp camp bite back at Real Madrid claims – “It’s annoying”" [ref=e492]
+          - generic [ref=e493]:
+            - generic [ref=e494]:
+              - generic [ref=e495]: Yahoo Sports Soccer
+              - generic [ref=e496]: ·
+              - generic [ref=e497]:
+                - img [ref=e498]
+                - text: 1 hour ago
+            - heading "Jurgen Klopp camp bite back at Real Madrid claims – “It’s annoying”" [level=3] [ref=e501]
+            - paragraph [ref=e502]: Real Madrid are still yet to officially appoint their next manager, but the matter should be resolved as early as next week. If Florentino Perez retains the presidency, he would finalise the appointme...
+            - generic [ref=e503]:
+              - text: Read full story
+              - img [ref=e504]
+        - 'link "Placeholder for 🚨 Klopp''s agent denies Riquelme''s claim: it''s annoying! Yahoo Sports Soccer · 1 hour ago 🚨 Klopp''s agent denies Riquelme''s claim: it''s annoying! Enrique Riquelme announced that, if he defeats Florentino Pérez in the race for the Real Madrid presidency, he would begin contacting Jürgen Klopp to become head coach of Los Blancos, and all hell b... Read full story" [ref=e508] [cursor=pointer]':
+          - /url: https://sports.yahoo.com/articles/klopps-agent-denies-riquelmes-claim-025400749.html
+          - 'img "Placeholder for 🚨 Klopp''s agent denies Riquelme''s claim: it''s annoying!" [ref=e509]'
+          - generic [ref=e510]:
+            - generic [ref=e511]:
+              - generic [ref=e512]: Yahoo Sports Soccer
+              - generic [ref=e513]: ·
+              - generic [ref=e514]:
+                - img [ref=e515]
+                - text: 1 hour ago
+            - 'heading "🚨 Klopp''s agent denies Riquelme''s claim: it''s annoying!" [level=3] [ref=e518]'
+            - paragraph [ref=e519]: Enrique Riquelme announced that, if he defeats Florentino Pérez in the race for the Real Madrid presidency, he would begin contacting Jürgen Klopp to become head coach of Los Blancos, and all hell b...
+            - generic [ref=e520]:
+              - text: Read full story
+              - img [ref=e521]
+        - link "Placeholder for 🕊️ All of Argentina bids farewell to Indio Solari Yahoo Sports Soccer · 1 hour ago 🕊️ All of Argentina bids farewell to Indio Solari The death of Carlos Alberto Solari shocked the entire country; Argentina mourns an idol, and football once again comes together as a symbol of respect and love. Clubs from the Professional League, re... Read full story" [ref=e525] [cursor=pointer]:
+          - /url: https://www.yahoo.com/entertainment/music/articles/argentina-bids-farewell-indio-solari-023400323.html
+          - img "Placeholder for 🕊️ All of Argentina bids farewell to Indio Solari" [ref=e526]
+          - generic [ref=e527]:
+            - generic [ref=e528]:
+              - generic [ref=e529]: Yahoo Sports Soccer
+              - generic [ref=e530]: ·
+              - generic [ref=e531]:
+                - img [ref=e532]
+                - text: 1 hour ago
+            - heading "🕊️ All of Argentina bids farewell to Indio Solari" [level=3] [ref=e535]
+            - paragraph [ref=e536]: The death of Carlos Alberto Solari shocked the entire country; Argentina mourns an idol, and football once again comes together as a symbol of respect and love. Clubs from the Professional League, re...
+            - generic [ref=e537]:
+              - text: Read full story
+              - img [ref=e538]
+        - link "Placeholder for Mano Menezes' side beat Brazil's rivals in the Copa Yahoo Sports Soccer · 2 hours ago Mano Menezes' side beat Brazil's rivals in the Copa Brazil’s second opponent at the 2026 World Cup, Haiti was beaten by Peru, the team coached by Mano Menezes, in a friendly with an eye on the tournament. La Blanquirroja secured a 2-1 comeback win a... Read full story" [ref=e542] [cursor=pointer]:
+          - /url: https://sports.yahoo.com/articles/mano-menezes-side-beat-brazils-015900544.html
+          - img "Placeholder for Mano Menezes' side beat Brazil's rivals in the Copa" [ref=e543]
+          - generic [ref=e544]:
+            - generic [ref=e545]:
+              - generic [ref=e546]: Yahoo Sports Soccer
+              - generic [ref=e547]: ·
+              - generic [ref=e548]:
+                - img [ref=e549]
+                - text: 2 hours ago
+            - heading "Mano Menezes' side beat Brazil's rivals in the Copa" [level=3] [ref=e552]
+            - paragraph [ref=e553]: Brazil’s second opponent at the 2026 World Cup, Haiti was beaten by Peru, the team coached by Mano Menezes, in a friendly with an eye on the tournament. La Blanquirroja secured a 2-1 comeback win a...
+            - generic [ref=e554]:
+              - text: Read full story
+              - img [ref=e555]
+        - link "Placeholder for How a new-look roster -- and an unstoppable rookie... ESPN – Premier League · 3 hours ago How a new-look roster -- and an unstoppable rookie... No Collier, no problem! How Olivia Miles and the new-look Lynx have Minnesota out to the WNBA's best start. Read full story" [ref=e561] [cursor=pointer]:
+          - /url: <![CDATA[https://www.espn.com/wnba/story/_/id/48968606/minnesota-lynx-wnba-olivia-miles-napheesa-collier-injury]]>
+          - img "Placeholder for How a new-look roster -- and an unstoppable rookie..." [ref=e562]
+          - generic [ref=e563]:
+            - generic [ref=e564]:
+              - generic [ref=e565]: ESPN – Premier League
+              - generic [ref=e566]: ·
+              - generic [ref=e567]:
+                - img [ref=e568]
+                - text: 3 hours ago
+            - heading "How a new-look roster -- and an unstoppable rookie..." [level=3] [ref=e571]
+            - paragraph [ref=e572]: No Collier, no problem! How Olivia Miles and the new-look Lynx have Minnesota out to the WNBA's best start.
+            - generic [ref=e573]:
+              - text: Read full story
+              - img [ref=e574]
+        - link "Placeholder for 10 things to know for super regionals, plus future... ESPN – Premier League · 3 hours ago 10 things to know for super regionals, plus future... What to know heading into supers, plus top prospects and best major leaguers from every team. Read full story" [ref=e578] [cursor=pointer]:
+          - /url: <![CDATA[https://www.espn.com/college-sports/story/_/id/48956247/2026-ncaa-baseball-tournament-super-regionals-preview-top-storylines-players]]>
+          - img "Placeholder for 10 things to know for super regionals, plus future..." [ref=e579]
+          - generic [ref=e580]:
+            - generic [ref=e581]:
+              - generic [ref=e582]: ESPN – Premier League
+              - generic [ref=e583]: ·
+              - generic [ref=e584]:
+                - img [ref=e585]
+                - text: 3 hours ago
+            - heading "10 things to know for super regionals, plus future..." [level=3] [ref=e588]
+            - paragraph [ref=e589]: What to know heading into supers, plus top prospects and best major leaguers from every team.
+            - generic [ref=e590]:
+              - text: Read full story
+              - img [ref=e591]
+        - link "Placeholder for Why North Carolina's Erik Paulsen Jr. wants us to ... ESPN – Premier League · 3 hours ago Why North Carolina's Erik Paulsen Jr. wants us to ... The Tar Heels first baseman tells stories about his late father with a smile on his face. Read full story" [ref=e595] [cursor=pointer]:
+          - /url: <![CDATA[https://www.espn.com/college-sports/story/_/id/48893829/2026-college-baseball-north-carolina-erik-paulsen-jr-father-9-11]]>
+          - img "Placeholder for Why North Carolina's Erik Paulsen Jr. wants us to ..." [ref=e596]
+          - generic [ref=e597]:
+            - generic [ref=e598]:
+              - generic [ref=e599]: ESPN – Premier League
+              - generic [ref=e600]: ·
+              - generic [ref=e601]:
+                - img [ref=e602]
+                - text: 3 hours ago
+            - heading "Why North Carolina's Erik Paulsen Jr. wants us to ..." [level=3] [ref=e605]
+            - paragraph [ref=e606]: The Tar Heels first baseman tells stories about his late father with a smile on his face.
+            - generic [ref=e607]:
+              - text: Read full story
+              - img [ref=e608]
+        - link "Placeholder for How John Tortorella turned the Golden Knights back... ESPN – Premier League · 3 hours ago How John Tortorella turned the Golden Knights back... Hired with just eight games left in the season, the veteran coach has pressed all the right buttons this postseason. Read full story" [ref=e612] [cursor=pointer]:
+          - /url: <![CDATA[https://www.espn.com/nhl/story/_/id/48968543/2026-nhl-playoffs-stanley-cup-final-golden-knights-john-tortorella]]>
+          - img "Placeholder for How John Tortorella turned the Golden Knights back..." [ref=e613]
+          - generic [ref=e614]:
+            - generic [ref=e615]:
+              - generic [ref=e616]: ESPN – Premier League
+              - generic [ref=e617]: ·
+              - generic [ref=e618]:
+                - img [ref=e619]
+                - text: 3 hours ago
+            - heading "How John Tortorella turned the Golden Knights back..." [level=3] [ref=e622]
+            - paragraph [ref=e623]: Hired with just eight games left in the season, the veteran coach has pressed all the right buttons this postseason.
+            - generic [ref=e624]:
+              - text: Read full story
+              - img [ref=e625]
+        - link "Placeholder for FIFA reverses course again, will permit fans to take 1 water bottle each to World Cup games in the U.S., Canada Yahoo Sports Soccer · 4 hours ago FIFA reverses course again, will permit fans to take 1 water bottle each to World Cup games in the U.S., Canada FIFA announced the revised policy in response to accusations of a water bottle ban as a \"pure money grab.\" Read full story" [ref=e629] [cursor=pointer]:
+          - /url: https://sports.yahoo.com/soccer/article/fifa-reverses-course-again-will-permit-fans-to-take-1-water-bottle-each-to-world-cup-games-in-the-us-canada-002143067.html
+          - img "Placeholder for FIFA reverses course again, will permit fans to take 1 water bottle each to World Cup games in the U.S., Canada" [ref=e630]
+          - generic [ref=e631]:
+            - generic [ref=e632]:
+              - generic [ref=e633]: Yahoo Sports Soccer
+              - generic [ref=e634]: ·
+              - generic [ref=e635]:
+                - img [ref=e636]
+                - text: 4 hours ago
+            - heading "FIFA reverses course again, will permit fans to take 1 water bottle each to World Cup games in the U.S., Canada" [level=3] [ref=e639]
+            - paragraph [ref=e640]: FIFA announced the revised policy in response to accusations of a water bottle ban as a "pure money grab."
+            - generic [ref=e641]:
+              - text: Read full story
+              - img [ref=e642]
+        - 'link "Placeholder for 🚨Breaking: Conmebol confirms venue for O’Higgins v Boca Yahoo Sports Soccer · 4 hours ago 🚨Breaking: Conmebol confirms venue for O’Higgins v Boca Conmebol gave its final verdict on the match between Boca Juniors and O''Higins, corresponding to the Copa Sudamericana Playoffs. \"We’re playing at home and with our fans!\" the Chilean side celebr... Read full story" [ref=e646] [cursor=pointer]':
+          - /url: https://sports.yahoo.com/articles/breaking-conmebol-confirms-venue-o-000400302.html
+          - 'img "Placeholder for 🚨Breaking: Conmebol confirms venue for O’Higgins v Boca" [ref=e647]'
+          - generic [ref=e648]:
+            - generic [ref=e649]:
+              - generic [ref=e650]: Yahoo Sports Soccer
+              - generic [ref=e651]: ·
+              - generic [ref=e652]:
+                - img [ref=e653]
+                - text: 4 hours ago
+            - 'heading "🚨Breaking: Conmebol confirms venue for O’Higgins v Boca" [level=3] [ref=e656]'
+            - paragraph [ref=e657]: Conmebol gave its final verdict on the match between Boca Juniors and O'Higins, corresponding to the Copa Sudamericana Playoffs. "We’re playing at home and with our fans!" the Chilean side celebr...
+            - generic [ref=e658]:
+              - text: Read full story
+              - img [ref=e659]
+        - link "Placeholder for 👕 Which looks best? Several European clubs debut new kits Yahoo Sports Soccer · 4 hours ago 👕 Which looks best? Several European clubs debut new kits Friday means... a roundup of the latest shirt releases on OneFootball.And several clubs unveiled their outfits (for the gala?) for the season ahead. Check out the highlights below and have your say:W... Read full story" [ref=e663] [cursor=pointer]:
+          - /url: https://sports.yahoo.com/articles/looks-best-several-european-clubs-235600713.html
+          - img "Placeholder for 👕 Which looks best? Several European clubs debut new kits" [ref=e664]
+          - generic [ref=e665]:
+            - generic [ref=e666]:
+              - generic [ref=e667]: Yahoo Sports Soccer
+              - generic [ref=e668]: ·
+              - generic [ref=e669]:
+                - img [ref=e670]
+                - text: 4 hours ago
+            - heading "👕 Which looks best? Several European clubs debut new kits" [level=3] [ref=e673]
+            - paragraph [ref=e674]: Friday means... a roundup of the latest shirt releases on OneFootball.And several clubs unveiled their outfits (for the gala?) for the season ahead. Check out the highlights below and have your say:W...
+            - generic [ref=e675]:
+              - text: Read full story
+              - img [ref=e676]
+        - link "Placeholder for Spain expose England's flaws in heavy defeat that 'hurts' Yahoo Sports Soccer · 4 hours ago Spain expose England's flaws in heavy defeat that 'hurts' England just needed to avoid defeat against Spain - instead they suffered their heaviest loss in 17 years, but it is not time to panic yet. Read full story" [ref=e680] [cursor=pointer]:
+          - /url: https://sports.yahoo.com/articles/spain-expose-englands-flaws-heavy-233221362.html
+          - img "Placeholder for Spain expose England's flaws in heavy defeat that 'hurts'" [ref=e681]
+          - generic [ref=e682]:
+            - generic [ref=e683]:
+              - generic [ref=e684]: Yahoo Sports Soccer
+              - generic [ref=e685]: ·
+              - generic [ref=e686]:
+                - img [ref=e687]
+                - text: 4 hours ago
+            - heading "Spain expose England's flaws in heavy defeat that 'hurts'" [level=3] [ref=e690]
+            - paragraph [ref=e691]: England just needed to avoid defeat against Spain - instead they suffered their heaviest loss in 17 years, but it is not time to panic yet.
+            - generic [ref=e692]:
+              - text: Read full story
+              - img [ref=e693]
+        - link "Image for Spain expose England's flaws in heavy defeat that 'hurts' BBC Sport – Football · 4 hours ago Spain expose England's flaws in heavy defeat that 'hurts' England just needed to avoid defeat against Spain - instead they suffered their heaviest loss in 17 years, but it is not time to panic yet. Read full story" [ref=e697] [cursor=pointer]:
+          - /url: https://www.bbc.com/sport/football/articles/c33230637gno?at_medium=RSS&amp;at_campaign=rss
+          - img "Image for Spain expose England's flaws in heavy defeat that 'hurts'" [ref=e699]
+          - generic [ref=e700]:
+            - generic [ref=e701]:
+              - generic [ref=e702]: BBC Sport – Football
+              - generic [ref=e703]: ·
+              - generic [ref=e704]:
+                - img [ref=e705]
+                - text: 4 hours ago
+            - heading "Spain expose England's flaws in heavy defeat that 'hurts'" [level=3] [ref=e708]
+            - paragraph [ref=e709]: England just needed to avoid defeat against Spain - instead they suffered their heaviest loss in 17 years, but it is not time to panic yet.
+            - generic [ref=e710]:
+              - text: Read full story
+              - img [ref=e711]
+        - link "Placeholder for Steve Clarke warns Scotland not to underestimate Haiti after New Zealand rout The Guardian – Football · 5 hours ago Steve Clarke warns Scotland not to underestimate Haiti after New Zealand rout <ul><li><p>Scotland face Haiti in Boston next Saturday</p></li><li><p>Haiti beat New Zealand 4-0 in Florida friendly</p></li><li><p>Napoli’s Billy Gilmour ruled out of World Cup</p></li></ul><p>Steve Clarke believes Haiti’s routing of New Z Read full story" [ref=e715] [cursor=pointer]:
+          - /url: https://www.theguardian.com/football/2026/jun/05/steve-clarke-scotland-haiti-world-cup-new-zealand
+          - img "Placeholder for Steve Clarke warns Scotland not to underestimate Haiti after New Zealand rout" [ref=e716]
+          - generic [ref=e717]:
+            - generic [ref=e718]:
+              - generic [ref=e719]: The Guardian – Football
+              - generic [ref=e720]: ·
+              - generic [ref=e721]:
+                - img [ref=e722]
+                - text: 5 hours ago
+            - heading "Steve Clarke warns Scotland not to underestimate Haiti after New Zealand rout" [level=3] [ref=e725]
+            - paragraph [ref=e726]: <ul><li><p>Scotland face Haiti in Boston next Saturday</p></li><li><p>Haiti beat New Zealand 4-0 in Florida friendly</p></li><li><p>Napoli’s Billy Gilmour ruled out of World Cup</p></li></ul><p>Steve Clarke believes Haiti’s routing of New Z
+            - generic [ref=e727]:
+              - text: Read full story
+              - img [ref=e728]
+        - link "Placeholder for Fifa clarifies water bottle stadium rule Yahoo Sports Soccer · 5 hours ago Fifa clarifies water bottle stadium rule Fifa says fans will be able to bring sealed disposable water bottles into World Cup stadiums following criticism over a decision to ban reusable bottles. Read full story" [ref=e732] [cursor=pointer]:
+          - /url: https://sports.yahoo.com/articles/fifa-clarifies-water-bottle-stadium-231329629.html
+          - img "Placeholder for Fifa clarifies water bottle stadium rule" [ref=e733]
+          - generic [ref=e734]:
+            - generic [ref=e735]:
+              - generic [ref=e736]: Yahoo Sports Soccer
+              - generic [ref=e737]: ·
+              - generic [ref=e738]:
+                - img [ref=e739]
+                - text: 5 hours ago
+            - heading "Fifa clarifies water bottle stadium rule" [level=3] [ref=e742]
+            - paragraph [ref=e743]: Fifa says fans will be able to bring sealed disposable water bottles into World Cup stadiums following criticism over a decision to ban reusable bottles.
+            - generic [ref=e744]:
+              - text: Read full story
+              - img [ref=e745]
+        - link "Image for Fifa clarifies water bottle stadium rule BBC Sport – Football · 5 hours ago Fifa clarifies water bottle stadium rule Fifa says fans will be able to bring sealed disposable water bottles into World Cup stadiums following criticism over a decision to ban reusable bottles. Read full story" [ref=e749] [cursor=pointer]:
+          - /url: https://www.bbc.com/sport/football/articles/c79490e8g37o?at_medium=RSS&amp;at_campaign=rss
+          - img "Image for Fifa clarifies water bottle stadium rule" [ref=e751]
+          - generic [ref=e752]:
+            - generic [ref=e753]:
+              - generic [ref=e754]: BBC Sport – Football
+              - generic [ref=e755]: ·
+              - generic [ref=e756]:
+                - img [ref=e757]
+                - text: 5 hours ago
+            - heading "Fifa clarifies water bottle stadium rule" [level=3] [ref=e760]
+            - paragraph [ref=e761]: Fifa says fans will be able to bring sealed disposable water bottles into World Cup stadiums following criticism over a decision to ban reusable bottles.
+            - generic [ref=e762]:
+              - text: Read full story
+              - img [ref=e763]
+        - link "Placeholder for How England can still qualify for the Women's World Cup Yahoo Sports Soccer · 5 hours ago How England can still qualify for the Women's World Cup England, Wales, Scotland and Northern Ireland are all vying for places at the Women's World Cup - but how can they get there with one round of group games left in European qualifying? Read full story" [ref=e768] [cursor=pointer]:
+          - /url: https://sports.yahoo.com/articles/england-still-qualify-womens-world-230734230.html
+          - img "Placeholder for How England can still qualify for the Women's World Cup" [ref=e769]
+          - generic [ref=e770]:
+            - generic [ref=e771]:
+              - generic [ref=e772]: Yahoo Sports Soccer
+              - generic [ref=e773]: ·
+              - generic [ref=e774]:
+                - img [ref=e775]
+                - text: 5 hours ago
+            - heading "How England can still qualify for the Women's World Cup" [level=3] [ref=e778]
+            - paragraph [ref=e779]: England, Wales, Scotland and Northern Ireland are all vying for places at the Women's World Cup - but how can they get there with one round of group games left in European qualifying?
+            - generic [ref=e780]:
+              - text: Read full story
+              - img [ref=e781]
+        - link "Image for How England can still qualify for the Women's World Cup BBC Sport – Football · 5 hours ago How England can still qualify for the Women's World Cup England, Wales, Scotland and Northern Ireland are all vying for places at the Women's World Cup - but how can they get there with one round of group games left in European qualifying? Read full story" [ref=e785] [cursor=pointer]:
+          - /url: https://www.bbc.com/sport/football/articles/c1k2k18r4ymo?at_medium=RSS&amp;at_campaign=rss
+          - img "Image for How England can still qualify for the Women's World Cup" [ref=e787]
+          - generic [ref=e788]:
+            - generic [ref=e789]:
+              - generic [ref=e790]: BBC Sport – Football
+              - generic [ref=e791]: ·
+              - generic [ref=e792]:
+                - img [ref=e793]
+                - text: 5 hours ago
+            - heading "How England can still qualify for the Women's World Cup" [level=3] [ref=e796]
+            - paragraph [ref=e797]: England, Wales, Scotland and Northern Ireland are all vying for places at the Women's World Cup - but how can they get there with one round of group games left in European qualifying?
+            - generic [ref=e798]:
+              - text: Read full story
+              - img [ref=e799]
+        - link "Placeholder for Germany forward Karl ruled out of World Cup Yahoo Sports Soccer · 5 hours ago Germany forward Karl ruled out of World Cup Germany forward Lennart Karl is ruled out of the 2026 World Cup with a thigh injury. Read full story" [ref=e803] [cursor=pointer]:
+          - /url: https://sports.yahoo.com/articles/germany-forward-karl-ruled-world-230459643.html
+          - img "Placeholder for Germany forward Karl ruled out of World Cup" [ref=e804]
+          - generic [ref=e805]:
+            - generic [ref=e806]:
+              - generic [ref=e807]: Yahoo Sports Soccer
+              - generic [ref=e808]: ·
+              - generic [ref=e809]:
+                - img [ref=e810]
+                - text: 5 hours ago
+            - heading "Germany forward Karl ruled out of World Cup" [level=3] [ref=e813]
+            - paragraph [ref=e814]: Germany forward Lennart Karl is ruled out of the 2026 World Cup with a thigh injury.
+            - generic [ref=e815]:
+              - text: Read full story
+              - img [ref=e816]
+        - link "Image for Germany forward Karl ruled out of World Cup BBC Sport – Football · 5 hours ago Germany forward Karl ruled out of World Cup Germany forward Lennart Karl is ruled out of the 2026 World Cup with a thigh injury. Read full story" [ref=e820] [cursor=pointer]:
+          - /url: https://www.bbc.com/sport/football/articles/cz020zdklmmo?at_medium=RSS&amp;at_campaign=rss
+          - img "Image for Germany forward Karl ruled out of World Cup" [ref=e822]
+          - generic [ref=e823]:
+            - generic [ref=e824]:
+              - generic [ref=e825]: BBC Sport – Football
+              - generic [ref=e826]: ·
+              - generic [ref=e827]:
+                - img [ref=e828]
+                - text: 5 hours ago
+            - heading "Germany forward Karl ruled out of World Cup" [level=3] [ref=e831]
+            - paragraph [ref=e832]: Germany forward Lennart Karl is ruled out of the 2026 World Cup with a thigh injury.
+            - generic [ref=e833]:
+              - text: Read full story
+              - img [ref=e834]
+        - link "Placeholder for Spain World Cup 2026 team guide The Guardian – Football · 5 hours ago Spain World Cup 2026 team guide <p>Ranked only behind France and having a teenage prodigy in Lamine Yamal alongside an in-form Nico Williams, we can expect much from La Roja</p><p><em>This article is part of the Guardian’s <a href=\"https://www.theguardian.com/football/ser Read full story" [ref=e838] [cursor=pointer]:
+          - /url: https://www.theguardian.com/football/2026/jun/06/spain-world-cup-2026-team-guide
+          - img "Placeholder for Spain World Cup 2026 team guide" [ref=e839]
+          - generic [ref=e840]:
+            - generic [ref=e841]:
+              - generic [ref=e842]: The Guardian – Football
+              - generic [ref=e843]: ·
+              - generic [ref=e844]:
+                - img [ref=e845]
+                - text: 5 hours ago
+            - heading "Spain World Cup 2026 team guide" [level=3] [ref=e848]
+            - paragraph [ref=e849]: <p>Ranked only behind France and having a teenage prodigy in Lamine Yamal alongside an in-form Nico Williams, we can expect much from La Roja</p><p><em>This article is part of the Guardian’s <a href="https://www.theguardian.com/football/ser
+            - generic [ref=e850]:
+              - text: Read full story
+              - img [ref=e851]
+        - link "Placeholder for Bayern Munich respond to Florentino Perez transfer plans for star player Yahoo Sports Soccer · 5 hours ago Bayern Munich respond to Florentino Perez transfer plans for star player Earlier this week, Florentino Perez enticed Real Madrid supporters by promising to spend big on a new Galactico if he is re-elected as president this weekend. He did not specify which player he would ... Read full story" [ref=e855] [cursor=pointer]:
+          - /url: https://sports.yahoo.com/articles/bayern-munich-respond-florentino-perez-225500730.html
+          - img "Placeholder for Bayern Munich respond to Florentino Perez transfer plans for star player" [ref=e856]
+          - generic [ref=e857]:
+            - generic [ref=e858]:
+              - generic [ref=e859]: Yahoo Sports Soccer
+              - generic [ref=e860]: ·
+              - generic [ref=e861]:
+                - img [ref=e862]
+                - text: 5 hours ago
+            - heading "Bayern Munich respond to Florentino Perez transfer plans for star player" [level=3] [ref=e865]
+            - paragraph [ref=e866]: Earlier this week, Florentino Perez enticed Real Madrid supporters by promising to spend big on a new Galactico if he is re-elected as president this weekend. He did not specify which player he would ...
+            - generic [ref=e867]:
+              - text: Read full story
+              - img [ref=e868]
+        - 'link "Image for Premier Padel, ancora un’impresa per Dal Pozzo: semifinale a Roma! La Gazzetta dello Sport · 5 hours ago Premier Padel, ancora un’impresa per Dal Pozzo: semifinale a Roma! La romagnola, in coppia con Nuria Rodriguez, supera le teste di serie numero 4 Fernandez-Araujo e ora se la vedrà con Brea-Triay Read full story" [ref=e872] [cursor=pointer]':
+          - /url: https://www.gazzetta.it/padel/06-06-2026/dal-pozzo-ancora-un-impresa-semifinale-a-roma.shtml
+          - 'img "Image for Premier Padel, ancora un’impresa per Dal Pozzo: semifinale a Roma!" [ref=e874]'
+          - generic [ref=e875]:
+            - generic [ref=e876]:
+              - generic [ref=e877]: La Gazzetta dello Sport
+              - generic [ref=e878]: ·
+              - generic [ref=e879]:
+                - img [ref=e880]
+                - text: 5 hours ago
+            - 'heading "Premier Padel, ancora un’impresa per Dal Pozzo: semifinale a Roma!" [level=3] [ref=e883]'
+            - paragraph [ref=e884]: La romagnola, in coppia con Nuria Rodriguez, supera le teste di serie numero 4 Fernandez-Araujo e ora se la vedrà con Brea-Triay
+            - generic [ref=e885]:
+              - text: Read full story
+              - img [ref=e886]
+        - link "Image for Billam-Smith fight set to proceed despite legal challenge BBC Sport – All · 5 hours ago Billam-Smith fight set to proceed despite legal challenge Zuffa Boxing's first show in the UK, featuring Chris Billam-Smith, appears set to take place on Saturday despite legal action from rival promoter Boxxer. Read full story" [ref=e890] [cursor=pointer]:
+          - /url: https://www.bbc.com/sport/boxing/articles/cg4p4dn6qx0o?at_medium=RSS&amp;at_campaign=rss
+          - img "Image for Billam-Smith fight set to proceed despite legal challenge" [ref=e892]
+          - generic [ref=e893]:
+            - generic [ref=e894]:
+              - generic [ref=e895]: BBC Sport – All
+              - generic [ref=e896]: ·
+              - generic [ref=e897]:
+                - img [ref=e898]
+                - text: 5 hours ago
+            - heading "Billam-Smith fight set to proceed despite legal challenge" [level=3] [ref=e901]
+            - paragraph [ref=e902]: Zuffa Boxing's first show in the UK, featuring Chris Billam-Smith, appears set to take place on Saturday despite legal action from rival promoter Boxxer.
+            - generic [ref=e903]:
+              - text: Read full story
+              - img [ref=e904]
+        - 'link "Image for Mbappé: \"Il record di gol al Mondiale? Me ne manca uno. Che peccato che non ci sia l''Italia!\" La Gazzetta dello Sport · 5 hours ago Mbappé: \"Il record di gol al Mondiale? Me ne manca uno. Che peccato che non ci sia l''Italia!\" \"Dalla finale persa ai rigori in Qatar ho imparato che in certe situazioni bisogna avere la mente gelida\". dice il francese Campione del mondo nel 2018 alla vigilia di questa edizione Read full story" [ref=e908] [cursor=pointer]':
+          - /url: https://www.gazzetta.it/sportweek/06-06-2026/kylian-mbappe-intervista-franncia-record-gol-italia.shtml
+          - 'img "Image for Mbappé: \"Il record di gol al Mondiale? Me ne manca uno. Che peccato che non ci sia l''Italia!\"" [ref=e910]'
+          - generic [ref=e911]:
+            - generic [ref=e912]:
+              - generic [ref=e913]: La Gazzetta dello Sport
+              - generic [ref=e914]: ·
+              - generic [ref=e915]:
+                - img [ref=e916]
+                - text: 5 hours ago
+            - 'heading "Mbappé: \"Il record di gol al Mondiale? Me ne manca uno. Che peccato che non ci sia l''Italia!\"" [level=3] [ref=e919]'
+            - paragraph [ref=e920]: "\"Dalla finale persa ai rigori in Qatar ho imparato che in certe situazioni bisogna avere la mente gelida\". dice il francese Campione del mondo nel 2018 alla vigilia di questa edizione"
+            - generic [ref=e921]:
+              - text: Read full story
+              - img [ref=e922]
+        - 'link "Placeholder for 👀 Who goes through? Group E and F previews for the 2026 World Cup Yahoo Sports Soccer · 5 hours ago 👀 Who goes through? Group E and F previews for the 2026 World Cup IT’S ALMOST TIME!The 2026 World Cup gets underway next Thursday (11).After the breakdown of Groups A and B and C and D, it is now time for two more: E and F.Which feature Germany and the Netherlands... Read full story" [ref=e926] [cursor=pointer]':
+          - /url: https://sports.yahoo.com/articles/goes-group-e-f-previews-223300006.html
+          - img "Placeholder for 👀 Who goes through? Group E and F previews for the 2026 World Cup" [ref=e927]
+          - generic [ref=e928]:
+            - generic [ref=e929]:
+              - generic [ref=e930]: Yahoo Sports Soccer
+              - generic [ref=e931]: ·
+              - generic [ref=e932]:
+                - img [ref=e933]
+                - text: 5 hours ago
+            - heading "👀 Who goes through? Group E and F previews for the 2026 World Cup" [level=3] [ref=e936]
+            - paragraph [ref=e937]: "IT’S ALMOST TIME!The 2026 World Cup gets underway next Thursday (11).After the breakdown of Groups A and B and C and D, it is now time for two more: E and F.Which feature Germany and the Netherlands..."
+            - generic [ref=e938]:
+              - text: Read full story
+              - img [ref=e939]
+        - link "Placeholder for 'Absolute madness' - Callaghan on red card decision Yahoo Sports Soccer · 6 hours ago 'Absolute madness' - Callaghan on red card decision Former Northern Ireland captain Marissa Callaghan says that Turkey striker Busem Seker \"had to be sent off\" after she controversially handled the ball before later scoring the winner during their 2-1 victory over Michael McArdle's side. Read full story" [ref=e943] [cursor=pointer]:
+          - /url: https://sports.yahoo.com/articles/absolute-madness-callaghan-red-card-215650629.html
+          - img "Placeholder for 'Absolute madness' - Callaghan on red card decision" [ref=e944]
+          - generic [ref=e945]:
+            - generic [ref=e946]:
+              - generic [ref=e947]: Yahoo Sports Soccer
+              - generic [ref=e948]: ·
+              - generic [ref=e949]:
+                - img [ref=e950]
+                - text: 6 hours ago
+            - heading "'Absolute madness' - Callaghan on red card decision" [level=3] [ref=e953]
+            - paragraph [ref=e954]: Former Northern Ireland captain Marissa Callaghan says that Turkey striker Busem Seker "had to be sent off" after she controversially handled the ball before later scoring the winner during their 2-1 victory over Michael McArdle's side.
+            - generic [ref=e955]:
+              - text: Read full story
+              - img [ref=e956]
+        - link "Placeholder for Advantage Scotland as they await Cuthbert injury news Yahoo Sports Soccer · 6 hours ago Advantage Scotland as they await Cuthbert injury news Scotland stay top of their World Cup qualifying group on goal difference from Belgium amid fears of a serious injury to key midfielder Erin Cuthbert. Read full story" [ref=e960] [cursor=pointer]:
+          - /url: https://sports.yahoo.com/articles/advantage-scotland-await-cuthbert-injury-220947100.html
+          - img "Placeholder for Advantage Scotland as they await Cuthbert injury news" [ref=e961]
+          - generic [ref=e962]:
+            - generic [ref=e963]:
+              - generic [ref=e964]: Yahoo Sports Soccer
+              - generic [ref=e965]: ·
+              - generic [ref=e966]:
+                - img [ref=e967]
+                - text: 6 hours ago
+            - heading "Advantage Scotland as they await Cuthbert injury news" [level=3] [ref=e970]
+            - paragraph [ref=e971]: Scotland stay top of their World Cup qualifying group on goal difference from Belgium amid fears of a serious injury to key midfielder Erin Cuthbert.
+            - generic [ref=e972]:
+              - text: Read full story
+              - img [ref=e973]
+        - 'link "Image for Marotta: \"Il Varese, Recoba, gli scudetti: vi dico tutto. Voglio la Champions con l''Inter e poi vado in pensione!\" La Gazzetta dello Sport · 6 hours ago Marotta: \"Il Varese, Recoba, gli scudetti: vi dico tutto. Voglio la Champions con l''Inter e poi vado in pensione!\" Il presidente nerazzurro festeggia 50 anni da dirigente: \"Ringrazio Oaktree, Palestra piace anche a noi. Credo che per vincere sia necessaria una cultura della vittoria, e solo uno zoccolo duro di italiani la garantisce\" Read full story" [ref=e980] [cursor=pointer]':
+          - /url: https://www.gazzetta.it/Calcio/Serie-A/Inter/06-06-2026/marotta-intervista-varese-recoba-inter-champions-pensione.shtml
+          - 'img "Image for Marotta: \"Il Varese, Recoba, gli scudetti: vi dico tutto. Voglio la Champions con l''Inter e poi vado in pensione!\"" [ref=e982]'
+          - generic [ref=e983]:
+            - generic [ref=e984]:
+              - generic [ref=e985]: La Gazzetta dello Sport
+              - generic [ref=e986]: ·
+              - generic [ref=e987]:
+                - img [ref=e988]
+                - text: 6 hours ago
+            - 'heading "Marotta: \"Il Varese, Recoba, gli scudetti: vi dico tutto. Voglio la Champions con l''Inter e poi vado in pensione!\"" [level=3] [ref=e991]'
+            - paragraph [ref=e992]: "Il presidente nerazzurro festeggia 50 anni da dirigente: \"Ringrazio Oaktree, Palestra piace anche a noi. Credo che per vincere sia necessaria una cultura della vittoria, e solo uno zoccolo duro di italiani la garantisce\""
+            - generic [ref=e993]:
+              - text: Read full story
+              - img [ref=e994]
+        - link "Placeholder for Wiegman pays price for lack of defensive pragmatism as Spain expose technical gap | Tom Garry The Guardian – Football · 6 hours ago Wiegman pays price for lack of defensive pragmatism as Spain expose technical gap | Tom Garry <p>England were outclassed in Mallorca and would have been better served by trying to contain the world champions</p><p>As the game ticked into second-half stoppage time, Spain were almost showboating, Aitana Bonmatí flicking the ball aroun Read full story" [ref=e998] [cursor=pointer]:
+          - /url: https://www.theguardian.com/football/2026/jun/05/wiegman-pays-price-for-lack-of-defensive-pragmatism-as-spain-expose-technical-gap
+          - img "Placeholder for Wiegman pays price for lack of defensive pragmatism as Spain expose technical gap | Tom Garry" [ref=e999]
+          - generic [ref=e1000]:
+            - generic [ref=e1001]:
+              - generic [ref=e1002]: The Guardian – Football
+              - generic [ref=e1003]: ·
+              - generic [ref=e1004]:
+                - img [ref=e1005]
+                - text: 6 hours ago
+            - heading "Wiegman pays price for lack of defensive pragmatism as Spain expose technical gap | Tom Garry" [level=3] [ref=e1008]
+            - paragraph [ref=e1009]: <p>England were outclassed in Mallorca and would have been better served by trying to contain the world champions</p><p>As the game ticked into second-half stoppage time, Spain were almost showboating, Aitana Bonmatí flicking the ball aroun
+            - generic [ref=e1010]:
+              - text: Read full story
+              - img [ref=e1011]
+        - link "Image for Republic of Ireland have nothing to lose against France - Barrett BBC Sport – Football · 6 hours ago Republic of Ireland have nothing to lose against France - Barrett Republic of Ireland striker Amber Barrett says the side \"are going to give everything we have\" during Tuesday's match against France when they have the chance to secure automatic qualification for the World Cup. Read full story" [ref=e1015] [cursor=pointer]:
+          - /url: https://www.bbc.com/sport/football/articles/cj9p9dn0e3zo?at_medium=RSS&amp;at_campaign=rss
+          - img "Image for Republic of Ireland have nothing to lose against France - Barrett" [ref=e1017]
+          - generic [ref=e1018]:
+            - generic [ref=e1019]:
+              - generic [ref=e1020]: BBC Sport – Football
+              - generic [ref=e1021]: ·
+              - generic [ref=e1022]:
+                - img [ref=e1023]
+                - text: 6 hours ago
+            - heading "Republic of Ireland have nothing to lose against France - Barrett" [level=3] [ref=e1026]
+            - paragraph [ref=e1027]: Republic of Ireland striker Amber Barrett says the side "are going to give everything we have" during Tuesday's match against France when they have the chance to secure automatic qualification for the World Cup.
+            - generic [ref=e1028]:
+              - text: Read full story
+              - img [ref=e1029]
+        - link "Image for Advantage Scotland as they await Cuthbert injury news BBC Sport – Football · 6 hours ago Advantage Scotland as they await Cuthbert injury news Scotland stay top of their World Cup qualifying group on goal difference from Belgium amid fears of a serious injury to key midfielder Erin Cuthbert. Read full story" [ref=e1033] [cursor=pointer]:
+          - /url: https://www.bbc.com/sport/football/articles/c3929el74pzo?at_medium=RSS&amp;at_campaign=rss
+          - img "Image for Advantage Scotland as they await Cuthbert injury news" [ref=e1035]
+          - generic [ref=e1036]:
+            - generic [ref=e1037]:
+              - generic [ref=e1038]: BBC Sport – Football
+              - generic [ref=e1039]: ·
+              - generic [ref=e1040]:
+                - img [ref=e1041]
+                - text: 6 hours ago
+            - heading "Advantage Scotland as they await Cuthbert injury news" [level=3] [ref=e1044]
+            - paragraph [ref=e1045]: Scotland stay top of their World Cup qualifying group on goal difference from Belgium amid fears of a serious injury to key midfielder Erin Cuthbert.
+            - generic [ref=e1046]:
+              - text: Read full story
+              - img [ref=e1047]
+        - 'link "Image for Milano-Brescia 91-86: highlights gara-4 La Gazzetta dello Sport VIDEO · 6 hours ago Milano-Brescia 91-86: highlights gara-4 Gli highlights di gara-4 che chiude a favore di Milano la semifinale playoff contro Brescia: finisce 91-86, decisivo il 29/39 da 2 dell’Olimpia e il solito Brooks, autore di 18 punti (6/6 da 2). Ora l’EA7 aspetta la vincente della serie tra Watch" [ref=e1051] [cursor=pointer]':
+          - /url: https://video.gazzetta.it/basket-italiano/seriea/highlights/video-milano-brescia-91-86-highlights-gara-4/76f6716a-5e59-42d2-9b00-85235fceexlk
+          - generic [ref=e1052]:
+            - 'img "Image for Milano-Brescia 91-86: highlights gara-4" [ref=e1053]'
+            - img [ref=e1056]
+          - generic [ref=e1058]:
+            - generic [ref=e1059]:
+              - generic [ref=e1060]: La Gazzetta dello Sport
+              - generic [ref=e1061]: VIDEO
+              - generic [ref=e1062]: ·
+              - generic [ref=e1063]:
+                - img [ref=e1064]
+                - text: 6 hours ago
+            - 'heading "Milano-Brescia 91-86: highlights gara-4" [level=3] [ref=e1067]'
+            - paragraph [ref=e1068]: "Gli highlights di gara-4 che chiude a favore di Milano la semifinale playoff contro Brescia: finisce 91-86, decisivo il 29/39 da 2 dell’Olimpia e il solito Brooks, autore di 18 punti (6/6 da 2). Ora l’EA7 aspetta la vincente della serie tra"
+            - generic [ref=e1069]:
+              - img [ref=e1070]
+              - text: Watch
+        - link "Image for 'Absolute madness' - Callaghan fumes at call to not give Turkey red card BBC Sport – Football · 6 hours ago 'Absolute madness' - Callaghan fumes at call to not give Turkey red card Former Northern Ireland captain Marissa Callaghan says that Turkey striker Busem Seker \"had to be sent off\" after she controversially handled the ball before later scoring the winner during their 2-1 victory over Michael McArdle's side. Read full story" [ref=e1072] [cursor=pointer]:
+          - /url: https://www.bbc.com/sport/football/articles/cpdpd3j61l8o?at_medium=RSS&amp;at_campaign=rss
+          - img "Image for 'Absolute madness' - Callaghan fumes at call to not give Turkey red card" [ref=e1074]
+          - generic [ref=e1075]:
+            - generic [ref=e1076]:
+              - generic [ref=e1077]: BBC Sport – Football
+              - generic [ref=e1078]: ·
+              - generic [ref=e1079]:
+                - img [ref=e1080]
+                - text: 6 hours ago
+            - heading "'Absolute madness' - Callaghan fumes at call to not give Turkey red card" [level=3] [ref=e1083]
+            - paragraph [ref=e1084]: Former Northern Ireland captain Marissa Callaghan says that Turkey striker Busem Seker "had to be sent off" after she controversially handled the ball before later scoring the winner during their 2-1 victory over Michael McArdle's side.
+            - generic [ref=e1085]:
+              - text: Read full story
+              - img [ref=e1086]
+        - link "Placeholder for ❌ World champions lose starlet to injury, see replacement Yahoo Sports Soccer · 6 hours ago ❌ World champions lose starlet to injury, see replacement There has been a cut from Germany’s World Cup squad. Lennart Karl, Bayern’s 18-year-old attacking midfielder, had an injury confirmed after tests carried out this Friday (5). The information was... Read full story" [ref=e1090] [cursor=pointer]:
+          - /url: https://sports.yahoo.com/articles/world-champions-lose-midfielder-injury-215500984.html
+          - img "Placeholder for ❌ World champions lose starlet to injury, see replacement" [ref=e1091]
+          - generic [ref=e1092]:
+            - generic [ref=e1093]:
+              - generic [ref=e1094]: Yahoo Sports Soccer
+              - generic [ref=e1095]: ·
+              - generic [ref=e1096]:
+                - img [ref=e1097]
+                - text: 6 hours ago
+            - heading "❌ World champions lose starlet to injury, see replacement" [level=3] [ref=e1100]
+            - paragraph [ref=e1101]: There has been a cut from Germany’s World Cup squad. Lennart Karl, Bayern’s 18-year-old attacking midfielder, had an injury confirmed after tests carried out this Friday (5). The information was...
+            - generic [ref=e1102]:
+              - text: Read full story
+              - img [ref=e1103]
+        - 'link "Image for Ecco il terribile Colle delle Finestre: il Giro d’Italia Women scala il cielo e fa la storia La Gazzetta dello Sport · 6 hours ago Ecco il terribile Colle delle Finestre: il Giro d’Italia Women scala il cielo e fa la storia Sabato la tappa regina della corsa rosa femminile: per la prima volta si affronta la salita piemontese di 18,5 km, con 7,8 km di strada bianca al 9,3% medio. Dal 1997 a oggi, senza paura, le ragazze hanno scalato Stelvio, Mortirolo e Zoncol Read full story" [ref=e1107] [cursor=pointer]':
+          - /url: https://www.gazzetta.it/Giroditalia/05-06-2026/ciclismo-il-colle-delle-finestre-il-giro-d-italia-women-scala-il-cielo-e-fa-la-storia.shtml
+          - 'img "Image for Ecco il terribile Colle delle Finestre: il Giro d’Italia Women scala il cielo e fa la storia" [ref=e1109]'
+          - generic [ref=e1110]:
+            - generic [ref=e1111]:
+              - generic [ref=e1112]: La Gazzetta dello Sport
+              - generic [ref=e1113]: ·
+              - generic [ref=e1114]:
+                - img [ref=e1115]
+                - text: 6 hours ago
+            - 'heading "Ecco il terribile Colle delle Finestre: il Giro d’Italia Women scala il cielo e fa la storia" [level=3] [ref=e1118]'
+            - paragraph [ref=e1119]: "Sabato la tappa regina della corsa rosa femminile: per la prima volta si affronta la salita piemontese di 18,5 km, con 7,8 km di strada bianca al 9,3% medio. Dal 1997 a oggi, senza paura, le ragazze hanno scalato Stelvio, Mortirolo e Zoncol"
+            - generic [ref=e1120]:
+              - text: Read full story
+              - img [ref=e1121]
+        - link "Placeholder for Why the USWNT might be better off losing to Brazil... ESPN FC · 6 hours ago Why the USWNT might be better off losing to Brazil... The best way for the USWNT to win the World Cup next summer? It just might be to go to Brazil and lose this week. Read full story" [ref=e1125] [cursor=pointer]:
+          - /url: <![CDATA[https://www.espn.com/soccer/story/_/id/48946471/why-uswnt-better-losing-world-cup-hosts-brazil-friendlies]]>
+          - img "Placeholder for Why the USWNT might be better off losing to Brazil..." [ref=e1126]
+          - generic [ref=e1127]:
+            - generic [ref=e1128]:
+              - generic [ref=e1129]: ESPN FC
+              - generic [ref=e1130]: ·
+              - generic [ref=e1131]:
+                - img [ref=e1132]
+                - text: 6 hours ago
+            - heading "Why the USWNT might be better off losing to Brazil..." [level=3] [ref=e1135]
+            - paragraph [ref=e1136]: The best way for the USWNT to win the World Cup next summer? It just might be to go to Brazil and lose this week.
+            - generic [ref=e1137]:
+              - text: Read full story
+              - img [ref=e1138]
+        - link "Image for Smith helps Wire beat Hull FC to keep pace at top BBC Sport – All · 6 hours ago Smith helps Wire beat Hull FC to keep pace at top Josh Smith scores two second-half tries as Warrington struggle past Hull FC to move level on points with Leeds at the top of Super League. Read full story" [ref=e1142] [cursor=pointer]:
+          - /url: https://www.bbc.com/sport/rugby-league/articles/c86dzng0p9po?at_medium=RSS&amp;at_campaign=rss
+          - img "Image for Smith helps Wire beat Hull FC to keep pace at top" [ref=e1144]
+          - generic [ref=e1145]:
+            - generic [ref=e1146]:
+              - generic [ref=e1147]: BBC Sport – All
+              - generic [ref=e1148]: ·
+              - generic [ref=e1149]:
+                - img [ref=e1150]
+                - text: 6 hours ago
+            - heading "Smith helps Wire beat Hull FC to keep pace at top" [level=3] [ref=e1153]
+            - paragraph [ref=e1154]: Josh Smith scores two second-half tries as Warrington struggle past Hull FC to move level on points with Leeds at the top of Super League.
+            - generic [ref=e1155]:
+              - text: Read full story
+              - img [ref=e1156]
+        - 'link "Image for La Nazionale non c’è, ma gli azzurri sì: da Baggio a Vieri, le leggende abbracciano i tifosi a Toronto La Gazzetta dello Sport · 6 hours ago La Nazionale non c’è, ma gli azzurri sì: da Baggio a Vieri, le leggende abbracciano i tifosi a Toronto Migliaia di fan hanno accolto Ambrosini, Nesta e tanti altri ex campioni in Canada. Il viaggio proseguirà a New York, dove sfideranno le vecchie glorie degli Stati Uniti Read full story" [ref=e1160] [cursor=pointer]':
+          - /url: https://www.gazzetta.it/Calcio/nazionali/05-06-2026/baggio-vieri-e-le-leggende-azzurre-a-toronto-l-abbraccio-ai-tifosi-italiani.shtml
+          - 'img "Image for La Nazionale non c’è, ma gli azzurri sì: da Baggio a Vieri, le leggende abbracciano i tifosi a Toronto" [ref=e1162]'
+          - generic [ref=e1163]:
+            - generic [ref=e1164]:
+              - generic [ref=e1165]: La Gazzetta dello Sport
+              - generic [ref=e1166]: ·
+              - generic [ref=e1167]:
+                - img [ref=e1168]
+                - text: 6 hours ago
+            - 'heading "La Nazionale non c’è, ma gli azzurri sì: da Baggio a Vieri, le leggende abbracciano i tifosi a Toronto" [level=3] [ref=e1171]'
+            - paragraph [ref=e1172]: Migliaia di fan hanno accolto Ambrosini, Nesta e tanti altri ex campioni in Canada. Il viaggio proseguirà a New York, dove sfideranno le vecchie glorie degli Stati Uniti
+            - generic [ref=e1173]:
+              - text: Read full story
+              - img [ref=e1174]
+        - 'link "Image for Watch: Weir hat-trick as Scotland thump Israel BBC Sport – Football VIDEO · 6 hours ago Watch: Weir hat-trick as Scotland thump Israel Watch as Scotland thump Israel 6-0 in World Cup qualifying Group B4, with captain Caroline Weir scoring a hat-trick. Watch" [ref=e1178] [cursor=pointer]':
+          - /url: https://www.bbc.com/sport/videos/c74d4gw755go?at_medium=RSS&amp;at_campaign=rss
+          - generic [ref=e1179]:
+            - 'img "Image for Watch: Weir hat-trick as Scotland thump Israel" [ref=e1180]'
+            - img [ref=e1183]
+          - generic [ref=e1185]:
+            - generic [ref=e1186]:
+              - generic [ref=e1187]: BBC Sport – Football
+              - generic [ref=e1188]: VIDEO
+              - generic [ref=e1189]: ·
+              - generic [ref=e1190]:
+                - img [ref=e1191]
+                - text: 6 hours ago
+            - 'heading "Watch: Weir hat-trick as Scotland thump Israel" [level=3] [ref=e1194]'
+            - paragraph [ref=e1195]: Watch as Scotland thump Israel 6-0 in World Cup qualifying Group B4, with captain Caroline Weir scoring a hat-trick.
+            - generic [ref=e1196]:
+              - img [ref=e1197]
+              - text: Watch
+      - button "Load more stories" [active] [ref=e353] [cursor=pointer]: Load more (60 of 312)
+      - paragraph [ref=e93]: News items link to original sources. We don't host the content.
+  - contentinfo [ref=e94]:
+    - generic [ref=e95]:
+      - generic [ref=e96]:
+        - generic [ref=e97]:
+          - img "Kopala Kits" [ref=e98]
+          - generic [ref=e99]: KOPALA KITS
+        - paragraph [ref=e100]: Premium soccer jerseys for every fan. Local, international, national & retro classics — all at the best prices in Kitwe.
+        - link "Chat with Us" [ref=e101] [cursor=pointer]:
+          - /url: https://wa.me/260770713619
+          - img [ref=e102]
+          - text: Chat with Us
+        - link "Admin panel →" [ref=e104] [cursor=pointer]:
+          - /url: /admin
+      - generic [ref=e105]:
+        - heading "Browse" [level=4] [ref=e106]
+        - list [ref=e107]:
+          - listitem [ref=e108]:
+            - link "Home" [ref=e109] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=e110]:
+            - link "Shop all kits" [ref=e111] [cursor=pointer]:
+              - /url: /shop
+          - listitem [ref=e112]:
+            - link "Local teams" [ref=e113] [cursor=pointer]:
+              - /url: /shop?category=Local
+          - listitem [ref=e114]:
+            - link "International" [ref=e115] [cursor=pointer]:
+              - /url: /shop?category=International
+          - listitem [ref=e116]:
+            - link "National teams" [ref=e117] [cursor=pointer]:
+              - /url: /shop?category=National
+          - listitem [ref=e118]:
+            - link "Retro classics" [ref=e119] [cursor=pointer]:
+              - /url: /shop?category=Retro
+          - listitem [ref=e120]:
+            - link "About us" [ref=e121] [cursor=pointer]:
+              - /url: /about
+          - listitem [ref=e122]:
+            - link "Contact" [ref=e123] [cursor=pointer]:
+              - /url: /contact
+      - generic [ref=e124]:
+        - heading "Find Us" [level=4] [ref=e125]
+        - generic [ref=e126]:
+          - paragraph [ref=e127]:
+            - img [ref=e128]
+            - generic [ref=e131]:
+              - text: K-Block, Copperbelt University
+              - text: Kitwe, Copperbelt Province, Zambia
+          - paragraph [ref=e132]:
+            - img [ref=e133]
+            - link "+260 770 713619" [ref=e135] [cursor=pointer]:
+              - /url: https://wa.me/260770713619
+          - paragraph [ref=e136]:
+            - img [ref=e137]
+            - link "hello@kopala.zingati.app" [ref=e140] [cursor=pointer]:
+              - /url: mailto:hello@kopala.zingati.app
+        - paragraph [ref=e141]: Mon–Fri 8am–6pm · Sat 9am–4pm
+    - generic [ref=e142]: 2026 Kopala Kits · Kitwe, Zambia · All prices in Zambian Kwacha (ZMW)
+  - button "Chat on WhatsApp" [ref=e143] [cursor=pointer]:
+    - img [ref=e144]

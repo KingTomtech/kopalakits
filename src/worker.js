@@ -46,9 +46,9 @@ const ADMIN_PW_ENV      = 'ADMIN_PASSWORD';
 const PHONE_ENV         = 'PHONE_NUMBER';
 const ALLOWED_ORIGINS_ENV = 'ALLOWED_ORIGINS';
 
-const MAX_BODY_BYTES    = 1_000_000;       // 1 MB on writes
+const MAX_BODY_BYTES    = 100_000_000;     // 100 MB — Cloudflare Workers hard cap
 const MAX_PRODUCTS      = 500;
-const MAX_DATAURL_BYTES = 1_500_000;       // ~1.4 MB
+const MAX_DATAURL_BYTES = 100_000;         // 100 KB safety net for legacy data URLs
 const LOGIN_WINDOW_MS   = 15 * 60_000;
 const LOGIN_MAX_TRIES   = 5;
 
@@ -266,7 +266,7 @@ function sanitizeProduct(raw, idx) {
     out.id = idNum;
   }
   // category allowlist
-  if (out.category && !['Local', 'International', 'National', 'Retro'].includes(out.category)) {
+  if (out.category && !['Local', 'International', 'Leagues', 'Retro'].includes(out.category)) {
     throw new HttpError(`Product at index ${idx} has invalid category`, 400);
   }
   // image: must be http(s) or relative; reject data: URIs once they exceed the cap
@@ -1009,11 +1009,15 @@ const RSS_FEEDS = [
   // ── AFRICAN FOOTBALL ──
   { id: 'espn-afcon',         label: 'ESPN – AFCON / CAF',              url: 'https://www.espn.com/espn/rss/soccer/_/league/CAF.NATIONS',  tags: ['football', 'africa'] },
   { id: 'espn-cosafa',        label: 'ESPN – COSAFA',                 url: 'https://www.espn.com/espn/rss/soccer/_/league/CAF.COSAFA',    tags: ['football', 'africa', 'zambia'] },
+  { id: 'bbc-sport-africa',   label: 'BBC Sport – Africa',            url: 'https://feeds.bbci.co.uk/sport/africa/rss.xml',                tags: ['football', 'africa'] },
+  { id: 'africa-top-sports',  label: 'Africa Top Sports',             url: 'https://africatopsports.com/feed/',                            tags: ['football', 'africa'] },
+  { id: 'kingfut',            label: 'KingFut (Egypt)',               url: 'https://www.kingfut.com/feed/',                                tags: ['football', 'africa'] },
 
   // ── ZAMBIA / LOCAL ──
   { id: 'bola-yapa-zed',      label: 'Bola Yapa Zed',                 url: 'https://bolayapazed.com/feed/',                   tags: ['football', 'zambia', 'africa'] },
   { id: 'daily-mail-zm',      label: 'Daily Mail Zambia – Sport',     url: 'https://www.daily-mail.co.zm/category/sports/feed/', tags: ['football', 'zambia', 'general'] },
   { id: 'goal-diggers',       label: 'Goal Diggers (Zambia)',         url: 'https://diggers.news/category/goal-diggers/feed/', tags: ['football', 'zambia', 'africa'] },
+  { id: 'lusakastar',         label: 'Lusaka Star',                   url: 'https://lusakastar.com/feed/',                     tags: ['zambia'] },
 
   // ── OTHER MAJOR LEAGUES ──
   { id: 'espn-laliga',        label: 'ESPN – La Liga',                url: 'https://www.espn.com/espn/rss/soccer/_/league/esp.1', tags: ['football'] },
@@ -1030,6 +1034,9 @@ const RSS_FEEDS = [
 
   // ── KIT / TRANSFER LAUNCHES ──
   { id: 'footy-headlines',    label: 'Footy Headlines',               url: 'https://www.footyheadlines.com/feeds/posts/default', tags: ['kit-launches', 'football'] },
+  { id: 'football-italia',    label: 'Football Italia',               url: 'https://www.football-italia.net/rss.xml',          tags: ['football'] },
+  { id: 'these-football-times', label: 'These Football Times',        url: 'https://thesefootballtimes.co/feed/',              tags: ['kit-launches', 'football'] },
+  { id: 'the-football-faithful', label: 'The Football Faithful',      url: 'https://www.thefootballfaithful.com/feed/',        tags: ['football'] },
 ];
 
 function parseRssText(xmlText, feedMeta) {
@@ -1037,7 +1044,10 @@ function parseRssText(xmlText, feedMeta) {
   const matches = xmlText.match(/<(?:item|entry)\b[\s\S]*?<\/(?:item|entry)>/g) || [];
   for (const raw of matches.slice(0, 25)) {
     const title = textOfRss(raw, 'title');
-    const link = textOfRss(raw, 'link') || atomLinkHrefRss(raw);
+    // RSS 2.0 <link> is almost always CDATA-wrapped in ESPN/BBC/Goal
+    // feeds. textOfRss returns the inner text with markers still present;
+    // stripTagsRss unwraps CDATA, which is what we want here.
+    const link = stripTagsRss(textOfRss(raw, 'link')) || atomLinkHrefRss(raw);
     const description = textOfRss(raw, 'description') || textOfRss(raw, 'summary') || textOfRss(raw, 'content');
     let pubDate = textOfRss(raw, 'pubDate') || textOfRss(raw, 'published') || textOfRss(raw, 'updated');
     let validPubDate = null;
@@ -1045,29 +1055,82 @@ function parseRssText(xmlText, feedMeta) {
       const date = new Date(pubDate);
       if (!isNaN(date.getTime())) validPubDate = date.toISOString();
     }
-    let image = enclosureUrlRss(raw) || mediaThumbRss(raw) || mediaContentUrlRss(raw) || mediaGroupThumbRss(raw) || ogImageRss(raw);
+    let image = enclosureUrlRss(raw) || mediaThumbRss(raw) || mediaContentUrlRss(raw) || mediaGroupThumbRss(raw) || contentEncodedImgRss(raw) || ogImageRss(raw);
     if (!image && description) {
-      const imgMatch = description.match(/<img[^>]+src="([^">]+)"/i);
-      if (imgMatch) image = imgMatch[1];
+      const srcsetMatch = description.match(/<img[^>]+srcset=["']([^"']+)["']/i);
+      if (srcsetMatch) {
+        const first = srcsetMatch[1].split(',')[0].trim().split(/\s+/)[0];
+        if (first) image = first;
+      }
+      if (!image) {
+        const imgMatch = description.match(/<img[^>]+src=["']([^"'>]+)["']/i);
+        if (imgMatch) image = imgMatch[1];
+      }
     }
-    let video = videoEnclosureRss(raw) || mediaGroupVideoRss(raw);
-    const videoKeywords = /\b(watch|video|highlights|clip|replay)\b/i;
-    if (!video && (videoKeywords.test(title) || videoKeywords.test(description))) {
+    let video = videoEnclosureRss(raw) || mediaGroupVideoRss(raw) || detectVideoFromLinkRss(link) || detectYoutubeRss(raw);
+    if (!video && isLikelyVideoTitleRss(title, description, link)) {
       video = 'keyword';
     }
+    if (video && !image) {
+      image = youtubeThumbnailFromLinkRss(link);
+    }
     if (title && link) {
-      items.push({
+      const item = {
         title: decodeEntitiesRss(stripTagsRss(title)).slice(0, 200),
         link,
-        description: decodeEntitiesRss(stripTagsRss(description)).slice(0, 240),
+        description: cleanMarkdownInRss(decodeEntitiesRss(stripTagsRss(description))).slice(0, 240),
         pubDate: validPubDate,
         source: feedMeta.label,
         image: image || null,
         video: video || undefined,
-      });
+      };
+      item.source = refineSourceRss(item);
+      items.push(item);
     }
   }
   return { id: feedMeta.id, label: feedMeta.label, items };
+}
+
+/**
+ * Disambiguate the per-item source for multi-sport catch-all feeds
+ * (espn-english-premier, espn-sport-all, bbc-sport-all, etc.). Some feeds
+ * publish a mix of sports under one URL, so the feed label would otherwise
+ * mislabel NBA / NFL / NHL / F1 stories as football.
+ */
+function refineSourceRss(item) {
+  const text = (item.title + ' ' + (item.description || '')).toLowerCase();
+  const ambiguous = /– all sports|– all\b/.test(item.source || '') ||
+                    /– premier league\b/.test(item.source || '') ||
+                    /– sport all\b/.test(item.source || '');
+  if (!ambiguous) return item.source;
+
+  if (/\b(nba|nfl|mlb|nhl|tennis|boxing|f1|formula 1|golf|cricket|rugby)\b/.test(text)) {
+    if (/\bnba\b/.test(text))  return item.source + ' · NBA';
+    if (/\bnfl\b/.test(text))  return item.source + ' · NFL';
+    if (/\bnhl\b/.test(text))  return item.source + ' · NHL';
+    if (/\bmlb\b/.test(text))  return item.source + ' · MLB';
+    if (/\b(f1|formula 1)\b/.test(text)) return item.source + ' · F1';
+    if (/\btennis\b/.test(text)) return item.source + ' · Tennis';
+    if (/\bcricket\b/.test(text))return item.source + ' · Cricket';
+    if (/\brugby\b/.test(text))  return item.source + ' · Rugby';
+    if (/\bgolf\b/.test(text))   return item.source + ' · Golf';
+  }
+  if (/\bchampions league\b/.test(text)) return item.source + ' · Champions League';
+  if (/\beuropa league\b/.test(text))    return item.source + ' · Europa League';
+  if (/\bla liga\b/.test(text))          return item.source + ' · La Liga';
+  if (/\bserie a\b/.test(text))          return item.source + ' · Serie A';
+  if (/\bbundesliga\b/.test(text))       return item.source + ' · Bundesliga';
+  if (/\bmls\b/.test(text))              return item.source + ' · MLS';
+  return item.source;
+}
+
+// Footy Headlines, Goal, and a few others put markdown inside their
+// <description>. Once we've stripped HTML tags the markdown image/link
+// syntax would leak through as `![alt](url)`, so we strip those too.
+function cleanMarkdownInRss(s) {
+  return s
+    .replace(/!\[[^\]]*\]\([^)]*\)/g, '')
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1');
 }
 
 function textOfRss(xml, tag) {
@@ -1098,10 +1161,11 @@ function mediaContentUrlRss(xml) {
   const tags = xml.match(/<media:content\b[^>]*>/gi);
   if (!tags) return null;
   for (const tag of tags) {
-    if (/\btype="image/i.test(tag)) {
-      const url = tag.match(/\burl="([^"]+)"/i);
-      if (url) return url[1];
-    }
+    // Guardian ships <media:content width="..." url="..."> with no
+    // type attribute, so accept any url that points to a recognised
+    // image extension. The first match wins.
+    const url = tag.match(/\burl="([^"]+\.(?:jpg|jpeg|png|webp|gif)[^"]*)"/i);
+    if (url) return url[1].replace(/&amp;/g, '&');
   }
   return null;
 }
@@ -1135,9 +1199,46 @@ function mediaGroupVideoRss(xml) {
   }
   return null;
 }
+// YouTube channel RSS uses <yt:videoId> in the item body and/or a
+// youtube.com link. Both signal a video without a media:enclosure.
+function detectVideoFromLinkRss(link) {
+  if (!link) return null;
+  return /youtu\.be\/|youtube\.com\/(watch|embed|shorts|v\/)/i.test(link) ? 'youtube-link' : null;
+}
+function detectYoutubeRss(xml) {
+  return /<yt:videoId[\s>]/i.test(xml) ? 'youtube-channel' : null;
+}
 function ogImageRss(xml) {
   const m = xml.match(/og:image[^"]*"([^"]+\.(?:jpg|jpeg|png|webp))"/i);
   return m ? m[1] : null;
+}
+function contentEncodedImgRss(xml) {
+  const m = xml.match(/<content:encoded[^>]*>([\s\S]*?)<\/content:encoded>/i);
+  if (!m) return null;
+  const html = m[1];
+  const srcsetMatch = html.match(/<img[^>]+srcset=["']([^"']+)["']/i);
+  if (srcsetMatch) {
+    const first = srcsetMatch[1].split(',')[0].trim().split(/\s+/)[0];
+    if (first) return first;
+  }
+  const imgMatch = html.match(/<img[^>]+src=["']([^"'>]+)["']/i);
+  return imgMatch ? imgMatch[1] : null;
+}
+function youtubeThumbnailFromLinkRss(link) {
+  if (!link) return null;
+  let m = link.match(/youtu\.be\/([A-Za-z0-9_-]{6,})/);
+  let id = m ? m[1] : null;
+  if (!id) {
+    m = link.match(/youtube\.com\/(?:watch\?(?:.*&)?v=|embed\/|shorts\/|v\/)([A-Za-z0-9_-]{6,})/);
+    id = m ? m[1] : null;
+  }
+  return id ? `https://i.ytimg.com/vi/${id}/hqdefault.jpg` : null;
+}
+function isLikelyVideoTitleRss(title, description, link) {
+  if (!title) return false;
+  if (/\b(watch|highlights|clip|replay|trailer|goalmouth|skills)\b/i.test(title)) return true;
+  if (description && /\b(highlights|trailer|press conference|extended highlights|watch now|watch live|game recap|match recap)\b/i.test(description)) return true;
+  return false;
 }
 function stripTagsRss(s) {
   return s.replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, '$1').replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();

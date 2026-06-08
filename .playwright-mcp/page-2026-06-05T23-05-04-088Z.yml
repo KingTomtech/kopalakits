@@ -1,0 +1,119 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - link "Kopala Kits home" [ref=e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e7]:
+          - img "Kopala Kits" [ref=e8]
+          - generic [ref=e15]: KOPALA KITS
+      - navigation [ref=e16]:
+        - link "Home" [ref=e17] [cursor=pointer]:
+          - /url: /
+        - link "Shop" [ref=e18] [cursor=pointer]:
+          - /url: /shop
+        - link "Predictions" [ref=e19] [cursor=pointer]:
+          - /url: /predictions
+          - text: Predictions
+        - link "Tournaments" [ref=e21] [cursor=pointer]:
+          - /url: /tournaments
+        - link "News" [ref=e22] [cursor=pointer]:
+          - /url: /news
+        - link "Media" [ref=e23] [cursor=pointer]:
+          - /url: /media
+        - link "About" [ref=e24] [cursor=pointer]:
+          - /url: /about
+        - link "Contact" [ref=e25] [cursor=pointer]:
+          - /url: /contact
+      - generic [ref=e26]:
+        - button "Open cart, 0 items" [ref=e27] [cursor=pointer]:
+          - img [ref=e28]
+        - button "Switch to dark mode" [ref=e32] [cursor=pointer]:
+          - img [ref=e33]
+  - main [ref=e35]:
+    - generic [ref=e36]:
+      - generic [ref=e38]:
+        - generic [ref=e39]:
+          - generic [ref=e40]:
+            - img [ref=e41]
+            - text: Fan Zone
+          - heading "Pick the winner. Brag forever." [level=1] [ref=e47]
+          - paragraph [ref=e48]: Match-day predictions for the teams we sell jerseys for. Vote on the next fixtures, see how your pick stacks up against the Kopala Kits community.
+          - generic [ref=e49]:
+            - generic [ref=e50]: 0 upcoming
+            - generic [ref=e51]: 0 total votes
+            - generic [ref=e52]: 0 your picks
+        - button "Refresh fixtures" [ref=e53] [cursor=pointer]:
+          - img [ref=e54]
+          - text: Refresh
+      - generic [ref=e113]:
+        - generic [ref=e114]:
+          - heading "Think you've got what it takes?" [level=2] [ref=e115]
+          - paragraph [ref=e116]: Settle predictions with friends on WhatsApp. Bring receipts.
+        - generic [ref=e117]:
+          - button "WhatsApp a friend" [ref=e118] [cursor=pointer]:
+            - img [ref=e119]
+            - text: WhatsApp a friend
+          - link "Shop the kits" [ref=e121] [cursor=pointer]:
+            - /url: /shop
+            - img [ref=e122]
+            - text: Shop the kits
+  - contentinfo [ref=e124]:
+    - generic [ref=e125]:
+      - generic [ref=e126]:
+        - generic [ref=e127]:
+          - img "Kopala Kits" [ref=e128]
+          - generic [ref=e135]: KOPALA KITS
+        - paragraph [ref=e136]: Premium soccer jerseys for every fan. Local, international, national & retro classics — all at the best prices in Kitwe.
+        - link "Chat with Us" [ref=e137] [cursor=pointer]:
+          - /url: https://wa.me/260770713619
+          - img [ref=e138]
+          - text: Chat with Us
+        - link "Admin panel →" [ref=e140] [cursor=pointer]:
+          - /url: /admin
+      - generic [ref=e141]:
+        - heading "Browse" [level=4] [ref=e142]
+        - list [ref=e143]:
+          - listitem [ref=e144]:
+            - link "Home" [ref=e145] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=e146]:
+            - link "Shop all kits" [ref=e147] [cursor=pointer]:
+              - /url: /shop
+          - listitem [ref=e148]:
+            - link "Local teams" [ref=e149] [cursor=pointer]:
+              - /url: /shop?category=Local
+          - listitem [ref=e150]:
+            - link "International" [ref=e151] [cursor=pointer]:
+              - /url: /shop?category=International
+          - listitem [ref=e152]:
+            - link "National teams" [ref=e153] [cursor=pointer]:
+              - /url: /shop?category=National
+          - listitem [ref=e154]:
+            - link "Retro classics" [ref=e155] [cursor=pointer]:
+              - /url: /shop?category=Retro
+          - listitem [ref=e156]:
+            - link "About us" [ref=e157] [cursor=pointer]:
+              - /url: /about
+          - listitem [ref=e158]:
+            - link "Contact" [ref=e159] [cursor=pointer]:
+              - /url: /contact
+      - generic [ref=e160]:
+        - heading "Find Us" [level=4] [ref=e161]
+        - generic [ref=e162]:
+          - paragraph [ref=e163]:
+            - img [ref=e164]
+            - generic [ref=e167]:
+              - text: K-Block, Copperbelt University
+              - text: Kitwe, Copperbelt Province, Zambia
+          - paragraph [ref=e168]:
+            - img [ref=e169]
+            - link "+260 770 713619" [ref=e171] [cursor=pointer]:
+              - /url: https://wa.me/260770713619
+          - paragraph [ref=e172]:
+            - img [ref=e173]
+            - link "hello@kopala.zingati.app" [ref=e176] [cursor=pointer]:
+              - /url: mailto:hello@kopala.zingati.app
+        - paragraph [ref=e177]: Mon–Fri 8am–6pm · Sat 9am–4pm
+    - generic [ref=e178]: 2026 Kopala Kits · Kitwe, Zambia · All prices in Zambian Kwacha (ZMW)
+  - button "Chat on WhatsApp" [ref=e179] [cursor=pointer]:
+    - img [ref=e180]

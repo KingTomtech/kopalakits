@@ -119,6 +119,7 @@ export function getLocalBusinessSchema() {
     address: {
       "@type": "PostalAddress",
       addressLocality: "Kitwe",
+      addressRegion: "Copperbelt Province",
       addressCountry: "ZM",
     },
     geo: {
@@ -127,8 +128,8 @@ export function getLocalBusinessSchema() {
       longitude: 28.2135,
     },
     areaServed: {
-      "@type": "City",
-      name: "Kitwe",
+      "@type": "State",
+      name: "Copperbelt Province",
       addressCountry: "ZM",
     },
     hasMap: "https://maps.google.com/?q=Kitwe+Zambia",
