@@ -37,7 +37,7 @@ export default function SiteFooter({ phone }) {
             <li><Link to="/shop" className="font-medium hover:underline" style={{ color: 'var(--text-muted)' }}>Shop all kits</Link></li>
             <li><Link to="/shop?category=Local" className="font-medium hover:underline" style={{ color: 'var(--text-muted)' }}>Local teams</Link></li>
             <li><Link to="/shop?category=International" className="font-medium hover:underline" style={{ color: 'var(--text-muted)' }}>International</Link></li>
-            <li><Link to="/shop?category=National" className="font-medium hover:underline" style={{ color: 'var(--text-muted)' }}>National teams</Link></li>
+            <li><Link to="/shop?category=Leagues" className="font-medium hover:underline" style={{ color: 'var(--text-muted)' }}>Leagues</Link></li>
             <li><Link to="/shop?category=Retro" className="font-medium hover:underline" style={{ color: 'var(--text-muted)' }}>Retro classics</Link></li>
             <li><Link to="/about" className="font-medium hover:underline" style={{ color: 'var(--text-muted)' }}>About us</Link></li>
             <li><Link to="/contact" className="font-medium hover:underline" style={{ color: 'var(--text-muted)' }}>Contact</Link></li>
@@ -48,7 +48,7 @@ export default function SiteFooter({ phone }) {
           <address className="not-italic text-sm space-y-1.5" style={{ color: 'var(--text-muted)' }}>
             <p className="flex items-start gap-2">
               <MapPin size={14} className="mt-0.5 flex-shrink-0" style={{ color: 'var(--text-faint)' }} />
-              <span>K-Block, Copperbelt University<br />Kitwe, Copperbelt Province, Zambia</span>
+              <span>Kitwe</span>
             </p>
             <p className="flex items-center gap-2">
               <Phone size={14} className="flex-shrink-0" style={{ color: 'var(--text-faint)' }} />

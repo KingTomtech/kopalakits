@@ -118,10 +118,7 @@ export function getLocalBusinessSchema() {
     ],
     address: {
       "@type": "PostalAddress",
-      streetAddress: "K-Block, Copperbelt University",
       addressLocality: "Kitwe",
-      addressRegion: "Copperbelt Province",
-      postalCode: "10101",
       addressCountry: "ZM",
     },
     geo: {
@@ -130,11 +127,11 @@ export function getLocalBusinessSchema() {
       longitude: 28.2135,
     },
     areaServed: {
-      "@type": "State",
-      name: "Copperbelt Province",
+      "@type": "City",
+      name: "Kitwe",
       addressCountry: "ZM",
     },
-    hasMap: "https://maps.google.com/?q=Copperbelt+University+Kitwe+Zambia",
+    hasMap: "https://maps.google.com/?q=Kitwe+Zambia",
   };
 }
 

@@ -8,7 +8,7 @@ const FAQS = [
   },
   {
     q: 'Do you have a physical store?',
-    a: 'Yes — K-Block, Copperbelt University, Kitwe. Come see the kits in person. We are open Mon–Fri 8am–6pm, Sat 9am–4pm.',
+    a: 'Yes — we are based in Kitwe. Come see the kits in person. We are open Mon–Fri 8am–6pm, Sat 9am–4pm.',
   },
   {
     q: 'Do you ship outside Kitwe?',
@@ -116,7 +116,7 @@ export default function ContactPage({ phone }) {
               <div>
                 <div className="text-sm font-bold" style={{ color: 'var(--text)' }}>Visit</div>
                 <div className="text-xs" style={{ color: 'var(--text-muted)' }}>
-                  K-Block, Copperbelt University, Kitwe
+                  Kitwe
                 </div>
               </div>
             </div>
