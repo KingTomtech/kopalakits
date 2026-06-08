@@ -78,6 +78,9 @@ function InstagramProfile() {
 }
 
 function FacebookPage() {
+  // The official page-plugin iframe requires a real Page URL, but our share
+  // link doesn't resolve. Render a rich card preview that mirrors the
+  // Instagram shape — header + body with link-preview tiles + CTA.
   return (
     <div
       className="rounded-2xl overflow-hidden border"
@@ -103,22 +106,49 @@ function FacebookPage() {
           </a>
         </div>
       </div>
-      <iframe
-        title="Kopala Kits on Facebook"
-        src={`https://www.facebook.com/plugins/page.php?href=${encodeURIComponent(FACEBOOK_URL)}&tabs=timeline&width=500&height=600&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true`}
-        loading="lazy"
-        className="w-full"
-        style={{ border: 'none', overflow: 'hidden', height: 600 }}
-        allow="autoplay; clipboard-write; encrypted-media; picture-in-picture"
-      />
+      <div className="p-5 space-y-3">
+        <p className="text-sm leading-relaxed" style={{ color: 'var(--text-muted)' }}>
+          We post on Facebook first — kit drops, group-order threads, and customer
+          photos. Tap the button below to follow the page and turn on notifications
+          so you never miss a release.
+        </p>
+        <div
+          className="rounded-xl p-3 border"
+          style={{ borderColor: 'var(--border)', backgroundColor: 'var(--bg)' }}
+        >
+          <div className="text-xs font-bold uppercase tracking-widest" style={{ color: 'var(--text-faint)' }}>
+            What you'll find
+          </div>
+          <ul className="mt-2 text-sm space-y-1.5" style={{ color: 'var(--text)' }}>
+            <li className="flex items-start gap-2">
+              <span style={{ color: '#1877F2' }}>•</span> First looks at incoming kits
+            </li>
+            <li className="flex items-start gap-2">
+              <span style={{ color: '#1877F2' }}>•</span> Group order threads for friends, schools &amp; offices
+            </li>
+            <li className="flex items-start gap-2">
+              <span style={{ color: '#1877F2' }}>•</span> Real reviews from Copperbelt buyers
+            </li>
+          </ul>
+        </div>
+        <a
+          href={FACEBOOK_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl text-white font-bold"
+          style={{ backgroundColor: '#1877F2' }}
+        >
+          <FacebookIcon size={16} /> Open Facebook
+        </a>
+      </div>
     </div>
   );
 }
 
 function TikTokProfile() {
-  // TikTok's official embed only supports individual video URLs, not profiles,
-  // so we mirror the Instagram treatment: header card with circular avatar +
-  // external link, then a content block describing what to expect.
+  // TikTok's official embed only supports individual video URLs and the
+  // profile can't be auto-resolved from the server. Render a rich card that
+  // mirrors the Instagram shape — header + body content + CTA.
   return (
     <div
       className="rounded-2xl overflow-hidden border"
@@ -144,16 +174,38 @@ function TikTokProfile() {
           </a>
         </div>
       </div>
-      <div className="p-5">
-        <p className="text-sm" style={{ color: 'var(--text-muted)' }}>
-          Find us on TikTok for kit reveals, behind-the-scenes, and the occasional dance.
-          Follow along to never miss a drop.
+      <div className="p-5 space-y-3">
+        <p className="text-sm leading-relaxed" style={{ color: 'var(--text-muted)' }}>
+          Short-form video: 60-second kit reveals, jersey unboxings, and
+          match-day fan reactions from the Copperbelt.
         </p>
+        <div
+          className="rounded-xl p-3 border"
+          style={{ borderColor: 'var(--border)', backgroundColor: 'var(--bg)' }}
+        >
+          <div className="text-xs font-bold uppercase tracking-widest" style={{ color: 'var(--text-faint)' }}>
+            What you'll see
+          </div>
+          <ul className="mt-2 text-sm space-y-1.5" style={{ color: 'var(--text)' }}>
+            <li className="flex items-start gap-2">
+              <span style={{ color: '#000' }}>•</span> 60-second kit reveals
+            </li>
+            <li className="flex items-start gap-2">
+              <span style={{ color: '#000' }}>•</span> Jersey unboxings from real customers
+            </li>
+            <li className="flex items-start gap-2">
+              <span style={{ color: '#000' }}>•</span> Match-day fan reactions
+            </li>
+            <li className="flex items-start gap-2">
+              <span style={{ color: '#000' }}>•</span> The occasional dance
+            </li>
+          </ul>
+        </div>
         <a
           href={TIKTOK_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-4 inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl text-white font-bold"
+          className="inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl text-white font-bold"
           style={{ backgroundColor: '#000' }}
         >
           <Music2 size={14} /> Open TikTok
