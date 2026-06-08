@@ -147,10 +147,13 @@ export default function AdminDashboard({ onExit }) {
   const persistProducts = async (updated) => {
     setSaving(true); setError('');
     try {
-      const res = await api('/products', { method: 'POST', body: JSON.stringify(updated) });
+      // Strip transient preview fields (blob: URLs only meaningful in-browser).
+      // A blob: URL saved to KV is useless on the next load — the blob is gone.
+      const cleaned = updated.map(({ imagePreview, ...rest }) => rest);
+      const res = await api('/products', { method: 'POST', body: JSON.stringify(cleaned) });
       const data = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(data.error || 'Save failed');
-      setProducts(updated); localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
+      setProducts(cleaned); localStorage.setItem(STORAGE_KEY, JSON.stringify(cleaned));
       window.dispatchEvent(new Event('kopala_products_updated'));
       showToast('Saved!');
     } catch (err) { setError(err.message); showToast('Save failed'); }
@@ -248,7 +251,13 @@ export default function AdminDashboard({ onExit }) {
         return;
       }
 
-      // 2. Upload to the worker, which commits to the GitHub repo.
+      // 2. Show a local preview immediately using a blob: URL. The public
+      //    URL we get back from the worker is committed to the repo, but
+      //    it won't be served at kopala.zingati.app until the next wrangler
+      //    deploy — so we use the local blob for instant UI feedback.
+      const previewUrl = URL.createObjectURL(blob);
+
+      // 3. Upload to the worker, which commits to the GitHub repo.
       const fd = new FormData();
       fd.append('file', blob, file.name.replace(/\.[^.]+$/, '.webp'));
       // Product name (or editing product name) gives the worker a hint
@@ -262,13 +271,12 @@ export default function AdminDashboard({ onExit }) {
       if (!res.ok) throw new Error(data.error || 'Upload failed');
 
       if (target === 'edit') {
-        setEditForm(f => ({ ...f, image: data.url }));
+        setEditForm(f => ({ ...f, image: data.url, imagePreview: previewUrl }));
       } else {
-        setAddForm(f => ({ ...f, image: data.url }));
+        setAddForm(f => ({ ...f, image: data.url, imagePreview: previewUrl }));
       }
 
-      showToast('Image uploaded to repo');
-    } catch (error) {
+      showToast('Image uploaded to repo');    } catch (error) {
       console.error('Image upload failed:', error);
       showToast(error.message || 'Upload failed');
     } finally {
@@ -679,7 +687,11 @@ export default function AdminDashboard({ onExit }) {
 
 function ProductForm({ form, setForm, fileRef, onImageUpload }) {
   const [dragOver, setDragOver] = useState(false);
-  const hasImage = !!form.image;
+  // Use the local blob: URL (set right after upload) for instant preview.
+  // Falls back to the persisted /kit-img/... URL once the next deploy
+  // ships the file to the edge.
+  const previewSrc = form.imagePreview || form.image;
+  const hasImage = !!previewSrc;
 
   const handleDrop = (e) => {
     e.preventDefault();
@@ -694,7 +706,13 @@ function ProductForm({ form, setForm, fileRef, onImageUpload }) {
     onImageUpload({ target: { files: [file] } });
   };
 
-  const clearImage = () => setForm(f => ({ ...f, image: '' }));
+  const clearImage = () => setForm(f => {
+    // Revoke any blob: URL we created so the browser can release the bytes.
+    if (f.imagePreview && f.imagePreview.startsWith('blob:')) {
+      try { URL.revokeObjectURL(f.imagePreview); } catch { /* noop */ }
+    }
+    return { ...f, image: '', imagePreview: '' };
+  });
 
   const nameError = !form.name || !form.name.trim();
   const priceNum = Number(form.price);
@@ -772,7 +790,7 @@ function ProductForm({ form, setForm, fileRef, onImageUpload }) {
           </div>
           {hasImage && (
             <div className="relative w-full sm:w-24 h-48 sm:h-24 rounded-xl overflow-hidden bg-[var(--bg-elevated)] flex-shrink-0 border border-[var(--border)]">
-              <img src={form.image} alt="preview" className="w-full h-full object-cover" onError={e => { e.currentTarget.onerror = null; e.currentTarget.src = IMAGE_FALLBACK; }} />
+              <img src={previewSrc} alt="preview" className="w-full h-full object-cover" onError={e => { e.currentTarget.onerror = null; e.currentTarget.src = IMAGE_FALLBACK; }} />
               <button
                 type="button"
                 onClick={(e) => { e.stopPropagation(); clearImage(); }}
