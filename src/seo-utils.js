@@ -61,7 +61,11 @@ export function getOrganizationSchema() {
     image: `${DOMAIN}/og-image.jpg`,
     description:
       "Premium soccer jerseys in Kitwe, Zambia — local, international, national & retro classics.",
-    sameAs: ["https://wa.me/260770713619"],
+    sameAs: [
+      "https://wa.me/260770713619",
+      "https://www.facebook.com/share/18mDdFGSiv/?mibextid=wwXIfr",
+      "https://www.tiktok.com/@kopalakits?_r=1&_t=ZS-972QN6cPSSu",
+    ],
   };
 }
 

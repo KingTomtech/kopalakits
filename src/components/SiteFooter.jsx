@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import { MapPin, Phone, MessageCircle, Mail } from 'lucide-react';
 import Logo from './Logo.jsx';
+import { FacebookIcon, TikTokIcon, InstagramIcon } from './BrandIcons.jsx';
+import { FACEBOOK_URL, TIKTOK_URL, INSTAGRAM_HANDLE, PHONE_FALLBACK } from '../constants.js';
 
 export default function SiteFooter({ phone }) {
   const prettyPhone = phone.replace(/(\d{3})(\d{3})(\d{3})/, '$1 $2 $3');
@@ -74,6 +76,52 @@ export default function SiteFooter({ phone }) {
 
           </address>
           <p className="text-xs mt-4" style={{ color: 'var(--text-faint)' }}>Mon–Fri 8am–6pm · Sat 9am–4pm</p>
+
+          <div className="mt-5">
+            <h5 className="font-bold text-xs uppercase tracking-widest mb-3" style={{ color: 'var(--text-faint)' }}>Follow us</h5>
+            <div className="flex items-center gap-2">
+              <a
+                href={FACEBOOK_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Follow Kopala Kits on Facebook"
+                className="w-9 h-9 rounded-xl flex items-center justify-center transition hover:scale-110"
+                style={{ backgroundColor: '#1877F2' }}
+              >
+                <FacebookIcon size={18} />
+              </a>
+              <a
+                href={TIKTOK_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Follow Kopala Kits on TikTok"
+                className="w-9 h-9 rounded-xl flex items-center justify-center transition hover:scale-110"
+                style={{ backgroundColor: '#000000' }}
+              >
+                <TikTokIcon size={18} />
+              </a>
+              <a
+                href={`https://www.instagram.com/${INSTAGRAM_HANDLE}/`}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Follow Kopala Kits on Instagram"
+                className="w-9 h-9 rounded-xl flex items-center justify-center transition hover:scale-110"
+                style={{ backgroundColor: 'var(--bg)' }}
+              >
+                <InstagramIcon size={18} />
+              </a>
+              <a
+                href={`https://wa.me/${phone || PHONE_FALLBACK}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Chat with Kopala Kits on WhatsApp"
+                className="w-9 h-9 rounded-xl flex items-center justify-center transition hover:scale-110"
+                style={{ backgroundColor: '#25D366' }}
+              >
+                <MessageCircle size={18} color="#FFFFFF" />
+              </a>
+            </div>
+          </div>
         </div>
       </div>
       <div className="border-t px-6 py-4 text-center text-xs" style={{ borderColor: 'var(--border)', color: 'var(--text-faint)' }}>

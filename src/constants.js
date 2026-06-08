@@ -22,3 +22,10 @@ export const CART_KEY = 'kopala_cart';
 // Self-hosted SVG fallback shown when a product image fails to load.
 // Decoded inline so we never need a network round-trip to render it.
 export const IMAGE_FALLBACK = '/jerseys/placeholder.svg';
+
+// Social media profiles. Single source of truth — used in footer, contact,
+// MediaPage embeds, and JSON-LD sameAs arrays.
+export const FACEBOOK_URL = 'https://www.facebook.com/share/18mDdFGSiv/?mibextid=wwXIfr';
+export const TIKTOK_URL = 'https://www.tiktok.com/@kopalakits?_r=1&_t=ZS-972QN6cPSSu';
+export const INSTAGRAM_HANDLE = 'kopalakits';
+export const YOUTUBE_HANDLE = '@kopalakits';

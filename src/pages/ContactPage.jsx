@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { MapPin, Phone, Mail, MessageCircle, Clock, Send } from 'lucide-react';
+import { FacebookIcon, TikTokIcon, InstagramIcon } from '../components/BrandIcons.jsx';
+import { FACEBOOK_URL, TIKTOK_URL, INSTAGRAM_HANDLE, PHONE_FALLBACK } from '../constants.js';
 
 const FAQS = [
   {
@@ -43,6 +45,13 @@ export default function ContactPage({ phone }) {
     setSent(true);
     setTimeout(() => setSent(false), 3000);
   };
+
+  const socials = [
+    { label: 'Facebook',  href: FACEBOOK_URL,                                bg: '#1877F2', icon: <FacebookIcon size={18} /> },
+    { label: 'TikTok',    href: TIKTOK_URL,                                  bg: '#000000', icon: <TikTokIcon size={18} /> },
+    { label: 'Instagram', href: `https://www.instagram.com/${INSTAGRAM_HANDLE}/`, bg: 'var(--bg)', icon: <InstagramIcon size={18} /> },
+    { label: 'WhatsApp',  href: `https://wa.me/${phone || PHONE_FALLBACK}`,  bg: '#25D366', icon: <MessageCircle size={18} color="#FFFFFF" /> },
+  ];
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-8 kk-fade">
@@ -147,6 +156,29 @@ export default function ContactPage({ phone }) {
                   Mon–Fri 8am–6pm · Sat 9am–4pm · Sun closed
                 </div>
               </div>
+            </div>
+          </div>
+
+          {/* Social row */}
+          <div className="mt-6">
+            <h3 className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: 'var(--text-faint)' }}>
+              Follow us
+            </h3>
+            <div className="flex flex-wrap gap-2">
+              {socials.map((s) => (
+                <a
+                  key={s.label}
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Follow Kopala Kits on ${s.label}`}
+                  className="inline-flex items-center gap-2 px-3 py-2 rounded-2xl text-sm font-bold transition hover:brightness-110"
+                  style={{ backgroundColor: s.bg, color: '#FFFFFF' }}
+                >
+                  {s.icon}
+                  <span>{s.label}</span>
+                </a>
+              ))}
             </div>
           </div>
 
