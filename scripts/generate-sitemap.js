@@ -36,7 +36,7 @@ function generateSitemap() {
   xml += `    <changefreq>daily</changefreq>\n`;
   xml += `  </url>\n`;
 
-  const categories = ["Local", "International", "National", "Retro"];
+  const categories = ["Local", "International", "Leagues", "Retro"];
   for (const cat of categories) {
     xml += `  <url>\n`;
     xml += `    <loc>${DOMAIN}/?category=${encodeURIComponent(cat)}</loc>\n`;
