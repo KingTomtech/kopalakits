@@ -46,6 +46,17 @@ const ADMIN_PW_ENV      = 'ADMIN_PASSWORD';
 const PHONE_ENV         = 'PHONE_NUMBER';
 const ALLOWED_ORIGINS_ENV = 'ALLOWED_ORIGINS';
 
+// GitHub repo hosting for product images. The admin dashboard uploads
+// compressed images here via the GitHub Contents API; the file lands in
+// public/kit-img/ and Cloudflare's ASSETS binding serves it on the next
+// deploy. This avoids the 512 KB KV value-size ceiling that broke the
+// previous dataURL-in-JSON design.
+const GH_TOKEN_ENV      = 'GITHUB_TOKEN';
+const GH_REPO_ENV       = 'GITHUB_REPO';     // "owner/repo"
+const GH_BRANCH_ENV     = 'GITHUB_BRANCH';   // default "main"
+const KIT_IMG_DIR       = 'public/kit-img';
+const MAX_UPLOAD_BYTES  = 5 * 1024 * 1024;   // 5 MB safety net per image
+
 const MAX_BODY_BYTES    = 100_000_000;     // 100 MB — Cloudflare Workers hard cap
 const MAX_PRODUCTS      = 500;
 const MAX_DATAURL_BYTES = 100_000;         // 100 KB safety net for legacy data URLs
@@ -1361,6 +1372,153 @@ async function handleAdminTournaments(request, ctx) {
   return errorResponse('Method not allowed', 405, ctx);
 }
 
+// ─── Admin: upload product image to GitHub repo ──────────────────────────
+
+/**
+ * Slugify a filename into a safe, repo-friendly path segment.
+ * Keeps alphanumerics, dashes, underscores; collapses runs of separators.
+ * Falls back to "image" if the result is empty.
+ */
+function slugifyFilename(name) {
+  const base = (name || 'image')
+    .toLowerCase()
+    .replace(/\.[^.]+$/, '')              // strip extension
+    .replace(/[^a-z0-9_-]+/g, '-')       // replace runs of non-safe chars
+    .replace(/^-+|-+$/g, '')              // trim dashes
+    .slice(0, 60) || 'image';
+  return base;
+}
+
+function pickExt(mime, fallback = 'jpg') {
+  if (!mime) return fallback;
+  if (mime === 'image/webp') return 'webp';
+  if (mime === 'image/png')  return 'png';
+  if (mime === 'image/gif')  return 'gif';
+  if (mime === 'image/jpeg') return 'jpg';
+  return fallback;
+}
+
+async function githubUploadFile(env, path, contentBytes, message) {
+  const repo = env[GH_REPO_ENV];
+  const branch = env[GH_BRANCH_ENV] || 'main';
+  const token = env[GH_TOKEN_ENV];
+  if (!repo || !token) {
+    throw new HttpError('GitHub upload is not configured on this worker (GITHUB_REPO / GITHUB_TOKEN missing).', 503);
+  }
+  // 1. Look up the existing file's SHA (needed to update an existing file).
+  let existingSha = null;
+  try {
+    const headRes = await fetch(
+      `https://api.github.com/repos/${repo}/contents/${encodeURI(path)}?ref=${encodeURIComponent(branch)}`,
+      { headers: { Authorization: `Bearer ${token}`, 'User-Agent': 'KopalaKits-Worker', Accept: 'application/vnd.github+json' } }
+    );
+    if (headRes.ok) {
+      const meta = await headRes.json();
+      existingSha = meta.sha || null;
+    } else if (headRes.status !== 404) {
+      throw new HttpError(`GitHub HEAD failed: ${headRes.status}`, 502);
+    }
+  } catch (e) {
+    if (e instanceof HttpError) throw e;
+    throw new HttpError('GitHub HEAD request failed', 502);
+  }
+
+  // 2. PUT the new content. base64-encode the bytes for the Contents API.
+  let binary = '';
+  const bytes = new Uint8Array(contentBytes);
+  for (let i = 0; i < bytes.length; i++) binary += String.fromCharCode(bytes[i]);
+  const body = {
+    message: message || `admin: upload ${path}`,
+    content: btoa(binary),
+    branch,
+    ...(existingSha ? { sha: existingSha } : {}),
+  };
+
+  const putRes = await fetch(
+    `https://api.github.com/repos/${repo}/contents/${encodeURI(path)}`,
+    {
+      method: 'PUT',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'User-Agent': 'KopalaKits-Worker',
+        Accept: 'application/vnd.github+json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body),
+    }
+  );
+  if (!putRes.ok) {
+    const text = await putRes.text().catch(() => '');
+    throw new HttpError(`GitHub PUT failed: ${putRes.status} ${text.slice(0, 200)}`, 502);
+  }
+  const putJson = await putRes.json();
+  return {
+    path,
+    sha: putJson.content?.sha,
+    // The download_url points at GitHub's raw redirect. jsDelivr is a faster
+    // CDN-fronted mirror that's friendly to Cloudflare's ASSETS origin, but
+    // we serve the file out of public/ via the same ASSETS binding once
+    // the deploy runs, so the public URL is just the relative path.
+    publicUrl: `/${path.replace(/^public\//, '')}`,
+  };
+}
+
+async function handleAdminUploadImage(request, ctx) {
+  if (request.method !== 'POST') return errorResponse('Method not allowed', 405, ctx);
+  const auth = await requireAuth(request, ctx.env, ctx);
+  if (auth.error) return auth.response;
+  if (!isTrustedOrigin(ctx.origin, ctx.env, request.url)) {
+    return errorResponse('Forbidden origin', 403, ctx, true);
+  }
+
+  const contentType = request.headers.get('content-type') || '';
+  if (!contentType.toLowerCase().startsWith('multipart/form-data')) {
+    return errorResponse('Expected multipart/form-data', 400, ctx, true);
+  }
+  if (request.headers.get('content-length') && Number(request.headers.get('content-length')) > MAX_UPLOAD_BYTES) {
+    return errorResponse('Upload too large', 413, ctx, true);
+  }
+
+  let form;
+  try {
+    form = await request.formData();
+  } catch (e) {
+    return errorResponse('Failed to parse multipart body', 400, ctx, true);
+  }
+
+  const file = form.get('file');
+  const hint = (form.get('name') || '').toString();
+  if (!file || typeof file === 'string') {
+    return errorResponse('No file field in upload', 400, ctx, true);
+  }
+  if (file.size > MAX_UPLOAD_BYTES) {
+    return errorResponse('Image exceeds 5 MB', 413, ctx, true);
+  }
+  if (!file.type || !file.type.startsWith('image/')) {
+    return errorResponse('Uploaded file is not an image', 400, ctx, true);
+  }
+
+  const bytes = await file.arrayBuffer();
+  const slug = slugifyFilename(hint || file.name || 'image');
+  const ext = pickExt(file.type, 'jpg');
+  const stamped = `${slug}-${Date.now()}.${ext}`;
+  const path = `${KIT_IMG_DIR}/${stamped}`;
+
+  try {
+    const result = await githubUploadFile(ctx.env, path, bytes, `admin: upload product image ${stamped}`);
+    return jsonResponse({
+      success: true,
+      url: result.publicUrl,
+      path: result.path,
+      sha: result.sha,
+      size: file.size,
+    }, ctx);
+  } catch (e) {
+    if (e instanceof HttpError) return errorResponse(e.message, e.status, ctx, true);
+    return errorResponse('GitHub upload failed', 502, ctx, true);
+  }
+}
+
 // ─── Main Router ─────────────────────────────────────────────────────────
 
 export default {
@@ -1394,6 +1552,7 @@ export default {
       if (url.pathname === '/api/tournaments/pick')        return await handleTournamentPick(request, ctx);
       if (url.pathname === '/api/admin/predictions/result') return await handleAdminSetResult(request, ctx);
       if (url.pathname === '/api/admin/tournaments')         return await handleAdminTournaments(request, ctx);
+      if (url.pathname === '/api/admin/upload-image')        return await handleAdminUploadImage(request, ctx);
       if (url.pathname.startsWith('/api/tournaments/'))    return await handleTournament(request, ctx);
 
       if (url.pathname === '/api/health') {

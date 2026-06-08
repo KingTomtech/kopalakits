@@ -14,24 +14,31 @@ function useKeydown(key, handler) {
 }
 
 
-// Cap the compressed output to stay under the worker's per-image limit.
-// Worker rejects data URLs > 500 KB (see MAX_DATAURL_BYTES in worker.js).
-// We aim for ~450 KB to leave headroom for base64 inflation vs byte length.
-const TARGET_MAX_BYTES = 450_000;
-const ABSOLUTE_MAX_BYTES = 500_000;
+// Image upload pipeline:
+//   1. Compress to WebP/JPEG on-canvas (max 1400×1400) so source is small.
+//   2. POST the Blob as multipart/form-data to /api/admin/upload-image.
+//   3. Worker commits the file to public/kit-img/ via the GitHub Contents
+//      API and returns a public URL like "/kit-img/foo-1717000000.webp".
+//   4. We store the relative URL on the product; Cloudflare's ASSETS
+//      binding serves it from the next deploy onward. The previous
+//      dataURL-in-KV design broke at 100 KB; this one is bounded only by
+//      GitHub's 100 MB per-file limit and the 5 MB worker-side guard.
+const MAX_UPLOAD_BYTES = 5 * 1024 * 1024;
 
-async function compressImage(file, maxWidth = 1400, maxHeight = 1400, quality = 0.92) {
-  // Try the requested quality first, then step down if output exceeds target.
+async function compressImage(file, maxWidth = 1400, maxHeight = 1400, quality = 0.9) {
+  // Step down quality until the output fits a 1 MB target so we don't
+  // burn the 5 MB cap on huge source images.
+  const TARGET = 1_000_000;
   let q = quality;
-  let attempt = await encodeAt(file, maxWidth, maxHeight, q);
-  while (attempt.length > TARGET_MAX_BYTES && q > 0.4) {
+  let attempt = await encodeAt(file, maxWidth, maxHeight, q, 'image/webp');
+  while (attempt.size > TARGET && q > 0.5) {
     q -= 0.1;
-    attempt = await encodeAt(file, maxWidth, maxHeight, q);
+    attempt = await encodeAt(file, maxWidth, maxHeight, q, 'image/webp');
   }
   return attempt;
 }
 
-function encodeAt(file, maxWidth, maxHeight, quality) {
+function encodeAt(file, maxWidth, maxHeight, quality, mime = 'image/webp') {
   return new Promise((resolve, reject) => {
     const img = new Image();
     img.onload = () => {
@@ -44,8 +51,11 @@ function encodeAt(file, maxWidth, maxHeight, quality) {
       canvas.height = height;
       ctx.drawImage(img, 0, 0, width, height);
       URL.revokeObjectURL(img.src);
-      try { resolve(canvas.toDataURL('image/webp', quality)); }
-      catch { resolve(canvas.toDataURL('image/jpeg', quality)); }
+      canvas.toBlob(
+        (blob) => blob ? resolve(blob) : reject(new Error('Encode failed')),
+        mime,
+        quality
+      );
     };
     img.onerror = reject;
     img.src = URL.createObjectURL(file);
@@ -79,14 +89,15 @@ export default function AdminDashboard({ onExit }) {
   const searchRef = useRef(null);
 
   const api = useCallback(async (path, opts = {}) => {
-    const res = await fetch(`/api${path}`, {
-      ...opts,
-      headers: {
-        ...(opts.headers || {}),
-        ...(token ? { Authorization: `Bearer ${token}` } : {}),
-        ...(opts.body && typeof opts.body === 'string' ? { 'Content-Type': 'application/json' } : {}),
-      },
-    });
+    // When the body is FormData, the browser sets the multipart Content-Type
+    // with its own boundary — never let fetch's headers object override it.
+    const isFormData = typeof FormData !== 'undefined' && opts.body instanceof FormData;
+    const headers = {
+      ...(opts.headers || {}),
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
+      ...(opts.body && !isFormData && typeof opts.body === 'string' ? { 'Content-Type': 'application/json' } : {}),
+    };
+    const res = await fetch(`/api${path}`, { ...opts, headers });
     if (res.status === 401) {
       sessionStorage.removeItem(AUTH_TOKEN_KEY);
       setAuthed(false);
@@ -224,41 +235,46 @@ export default function AdminDashboard({ onExit }) {
     }
 
     if (file.size > 20 * 1024 * 1024) {
-      showToast('Image too large — max 20 MB');
+      showToast('Image too large — max 20 MB before compression');
       return;
     }
 
+    setSaving(true);
     try {
-      // Increased compression settings for better quality
-      const compressed = await compressImage(file, 1400, 1400, 0.92);
-
-      if (compressed.length > ABSOLUTE_MAX_BYTES) {
-        showToast('Image is too detailed — even at lower quality it exceeds 500 KB. Try cropping or simplifying.');
+      // 1. Compress in-browser to a small WebP blob.
+      const blob = await compressImage(file, 1400, 1400, 0.9);
+      if (blob.size > MAX_UPLOAD_BYTES) {
+        showToast('Image is still too large after compression');
         return;
       }
 
+      // 2. Upload to the worker, which commits to the GitHub repo.
+      const fd = new FormData();
+      fd.append('file', blob, file.name.replace(/\.[^.]+$/, '.webp'));
+      // Product name (or editing product name) gives the worker a hint
+      // for the filename slug.
+      const hintName =
+        (target === 'edit' ? editForm?.name : addForm?.name) || file.name || 'image';
+      fd.append('name', hintName);
+
+      const res = await api('/admin/upload-image', { method: 'POST', body: fd });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data.error || 'Upload failed');
+
       if (target === 'edit') {
-        setEditForm(f => ({ ...f, image: compressed }));
+        setEditForm(f => ({ ...f, image: data.url }));
       } else {
-        setAddForm(f => ({ ...f, image: compressed }));
+        setAddForm(f => ({ ...f, image: data.url }));
       }
 
-      showToast('Image compressed successfully');
+      showToast('Image uploaded to repo');
     } catch (error) {
-      console.warn('Compression failed, falling back to original:', error);
-
-      const reader = new FileReader();
-      reader.onload = (ev) => {
-        if (target === 'edit') {
-          setEditForm(f => ({ ...f, image: ev.target.result }));
-        } else {
-          setAddForm(f => ({ ...f, image: ev.target.result }));
-        }
-        showToast('Image loaded (original size)');
-      };
-
-      reader.onerror = () => showToast('Failed to read image');
-      reader.readAsDataURL(file);
+      console.error('Image upload failed:', error);
+      showToast(error.message || 'Upload failed');
+    } finally {
+      setSaving(false);
+      // Always clear the file input so re-selecting the same file fires onChange.
+      if (e.target) e.target.value = '';
     }
   };
 
