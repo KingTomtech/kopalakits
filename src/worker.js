@@ -276,7 +276,9 @@ function sanitizeProduct(raw, idx) {
     }
     out.id = idNum;
   }
-  // category allowlist
+  // category allowlist. Old saves may have `National`; coerce to the
+  // current `Leagues` bucket so we don't reject historic rows.
+  if (out.category === 'National') out.category = 'Leagues';
   if (out.category && !['Local', 'International', 'Leagues', 'Retro'].includes(out.category)) {
     throw new HttpError(`Product at index ${idx} has invalid category`, 400);
   }
