@@ -1,11 +1,12 @@
 import { Music2, ExternalLink, Play, Heart, MessageCircle } from 'lucide-react';
-import { YouTubeIcon, InstagramIcon, FacebookIcon } from '../components/BrandIcons.jsx';
+import { YouTubeIcon, InstagramIcon, FacebookIcon, TikTokIcon } from '../components/BrandIcons.jsx';
 import { useState } from 'react';
+import { FACEBOOK_URL, TIKTOK_URL } from '../constants.js';
 
 const INSTAGRAM_HANDLE = 'kopala_kits';
 const INSTAGRAM_URL = `https://www.instagram.com/${INSTAGRAM_HANDLE}/`;
 const TIKTOK_HANDLE = 'kopalakits';
-const TIKTOK_URL = 'https://www.tiktok.com/@kopalakits?_r=1&_t=ZS-972QN6cPSSu';
+// TIKTOK_URL is imported from constants.js (single source of truth)
 
 // YouTube embeds use the privacy-enhanced youtube-nocookie.com domain which
 // doesn't set cookies until the user clicks Play.
@@ -91,12 +92,20 @@ function FacebookPage() {
         </div>
         <div>
           <div className="font-bold text-sm" style={{ color: 'var(--text)' }}>Kopala Kits</div>
-          <div className="text-xs" style={{ color: 'var(--text-faint)' }}>Facebook page</div>
+          <a
+            href={FACEBOOK_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-xs font-bold inline-flex items-center gap-1"
+            style={{ color: 'var(--brand-deep)' }}
+          >
+            View on Facebook <ExternalLink size={10} className="-mt-0.5" />
+          </a>
         </div>
       </div>
       <iframe
         title="Kopala Kits on Facebook"
-        src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fshare%2F18mDdFGSiv%2F&tabs=timeline&width=500&height=600&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true"
+        src={`https://www.facebook.com/plugins/page.php?href=${encodeURIComponent(FACEBOOK_URL)}&tabs=timeline&width=500&height=600&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true`}
         loading="lazy"
         className="w-full"
         style={{ border: 'none', overflow: 'hidden', height: 600 }}
@@ -106,46 +115,50 @@ function FacebookPage() {
   );
 }
 
-function TikTokEmbed() {
-  // TikTok's official embed only supports individual video URLs, not profiles.
-  // We link out to the profile and embed one featured video.
+function TikTokProfile() {
+  // TikTok's official embed only supports individual video URLs, not profiles,
+  // so we mirror the Instagram treatment: header card with circular avatar +
+  // external link, then a content block describing what to expect.
   return (
     <div
-      className="rounded-2xl p-5 border"
+      className="rounded-2xl overflow-hidden border"
       style={{ borderColor: 'var(--border)', backgroundColor: 'var(--surface)' }}
     >
-      <div className="flex items-center gap-3 mb-3">
+      <div className="px-4 py-3 flex items-center gap-3 border-b" style={{ borderColor: 'var(--border)' }}>
         <div
-          className="w-10 h-10 rounded-full flex items-center justify-center text-white"
+          className="w-10 h-10 rounded-full flex items-center justify-center"
           style={{ backgroundColor: '#000' }}
         >
-          <Music2 size={20} />
+          <TikTokIcon size={20} />
         </div>
         <div>
-          <div className="font-bold text-sm" style={{ color: 'var(--text)' }}>TikTok</div>
+          <div className="font-bold text-sm" style={{ color: 'var(--text)' }}>@{TIKTOK_HANDLE}</div>
           <a
             href={TIKTOK_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-xs font-bold"
+            className="text-xs font-bold inline-flex items-center gap-1"
             style={{ color: 'var(--brand-deep)' }}
           >
-            @{TIKTOK_HANDLE} <ExternalLink size={10} className="inline -mt-0.5" />
+            View on TikTok <ExternalLink size={10} className="-mt-0.5" />
           </a>
         </div>
       </div>
-      <p className="text-sm" style={{ color: 'var(--text-muted)' }}>
-        Find us on TikTok for kit reveals, behind-the-scenes, and the occasional dance.
-      </p>
-      <a
-        href={TIKTOK_URL}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="mt-3 inline-flex items-center gap-2 px-4 py-2 rounded-2xl text-white font-bold"
-        style={{ backgroundColor: '#000' }}
-      >
-        <Music2 size={14} /> Open TikTok
-      </a>
+      <div className="p-5">
+        <p className="text-sm" style={{ color: 'var(--text-muted)' }}>
+          Find us on TikTok for kit reveals, behind-the-scenes, and the occasional dance.
+          Follow along to never miss a drop.
+        </p>
+        <a
+          href={TIKTOK_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-4 inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl text-white font-bold"
+          style={{ backgroundColor: '#000' }}
+        >
+          <Music2 size={14} /> Open TikTok
+        </a>
+      </div>
     </div>
   );
 }
@@ -275,7 +288,7 @@ export default function MediaPage() {
 
       {tab === 'tiktok' && (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <TikTokEmbed />
+          <TikTokProfile />
           <div
             className="rounded-2xl p-5 border"
             style={{ borderColor: 'var(--border)', backgroundColor: 'var(--surface)' }}
@@ -312,6 +325,15 @@ export default function MediaPage() {
               <li>• Group orders and event bookings</li>
               <li>• Reviews from real buyers</li>
             </ul>
+            <a
+              href={FACEBOOK_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl text-white font-bold"
+              style={{ backgroundColor: '#1877F2' }}
+            >
+              <FacebookIcon size={16} /> Open Facebook
+            </a>
           </div>
         </div>
       )}
