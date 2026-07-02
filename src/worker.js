@@ -57,6 +57,19 @@ const GH_BRANCH_ENV     = 'GITHUB_BRANCH';   // default "main"
 const KIT_IMG_DIR       = 'public/kit-img';
 const MAX_UPLOAD_BYTES  = 5 * 1024 * 1024;   // 5 MB safety net per image
 
+// Optional: Cloudflare Pages build hook so the new image is in dist/
+// within ~30 s of upload. Without this, the read-through fallback still
+// works — the image just stays served-from-GitHub until the next manual
+// deploy. The optional token is sent as Bearer so the hook URL alone
+// can't be triggered by anyone with the link.
+const CF_DEPLOY_HOOK_URL_ENV   = 'CF_DEPLOY_HOOK_URL';
+const CF_DEPLOY_HOOK_TOKEN_ENV = 'CF_DEPLOY_HOOK_TOKEN';
+const GH_RAW_BASE              = 'https://raw.githubusercontent.com';
+// Filenames are slug-timestamped (e.g. foo-1717000000.webp), so they're
+// effectively immutable — a long cache TTL here is safe and saves us
+// from hammering GitHub on every page load.
+const KIT_IMG_CACHE_TTL_SEC    = 3600;
+
 const MAX_BODY_BYTES    = 100_000_000;     // 100 MB — Cloudflare Workers hard cap
 const MAX_PRODUCTS      = 500;
 const MAX_DATAURL_BYTES = 100_000;         // 100 KB safety net for legacy data URLs
@@ -1465,7 +1478,96 @@ async function githubUploadFile(env, path, contentBytes, message) {
   };
 }
 
-async function handleAdminUploadImage(request, ctx) {
+// Fire-and-forget Cloudflare Pages build hook trigger. The deploy itself
+// takes 20–60 s, so callers MUST run this via ctx.waitUntil — never await.
+// Errors are logged but never rethrown: a failed deploy is recoverable
+// (the read-through fallback keeps the image working in the meantime).
+async function triggerCloudflareDeploy(env) {
+  const url = env[CF_DEPLOY_HOOK_URL_ENV];
+  if (!url) return; // optional feature — silent no-op when unconfigured
+  const token = env[CF_DEPLOY_HOOK_TOKEN_ENV];
+  const headers = token ? { Authorization: `Bearer ${token}` } : {};
+  const ctrl = new AbortController();
+  // Cap the wait so a slow Cloudflare doesn't pin a worker invocation.
+  const t = setTimeout(() => ctrl.abort(), 5000);
+  try {
+    const res = await fetch(url, { method: 'POST', headers, signal: ctrl.signal });
+    if (!res.ok) {
+      console.warn(`CF deploy hook returned ${res.status}: ${(await res.text().catch(() => '')).slice(0, 200)}`);
+    }
+  } catch (e) {
+    console.warn(`CF deploy hook failed: ${e?.message || e}`);
+  } finally {
+    clearTimeout(t);
+  }
+}
+
+// Read-through to GitHub raw for product images that aren't in dist/.
+// Covers /kit-img/* (uploaded at runtime, lands in the repo before the
+// next deploy) and /jerseys/* (seeded static jerseys that may be missing
+// from dist but present in the repo). The SPA fallback would otherwise
+// serve index.html for these, which the browser renders as a broken <img>.
+// Returning a real image (or null so the caller can run the placeholder)
+// keeps the onError -> IMAGE_FALLBACK chain intact.
+//
+// Returns null on miss so the caller can fall through to ASSETS / placeholder.
+async function serveRepoImage(request, ctx, executionCtx) {
+  const path = new URL(request.url).pathname; // /kit-img/foo-123.webp or /jerseys/x.jpeg
+  if (!path.startsWith('/kit-img/') && !path.startsWith('/jerseys/')) return null;
+
+  // Edge cache: filenames are slug-timestamped (immutable), so a HIT
+  // means we don't re-hit GitHub.
+  const cache = caches.default;
+  const cached = await cache.match(request);
+  if (cached) return cached;
+
+  const repo = ctx.env[GH_REPO_ENV];
+  const branch = ctx.env[GH_BRANCH_ENV] || 'main';
+  const token = ctx.env[GH_TOKEN_ENV];
+  if (!repo) return null; // not configured — let ASSETS handle it
+
+  // Files were committed at public/kit-img/<slug>-<ts>.webp inside the repo.
+  // raw.githubusercontent.com mirrors the repo root, so we have to include
+  // the public/ prefix to find them. (Earlier version forgot the prefix and
+  // hit 404s on every kit-img request, which made the read-through a no-op.)
+  const rawUrl = `${GH_RAW_BASE}/${repo}/${branch}/public${path}`;
+  const headers = token ? { Authorization: `Bearer ${token}` } : {};
+  let upstream;
+  try {
+    upstream = await fetch(rawUrl, { headers, redirect: 'follow' });
+  } catch {
+    return null; // network blip — let the browser try the placeholder
+  }
+  if (!upstream.ok) return null; // 404/5xx — ASSETS will return its 404, the onError handler fires
+
+  const ctype = upstream.headers.get('content-type') || '';
+  // Reject anything that isn't an image. The SPA fallback would otherwise
+  // inject index.html here if GitHub ever returned HTML (it shouldn't,
+  // but defense in depth).
+  if (!ctype.toLowerCase().startsWith('image/')) return null;
+  const len = Number(upstream.headers.get('content-length') || '0');
+  if (len && len > MAX_UPLOAD_BYTES) return null;
+
+  const body = await upstream.arrayBuffer();
+  const res = new Response(body, {
+    status: 200,
+    headers: {
+      'Content-Type': ctype,
+      'Content-Length': String(body.byteLength),
+      // Immutable for our purposes — filename has a timestamp suffix.
+      'Cache-Control': `public, max-age=${KIT_IMG_CACHE_TTL_SEC}, immutable`,
+    },
+  });
+  // Warm the edge cache for subsequent reads from the same PoP.
+  // Note: ctx is the worker's local ctx (env + origin), NOT the
+  // ExecutionContext. waitUntil lives on the real execution context.
+  if (executionCtx && typeof executionCtx.waitUntil === 'function') {
+    executionCtx.waitUntil(cache.put(request, res.clone()));
+  }
+  return res;
+}
+
+async function handleAdminUploadImage(request, ctx, executionCtx) {
   if (request.method !== 'POST') return errorResponse('Method not allowed', 405, ctx);
   const auth = await requireAuth(request, ctx.env, ctx);
   if (auth.error) return auth.response;
@@ -1508,6 +1610,14 @@ async function handleAdminUploadImage(request, ctx) {
 
   try {
     const result = await githubUploadFile(ctx.env, path, bytes, `admin: upload product image ${stamped}`);
+    // Fire-and-forget the deploy hook so the new file lands in dist/
+    // within ~30 s. Never block the upload response on it — the
+    // read-through fallback covers the propagation window.
+    // (The worker's local ctx has no waitUntil — must use the real
+    // ExecutionContext passed in by the router, for fire-and-forget work.)
+    if (executionCtx && typeof executionCtx.waitUntil === 'function') {
+      executionCtx.waitUntil(triggerCloudflareDeploy(ctx.env));
+    }
     return jsonResponse({
       success: true,
       url: result.publicUrl,
@@ -1554,7 +1664,7 @@ export default {
       if (url.pathname === '/api/tournaments/pick')        return await handleTournamentPick(request, ctx);
       if (url.pathname === '/api/admin/predictions/result') return await handleAdminSetResult(request, ctx);
       if (url.pathname === '/api/admin/tournaments')         return await handleAdminTournaments(request, ctx);
-      if (url.pathname === '/api/admin/upload-image')        return await handleAdminUploadImage(request, ctx);
+      if (url.pathname === '/api/admin/upload-image')        return await handleAdminUploadImage(request, ctx, _ctx);
       if (url.pathname.startsWith('/api/tournaments/'))    return await handleTournament(request, ctx);
 
       if (url.pathname === '/api/health') {
@@ -1565,6 +1675,44 @@ export default {
         return errorResponse(e.message, e.status, ctx, request.method !== 'GET' && request.method !== 'HEAD');
       }
       return errorResponse('Internal error', 500, ctx, request.method !== 'GET' && request.method !== 'HEAD');
+    }
+
+    // Kit images uploaded at runtime aren't in dist/ until the next
+    // deploy. Read through to GitHub raw on miss so they're never broken
+    // in the browser, even during the deploy-propagation window.
+    if (url.pathname.startsWith('/kit-img/') &&
+        (request.method === 'GET' || request.method === 'HEAD')) {
+      // Pass _ctx (the real ExecutionContext) so the read-through's edge
+      // cache warming can use waitUntil. The local ctx has no waitUntil.
+      const img = await serveRepoImage(request, ctx, _ctx);
+      if (img) return img;
+      // Fall through to ASSETS so the SPA fallback (or 404) can still
+      // happen — the <img onError> in AdminDashboard swaps to the
+      // placeholder in that case.
+    }
+
+    // Seeded jerseys should live in dist/, but some referenced jerseys
+    // aren't checked in yet. Try ASSETS first (fast, local); only on a
+    // dist miss — when the SPA fallback returns index.html (text/html)
+    // for what should be an image — do we read through to GitHub raw, so
+    // the repo is the source of truth: committing a jersey to
+    // public/jerseys/ makes it render with no redeploy. If GitHub doesn't
+    // have it either, serve the placeholder explicitly so the browser
+    // gets a real image instead of HTML.
+    if (url.pathname.startsWith('/jerseys/') &&
+        url.pathname !== '/jerseys/placeholder.svg' &&
+        (request.method === 'GET' || request.method === 'HEAD')) {
+      if (env.ASSETS) {
+        const assetRes = await env.ASSETS.fetch(request);
+        const ct = (assetRes.headers.get('content-type') || '').toLowerCase();
+        if (assetRes.ok && !ct.startsWith('text/html')) return assetRes;
+      }
+      const img = await serveRepoImage(request, ctx, _ctx);
+      if (img) return img;
+      if (env.ASSETS) {
+        const phReq = new Request(new URL('/jerseys/placeholder.svg', request.url));
+        return await env.ASSETS.fetch(phReq);
+      }
     }
 
     // SPA fallback: if ASSETS binding is missing or the path doesn't exist,

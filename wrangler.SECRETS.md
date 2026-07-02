@@ -41,3 +41,35 @@ fresh one. No code change needed.
 If the secrets are missing, `/api/admin/upload-image` returns a 503 with
 a clear "GitHub upload is not configured" message — product CRUD still
 works for products that don't need a new image.
+
+## Auto-deploy + read-through for kit images (optional)
+
+Kit images are committed to GitHub at runtime. Cloudflare's `ASSETS`
+binding only sees files that were in `public/` at build time, so a brand
+new image would 404 until the next `wrangler deploy`. To eliminate that
+gap, the worker has two complementary features:
+
+- **Auto-deploy hook** — after a successful GitHub commit, the worker
+  fires a Cloudflare Pages build hook so the new file is in `dist/`
+  within ~30 s.
+- **Read-through fallback** — `GET /kit-img/*` falls through to GitHub
+  raw on cache miss, so even between commit and deploy, the image is
+  served correctly.
+
+Both are optional. Without them, the site behaves as before — images
+appear on the next manual deploy.
+
+Required secrets for the auto-deploy hook (skip both to keep current
+behavior):
+
+- `CF_DEPLOY_HOOK_URL`    — Cloudflare Pages build-hook URL. Create one
+  in the Cloudflare dashboard under Pages → your project → Settings →
+  Builds → Build hooks. Set with `wrangler secret put CF_DEPLOY_HOOK_URL`.
+- `CF_DEPLOY_HOOK_TOKEN`  — optional. If set, sent as
+  `Authorization: Bearer <token>` to the hook so the URL alone can't be
+  triggered by anyone who finds it. Set with
+  `wrangler secret put CF_DEPLOY_HOOK_TOKEN`.
+
+The read-through fallback needs no extra secrets — it reuses
+`GITHUB_TOKEN` to fetch from `raw.githubusercontent.com` and caches the
+response at the edge for one hour.

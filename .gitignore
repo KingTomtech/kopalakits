@@ -29,3 +29,14 @@ dist-ssr
 !.dev.vars.example
 .env*
 !.env.example
+
+# Working artifacts (jersey extraction, screenshots, MCP sessions)
+.assets-source/
+.jersey-extract/
+.jersey-final/
+.jersey-reps/
+.jersey-unique/
+.playwright-mcp/
+*.screenshot.png
+admin-login-screen.png
+public/jerseys/jersey.zip

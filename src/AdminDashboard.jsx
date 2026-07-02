@@ -148,8 +148,14 @@ export default function AdminDashboard({ onExit }) {
     setSaving(true); setError('');
     try {
       // Strip transient preview fields (blob: URLs only meaningful in-browser).
-      // A blob: URL saved to KV is useless on the next load — the blob is gone.
-      const cleaned = updated.map(({ imagePreview, ...rest }) => rest);
+      // A blob: URL saved to KV is useless on the next load — the blob is gone,
+      // so revoke it now to release the in-memory bytes before dropping the field.
+      const cleaned = updated.map(({ imagePreview, ...rest }) => {
+        if (imagePreview && imagePreview.startsWith('blob:')) {
+          try { URL.revokeObjectURL(imagePreview); } catch { /* noop */ }
+        }
+        return rest;
+      });
       const res = await api('/products', { method: 'POST', body: JSON.stringify(cleaned) });
       const data = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(data.error || 'Save failed');
@@ -335,10 +341,12 @@ export default function AdminDashboard({ onExit }) {
     else if (editingId !== null) cancelEdit();
   });
 
-  const filteredProducts = products.filter(p =>
-    p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    p.category.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const filteredProducts = products.filter(p => {
+    const q = searchQuery.toLowerCase();
+    const name = (p.name || '').toLowerCase();
+    const cat = (p.category || '').toLowerCase();
+    return name.includes(q) || cat.includes(q);
+  });
 
   if (!authed) {
     return (
